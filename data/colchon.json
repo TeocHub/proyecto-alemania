@@ -1,0 +1,50 @@
+{
+  "intro": "Antes de Alemania, un piso firme en Santiago. El colchón son meses de gastos guardados aparte: si se cae un trabajo o se atrasa algo, no parten de cero. Cuando esté completo, todo lo que sobre cada mes va directo al viaje.",
+  "mesesOpciones": [1, 2, 3, 4, 6],
+  "etapas": [
+    {
+      "id": "deficit",
+      "nombre": "Frenar el déficit",
+      "corto": "Que lo que entra cubra lo que sale",
+      "texto": "Hoy sale más plata de la que entra: faltan {{faltaMes}} al mes. Mientras eso pase, cualquier ahorro se lo come el mes siguiente. Lo primero es sumar un ingreso o bajar un gasto grande."
+    },
+    {
+      "id": "emergencia",
+      "nombre": "Fondo de emergencia",
+      "corto": "Un mes de gastos guardado",
+      "texto": "La primera meta es {{emergencia}}: un mes completo de gastos en una cuenta aparte. Es lo que salva un mes malo sin pedir prestado."
+    },
+    {
+      "id": "colchon",
+      "nombre": "Colchón completo",
+      "corto": "{{mesesColchon}} meses de gastos",
+      "texto": "El fondo de emergencia ya está. Ahora van por {{metaColchon}}, que son {{mesesColchon}} meses de gastos. Con eso pueden cambiar de trabajo, mudarse o aguantar un imprevisto sin miedo."
+    },
+    {
+      "id": "alemania",
+      "nombre": "Ahorro para Alemania",
+      "corto": "Todo lo que sobre, al viaje",
+      "texto": "El colchón está completo y se queda quieto como respaldo. Desde ahora, todo lo que sobre cada mes va al plan de Alemania."
+    }
+  ],
+  "escenarios": [
+    { "id": "hoy", "nombre": "Como estamos", "detalle": "Sin cambios" },
+    { "id": "part", "nombre": "Uno suma un part time", "detalle": "30 horas a la semana", "suma": ["part"] },
+    { "id": "full", "nombre": "Uno suma un full time", "detalle": "Jornada completa", "suma": ["full"] },
+    { "id": "ambos", "nombre": "Full time y part time", "detalle": "Los dos con un trabajo nuevo", "suma": ["full", "part"] },
+    { "id": "pieza", "nombre": "Full time y una pieza", "detalle": "Mudarse a una pieza con cuentas incluidas", "suma": ["full"], "pieza": true }
+  ],
+  "sueldos": { "full": 440000, "part": 320000, "pieza": 250000 },
+  "sueldosNota": "Montos líquidos aproximados con el sueldo mínimo de 2026 ($539.000 bruto). Cámbienlos cuando sepan el sueldo real.",
+  "acciones": [
+    { "id": "trabajo", "tipo": "Sube lo que entra", "titulo": "Postular al trabajo nuevo", "texto": "Full time o part time de 30 horas. Lo que se gane ahí decide cuándo llegan a cada etapa." },
+    { "id": "temporada", "tipo": "Sube lo que entra", "titulo": "Turnos de temporada", "texto": "Diciembre es el mes en que más contrata el comercio. Pidan turnos extra donde ya trabajan o postulen a reemplazos de verano." },
+    { "id": "vender", "tipo": "Sube lo que entra", "titulo": "Vender lo que no usan", "texto": "Ropa, juegos, cosas de la casa. Todo lo que salga de ahí va directo al colchón." },
+    { "id": "agua", "tipo": "Baja lo que sale", "titulo": "Bajar el agua caliente", "texto": "Duchas de cinco minutos y lavar con agua fría. El agua caliente del edificio se cobra por metro cúbico." },
+    { "id": "luz", "tipo": "Baja lo que sale", "titulo": "Revisar la luz", "texto": "Desenchufar lo que no se usa y cuidar la estufa y el hervidor, que son lo que más consume." },
+    { "id": "amenities", "tipo": "Baja lo que sale", "titulo": "Preguntar por el cobro de amenities", "texto": "Si no usan los espacios comunes, consulten en el edificio si se puede dar de baja." },
+    { "id": "contrato", "tipo": "Cuida lo que hay", "titulo": "Leer el contrato de arriendo", "texto": "Cuántos días de aviso hay que dar y si hay multa por salir antes. Lo necesitan para decidir si se quedan o se mudan." },
+    { "id": "cuenta", "tipo": "Cuida lo que hay", "titulo": "Una cuenta solo para el colchón", "texto": "Separada de la del día a día. Que el ahorro salga el mismo día del sueldo, antes de gastar." },
+    { "id": "gastos", "tipo": "Cuida lo que hay", "titulo": "Anotar los gastos reales un mes", "texto": "Comida, transporte y gustos. Con números reales, los plazos de esta página también son reales." }
+  ]
+}
