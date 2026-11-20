@@ -2,9 +2,14 @@
 <html lang="es-CL">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Proyecto Alemania de Teoc y Francis</title>
-  <meta name="description" content="Plan, presupuesto y dudas para la Working Holiday en Alemania.">
+  <meta name="description" content="El colchón de hoy y el plan para un año en Alemania.">
+  <meta name="theme-color" content="#182638">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="img/icono-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Alemania">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -12,260 +17,425 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='%23fff' stroke='%23182638' stroke-width='5'/%3E%3C/svg%3E">
 </head>
 <body>
-  <a class="saltar" href="#refugio">Ir al contenido</a>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
 
-  <header class="barra">
-    <a class="marca" href="#inicio" aria-label="Inicio">
-      <span class="marca-punto" aria-hidden="true"></span>Proyecto Alemania
-    </a>
-    <nav class="menu" aria-label="Capítulos">
-      <a href="#refugio"><span>1</span>Decidir</a>
-      <a href="#dinero"><span>2</span>La plata</a>
-      <a href="#ciudades"><span>3</span>Dónde</a>
-      <a href="#ruta"><span>4</span>Trámites</a>
-      <a href="#prepararse"><span>5</span>Prepararse</a>
-      <a href="#dudas">Dudas</a>
-    </nav>
-  </header>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-inicio" viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V20h-5.5v-5h-5v5H4z"/></symbol>
+    <symbol id="i-colchon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="4"/><path d="M7 8v10M17 8v10"/></symbol>
+    <symbol id="i-decidir" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-plata" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M14.5 9.2c-.6-.8-1.5-1.2-2.6-1.2-1.6 0-2.6.8-2.6 2s1 1.6 2.7 2 2.8.9 2.8 2.1-1.1 2-2.8 2c-1.2 0-2.2-.5-2.8-1.3M12 6.5v1.5M12 16v1.5"/></symbol>
+    <symbol id="i-donde" viewBox="0 0 24 24"><path d="M12 21s-6-6.1-6-11a6 6 0 0 1 12 0c0 4.9-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></symbol>
+    <symbol id="i-tramites" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8.2 6H15a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h6.8"/></symbol>
+    <symbol id="i-prepararse" viewBox="0 0 24 24"><path d="M4 6.5C6.5 5 9.5 5 12 6.5 14.5 5 17.5 5 20 6.5V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 6.5V19"/></symbol>
+    <symbol id="i-dudas" viewBox="0 0 24 24"><path d="M5 5h14v10h-7l-4 4v-4H5z"/><path d="M10.3 8.6a1.8 1.8 0 1 1 2.3 1.8c-.4.2-.6.5-.6.9v.4M12 13.4v.1"/></symbol>
+    <symbol id="i-conectar" viewBox="0 0 24 24"><path d="M7 12a5 5 0 0 1 5-5h1M17 12a5 5 0 0 1-5 5h-1"/><path d="M11 4.5 13.5 7 11 9.5M13 14.5 10.5 17l2.5 2.5"/></symbol>
+    <symbol id="i-mas" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></symbol>
+  </svg>
 
-  <main>
-    <section id="inicio" class="inicio">
-      <div class="inicio-texto">
-        <h1>Un año en Alemania, los dos.</h1>
-        <p class="frase-fecha">
-          Nos vamos en
-          <label class="sr" for="mes">Mes de viaje</label>
-          <select id="mes" class="select-grande"></select>
-          de
-          <label class="sr" for="anio">Año de viaje</label>
-          <select id="anio" class="select-grande"></select>
-        </p>
-        <p class="frase-resultado" id="frase-resultado" aria-live="polite"></p>
-        <div class="numeros" id="numeros" aria-live="polite"></div>
-        <aside class="proximo" id="proximo" aria-label="Lo próximo"></aside>
-      </div>
-
-      <nav class="linea-mini" aria-label="Avance del plan">
-        <div class="mini-paradas" id="mini-paradas"></div>
-        <div class="mini-extremos" aria-hidden="true"><span>Santiago, hoy</span><span id="mini-fin">Alemania</span></div>
+  <div class="app">
+    <aside class="riel" aria-label="Ventanas">
+      <a class="marca" href="#inicio"><span class="marca-punto" aria-hidden="true"></span>Proyecto Alemania</a>
+      <button type="button" class="sincro" data-sincro><span class="sincro-punto" aria-hidden="true"></span><span class="sincro-texto">Solo en este dispositivo</span></button>
+      <nav class="riel-nav">
+        <p class="riel-grupo">Ahora, en Santiago</p>
+        <a href="#inicio" data-vista="inicio"><svg><use href="#i-inicio"/></svg>Inicio</a>
+        <a href="#colchon" data-vista="colchon"><svg><use href="#i-colchon"/></svg>El colchón</a>
+        <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg>Cuando dudemos</a>
+        <p class="riel-grupo">El plan de Alemania</p>
+        <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
+        <a href="#ciudades" data-vista="ciudades"><svg><use href="#i-donde"/></svg>¿Dónde llegamos?</a>
+        <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
+        <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
+        <p class="riel-grupo">Siempre a mano</p>
+        <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
+        <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Guardar entre los dos</a>
       </nav>
-    </section>
+    </aside>
 
-    
+    <div class="escena">
+      <header class="barra-movil">
+        <a class="marca" href="#inicio"><span class="marca-punto" aria-hidden="true"></span><span id="titulo-movil">Proyecto Alemania</span></a>
+        <button type="button" class="sincro sincro-mini" data-sincro><span class="sincro-punto" aria-hidden="true"></span><span class="sincro-texto">Solo aquí</span></button>
+      </header>
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-      <section id="refugio" class="refugio">
-      <div class="refugio-dentro">
-        <div class="seccion-cabeza">
-          <h2><span class="cap-num" aria-hidden="true">1</span>Cuando dudemos</h2>
-          <p id="refugio-intro"></p>
-        </div>
-        <div class="estados" id="estados" role="group" aria-label="¿Qué sienten hoy?"></div>
-        <article class="estado-respuesta" id="estado-respuesta" aria-live="polite" hidden></article>
-
-        <div id="preguntas-que-deciden" class="deciden">
-          <div class="deciden-cabeza">
-            <h3>Las preguntas que deciden</h3>
-            <p>Cada uno escribe su respuesta. No hay respuestas correctas: hay respuestas honestas. Se guardan en este dispositivo; para compartirlas, usen el botón de copiar.</p>
-            <p class="contador" id="contador-respuestas"></p>
-          </div>
-          <div id="grupos-preguntas"></div>
-          <div class="deciden-pie">
-            <button type="button" class="boton" id="copiar-respuestas">Copiar nuestras respuestas</button>
-            <span class="nota" id="copiado-respuestas" aria-live="polite"></span>
-          </div>
-        </div>
-
-        <div class="mal-mes" id="mal-mes"></div>
-        <div class="familia" id="familia"></div>
-        <div class="consecuencias" id="consecuencias"></div>
-        <p class="apoyo" id="apoyo"></p>
-      </div>
-    </section>
-
-    <section id="dinero" class="seccion seccion-dinero">
-      <div class="seccion-cabeza">
-        <h2><span class="cap-num" aria-hidden="true">2</span>La plata</h2>
-        <p>Cuánto necesitan, cuánto se gasta antes de viajar, cuánto llevan para vivir allá y si les alcanza con lo que ganan hoy. Lo que cambien acá se actualiza en toda la página.</p>
-      </div>
-
-      <div class="dinero">
-        <form class="controles" id="controles" onsubmit="return false">
-          <fieldset class="control">
-            <legend>Colchón para vivir allá (cada uno)</legend>
-            <div class="segmentos" id="colchones"></div>
-            <p class="ayuda" id="colchon-texto"></p>
-          </fieldset>
-
-          <div class="control dos">
-            <label><span>Ya ahorrado por <span data-persona="0"></span></span>
-              <span class="campo-pesos"><input type="text" inputmode="numeric" id="ahorro0" autocomplete="off"></span>
-            </label>
-            <label><span>Ya ahorrado por <span data-persona="1"></span></span>
-              <span class="campo-pesos"><input type="text" inputmode="numeric" id="ahorro1" autocomplete="off"></span>
-            </label>
+      <main id="contenido" tabindex="-1">
+        <section id="inicio" class="vista inicio" data-titulo="Inicio">
+          <div class="inicio-cabeza">
+            <p class="hoy-fecha" id="hoy-fecha"></p>
+            <h1>Un año en Alemania, los dos.</h1>
+            <p class="frase-fecha">
+              Nos vamos en
+              <label class="sr" for="mes">Mes de viaje</label>
+              <select id="mes" class="select-grande"></select>
+              de
+              <label class="sr" for="anio">Año de viaje</label>
+              <select id="anio" class="select-grande"></select>
+            </p>
+            <p class="frase-resultado" id="frase-resultado" aria-live="polite"></p>
           </div>
 
-          <fieldset class="control">
-            <legend>¿Cómo compran el pasaje?</legend>
-            <div class="segmentos dos-opciones" id="tipo-pasaje">
-              <button type="button" data-ida="0">Ida y vuelta</button>
-              <button type="button" data-ida="1">Solo ida<small>+ €1.200 en la cuenta</small></button>
+          <nav class="viaje" aria-label="El camino completo">
+            <div class="viaje-tramos" id="viaje-tramos"></div>
+          </nav>
+
+          <div class="visores">
+            <article class="visor visor-colchon" id="visor-colchon" aria-live="polite"></article>
+            <article class="visor visor-mes" id="visor-mes"></article>
+            <aside class="visor proximo" id="proximo" aria-label="Lo próximo"></aside>
+            <article class="visor visor-plan">
+              <p class="visor-etiqueta">Alemania en números</p>
+              <div class="numeros" id="numeros" aria-live="polite"></div>
+            </article>
+            <article class="visor visor-animo" id="visor-animo"></article>
+          </div>
+        </section>
+
+        <section id="colchon" class="vista seccion seccion-colchon" data-titulo="El colchón" hidden>
+          <div class="seccion-cabeza">
+            <h2><span class="cap-num" aria-hidden="true">0</span>El colchón</h2>
+            <p id="colchon-intro"></p>
+          </div>
+
+          <div class="colchon-cuerpo">
+            <aside class="colchon-visor" id="colchon-visor" aria-live="polite"></aside>
+
+            <div class="colchon-principal">
+              <div class="etapas-colchon">
+                <ol class="etapas-linea" id="etapas-linea" aria-label="Etapas del colchón"></ol>
+                <p class="etapa-texto" id="etapa-texto"></p>
+              </div>
+
+              <div class="economia" id="economia">
+                <div class="economia-cabeza">
+                  <h3>Nuestra economía hoy</h3>
+                  <p>Lo que gana cada uno y lo que se va en la casa. De aquí salen la meta del colchón, cuánto pueden guardar al mes y la fecha posible para Alemania.</p>
+                </div>
+                <div class="economia-grid">
+                  <form class="economia-datos" onsubmit="return false">
+                    <fieldset class="eco-bloque">
+                      <legend>Lo que gana cada uno (líquido, al mes)</legend>
+                      <div class="control dos">
+                        <label><span data-persona="0"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="sueldo0" autocomplete="off"></span></label>
+                        <label><span data-persona="1"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="sueldo1" autocomplete="off"></span></label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="eco-bloque">
+                      <legend>Gastos de la casa (de los dos, al mes)</legend>
+                      <div class="control dos">
+                        <label><span>Arriendo y gasto común</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="arriendo" autocomplete="off"></span></label>
+                        <label><span>Luz, agua, gas, internet</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="cuentas" autocomplete="off"></span></label>
+                        <label><span>Supermercado y comida</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="comida" autocomplete="off"></span></label>
+                        <label><span>Transporte</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="transporte" autocomplete="off"></span></label>
+                        <label><span>Deudas o créditos de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="deudas" autocomplete="off"></span></label>
+                        <label><span>Otros de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="otrosCasa" autocomplete="off"></span></label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="eco-bloque">
+                      <legend>Gastos personales de cada uno (celular, salud, estudios, gustos)</legend>
+                      <div class="control dos">
+                        <label><span data-persona="0"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="personal0" autocomplete="off"></span></label>
+                        <label><span data-persona="1"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="personal1" autocomplete="off"></span></label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="eco-bloque">
+                      <legend>¿Cómo se reparten los gastos de la casa?</legend>
+                      <div class="segmentos-claros" id="reparto">
+                        <button type="button" data-reparto="mitad">Mitad y mitad</button>
+                        <button type="button" data-reparto="proporcional">Según lo que gana cada uno</button>
+                      </div>
+                    </fieldset>
+                  </form>
+                  <div class="economia-resultado" id="economia-resultado" aria-live="polite"></div>
+                </div>
+              </div>
+
+              <div class="sub-seccion" id="escenarios">
+                <div class="sub-cabeza">
+                  <h3>¿Y si…?</h3>
+                  <p>Elijan un camino y vean cuándo estaría listo el colchón y cuándo podrían viajar. No cambia sus datos: es para comparar.</p>
+                </div>
+                <div class="escenarios" id="escenarios-botones" role="group" aria-label="Escenarios"></div>
+                <div class="escenario-resultado" id="escenario-resultado" aria-live="polite"></div>
+                <details class="sueldos">
+                  <summary>Cambiar los sueldos de los escenarios</summary>
+                  <div class="sueldos-campos">
+                    <label><span>Full time, líquido</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-sueldo="full" autocomplete="off"></span></label>
+                    <label><span>Part time 30 h, líquido</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-sueldo="part" autocomplete="off"></span></label>
+                    <label><span>Pieza para dos, todo incluido</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-sueldo="pieza" autocomplete="off"></span></label>
+                  </div>
+                  <p class="nota" id="sueldos-nota"></p>
+                </details>
+              </div>
+
+              <div class="sub-seccion" id="registro">
+                <div class="sub-cabeza registro-cabeza">
+                  <div>
+                    <h3>Lo que llevamos</h3>
+                    <p>Cada vez que guarden o saquen plata del colchón, anótenlo. Las barras son los meses: la línea marca lo que tendrían que guardar al mes.</p>
+                  </div>
+                  <button type="button" class="boton" data-anotar>Anotar</button>
+                </div>
+                <div class="meses-barras" id="meses-barras"></div>
+                <div class="movimientos" id="movimientos"></div>
+              </div>
+
+              <div class="sub-seccion" id="acciones">
+                <div class="sub-cabeza">
+                  <h3>Para llegar antes</h3>
+                  <p>Lo que mueve los plazos. Márquenlo cuando lo hayan hecho.</p>
+                </div>
+                <div class="acciones" id="acciones-grid"></div>
+              </div>
+
+              <div class="sub-seccion" id="ajustes-colchon">
+                <div class="sub-cabeza">
+                  <h3>Cómo lo armamos</h3>
+                </div>
+                <div class="ajustes">
+                  <fieldset class="ajuste">
+                    <legend>¿De cuántos meses de gastos es el colchón?</legend>
+                    <div class="segmentos-claros" id="meses-colchon"></div>
+                  </fieldset>
+                  <label class="ajuste ajuste-check">
+                    <input type="checkbox" id="colchon-primero">
+                    <span><strong>Primero el colchón, después Alemania.</strong> El ahorro para el viaje empieza cuando el colchón esté completo, y la fecha posible de viaje se calcula así.</span>
+                  </label>
+                </div>
+              </div>
             </div>
-            <label class="sub-control"><span><span id="pasaje-tipo"></span>, por persona: <output id="pasaje-out"></output></span>
-              <input type="range" id="pasaje" step="50000">
-            </label>
-            <p class="ayuda" id="pasaje-ayuda"></p>
-          </fieldset>
-
-          <label class="control">
-            Seguro de 12 meses, por persona: <output id="seguro-out"></output>
-            <input type="range" id="seguro" step="25000">
-          </label>
-
-          <div class="control dos">
-            <label><span>Euro en pesos</span>
-              <span class="campo-pesos"><input type="text" inputmode="numeric" id="tc" autocomplete="off"></span>
-            </label>
-            <label class="check-linea">
-              <input type="checkbox" id="pasaporte-check" checked>
-              Uno necesita sacar pasaporte
-            </label>
           </div>
-        </form>
+        </section>
 
-        <div class="resultado" id="resultado" aria-live="polite"></div>
-      </div>
+        <section id="refugio" class="vista refugio" data-titulo="Cuando dudemos" hidden>
+          <div class="refugio-dentro">
+            <div class="seccion-cabeza">
+              <h2><span class="cap-num" aria-hidden="true">1</span>Cuando dudemos</h2>
+              <p id="refugio-intro"></p>
+            </div>
+            <div class="estados" id="estados" role="group" aria-label="¿Qué sienten hoy?"></div>
+            <article class="estado-respuesta" id="estado-respuesta" aria-live="polite" hidden></article>
 
-      <div class="economia" id="economia">
-        <div class="economia-cabeza">
-          <h3>Nuestra economía hoy</h3>
-          <p>Anoten lo que gana cada uno y lo que se va en la casa. La página calcula cuánto le queda a cada uno, si alcanza para ahorrar lo que pide el plan y cuál es la fecha más cercana que pueden sostener.</p>
-        </div>
-        <div class="economia-grid">
-          <form class="economia-datos" onsubmit="return false">
-            <fieldset class="eco-bloque">
-              <legend>Lo que gana cada uno (líquido, al mes)</legend>
+            <div id="preguntas-que-deciden" class="deciden">
+              <div class="deciden-cabeza">
+                <h3>Las preguntas que deciden</h3>
+                <p>Cada uno escribe su respuesta. No hay respuestas correctas: hay respuestas honestas.</p>
+                <p class="contador" id="contador-respuestas"></p>
+              </div>
+              <div id="grupos-preguntas"></div>
+              <div class="deciden-pie">
+                <button type="button" class="boton" id="copiar-respuestas">Copiar nuestras respuestas</button>
+                <span class="nota" id="copiado-respuestas" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="mal-mes" id="mal-mes"></div>
+            <div class="familia" id="familia"></div>
+            <div class="consecuencias" id="consecuencias"></div>
+            <p class="apoyo" id="apoyo"></p>
+          </div>
+        </section>
+
+        <section id="dinero" class="vista seccion seccion-dinero" data-titulo="La plata" hidden>
+          <div class="seccion-cabeza">
+            <h2><span class="cap-num" aria-hidden="true">2</span>La plata</h2>
+            <p>Cuánto necesitan para Alemania, cuánto se gasta antes de viajar y cuánto llevan para vivir allá. Lo que cambien acá se actualiza en toda la página.</p>
+          </div>
+
+          <div class="dinero">
+            <form class="controles" id="controles" onsubmit="return false">
+              <fieldset class="control">
+                <legend>Colchón para vivir allá (cada uno)</legend>
+                <div class="segmentos" id="colchones"></div>
+                <p class="ayuda" id="colchon-texto"></p>
+              </fieldset>
+
               <div class="control dos">
-                <label><span data-persona="0"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="sueldo0" autocomplete="off"></span></label>
-                <label><span data-persona="1"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="sueldo1" autocomplete="off"></span></label>
+                <label><span>Ya ahorrado para Alemania por <span data-persona="0"></span></span>
+                  <span class="campo-pesos"><input type="text" inputmode="numeric" id="ahorro0" autocomplete="off"></span>
+                </label>
+                <label><span>Ya ahorrado para Alemania por <span data-persona="1"></span></span>
+                  <span class="campo-pesos"><input type="text" inputmode="numeric" id="ahorro1" autocomplete="off"></span>
+                </label>
               </div>
-            </fieldset>
-            <fieldset class="eco-bloque">
-              <legend>Gastos de la casa (de los dos, al mes)</legend>
-              <div class="control dos">
-                <label><span>Arriendo</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="arriendo" autocomplete="off"></span></label>
-                <label><span>Luz, agua, gas, internet</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="cuentas" autocomplete="off"></span></label>
-                <label><span>Supermercado y comida</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="comida" autocomplete="off"></span></label>
-                <label><span>Transporte</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="transporte" autocomplete="off"></span></label>
-                <label><span>Deudas o créditos de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="deudas" autocomplete="off"></span></label>
-                <label><span>Otros de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="otrosCasa" autocomplete="off"></span></label>
-              </div>
-            </fieldset>
-            <fieldset class="eco-bloque">
-              <legend>Gastos personales de cada uno (celular, salud, estudios, gustos)</legend>
-              <div class="control dos">
-                <label><span data-persona="0"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="personal0" autocomplete="off"></span></label>
-                <label><span data-persona="1"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="personal1" autocomplete="off"></span></label>
-              </div>
-            </fieldset>
-            <fieldset class="eco-bloque">
-              <legend>¿Cómo se reparten los gastos de la casa?</legend>
-              <div class="segmentos-claros" id="reparto">
-                <button type="button" data-reparto="mitad">Mitad y mitad</button>
-                <button type="button" data-reparto="proporcional">Según lo que gana cada uno</button>
-              </div>
-            </fieldset>
-          </form>
-          <div class="economia-resultado" id="economia-resultado" aria-live="polite"></div>
-        </div>
-      </div>
-    </section>
 
-    <section id="ciudades" class="seccion">
-      <div class="seccion-cabeza">
-        <h2><span class="cap-num" aria-hidden="true">3</span>¿Dónde llegamos?</h2>
-        <p>Comparen lo que cuesta vivir con lo que podrían ganar. Elijan una ciudad y cómo se imaginan trabajando.</p>
-      </div>
-      <div class="ciudades">
-        <div class="ciudad-selector" id="ciudad-selector" role="tablist" aria-label="Ciudades"></div>
-        <div class="ingreso-selector">
-          <label for="ingreso-escenario">Trabajando así:</label>
-          <select id="ingreso-escenario"></select>
-        </div>
-        <article class="ciudad-panel" id="ciudad-panel" role="tabpanel" aria-live="polite"></article>
-        <p class="nota" id="ciudades-nota"></p>
-      </div>
-    </section>
+              <fieldset class="control">
+                <legend>¿Cómo compran el pasaje?</legend>
+                <div class="segmentos dos-opciones" id="tipo-pasaje">
+                  <button type="button" data-ida="0">Ida y vuelta</button>
+                  <button type="button" data-ida="1">Solo ida<small>+ €1.200 en la cuenta</small></button>
+                </div>
+                <label class="sub-control"><span><span id="pasaje-tipo"></span>, por persona: <output id="pasaje-out"></output></span>
+                  <input type="range" id="pasaje" step="50000">
+                </label>
+                <p class="ayuda" id="pasaje-ayuda"></p>
+              </fieldset>
 
-    <section id="ruta" class="seccion">
-      <div class="seccion-cabeza">
-        <h2><span class="cap-num" aria-hidden="true">4</span>Los trámites</h2>
-        <p>Todo lo que hay que hacer desde hoy hasta tener la visa y llegar. Cada estación es una etapa: tóquenla para ver qué hacer y marquen lo que cada uno vaya terminando. Las fechas se calculan desde el mes de viaje.</p>
-      </div>
-      <div class="ruta">
-        <ol class="linea" id="linea" aria-label="Etapas del plan"></ol>
-        <article class="estacion-panel" id="estacion-panel" aria-live="polite"></article>
-      </div>
+              <label class="control">
+                Seguro de 12 meses, por persona: <output id="seguro-out"></output>
+                <input type="range" id="seguro" step="25000">
+              </label>
+
+              <div class="control dos">
+                <label><span>Euro en pesos</span>
+                  <span class="campo-pesos"><input type="text" inputmode="numeric" id="tc" autocomplete="off"></span>
+                </label>
+                <label class="check-linea">
+                  <input type="checkbox" id="pasaporte-check" checked>
+                  Uno necesita sacar pasaporte
+                </label>
+              </div>
+            </form>
+
+            <div class="resultado" id="resultado" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section id="ciudades" class="vista seccion" data-titulo="¿Dónde llegamos?" hidden>
+          <div class="seccion-cabeza">
+            <h2><span class="cap-num" aria-hidden="true">3</span>¿Dónde llegamos?</h2>
+            <p>Comparen lo que cuesta vivir con lo que podrían ganar. Elijan una ciudad y cómo se imaginan trabajando.</p>
+          </div>
+          <div class="ciudades">
+            <div class="ciudad-selector" id="ciudad-selector" role="tablist" aria-label="Ciudades"></div>
+            <div class="ingreso-selector">
+              <label for="ingreso-escenario">Trabajando así:</label>
+              <select id="ingreso-escenario"></select>
+            </div>
+            <article class="ciudad-panel" id="ciudad-panel" role="tabpanel" aria-live="polite"></article>
+            <p class="nota" id="ciudades-nota"></p>
+          </div>
+        </section>
+
+        <section id="ruta" class="vista seccion" data-titulo="Los trámites" hidden>
+          <div class="seccion-cabeza">
+            <h2><span class="cap-num" aria-hidden="true">4</span>Los trámites</h2>
+            <p>Todo lo que hay que hacer desde hoy hasta tener la visa y llegar. Cada estación es una etapa: tóquenla para ver qué hacer y marquen lo que cada uno vaya terminando. Las fechas se calculan desde el mes de viaje.</p>
+          </div>
+          <div class="ruta">
+            <ol class="linea" id="linea" aria-label="Etapas del plan"></ol>
+            <article class="estacion-panel" id="estacion-panel" aria-live="polite"></article>
+          </div>
           <div class="sub-seccion">
-        <div class="sub-cabeza" id="carpeta">
-        <h3>La carpeta de cada uno</h3>
-        <p>Lo que hay que llevar el día de la cita, en original y copia. Toquen un documento para ver el detalle y marquen quién ya lo tiene listo.</p>
-      </div>
-      <div class="carpeta" id="carpeta-grid"></div>
-      </div>
-    </section>
+            <div class="sub-cabeza" id="carpeta">
+              <h3>La carpeta de cada uno</h3>
+              <p>Lo que hay que llevar el día de la cita, en original y copia. Toquen un documento para ver el detalle y marquen quién ya lo tiene listo.</p>
+            </div>
+            <div class="carpeta" id="carpeta-grid"></div>
+          </div>
+        </section>
 
-    <section id="prepararse" class="seccion">
-      <div class="seccion-cabeza">
-        <h2><span class="cap-num" aria-hidden="true">5</span>Prepararse para llegar</h2>
-        <p>El idioma, la vivienda y lo que cuentan quienes ya fueron. Lo que se puede adelantar desde Santiago, para no llegar en blanco.</p>
-      </div>
-      <div class="pestanas" role="tablist" aria-label="Preparación">
-        <button type="button" role="tab" id="tab-aleman" aria-controls="panel-aleman" aria-selected="true">Alemán</button>
-        <button type="button" role="tab" id="tab-hospedaje" aria-controls="panel-hospedaje" aria-selected="false">Hospedaje</button>
-        <button type="button" role="tab" id="tab-experiencias" aria-controls="panel-experiencias" aria-selected="false">Experiencias</button>
-      </div>
-      <div class="prep-panel" id="panel-aleman" role="tabpanel" aria-labelledby="tab-aleman"></div>
-      <div class="prep-panel" id="panel-hospedaje" role="tabpanel" aria-labelledby="tab-hospedaje" hidden></div>
-      <div class="prep-panel" id="panel-experiencias" role="tabpanel" aria-labelledby="tab-experiencias" hidden></div>
-    </section>
+        <section id="prepararse" class="vista seccion" data-titulo="Prepararse" hidden>
+          <div class="seccion-cabeza">
+            <h2><span class="cap-num" aria-hidden="true">5</span>Prepararse para llegar</h2>
+            <p>El idioma, la vivienda y lo que cuentan quienes ya fueron. Lo que se puede adelantar desde Santiago, para no llegar en blanco.</p>
+          </div>
+          <div class="pestanas" role="tablist" aria-label="Preparación">
+            <button type="button" role="tab" id="tab-aleman" aria-controls="panel-aleman" aria-selected="true">Alemán</button>
+            <button type="button" role="tab" id="tab-hospedaje" aria-controls="panel-hospedaje" aria-selected="false">Hospedaje</button>
+            <button type="button" role="tab" id="tab-experiencias" aria-controls="panel-experiencias" aria-selected="false">Experiencias</button>
+          </div>
+          <div class="prep-panel" id="panel-aleman" role="tabpanel" aria-labelledby="tab-aleman"></div>
+          <div class="prep-panel" id="panel-hospedaje" role="tabpanel" aria-labelledby="tab-hospedaje" hidden></div>
+          <div class="prep-panel" id="panel-experiencias" role="tabpanel" aria-labelledby="tab-experiencias" hidden></div>
+        </section>
 
-    <section id="dudas" class="seccion seccion-dudas">
-      <div class="seccion-cabeza">
-        <h2>Todas las dudas</h2>
-        <p>Lo que da miedo suele tener respuesta. Elijan una pregunta o escriban lo que les preocupa.</p>
-      </div>
-      <div class="dudas">
-        <div class="dudas-filtros">
-          <label class="sr" for="buscar">Buscar una duda</label>
-          <input type="search" id="buscar" placeholder="Escriban una palabra: plata, rechazo, idioma…">
-          <div class="temas" id="temas"></div>
+        <section id="dudas" class="vista seccion seccion-dudas" data-titulo="Todas las dudas" hidden>
+          <div class="seccion-cabeza">
+            <h2>Todas las dudas</h2>
+            <p>Lo que da miedo suele tener respuesta. Elijan una pregunta o escriban lo que les preocupa.</p>
+          </div>
+          <div class="dudas">
+            <div class="dudas-filtros">
+              <label class="sr" for="buscar">Buscar una duda</label>
+              <input type="search" id="buscar" placeholder="Escriban una palabra: plata, rechazo, idioma…">
+              <div class="temas" id="temas"></div>
+            </div>
+            <div class="dudas-cuerpo">
+              <div class="preguntas" id="preguntas"></div>
+              <article class="respuesta" id="respuesta" aria-live="polite"></article>
+            </div>
+          </div>
+        </section>
+
+        <section id="conectar" class="vista seccion" data-titulo="Guardar entre los dos" hidden>
+          <div class="seccion-cabeza">
+            <h2>Guardar entre los dos</h2>
+            <p>Sin conectar, lo que anotan se queda solo en el dispositivo donde lo escriben. Con una planilla de Google de ustedes, los dos ven lo mismo en el celular y en la tablet. Es gratis y no se apaga aunque pasen semanas sin entrar.</p>
+          </div>
+          <div class="conectar-cuerpo">
+            <div class="conectar-panel" id="conectar-panel"></div>
+            <div class="conectar-pasos">
+              <h3 class="prep-titulo">Cómo se conecta (una sola vez)</h3>
+              <ol class="pasos">
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Crear la planilla</h4><p>Con la cuenta de Google de uno de los dos, abran <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a> y pónganle de nombre «Proyecto Alemania».</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Pegar el código</h4><p>En la planilla: <strong>Extensiones → Apps Script</strong>. Borren lo que aparece, peguen el código y, en la primera línea, cambien <code>cambien-esta-clave</code> por una frase que solo ustedes sepan.</p><p><button type="button" class="boton" id="copiar-codigo">Copiar el código</button> <span class="nota" id="codigo-copiado" aria-live="polite"></span></p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Publicarlo</h4><p>Guarden (ícono de disquete) y vayan a <strong>Implementar → Nueva implementación</strong>. En el engranaje elijan <strong>Aplicación web</strong>. Ejecutar como: <strong>Yo</strong>. Quién tiene acceso: <strong>Cualquier persona</strong>. Toquen Implementar.</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Dar permiso</h4><p>Google pide autorizar. Si aparece «Google no verificó esta app», toquen <strong>Configuración avanzada → Ir a Proyecto Alemania</strong>: es su propio código, en su propia cuenta. Copien la dirección de la aplicación web (termina en <code>/exec</code>).</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Conectar aquí</h4><p>Peguen la dirección y la clave en el recuadro y toquen Conectar. Después usen «Mandar el enlace» para que el otro se conecte con un toque.</p></div></li>
+              </ol>
+              <p class="nota">Si algún día cambian el código, usen <strong>Implementar → Administrar implementaciones → Editar → Nueva versión</strong>: así la dirección no cambia y no hay que volver a conectar.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="pie">
+        <p id="pie-fecha"></p>
+        <p>Los montos son estimaciones para planificar: confirmen requisitos y valores en la página de la embajada antes de pagar o postular.</p>
+        <div class="fuentes" id="fuentes"></div>
+      </footer>
+    </div>
+
+    <nav class="tabbar" aria-label="Ventanas principales">
+      <a href="#inicio" data-vista="inicio"><svg><use href="#i-inicio"/></svg>Inicio</a>
+      <a href="#colchon" data-vista="colchon"><svg><use href="#i-colchon"/></svg>Colchón</a>
+      <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
+      <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Trámites</a>
+      <button type="button" id="abrir-mas" aria-expanded="false" aria-controls="mas"><svg><use href="#i-mas"/></svg>Más</button>
+    </nav>
+
+    <div class="mas" id="mas" hidden>
+      <div class="mas-fondo" data-cerrar-mas></div>
+      <div class="mas-hoja" role="dialog" aria-modal="true" aria-label="Más ventanas">
+        <span class="mas-asa" aria-hidden="true"></span>
+        <div class="mas-grid">
+          <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg>Cuando dudemos</a>
+          <a href="#ciudades" data-vista="ciudades"><svg><use href="#i-donde"/></svg>¿Dónde llegamos?</a>
+          <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
+          <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
+          <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Guardar entre los dos</a>
         </div>
-        <div class="dudas-cuerpo">
-          <div class="preguntas" id="preguntas"></div>
-          <article class="respuesta" id="respuesta" aria-live="polite"></article>
-        </div>
       </div>
-    </section>
-  </main>
+    </div>
 
-  <footer class="pie">
-    <p id="pie-fecha"></p>
-    <p>Los montos son estimaciones para planificar: confirmen requisitos y valores en la página de la embajada antes de pagar o postular. Lo que marcan se guarda solo en este dispositivo.</p>
-    <div class="fuentes" id="fuentes"></div>
-  </footer>
+    <button type="button" class="fab" data-anotar aria-label="Anotar ahorro" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="sr">Anotar ahorro</span>
+    </button>
+  </div>
 
+  <dialog class="dialogo" id="dialogo-mov" aria-labelledby="dm-titulo">
+    <form id="form-mov" novalidate>
+      <h2 id="dm-titulo">Anotar en el colchón</h2>
+      <div class="segmentos-claros dm-tipo" role="group" aria-label="Qué pasó">
+        <button type="button" data-tipo="mas" aria-pressed="true">Guardamos</button>
+        <button type="button" data-tipo="menos" aria-pressed="false">Sacamos</button>
+      </div>
+      <label class="dm-monto">
+        <span>¿Cuánto?</span>
+        <span class="campo-pesos"><input type="text" inputmode="numeric" id="dm-monto" autocomplete="off" required></span>
+      </label>
+      <div class="dm-quien" id="dm-quien" role="group" aria-label="Quién"></div>
+      <label class="dm-campo"><span>Nota (opcional)</span><input type="text" id="dm-nota" placeholder="Ej.: sueldo de diciembre" maxlength="80"></label>
+      <label class="dm-campo"><span>Fecha</span><input type="date" id="dm-fecha"></label>
+      <p class="dm-error" id="dm-error" aria-live="polite"></p>
+      <div class="dm-pie">
+        <button type="button" class="boton-texto" id="dm-cancelar">Cancelar</button>
+        <button type="submit" class="boton">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/sync.js" defer></script>
   <script src="js/app.js" defer></script>
 </body>
 </html>
