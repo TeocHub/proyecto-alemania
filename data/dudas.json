@@ -1,12 +1,33 @@
 {
   "temas": [
-    { "id": "miedo", "nombre": "Miedos" },
-    { "id": "dinero", "nombre": "Dinero" },
-    { "id": "visa", "nombre": "Visa y trámites" },
-    { "id": "pareja", "nombre": "Ir los dos" },
-    { "id": "trabajo", "nombre": "Trabajo e idioma" },
-    { "id": "vivir", "nombre": "Vivir allá" },
-    { "id": "planb", "nombre": "Si algo sale mal" }
+    {
+      "id": "miedo",
+      "nombre": "Miedos"
+    },
+    {
+      "id": "dinero",
+      "nombre": "Dinero"
+    },
+    {
+      "id": "visa",
+      "nombre": "Visa y trámites"
+    },
+    {
+      "id": "pareja",
+      "nombre": "Ir los dos"
+    },
+    {
+      "id": "trabajo",
+      "nombre": "Trabajo e idioma"
+    },
+    {
+      "id": "vivir",
+      "nombre": "Vivir allá"
+    },
+    {
+      "id": "planb",
+      "nombre": "Si algo sale mal"
+    }
   ],
   "dudas": [
     {
@@ -38,6 +59,12 @@
       "tema": "dinero",
       "pregunta": "¿La plata congelada se pierde?",
       "respuesta": "<p>No. «Congelada» solo significa que no la pueden gastar durante los 90 días antes de la cita. Sigue en su cuenta, a su nombre, y se la llevan para vivir en Alemania. No es un pago a la embajada.</p>"
+    },
+    {
+      "id": "solo-ida",
+      "tema": "dinero",
+      "pregunta": "¿Podemos comprar solo el pasaje de ida?",
+      "respuesta": "<p>Sí. La embajada acepta pasaje solo de ida si cada uno muestra <strong>€1.200 extra</strong> en su cuenta, además de la solvencia. Esa plata no se gasta: sigue siendo suya y sirve para comprar la vuelta cuando decidan.</p><p>Conviene si quieren dejar la fecha de regreso abierta, o si encuentran un buen precio de ida. En la calculadora de la sección Dinero pueden elegir «Solo ida» y ver cómo cambia el ahorro.</p>"
     },
     {
       "id": "uno-paga-otro",
@@ -98,6 +125,12 @@
       "tema": "trabajo",
       "pregunta": "¿Cuánto vamos a ganar?",
       "respuesta": "<p>El sueldo mínimo es €13,90 la hora en 2026 y sube a <strong>€14,60 en 2027</strong>. A jornada completa son unos €2.530 brutos al mes, que quedan en unos <strong>€1.830 líquidos</strong>.</p><p>Los dos a jornada completa juntan cerca de €3.660 al mes. En una ciudad media gastarían unos €1.400–1.800, así que se puede ahorrar o viajar.</p>"
+    },
+    {
+      "id": "certificado-sanitario",
+      "tema": "trabajo",
+      "pregunta": "¿Necesitamos algún papel para trabajar en cocinas?",
+      "respuesta": "<p>Sí. Para trabajar con alimentos en Alemania piden un certificado sanitario: una charla corta en la oficina de salud local (Gesundheitsamt) que se paga una vez. Háganlo apenas tengan la Anmeldung, porque los restaurantes lo piden antes de empezar.</p>"
     },
     {
       "id": "seis-meses",

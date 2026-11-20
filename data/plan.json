@@ -1,6 +1,9 @@
 {
   "actualizado": "2026-11-20",
-  "personas": ["Teoc", "Francis"],
+  "personas": [
+    "Teoc",
+    "Francis"
+  ],
   "tipoCambio": {
     "eur": 1097,
     "usd": 990,
@@ -20,13 +23,41 @@
   "costos": {
     "pasaporte": 69660,
     "documentos": 50000,
-    "seguro": { "min": 400000, "max": 900000, "inicial": 650000 },
-    "pasaje": { "min": 1200000, "max": 1800000, "inicial": 1500000 }
+    "seguro": {
+      "min": 400000,
+      "max": 900000,
+      "inicial": 650000
+    },
+    "pasaje": {
+      "min": 1200000,
+      "max": 1800000,
+      "inicial": 1500000
+    },
+    "pasajeIda": {
+      "min": 450000,
+      "max": 1200000,
+      "inicial": 800000
+    }
   },
   "colchones": [
-    { "id": "minimo", "nombre": "Lo justo", "eur": 2466, "texto": "El mínimo que pide la embajada sin reserva de alojamiento (€1.326 + €1.140). Alcanza para unas 4–6 semanas sin trabajo." },
-    { "id": "recomendado", "nombre": "Tranquilos", "eur": 3500, "texto": "Lo que recomiendo: cubre hostal, depósito de una pieza y casi dos meses buscando trabajo." },
-    { "id": "holgado", "nombre": "Holgados", "eur": 4500, "texto": "Para llegar a una ciudad cara (Múnich, Hamburgo) o darse un mes de viaje antes de trabajar." }
+    {
+      "id": "minimo",
+      "nombre": "Lo justo",
+      "eur": 2466,
+      "texto": "El mínimo que pide la embajada sin reserva de alojamiento (€1.326 + €1.140). Alcanza para unas 4–6 semanas sin trabajo."
+    },
+    {
+      "id": "recomendado",
+      "nombre": "Tranquilos",
+      "eur": 3500,
+      "texto": "Lo que recomiendo: cubre hostal, depósito de una pieza y casi dos meses buscando trabajo."
+    },
+    {
+      "id": "holgado",
+      "nombre": "Holgados",
+      "eur": 4500,
+      "texto": "Para llegar a una ciudad cara (Múnich, Hamburgo) o darse un mes de viaje antes de trabajar."
+    }
   ],
   "sueldo": {
     "hora2026": 13.9,
@@ -44,9 +75,20 @@
       "resumen": "Elegir el mes de salida. Todo lo demás se ordena desde esa fecha.",
       "detalle": "No hace falta tener toda la plata para decidir. Lo que sí hace falta es una fecha concreta: con ella sabemos cuánto ahorrar al mes y cuándo congelar los fondos. Si la fecha resulta muy apretada, se mueve y listo.",
       "tareas": [
-        { "id": "fecha", "texto": "Elegir mes y año de viaje (arriba en esta página)", "juntos": true },
-        { "id": "conversar", "texto": "Conversar qué nos da miedo y leer juntos la sección de dudas", "juntos": true },
-        { "id": "familia", "texto": "Contarle el plan a la familia o a quien nos pueda apoyar" }
+        {
+          "id": "fecha",
+          "texto": "Elegir mes y año de viaje (arriba en esta página)",
+          "juntos": true
+        },
+        {
+          "id": "conversar",
+          "texto": "Conversar qué nos da miedo y leer juntos la sección de dudas",
+          "juntos": true
+        },
+        {
+          "id": "familia",
+          "texto": "Contarle el plan a la familia o a quien nos pueda apoyar"
+        }
       ]
     },
     {
@@ -56,9 +98,18 @@
       "resumen": "Quien no lo tiene, lo pide ya. Debe tener al menos 1 año de vigencia al postular.",
       "detalle": "Se pide hora en el sitio del Registro Civil con ClaveÚnica y se retira en la oficina. Cuesta $69.660 y dura 10 años. Quien ya lo tiene: revisar que siga vigente un año completo después del día de la cita y que tenga 2 páginas en blanco.",
       "tareas": [
-        { "id": "vigencia", "texto": "Revisar vigencia y páginas en blanco" },
-        { "id": "hora", "texto": "Si no hay pasaporte: pedir hora en el Registro Civil" },
-        { "id": "retiro", "texto": "Retirar el pasaporte" }
+        {
+          "id": "vigencia",
+          "texto": "Revisar vigencia y páginas en blanco"
+        },
+        {
+          "id": "hora",
+          "texto": "Si no hay pasaporte: pedir hora en el Registro Civil"
+        },
+        {
+          "id": "retiro",
+          "texto": "Retirar el pasaporte"
+        }
       ]
     },
     {
@@ -68,10 +119,23 @@
       "resumen": "Una cuenta bancaria a nombre de cada uno, solo para el viaje.",
       "detalle": "La embajada acepta cuenta corriente, cuenta vista/CuentaRUT o cuenta de ahorro, siempre a nombre propio. No sirve dinero de otra persona (ni siquiera de la pareja), ni fondos mutuos, ni depósitos a plazo. Las billeteras digitales no están en la lista: mejor no arriesgarse. Lo ideal es que el ahorro se transfiera solo el día de pago.",
       "tareas": [
-        { "id": "abrir", "texto": "Abrir (o elegir) una cuenta bancaria propia para el viaje" },
-        { "id": "limite", "texto": "Revisar el límite de saldo de la cuenta (la CuentaRUT tiene tope)" },
-        { "id": "automatico", "texto": "Programar una transferencia automática el día de pago" },
-        { "id": "gastos", "texto": "Revisar juntos qué gastos fijos se pueden recortar", "juntos": true }
+        {
+          "id": "abrir",
+          "texto": "Abrir (o elegir) una cuenta bancaria propia para el viaje"
+        },
+        {
+          "id": "limite",
+          "texto": "Revisar el límite de saldo de la cuenta (la CuentaRUT tiene tope)"
+        },
+        {
+          "id": "automatico",
+          "texto": "Programar una transferencia automática el día de pago"
+        },
+        {
+          "id": "gastos",
+          "texto": "Revisar juntos qué gastos fijos se pueden recortar",
+          "juntos": true
+        }
       ]
     },
     {
@@ -81,9 +145,19 @@
       "resumen": "No es obligatorio, pero un A1 cambia mucho las opciones de trabajo.",
       "detalle": "Con 20–30 minutos al día durante unos meses se llega a un A1: saludar, presentarse, entender turnos y pedidos simples. En cocina, bodega y tiendas eso marca la diferencia. Hay cursos gratis, como «Nicos Weg» de Deutsche Welle.",
       "tareas": [
-        { "id": "curso", "texto": "Elegir un curso gratis y empezar" },
-        { "id": "rutina", "texto": "Practicar juntos 3 veces por semana", "juntos": true },
-        { "id": "frases", "texto": "Aprender frases de trabajo: turnos, pedidos, presentarse" }
+        {
+          "id": "curso",
+          "texto": "Elegir un curso gratis y empezar"
+        },
+        {
+          "id": "rutina",
+          "texto": "Practicar juntos 3 veces por semana",
+          "juntos": true
+        },
+        {
+          "id": "frases",
+          "texto": "Aprender frases de trabajo: turnos, pedidos, presentarse"
+        }
       ]
     },
     {
@@ -93,9 +167,18 @@
       "resumen": "El monto de solvencia debe estar quieto 90 días antes de la cita.",
       "detalle": "Desde esta fecha la plata de solvencia no se toca: la embajada revisa que el saldo se haya mantenido 90 días hasta el día de la cita. Conviene dejar un 10% más que el mínimo por si sube el euro. Se puede seguir ahorrando encima; lo que no puede pasar es que baje.",
       "tareas": [
-        { "id": "deposito", "texto": "Tener el monto de solvencia completo en la cuenta" },
-        { "id": "notocar", "texto": "Dejar de usar esa cuenta para gastos" },
-        { "id": "captura", "texto": "Guardar una captura del saldo ese día" }
+        {
+          "id": "deposito",
+          "texto": "Tener el monto de solvencia completo en la cuenta"
+        },
+        {
+          "id": "notocar",
+          "texto": "Dejar de usar esa cuenta para gastos"
+        },
+        {
+          "id": "captura",
+          "texto": "Guardar una captura del saldo ese día"
+        }
       ]
     },
     {
@@ -105,9 +188,18 @@
       "resumen": "Ambos documentos van en alemán. Carta de una carilla, personal.",
       "detalle": "Escriban primero en español, con sus palabras: por qué Alemania, qué quieren conocer, cómo piensan financiar el año. El objetivo principal debe ser vacacionar; el trabajo es para sostener el viaje. Después se traduce y alguien que sepa alemán lo revisa. No copien cartas de internet: la embajada lo pide explícitamente.",
       "tareas": [
-        { "id": "borrador", "texto": "Escribir la carta en español" },
-        { "id": "traducir", "texto": "Traducir carta y CV al alemán y que alguien los revise" },
-        { "id": "foto", "texto": "Sacar foto biométrica con formato alemán" }
+        {
+          "id": "borrador",
+          "texto": "Escribir la carta en español"
+        },
+        {
+          "id": "traducir",
+          "texto": "Traducir carta y CV al alemán y que alguien los revise"
+        },
+        {
+          "id": "foto",
+          "texto": "Sacar foto biométrica con formato alemán"
+        }
       ]
     },
     {
@@ -117,9 +209,18 @@
       "resumen": "Se postula máximo 3 meses antes del viaje. Cada uno toma su propia hora.",
       "detalle": "La cita se pide online, categoría «Visa Working Holiday». Las horas suelen liberarse entre las 18:00 y las 20:00 de Chile: revisen los dos a esa hora y tomen la primera que salga. El seguro debe cubrir los 12 meses, con mínimo €30.000 y repatriación.",
       "tareas": [
-        { "id": "cita", "texto": "Conseguir hora en la embajada" },
-        { "id": "seguro", "texto": "Contratar seguro de 12 meses (mín. €30.000, con repatriación)" },
-        { "id": "videx", "texto": "Llenar el formulario VIDEX con la misma fecha de entrada que la pareja" }
+        {
+          "id": "cita",
+          "texto": "Conseguir hora en la embajada"
+        },
+        {
+          "id": "seguro",
+          "texto": "Contratar seguro de 12 meses (mín. €30.000, con repatriación)"
+        },
+        {
+          "id": "videx",
+          "texto": "Llenar el formulario VIDEX con la misma fecha de entrada que la pareja"
+        }
       ]
     },
     {
@@ -129,9 +230,18 @@
       "resumen": "Ir con la carpeta completa, original y copia. Pagar €75 en pesos exactos.",
       "detalle": "Las Hualtatas 5677, Vitacura. Lleven todo en original y copia, cartola timbrada y firmada por el banco, y el arancel en efectivo con monto exacto (o tarjeta de crédito del titular). La respuesta tarda cerca de 3 semanas.",
       "tareas": [
-        { "id": "carpeta", "texto": "Revisar la carpeta completa (sección Carpeta)" },
-        { "id": "cartola", "texto": "Pedir la cartola timbrada en sucursal pocos días antes" },
-        { "id": "efectivo", "texto": "Llevar el arancel en pesos exactos" }
+        {
+          "id": "carpeta",
+          "texto": "Revisar la carpeta completa (sección Carpeta)"
+        },
+        {
+          "id": "cartola",
+          "texto": "Pedir la cartola timbrada en sucursal pocos días antes"
+        },
+        {
+          "id": "efectivo",
+          "texto": "Llevar el arancel en pesos exactos"
+        }
       ]
     },
     {
@@ -141,10 +251,26 @@
       "resumen": "Recién con las dos visas aprobadas se compran los pasajes.",
       "detalle": "Si una visa sale antes, se espera a la otra. Busquen pasajes con cambio de fecha permitido. Mientras, reserven el hostal de las primeras dos semanas y avisen el término del arriendo en Chile según su contrato.",
       "tareas": [
-        { "id": "visas", "texto": "Las dos visas aprobadas", "juntos": true },
-        { "id": "vuelo", "texto": "Comprar pasajes con cambio de fecha", "juntos": true },
-        { "id": "hostal", "texto": "Reservar alojamiento para las primeras 2 semanas", "juntos": true },
-        { "id": "arriendo", "texto": "Avisar término del arriendo en Chile", "juntos": true }
+        {
+          "id": "visas",
+          "texto": "Las dos visas aprobadas",
+          "juntos": true
+        },
+        {
+          "id": "vuelo",
+          "texto": "Comprar pasajes con cambio de fecha",
+          "juntos": true
+        },
+        {
+          "id": "hostal",
+          "texto": "Reservar alojamiento para las primeras 2 semanas",
+          "juntos": true
+        },
+        {
+          "id": "arriendo",
+          "texto": "Avisar término del arriendo en Chile",
+          "juntos": true
+        }
       ]
     },
     {
@@ -154,10 +280,23 @@
       "resumen": "Hostal unos días, búsqueda de pieza y registro de domicilio.",
       "detalle": "Lo más importante de las primeras semanas es la Anmeldung (registro de domicilio): sin ella cuesta abrir cuenta bancaria y recibir el número de impuestos que pide el empleador. Para hacerla necesitan una pieza cuyo arrendador les firme el certificado; los hostales normalmente no lo dan.",
       "tareas": [
-        { "id": "sim", "texto": "Comprar SIM alemana prepago" },
-        { "id": "pieza", "texto": "Conseguir pieza que permita Anmeldung", "juntos": true },
-        { "id": "anmeldung", "texto": "Hacer la Anmeldung" },
-        { "id": "banco", "texto": "Abrir cuenta bancaria alemana" }
+        {
+          "id": "sim",
+          "texto": "Comprar SIM alemana prepago"
+        },
+        {
+          "id": "pieza",
+          "texto": "Conseguir pieza que permita Anmeldung",
+          "juntos": true
+        },
+        {
+          "id": "anmeldung",
+          "texto": "Hacer la Anmeldung"
+        },
+        {
+          "id": "banco",
+          "texto": "Abrir cuenta bancaria alemana"
+        }
       ]
     },
     {
@@ -167,31 +306,115 @@
       "resumen": "Gastronomía, hoteles, bodegas o tiendas. Mejor si los toman a los dos.",
       "detalle": "Quien lidera la comunicación busca puestos de atención (mesas, barra, recepción, ventas). Quien prefiere lo operativo, cocina, limpieza o bodega. Las agencias de trabajo temporal contratan sin alemán para logística. Máximo 6 meses con el mismo empleador.",
       "tareas": [
-        { "id": "cv-de", "texto": "Tener el CV en alemán e inglés impreso" },
-        { "id": "agencias", "texto": "Inscribirse en agencias de trabajo temporal" },
-        { "id": "puerta", "texto": "Recorrer locales y hoteles entregando CV en persona" },
-        { "id": "contrato", "texto": "Firmar el primer contrato" }
+        {
+          "id": "cv-de",
+          "texto": "Tener el CV en alemán e inglés impreso"
+        },
+        {
+          "id": "sanitario",
+          "texto": "Si van a trabajar con comida: sacar el certificado sanitario en el Gesundheitsamt"
+        },
+        {
+          "id": "agencias",
+          "texto": "Inscribirse en agencias de trabajo temporal"
+        },
+        {
+          "id": "puerta",
+          "texto": "Recorrer locales y hoteles entregando CV en persona"
+        },
+        {
+          "id": "contrato",
+          "texto": "Firmar el primer contrato"
+        }
       ]
     }
   ],
   "carpeta": [
-    { "id": "videx", "nombre": "Formulario VIDEX", "corto": "Online, impreso y firmado", "detalle": "Formulario de visado nacional en el sitio VIDEX del Ministerio de Relaciones Exteriores alemán. Pongan los dos la misma fecha prevista de entrada." },
-    { "id": "pasaporte", "nombre": "Pasaporte", "corto": "1 año de vigencia, 2 páginas libres", "detalle": "Original y una copia simple. La vigencia mínima de un año se cuenta desde el día en que postulan." },
-    { "id": "foto", "nombre": "Foto biométrica", "corto": "Formato pasaporte alemán", "detalle": "Reciente y con las medidas del pasaporte alemán. Pidan ese formato explícitamente en el local de fotos." },
-    { "id": "cv", "nombre": "CV tabular", "corto": "En alemán", "detalle": "Formato tabla: datos, estudios, trabajos con fechas. Incluyan idiomas y la experiencia en atención de público, ventas y bodega." },
-    { "id": "carta", "nombre": "Carta de motivación", "corto": "En alemán, una carilla", "detalle": "Personal, no copiada. Por qué Alemania, qué quieren conocer y cómo financiarán el año. Las vacaciones son el objetivo principal; el trabajo, el medio." },
-    { "id": "fondos", "nombre": "Cartola bancaria", "corto": "€1.326 mín., 90 días, timbrada", "detalle": "A nombre propio, con firma original y timbre del banco. Si no llevan reserva de alojamiento, suman €1.140; si viajan solo con ida, suman €1.200." },
-    { "id": "pasaje", "nombre": "Pasaje", "corto": "Ida y vuelta, o €1.200 extra", "detalle": "La embajada recomienda comprarlo después de tener la cita. Si solo tienen ida, deben mostrar €1.200 más en la cuenta." },
-    { "id": "alojamiento", "nombre": "Alojamiento", "corto": "3 meses, o €1.140 extra", "detalle": "Reserva de hotel por 3 meses o carta de invitación firmada. Si no tienen ninguna, muestran €1.140 extra en la cuenta." },
-    { "id": "seguro", "nombre": "Seguro médico", "corto": "12 meses, mín. €30.000", "detalle": "Médico y de accidentes durante toda la estadía, con repatriación de restos. Los seguros de tarjeta de crédito no sirven porque duran pocos meses." },
-    { "id": "arancel", "nombre": "Arancel", "corto": "€75 en pesos exactos", "detalle": "En efectivo con monto exacto en pesos, o con tarjeta de crédito Visa/Mastercard (no débito) del titular, presente en la cita." }
+    {
+      "id": "videx",
+      "nombre": "Formulario VIDEX",
+      "corto": "Online, impreso y firmado",
+      "detalle": "Formulario de visado nacional en el sitio VIDEX del Ministerio de Relaciones Exteriores alemán. Pongan los dos la misma fecha prevista de entrada."
+    },
+    {
+      "id": "pasaporte",
+      "nombre": "Pasaporte",
+      "corto": "1 año de vigencia, 2 páginas libres",
+      "detalle": "Original y una copia simple. La vigencia mínima de un año se cuenta desde el día en que postulan."
+    },
+    {
+      "id": "foto",
+      "nombre": "Foto biométrica",
+      "corto": "Formato pasaporte alemán",
+      "detalle": "Reciente y con las medidas del pasaporte alemán. Pidan ese formato explícitamente en el local de fotos."
+    },
+    {
+      "id": "cv",
+      "nombre": "CV tabular",
+      "corto": "En alemán",
+      "detalle": "Formato tabla: datos, estudios, trabajos con fechas. Incluyan idiomas y la experiencia en atención de público, ventas y bodega."
+    },
+    {
+      "id": "carta",
+      "nombre": "Carta de motivación",
+      "corto": "En alemán, una carilla",
+      "detalle": "Personal, no copiada. Por qué Alemania, qué quieren conocer y cómo financiarán el año. Las vacaciones son el objetivo principal; el trabajo, el medio."
+    },
+    {
+      "id": "fondos",
+      "nombre": "Cartola bancaria",
+      "corto": "€1.326 mín., 90 días, timbrada",
+      "detalle": "A nombre propio, con firma original y timbre del banco. Si no llevan reserva de alojamiento, suman €1.140; si viajan solo con ida, suman €1.200."
+    },
+    {
+      "id": "pasaje",
+      "nombre": "Pasaje",
+      "corto": "Ida y vuelta, o €1.200 extra",
+      "detalle": "La embajada recomienda comprarlo después de tener la cita. Si solo tienen ida, deben mostrar €1.200 más en la cuenta."
+    },
+    {
+      "id": "alojamiento",
+      "nombre": "Alojamiento",
+      "corto": "3 meses, o €1.140 extra",
+      "detalle": "Reserva de hotel por 3 meses o carta de invitación firmada. Si no tienen ninguna, muestran €1.140 extra en la cuenta."
+    },
+    {
+      "id": "seguro",
+      "nombre": "Seguro médico",
+      "corto": "12 meses, mín. €30.000",
+      "detalle": "Médico y de accidentes durante toda la estadía, con repatriación de restos. Los seguros de tarjeta de crédito no sirven porque duran pocos meses."
+    },
+    {
+      "id": "arancel",
+      "nombre": "Arancel",
+      "corto": "€75 en pesos exactos",
+      "detalle": "En efectivo con monto exacto en pesos, o con tarjeta de crédito Visa/Mastercard (no débito) del titular, presente en la cita."
+    }
   ],
   "fuentes": [
-    { "nombre": "Embajada de Alemania en Santiago: visa Working Holiday", "url": "https://santiago.diplo.de/cl-es/service/05-visaeinreise/1210626-1210626" },
-    { "nombre": "Gobierno Federal de Alemania: salario mínimo 2026–2027", "url": "https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-faq-1688186" },
-    { "nombre": "WG-Gesucht / Moses Mendelssohn Institut: arriendos 2026/27", "url": "https://www.wg-gesucht.de/presse/studentische-wohnkosten/wintersemester-2026-2027-wg-zimmer-mieten" },
-    { "nombre": "ChileAtiende: pasaporte", "url": "https://www.chileatiende.gob.cl/fichas/3445" },
-    { "nombre": "Diario Oficial: tipo de cambio del Banco Central", "url": "https://www.diariooficial.interior.gob.cl/publicaciones/2026/11/13/44598/01/2903129.pdf" },
-    { "nombre": "YoMeAnimo: experiencias con citas y seguros", "url": "https://www.yomeanimo.com/requisitos-visa-working-holiday-alemania-para-chilenos" }
+    {
+      "nombre": "Embajada de Alemania en Santiago: visa Working Holiday",
+      "url": "https://santiago.diplo.de/cl-es/service/05-visaeinreise/1210626-1210626"
+    },
+    {
+      "nombre": "Gobierno Federal de Alemania: salario mínimo 2026–2027",
+      "url": "https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-faq-1688186"
+    },
+    {
+      "nombre": "WG-Gesucht / Moses Mendelssohn Institut: arriendos 2026/27",
+      "url": "https://www.wg-gesucht.de/presse/studentische-wohnkosten/wintersemester-2026-2027-wg-zimmer-mieten"
+    },
+    {
+      "nombre": "ChileAtiende: pasaporte",
+      "url": "https://www.chileatiende.gob.cl/fichas/3445"
+    },
+    {
+      "nombre": "Diario Oficial: tipo de cambio del Banco Central",
+      "url": "https://www.diariooficial.interior.gob.cl/publicaciones/2026/11/13/44598/01/2903129.pdf"
+    },
+    {
+      "nombre": "YoMeAnimo: experiencias con citas y seguros",
+      "url": "https://www.yomeanimo.com/requisitos-visa-working-holiday-alemania-para-chilenos"
+    }
   ]
 }

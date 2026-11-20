@@ -23,6 +23,7 @@
       <a href="#dinero">Dinero</a>
       <a href="#carpeta">Carpeta</a>
       <a href="#ciudades">Ciudades</a>
+      <a href="#prepararse">Prepararse</a>
       <a href="#dudas">Dudas</a>
     </nav>
   </header>
@@ -87,10 +88,17 @@
             <span class="campo-pesos"><input type="text" inputmode="numeric" id="ingreso" autocomplete="off" placeholder="Ej: 1.200.000"></span>
           </label>
 
-          <label class="control">
-            Pasaje ida y vuelta, por persona: <output id="pasaje-out"></output>
-            <input type="range" id="pasaje" step="50000">
-          </label>
+          <fieldset class="control">
+            <legend>¿Cómo compran el pasaje?</legend>
+            <div class="segmentos dos-opciones" id="tipo-pasaje">
+              <button type="button" data-ida="0">Ida y vuelta</button>
+              <button type="button" data-ida="1">Solo ida<small>+ €1.200 en la cuenta</small></button>
+            </div>
+            <label class="sub-control"><span><span id="pasaje-tipo"></span>, por persona: <output id="pasaje-out"></output></span>
+              <input type="range" id="pasaje" step="50000">
+            </label>
+            <p class="ayuda" id="pasaje-ayuda"></p>
+          </fieldset>
 
           <label class="control">
             Seguro de 12 meses, por persona: <output id="seguro-out"></output>
@@ -134,6 +142,21 @@
         <article class="ciudad-panel" id="ciudad-panel" role="tabpanel" aria-live="polite"></article>
         <p class="nota" id="ciudades-nota"></p>
       </div>
+    </section>
+
+    <section id="prepararse" class="seccion">
+      <div class="seccion-cabeza">
+        <h2>Prepararse desde acá</h2>
+        <p>El idioma, la vivienda y lo que cuentan quienes ya fueron. Lo que se puede adelantar desde Santiago, para no llegar en blanco.</p>
+      </div>
+      <div class="pestanas" role="tablist" aria-label="Preparación">
+        <button type="button" role="tab" id="tab-aleman" aria-controls="panel-aleman" aria-selected="true">Alemán</button>
+        <button type="button" role="tab" id="tab-hospedaje" aria-controls="panel-hospedaje" aria-selected="false">Hospedaje</button>
+        <button type="button" role="tab" id="tab-experiencias" aria-controls="panel-experiencias" aria-selected="false">Experiencias</button>
+      </div>
+      <div class="prep-panel" id="panel-aleman" role="tabpanel" aria-labelledby="tab-aleman"></div>
+      <div class="prep-panel" id="panel-hospedaje" role="tabpanel" aria-labelledby="tab-hospedaje" hidden></div>
+      <div class="prep-panel" id="panel-experiencias" role="tabpanel" aria-labelledby="tab-experiencias" hidden></div>
     </section>
 
     <section id="dudas" class="seccion seccion-dudas">
