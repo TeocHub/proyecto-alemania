@@ -1,0 +1,71 @@
+{
+  "nota": "Arriendo de referencia: promedio de una pieza en piso compartido (WG-Gesucht / Moses Mendelssohn Institut, invierno 2026/27). Gastos de pareja: estimación propia, en euros al mes.",
+  "ingresos": [
+    { "id": "dos-completas", "nombre": "Los dos a jornada completa", "eur": 3660 },
+    { "id": "completa-mini", "nombre": "Uno completo y otro con minijob", "eur": 2463 },
+    { "id": "dos-medias", "nombre": "Los dos a media jornada", "eur": 2160 },
+    { "id": "dos-mini", "nombre": "Los dos con minijob", "eur": 1266 }
+  ],
+  "ciudades": [
+    {
+      "id": "berlin",
+      "nombre": "Berlín",
+      "pieza": 650,
+      "sinAleman": 5,
+      "trabajo": 4,
+      "gastos": { "vivienda": 950, "comida": 420, "transporte": 126, "otros": 280 },
+      "texto": "La ciudad más fácil para llegar sin alemán: cafés, bares, hostales y tiendas donde se trabaja en inglés, y una comunidad latina grande. El problema es la vivienda: mucha competencia por cada pieza.",
+      "rubros": "Gastronomía, hostales, tiendas, repartos"
+    },
+    {
+      "id": "hamburgo",
+      "nombre": "Hamburgo",
+      "pieza": 650,
+      "sinAleman": 3,
+      "trabajo": 4,
+      "gastos": { "vivienda": 950, "comida": 420, "transporte": 126, "otros": 280 },
+      "texto": "Ciudad portuaria con mucha logística y turismo. Hay trabajo de bodega y hotelería, aunque se habla menos inglés en la calle que en Berlín. Vivienda cara y escasa.",
+      "rubros": "Logística y puerto, hoteles, gastronomía"
+    },
+    {
+      "id": "leipzig",
+      "nombre": "Leipzig",
+      "pieza": 420,
+      "sinAleman": 2,
+      "trabajo": 4,
+      "gastos": { "vivienda": 650, "comida": 380, "transporte": 126, "otros": 240 },
+      "texto": "La opción para ahorrar: arriendos bajo el promedio nacional y un polo grande de centros de distribución y bodegas. A cambio, menos inglés y menos vida turística.",
+      "rubros": "Bodegas, centros de distribución, gastronomía"
+    },
+    {
+      "id": "munich",
+      "nombre": "Múnich",
+      "pieza": 850,
+      "sinAleman": 3,
+      "trabajo": 5,
+      "gastos": { "vivienda": 1250, "comida": 450, "transporte": 126, "otros": 300 },
+      "texto": "Mucho turismo y hoteles, sueldos por sobre el mínimo y temporada fuerte en otoño. Es la ciudad más cara de Alemania para arrendar: el sueldo rinde bastante menos.",
+      "rubros": "Hoteles, gastronomía, eventos, tiendas"
+    },
+    {
+      "id": "frankfurt",
+      "nombre": "Fráncfort",
+      "pieza": 700,
+      "sinAleman": 4,
+      "trabajo": 4,
+      "gastos": { "vivienda": 1050, "comida": 430, "transporte": 126, "otros": 280 },
+      "texto": "Ciudad internacional con uno de los aeropuertos más grandes de Europa: hay trabajo en logística aeroportuaria, hoteles y gastronomía. Arriendos altos.",
+      "rubros": "Aeropuerto y logística, hoteles, gastronomía"
+    },
+    {
+      "id": "temporada",
+      "nombre": "Hotel de temporada",
+      "pieza": 0,
+      "sinAleman": 3,
+      "trabajo": 4,
+      "gastos": { "vivienda": 400, "comida": 200, "transporte": 30, "otros": 200 },
+      "texto": "Hoteles en los Alpes bávaros o en las costas del norte que contratan por temporada y suelen incluir alojamiento de personal (y a veces comida). Ideal para llegar en pareja: trabajo y techo resueltos al mismo tiempo. Pueblos chicos y contratos que terminan con la temporada.",
+      "rubros": "Housekeeping, cocina, restaurante, recepción"
+    }
+  ]
+}

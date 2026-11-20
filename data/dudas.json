@@ -1,0 +1,145 @@
+{
+  "temas": [
+    { "id": "miedo", "nombre": "Miedos" },
+    { "id": "dinero", "nombre": "Dinero" },
+    { "id": "visa", "nombre": "Visa y trámites" },
+    { "id": "pareja", "nombre": "Ir los dos" },
+    { "id": "trabajo", "nombre": "Trabajo e idioma" },
+    { "id": "vivir", "nombre": "Vivir allá" },
+    { "id": "planb", "nombre": "Si algo sale mal" }
+  ],
+  "dudas": [
+    {
+      "id": "y-si-no-resulta",
+      "tema": "miedo",
+      "pregunta": "¿Y si nos va mal y queremos volver?",
+      "respuesta": "<p>Pueden volver cuando quieran. La visa no los obliga a quedarse el año completo, y si compran el pasaje de vuelta con cambio de fecha, adelantarlo cuesta una diferencia, no un pasaje nuevo.</p><p>El peor caso realista es este: llegan, no encuentran trabajo en dos meses, gastan el colchón y vuelven con la experiencia de haber vivido en Europa. Por eso el colchón «Tranquilos» existe: para que ese peor caso no los deje en cero.</p>"
+    },
+    {
+      "id": "miedo-decidir",
+      "tema": "miedo",
+      "pregunta": "¿Cómo sabemos si estamos listos para decidir?",
+      "respuesta": "<p>Decidir no es tener toda la plata. Es elegir una fecha y comprometerse a ahorrar hacia ella. Si a los tres meses ven que no avanzan al ritmo, mueven la fecha: nada de lo que hagan antes de la cita es irreversible.</p><p>Una prueba sencilla: usen la calculadora con una fecha y vean si el ahorro mensual es posible. Si lo es, ya pueden decidir.</p>"
+    },
+    {
+      "id": "edad",
+      "tema": "visa",
+      "pregunta": "¿Tenemos tiempo o hay que apurarse por la edad?",
+      "respuesta": "<p>Tienen tiempo de sobra. El límite es tener 30 años al momento de postular, y con 21 y 23 les quedan varios años. Eso sí, la visa se da una sola vez en la vida, así que vale la pena ir bien preparados en vez de rápido.</p>"
+    },
+    {
+      "id": "cuanta-plata",
+      "tema": "dinero",
+      "pregunta": "¿Cuánta plata necesitamos en total?",
+      "respuesta": "<p>Para los dos, alrededor de <strong>$10 millones como mínimo</strong> y <strong>$12,3 millones para ir tranquilos</strong>. Unos $4,6 millones se gastan antes de viajar (pasajes, seguros, visa) y el resto sigue siendo de ustedes para vivir los primeros meses.</p><p>La calculadora de la sección Dinero ajusta esto a su fecha y a lo que ya tengan ahorrado.</p>"
+    },
+    {
+      "id": "plata-congelada",
+      "tema": "dinero",
+      "pregunta": "¿La plata congelada se pierde?",
+      "respuesta": "<p>No. «Congelada» solo significa que no la pueden gastar durante los 90 días antes de la cita. Sigue en su cuenta, a su nombre, y se la llevan para vivir en Alemania. No es un pago a la embajada.</p>"
+    },
+    {
+      "id": "uno-paga-otro",
+      "tema": "pareja",
+      "pregunta": "¿Puede uno poner la plata del otro?",
+      "respuesta": "<p>No para la solvencia. La embajada excluye el financiamiento de terceros sin excepciones, y eso incluye a la pareja. Cada uno necesita su propia cuenta con su propio saldo de €1.326 o más.</p><p>Lo que sí pueden hacer es organizarse como pareja: que quien gana más cubra más gastos de la casa mientras el otro ahorra, siempre que al final cada saldo esté en la cuenta de su titular con 90 días de antigüedad.</p>"
+    },
+    {
+      "id": "juntos",
+      "tema": "pareja",
+      "pregunta": "¿Nos pueden dar la visa a los dos aunque sea individual?",
+      "respuesta": "<p>Sí. La regla de «no viajar con personas a cargo» se refiere a gente que dependa de ustedes sin permiso propio. Si cada uno tiene su propia visa Working Holiday, pueden viajar, vivir y trabajar juntos sin problema.</p><p>Cada uno pide su cita, presenta su carpeta y paga su arancel. Pongan la misma fecha de entrada en ambos formularios.</p>"
+    },
+    {
+      "id": "citas-separadas",
+      "tema": "pareja",
+      "pregunta": "¿Y si conseguimos citas en días distintos?",
+      "respuesta": "<p>No es problema: la tramitación es de unas tres semanas y pueden postular hasta tres meses antes del viaje. Si una cita es en septiembre y la otra en octubre, igual alcanzan a tener las dos visas para la misma fecha. Tomen la primera hora que aparezca y sigan buscando la segunda.</p>"
+    },
+    {
+      "id": "una-antes",
+      "tema": "planb",
+      "pregunta": "¿Qué pasa si aprueban una visa antes que la otra?",
+      "respuesta": "<p>Se espera. La visa se emite para la fecha de entrada que pidieron, así que tenerla antes no apura nada. Nadie compra pasajes hasta que estén las dos aprobadas.</p>"
+    },
+    {
+      "id": "rechazo",
+      "tema": "planb",
+      "pregunta": "¿Y si a uno se la rechazan?",
+      "respuesta": "<p>Primero, pidan el motivo por escrito. Casi siempre es un documento faltante o un saldo mal acreditado. Hay dos caminos: presentar una objeción formal (remonstración) o volver a postular con lo corregido.</p><p>Un rechazo no gasta la visa: la regla es no haberla tenido antes. Por eso los pasajes se compran solo con las dos aprobadas.</p>"
+    },
+    {
+      "id": "sin-citas",
+      "tema": "planb",
+      "pregunta": "¿Y si no aparecen citas a tiempo?",
+      "respuesta": "<p>La fecha de viaje se ajusta a la cita, no al revés. Revisen el sistema todos los días entre las 18:00 y las 20:00 de Chile, que es cuando suelen liberarse horas.</p><p>Como último recurso, algunas embajadas alemanas en Europa (por ejemplo en Vilna, Riga o Sofía) reciben postulaciones de chilenos. Implica viajar antes como turistas y postular allá: es más caro y riesgoso, así que confirmen por correo con esa embajada antes de comprar nada.</p>"
+    },
+    {
+      "id": "sin-trabajo",
+      "tema": "planb",
+      "pregunta": "¿Y si no encontramos trabajo?",
+      "respuesta": "<p>Tres movimientos, en este orden: inscribirse en agencias de trabajo temporal (contratan para bodegas sin alemán), recorrer hoteles y restaurantes entregando CV en persona, y si en un mes no hay nada, buscar hoteles de temporada que incluyan alojamiento.</p><p>Ese último paso baja los gastos casi a la mitad mientras ganan sueldo. Y si nada resulta, el colchón alcanza para volver.</p>"
+    },
+    {
+      "id": "aleman",
+      "tema": "trabajo",
+      "pregunta": "¿De verdad se puede trabajar sin hablar alemán?",
+      "respuesta": "<p>Sí, en ciertos lugares: Berlín, zonas turísticas, cocinas, bodegas y housekeeping. Con inglés y ganas se consigue. Pero hay que ser honestos: sin alemán las opciones se reducen y los sueldos suelen quedar en el mínimo.</p><p>Un A1 básico antes de viajar (saludar, entender turnos, pedidos simples) abre bastantes más puertas. Vale la pena empezar ahora.</p>"
+    },
+    {
+      "id": "timidez",
+      "tema": "trabajo",
+      "pregunta": "¿Qué trabajo sirve para quien es tímido al hablar?",
+      "respuesta": "<p>Los puestos operativos: cocina, lavado, housekeeping en hoteles, bodega, reposición y empaque. Son trabajos donde se habla poco y se valora la constancia. Entender bien el inglés ya es una ventaja para seguir instrucciones.</p><p>Con el tiempo, la timidez para hablar suele bajar justamente trabajando: la práctica diaria hace más que cualquier curso.</p>"
+    },
+    {
+      "id": "sueldo",
+      "tema": "trabajo",
+      "pregunta": "¿Cuánto vamos a ganar?",
+      "respuesta": "<p>El sueldo mínimo es €13,90 la hora en 2026 y sube a <strong>€14,60 en 2027</strong>. A jornada completa son unos €2.530 brutos al mes, que quedan en unos <strong>€1.830 líquidos</strong>.</p><p>Los dos a jornada completa juntan cerca de €3.660 al mes. En una ciudad media gastarían unos €1.400–1.800, así que se puede ahorrar o viajar.</p>"
+    },
+    {
+      "id": "seis-meses",
+      "tema": "trabajo",
+      "pregunta": "¿Por qué solo 6 meses con el mismo empleador?",
+      "respuesta": "<p>Es una regla del programa: pueden trabajar el año completo, pero máximo 6 meses para cada empleador. En la práctica significa planear un cambio de trabajo a mitad del año, por ejemplo pasar de una ciudad a un hotel de temporada. Ojo: una agencia de trabajo temporal cuenta como un empleador.</p>"
+    },
+    {
+      "id": "mejor-mes",
+      "tema": "vivir",
+      "pregunta": "¿Cuál es el mejor mes para llegar?",
+      "respuesta": "<p>Entre marzo y mayo. Llegan cuando empieza la temporada alta de turismo, hay más trabajo en hoteles y gastronomía, y tienen meses de buen clima para adaptarse antes del invierno.</p><p>Llegar en enero o febrero es más duro: frío, días cortos y menos contrataciones en turismo (salvo hoteles de esquí).</p>"
+    },
+    {
+      "id": "vivienda",
+      "tema": "vivir",
+      "pregunta": "¿Dónde dormimos las primeras semanas?",
+      "respuesta": "<p>Los primeros 5–10 días en un hostal, mientras buscan una pieza en un piso compartido o un departamento amoblado temporal. Lo importante es que la pieza les permita hacer la Anmeldung (registro de domicilio), porque sin ella cuesta abrir cuenta bancaria y trabajar formalmente.</p><p>Nunca paguen un depósito sin ver el lugar, ni por Western Union. Un «dueño que está en el extranjero» es casi siempre una estafa.</p>"
+    },
+    {
+      "id": "salud",
+      "tema": "vivir",
+      "pregunta": "¿Qué pasa si nos enfermamos?",
+      "respuesta": "<p>El seguro de viaje que exige la visa los cubre todo el año. Además, cuando tengan un trabajo formal por sobre el minijob, entran al sistema de salud público alemán y el empleador descuenta la cotización del sueldo. Mantengan igual el seguro privado: lo exige la visa y cubre los períodos sin contrato.</p>"
+    },
+    {
+      "id": "quedarse",
+      "tema": "vivir",
+      "pregunta": "¿Nos podemos quedar después del año?",
+      "respuesta": "<p>La Working Holiday no se renueva. En algunos casos es posible cambiar a otro permiso estando allá, por ejemplo con un contrato de formación técnica (Ausbildung) o un empleo calificado, pero no es automático y depende de la oficina de extranjería. Si les interesa, pregúntenlo apenas lleguen, no al final del año.</p>"
+    },
+    {
+      "id": "chile",
+      "tema": "dinero",
+      "pregunta": "¿Qué hacemos con el arriendo y las cosas en Chile?",
+      "respuesta": "<p>Revisen el contrato de arriendo para saber con cuánta anticipación deben avisar (suele ser 30 a 60 días) y den el aviso apenas tengan las visas. Lo que no se llevan pueden venderlo para sumar al colchón, o guardarlo con la familia. Si alguno estudia, consulten en la institución cómo suspender o congelar el año antes de viajar.</p>"
+    },
+    {
+      "id": "fintech",
+      "tema": "visa",
+      "pregunta": "¿Sirve una cuenta de Tenpo, Mercado Pago o similares?",
+      "respuesta": "<p>La embajada acepta cuenta corriente, cuenta vista/CuentaRUT y cuenta de ahorro, y pide la cartola con firma original y timbre del banco. Las billeteras digitales no están en esa lista y normalmente no entregan cartolas timbradas, así que no vale la pena arriesgarse: usen un banco.</p>"
+    }
+  ]
+}

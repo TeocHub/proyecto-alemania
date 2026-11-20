@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proyecto Alemania de Teoc y Francis</title>
+  <meta name="description" content="Plan, presupuesto y dudas para la Working Holiday en Alemania.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='%23fff' stroke='%23182638' stroke-width='5'/%3E%3C/svg%3E">
+</head>
+<body>
+  <a class="saltar" href="#ruta">Ir al plan</a>
+
+  <header class="barra">
+    <a class="marca" href="#inicio" aria-label="Inicio">
+      <span class="marca-punto" aria-hidden="true"></span>Proyecto Alemania
+    </a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#ruta">Ruta</a>
+      <a href="#dinero">Dinero</a>
+      <a href="#carpeta">Carpeta</a>
+      <a href="#ciudades">Ciudades</a>
+      <a href="#dudas">Dudas</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="inicio">
+      <div class="inicio-texto">
+        <h1>Un año en Alemania, los dos.</h1>
+        <p class="frase-fecha">
+          Nos vamos en
+          <label class="sr" for="mes">Mes de viaje</label>
+          <select id="mes" class="select-grande"></select>
+          de
+          <label class="sr" for="anio">Año de viaje</label>
+          <select id="anio" class="select-grande"></select>
+        </p>
+        <p class="frase-resultado" id="frase-resultado" aria-live="polite"></p>
+      </div>
+
+      <nav class="linea-mini" aria-label="Avance del plan">
+        <div class="mini-paradas" id="mini-paradas"></div>
+        <div class="mini-extremos" aria-hidden="true"><span>Santiago, hoy</span><span id="mini-fin">Alemania</span></div>
+      </nav>
+    </section>
+
+    <section id="ruta" class="seccion">
+      <div class="seccion-cabeza">
+        <h2>La ruta</h2>
+        <p>Cada estación es una etapa. Toquen una para ver qué hay que hacer y marquen lo que cada uno vaya terminando. Las fechas se calculan desde el mes de viaje.</p>
+      </div>
+      <div class="ruta">
+        <ol class="linea" id="linea" aria-label="Etapas del plan"></ol>
+        <article class="estacion-panel" id="estacion-panel" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section id="dinero" class="seccion seccion-dinero">
+      <div class="seccion-cabeza">
+        <h2>El dinero</h2>
+        <p>Una parte se gasta antes de viajar. La otra sigue siendo de ustedes y se la llevan. Muevan los valores y miren cómo cambia el ahorro mensual.</p>
+      </div>
+
+      <div class="dinero">
+        <form class="controles" id="controles" onsubmit="return false">
+          <fieldset class="control">
+            <legend>Colchón para vivir allá (cada uno)</legend>
+            <div class="segmentos" id="colchones"></div>
+            <p class="ayuda" id="colchon-texto"></p>
+          </fieldset>
+
+          <div class="control dos">
+            <label><span>Ya ahorrado por <span data-persona="0"></span></span>
+              <span class="campo-pesos"><input type="text" inputmode="numeric" id="ahorro0" autocomplete="off"></span>
+            </label>
+            <label><span>Ya ahorrado por <span data-persona="1"></span></span>
+              <span class="campo-pesos"><input type="text" inputmode="numeric" id="ahorro1" autocomplete="off"></span>
+            </label>
+          </div>
+
+          <label class="control">
+            Lo que ganan los dos al mes (opcional)
+            <span class="campo-pesos"><input type="text" inputmode="numeric" id="ingreso" autocomplete="off" placeholder="Ej: 1.200.000"></span>
+          </label>
+
+          <label class="control">
+            Pasaje ida y vuelta, por persona: <output id="pasaje-out"></output>
+            <input type="range" id="pasaje" step="50000">
+          </label>
+
+          <label class="control">
+            Seguro de 12 meses, por persona: <output id="seguro-out"></output>
+            <input type="range" id="seguro" step="25000">
+          </label>
+
+          <div class="control dos">
+            <label><span>Euro en pesos</span>
+              <span class="campo-pesos"><input type="text" inputmode="numeric" id="tc" autocomplete="off"></span>
+            </label>
+            <label class="check-linea">
+              <input type="checkbox" id="pasaporte-check" checked>
+              Uno necesita sacar pasaporte
+            </label>
+          </div>
+        </form>
+
+        <div class="resultado" id="resultado" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="carpeta" class="seccion">
+      <div class="seccion-cabeza">
+        <h2>La carpeta de cada uno</h2>
+        <p>Lo que hay que llevar el día de la cita, en original y copia. Toquen un documento para ver el detalle y marquen quién ya lo tiene listo.</p>
+      </div>
+      <div class="carpeta" id="carpeta-grid"></div>
+    </section>
+
+    <section id="ciudades" class="seccion">
+      <div class="seccion-cabeza">
+        <h2>¿Dónde llegamos?</h2>
+        <p>Comparen lo que cuesta vivir con lo que podrían ganar. Elijan una ciudad y cómo se imaginan trabajando.</p>
+      </div>
+      <div class="ciudades">
+        <div class="ciudad-selector" id="ciudad-selector" role="tablist" aria-label="Ciudades"></div>
+        <div class="ingreso-selector">
+          <label for="ingreso-escenario">Trabajando así:</label>
+          <select id="ingreso-escenario"></select>
+        </div>
+        <article class="ciudad-panel" id="ciudad-panel" role="tabpanel" aria-live="polite"></article>
+        <p class="nota" id="ciudades-nota"></p>
+      </div>
+    </section>
+
+    <section id="dudas" class="seccion seccion-dudas">
+      <div class="seccion-cabeza">
+        <h2>Las dudas y los miedos</h2>
+        <p>Lo que da miedo suele tener respuesta. Elijan una pregunta o escriban lo que les preocupa.</p>
+      </div>
+      <div class="dudas">
+        <div class="dudas-filtros">
+          <label class="sr" for="buscar">Buscar una duda</label>
+          <input type="search" id="buscar" placeholder="Escriban una palabra: plata, rechazo, idioma…">
+          <div class="temas" id="temas"></div>
+        </div>
+        <div class="dudas-cuerpo">
+          <div class="preguntas" id="preguntas"></div>
+          <article class="respuesta" id="respuesta" aria-live="polite"></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p id="pie-fecha"></p>
+    <p>Los montos son estimaciones para planificar: confirmen requisitos y valores en la página de la embajada antes de pagar o postular. Lo que marcan se guarda solo en este dispositivo.</p>
+    <div class="fuentes" id="fuentes"></div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
