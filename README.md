@@ -23,6 +23,14 @@ Para actualizar el tipo de cambio, cambien `tipoCambio.eur` en `data/plan.json` 
 
 En la ruta, `offset` son los meses respecto al viaje (por ejemplo, `-6` es seis meses antes; `null` significa "ahora").
 
+## Números conectados
+
+Todos los montos que aparecen en los textos salen de un solo cálculo. En los JSON se escriben como marcadores entre llaves dobles, por ejemplo `{{meta}}`, `{{gasto}}`, `{{llevan}}`, `{{congelado}}`, `{{mensual}}`, `{{fechaFondos}}` o `{{solvencia}}`. Si cambian la fecha, el colchón, el pasaje o el tipo de cambio, cambian en toda la página. La lista completa está en la función `contexto()` de `js/app.js`.
+
+## Orden de la página
+
+Inicio (fecha, números del plan y lo próximo), 1. Cuando dudemos, 2. La plata, 3. ¿Dónde llegamos?, 4. Los trámites (ruta y carpeta), 5. Prepararse para llegar y, al final, Todas las dudas.
+
 ## Qué se guarda
 
 Las fechas, montos, sueldos, respuestas, planes de contacto y tareas marcadas se guardan solo en el navegador de cada dispositivo (localStorage). No hay servidor ni cuentas: lo que escribe uno en su celular no aparece en el del otro. Para compartir las respuestas, usen «Copiar nuestras respuestas».

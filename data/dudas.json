@@ -62,7 +62,7 @@
       "id": "seguro-cual",
       "tema": "tramite",
       "pregunta": "¿Cómo elegimos el seguro?",
-      "respuesta": "<p>Antes de pagar, revisen que la póliza diga por escrito:</p><p>Que cubre <strong>los 12 meses completos</strong> desde la fecha de entrada. Que la cobertura es de <strong>al menos €30.000</strong>. Que incluye <strong>enfermedad, accidentes, hospitalización y repatriación de restos</strong>. Que sirve para Alemania y todo Schengen.</p><p>Comparen al menos tres cotizaciones de seguros que digan «Working Holiday». Los de tarjeta de crédito no sirven: duran pocos meses.</p>"
+      "respuesta": "<p>Antes de pagar, revisen que la póliza diga por escrito:</p><p>Que cubre <strong>los 12 meses completos</strong> desde la fecha de entrada. Que la cobertura es de <strong>al menos {{seguroMin}}</strong>. Que incluye <strong>enfermedad, accidentes, hospitalización y repatriación de restos</strong>. Que sirve para Alemania y todo Schengen.</p><p>Comparen al menos tres cotizaciones de seguros que digan «Working Holiday». Los de tarjeta de crédito no sirven: duran pocos meses.</p>"
     },
     {
       "id": "cartola-como",
@@ -110,25 +110,25 @@
       "id": "cuanta-plata",
       "tema": "dinero",
       "pregunta": "¿Cuánta plata necesitamos en total?",
-      "respuesta": "<p>Para los dos, alrededor de <strong>$10 millones como mínimo</strong> y <strong>$12,3 millones para ir tranquilos</strong>. Unos $4,6 millones se gastan antes de viajar (pasajes, seguros, visa) y el resto sigue siendo de ustedes para vivir los primeros meses.</p><p>La calculadora de la sección Dinero ajusta esto a su fecha y a lo que ya tengan ahorrado.</p>"
+      "respuesta": "<p>Con lo que tienen elegido hoy (viajar en {{fechaViaje}}, colchón «{{colchon}}»), la meta entre los dos es <strong>{{meta}}</strong>. De eso, <strong>{{gasto}}</strong> se gasta antes de viajar (pasajes, seguros, visas) y <strong>{{llevan}}</strong> lo llevan para vivir allá.</p><p>Para llegar, necesitan ahorrar <strong>{{mensual}} al mes entre los dos</strong>. Si cambian la fecha, el colchón o el pasaje en la sección «La plata», este número cambia en toda la página.</p>"
     },
     {
       "id": "plata-congelada",
       "tema": "dinero",
       "pregunta": "¿La plata congelada se pierde?",
-      "respuesta": "<p>No. «Congelada» solo significa que no la pueden gastar durante los 90 días antes de la cita. Sigue en su cuenta, a su nombre, y se la llevan para vivir en Alemania. No es un pago a la embajada.</p>"
+      "respuesta": "<p>No. «Congelada» solo significa que no la pueden gastar durante los 90 días antes de la cita. Sigue en su cuenta, a su nombre, y se la llevan para vivir en Alemania: es parte de los {{llevan}} que llevan entre los dos. No es un pago a la embajada.</p>"
     },
     {
       "id": "solo-ida",
       "tema": "dinero",
       "pregunta": "¿Podemos comprar solo el pasaje de ida?",
-      "respuesta": "<p>Sí. La embajada acepta pasaje solo de ida si cada uno muestra <strong>€1.200 extra</strong> en su cuenta, además de la solvencia. Esa plata no se gasta: sigue siendo suya y sirve para comprar la vuelta cuando decidan.</p><p>Conviene si quieren dejar la fecha de regreso abierta, o si encuentran un buen precio de ida. En la calculadora de la sección Dinero pueden elegir «Solo ida» y ver cómo cambia el ahorro.</p>"
+      "respuesta": "<p>Sí. La embajada acepta pasaje solo de ida si cada uno muestra <strong>{{extraIda}} extra</strong> en su cuenta, además de la solvencia. Esa plata no se gasta: sigue siendo suya y sirve para comprar la vuelta cuando decidan.</p><p>Conviene si quieren dejar la fecha de regreso abierta, o si encuentran un buen precio de ida. En la calculadora de la sección Dinero pueden elegir «Solo ida» y ver cómo cambia el ahorro.</p>"
     },
     {
       "id": "uno-paga-otro",
       "tema": "pareja",
       "pregunta": "¿Puede uno poner la plata del otro?",
-      "respuesta": "<p>No para la solvencia. La embajada excluye el financiamiento de terceros sin excepciones, y eso incluye a la pareja. Cada uno necesita su propia cuenta con su propio saldo de €1.326 o más.</p><p>Lo que sí pueden hacer es organizarse como pareja: que quien gana más cubra más gastos de la casa mientras el otro ahorra, siempre que al final cada saldo esté en la cuenta de su titular con 90 días de antigüedad.</p>"
+      "respuesta": "<p>No para la solvencia. La embajada excluye el financiamiento de terceros sin excepciones, y eso incluye a la pareja. Cada uno necesita su propia cuenta con su propio saldo: con su plan actual, {{congelado}} cada uno.</p><p>Lo que sí pueden hacer es organizarse como pareja: que quien gana más cubra más gastos de la casa mientras el otro ahorra, siempre que al final cada saldo esté en la cuenta de su titular con 90 días de antigüedad.</p>"
     },
     {
       "id": "juntos",
@@ -182,7 +182,7 @@
       "id": "sueldo",
       "tema": "trabajo",
       "pregunta": "¿Cuánto vamos a ganar?",
-      "respuesta": "<p>El sueldo mínimo es €13,90 la hora en 2026 y sube a <strong>€14,60 en 2027</strong>. A jornada completa son unos €2.530 brutos al mes, que quedan en unos <strong>€1.830 líquidos</strong>.</p><p>Los dos a jornada completa juntan cerca de €3.660 al mes. En una ciudad media gastarían unos €1.400–1.800, así que se puede ahorrar o viajar.</p>"
+      "respuesta": "<p>El sueldo mínimo es {{hora2026}} la hora en 2026 y sube a <strong>{{hora2027}} en 2027</strong>. A jornada completa son unos {{brutoCompleta}} brutos al mes, que quedan en unos <strong>{{netoCompleta}} líquidos</strong>.</p><p>Los dos a jornada completa juntan cerca de {{ingresoDos}} al mes. En {{ciudad}}, la ciudad que tienen elegida en «Dónde vivir», gastarían unos {{gastoCiudad}} al mes.</p>"
     },
     {
       "id": "certificado-sanitario",

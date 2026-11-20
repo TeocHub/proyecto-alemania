@@ -97,10 +97,16 @@ a { color: inherit; }
 }
 .menu { display: flex; gap: 0.25rem; overflow-x: auto; scrollbar-width: none; }
 .menu a {
-  text-decoration: none; padding: 0.35rem 0.7rem; border-radius: 999px;
-  font-size: var(--t-0); white-space: nowrap;
+  text-decoration: none; padding: 0.3rem 0.7rem 0.3rem 0.35rem; border-radius: 999px;
+  font-size: var(--t-0); white-space: nowrap; display: flex; align-items: center; gap: 0.35rem;
+}
+.menu a span {
+  width: 1.3rem; height: 1.3rem; border-radius: 50%; border: 3px solid var(--tinta);
+  display: grid; place-items: center; font-size: 0.7rem; font-weight: 700; background: var(--hoja);
 }
 .menu a:hover { background: var(--niebla); }
+.menu a.activo { background: var(--tinta); color: var(--hoja); }
+.menu a.activo span { background: var(--linea); border-color: var(--linea); color: var(--tinta); }
 
 /* Inicio */
 .inicio {
@@ -433,7 +439,8 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
   .parada-nombre { font-size: var(--t-1); }
 }
 @media (max-width: 560px) {
-  .menu { display: none; }
+  .barra { flex-direction: column; align-items: stretch; gap: 0.4rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .menu { margin: 0 calc(-1 * var(--margen)); padding: 0 var(--margen); }
   .fases { grid-template-columns: 1fr; }
   .control.dos { grid-template-columns: 1fr; }
   .medidor { grid-template-columns: 8rem 1fr; }
@@ -663,3 +670,46 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
   .proximo-titulo { font-size: var(--t-3); }
 }
 
+
+/* Capítulos */
+.cap-num {
+  display: inline-grid; place-items: center; vertical-align: 0.12em;
+  width: 0.95em; height: 0.95em; margin-right: 0.3em; border-radius: 50%;
+  border: 0.13em solid currentColor; background: var(--linea); color: var(--tinta);
+  font-size: 0.72em; font-stretch: 100%;
+}
+.seccion-dinero .cap-num { border-color: var(--linea); }
+.siguiente {
+  display: flex; flex-direction: column; gap: 0.1rem; width: fit-content; margin: 3rem 0 0 auto;
+  text-decoration: none; font-family: var(--display); font-stretch: 82%; font-weight: 700; font-size: var(--t-3);
+  padding: 0.6rem 1.1rem 0.7rem; border-radius: 12px; border: 2px solid currentColor; text-align: right;
+}
+.siguiente span { font-family: var(--texto); font-stretch: 100%; font-weight: 400; font-size: var(--t-0); opacity: 0.8; }
+.siguiente:hover { background: var(--linea); color: var(--tinta); border-color: var(--linea); }
+.seccion-dinero .siguiente { color: var(--hoja); }
+.sub-seccion { margin-top: 4rem; }
+.sub-cabeza { max-width: 40rem; margin-bottom: 1.5rem; }
+.sub-cabeza h3 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); font-weight: 800; margin-bottom: 0.5rem; }
+.sub-cabeza p { color: var(--tinta-suave); }
+
+/* Números del plan (inicio) */
+.numeros {
+  margin-top: 1.8rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;
+  background: var(--hoja); border: 1px solid var(--niebla); border-radius: var(--radio-panel); overflow: hidden; max-width: 52rem;
+}
+.numero { padding: 0.9rem 1rem 1rem; border-top: 6px solid var(--niebla); display: grid; gap: 0.15rem; align-content: start; }
+.numero + .numero { border-left: 1px solid var(--niebla); }
+.n-valor { font-family: var(--display); font-stretch: 72%; font-weight: 800; font-size: clamp(1.2rem, 2.3vw, 1.6rem); line-height: 1.1; white-space: nowrap; }
+.n-nombre { font-size: var(--t-0); color: var(--tinta-suave); }
+.n-meta { border-top-color: var(--tinta); }
+.n-gasto { border-top-color: var(--gasto); }
+.n-llevan { border-top-color: var(--suyo); }
+.n-mensual { border-top-color: var(--linea); }
+.numeros-pie { grid-column: 1 / -1; margin: 0; padding: 0.7rem 1rem; border-top: 1px solid var(--niebla); font-size: var(--t-0); color: var(--tinta-suave); }
+.leyenda-grupo { flex-basis: 100%; font-weight: 700; color: var(--tinta); margin-top: 0.2rem; }
+.colchon-ciudad { margin-top: 1.2rem; padding: 0.8rem 1rem; border-radius: 10px; background: #ddf0ed; color: #0e4f4a; }
+@media (max-width: 700px) {
+  .numeros { grid-template-columns: 1fr 1fr; }
+  .numero:nth-child(3) { border-left: 0; }
+  .numero:nth-child(n+3) { border-top-width: 6px; }
+}

@@ -12,19 +12,18 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='%23fff' stroke='%23182638' stroke-width='5'/%3E%3C/svg%3E">
 </head>
 <body>
-  <a class="saltar" href="#ruta">Ir al plan</a>
+  <a class="saltar" href="#refugio">Ir al contenido</a>
 
   <header class="barra">
     <a class="marca" href="#inicio" aria-label="Inicio">
       <span class="marca-punto" aria-hidden="true"></span>Proyecto Alemania
     </a>
-    <nav class="menu" aria-label="Secciones">
-      <a href="#refugio">Cuando dudemos</a>
-      <a href="#ruta">Ruta</a>
-      <a href="#dinero">Dinero</a>
-      <a href="#carpeta">Carpeta</a>
-      <a href="#ciudades">Ciudades</a>
-      <a href="#prepararse">Prepararse</a>
+    <nav class="menu" aria-label="Capítulos">
+      <a href="#refugio"><span>1</span>Decidir</a>
+      <a href="#dinero"><span>2</span>La plata</a>
+      <a href="#ciudades"><span>3</span>Dónde</a>
+      <a href="#ruta"><span>4</span>Trámites</a>
+      <a href="#prepararse"><span>5</span>Prepararse</a>
       <a href="#dudas">Dudas</a>
     </nav>
   </header>
@@ -42,6 +41,7 @@
           <select id="anio" class="select-grande"></select>
         </p>
         <p class="frase-resultado" id="frase-resultado" aria-live="polite"></p>
+        <div class="numeros" id="numeros" aria-live="polite"></div>
         <aside class="proximo" id="proximo" aria-label="Lo próximo"></aside>
       </div>
 
@@ -51,10 +51,23 @@
       </nav>
     </section>
 
-    <section id="refugio" class="refugio">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+      <section id="refugio" class="refugio">
       <div class="refugio-dentro">
         <div class="seccion-cabeza">
-          <h2>Cuando dudemos</h2>
+          <h2><span class="cap-num" aria-hidden="true">1</span>Cuando dudemos</h2>
           <p id="refugio-intro"></p>
         </div>
         <div class="estados" id="estados" role="group" aria-label="¿Qué sienten hoy?"></div>
@@ -80,21 +93,10 @@
       </div>
     </section>
 
-    <section id="ruta" class="seccion">
-      <div class="seccion-cabeza">
-        <h2>La ruta</h2>
-        <p>Cada estación es una etapa. Toquen una para ver qué hay que hacer y marquen lo que cada uno vaya terminando. Las fechas se calculan desde el mes de viaje.</p>
-      </div>
-      <div class="ruta">
-        <ol class="linea" id="linea" aria-label="Etapas del plan"></ol>
-        <article class="estacion-panel" id="estacion-panel" aria-live="polite"></article>
-      </div>
-    </section>
-
     <section id="dinero" class="seccion seccion-dinero">
       <div class="seccion-cabeza">
-        <h2>El dinero</h2>
-        <p>Una parte se gasta antes de viajar. La otra sigue siendo de ustedes y se la llevan. Muevan los valores y miren cómo cambia el ahorro mensual.</p>
+        <h2><span class="cap-num" aria-hidden="true">2</span>La plata</h2>
+        <p>Cuánto necesitan, cuánto se gasta antes de viajar, cuánto llevan para vivir allá y si les alcanza con lo que ganan hoy. Lo que cambien acá se actualiza en toda la página.</p>
       </div>
 
       <div class="dinero">
@@ -190,17 +192,9 @@
       </div>
     </section>
 
-    <section id="carpeta" class="seccion">
-      <div class="seccion-cabeza">
-        <h2>La carpeta de cada uno</h2>
-        <p>Lo que hay que llevar el día de la cita, en original y copia. Toquen un documento para ver el detalle y marquen quién ya lo tiene listo.</p>
-      </div>
-      <div class="carpeta" id="carpeta-grid"></div>
-    </section>
-
     <section id="ciudades" class="seccion">
       <div class="seccion-cabeza">
-        <h2>¿Dónde llegamos?</h2>
+        <h2><span class="cap-num" aria-hidden="true">3</span>¿Dónde llegamos?</h2>
         <p>Comparen lo que cuesta vivir con lo que podrían ganar. Elijan una ciudad y cómo se imaginan trabajando.</p>
       </div>
       <div class="ciudades">
@@ -214,9 +208,27 @@
       </div>
     </section>
 
+    <section id="ruta" class="seccion">
+      <div class="seccion-cabeza">
+        <h2><span class="cap-num" aria-hidden="true">4</span>Los trámites</h2>
+        <p>Todo lo que hay que hacer desde hoy hasta tener la visa y llegar. Cada estación es una etapa: tóquenla para ver qué hacer y marquen lo que cada uno vaya terminando. Las fechas se calculan desde el mes de viaje.</p>
+      </div>
+      <div class="ruta">
+        <ol class="linea" id="linea" aria-label="Etapas del plan"></ol>
+        <article class="estacion-panel" id="estacion-panel" aria-live="polite"></article>
+      </div>
+          <div class="sub-seccion">
+        <div class="sub-cabeza" id="carpeta">
+        <h3>La carpeta de cada uno</h3>
+        <p>Lo que hay que llevar el día de la cita, en original y copia. Toquen un documento para ver el detalle y marquen quién ya lo tiene listo.</p>
+      </div>
+      <div class="carpeta" id="carpeta-grid"></div>
+      </div>
+    </section>
+
     <section id="prepararse" class="seccion">
       <div class="seccion-cabeza">
-        <h2>Prepararse desde acá</h2>
+        <h2><span class="cap-num" aria-hidden="true">5</span>Prepararse para llegar</h2>
         <p>El idioma, la vivienda y lo que cuentan quienes ya fueron. Lo que se puede adelantar desde Santiago, para no llegar en blanco.</p>
       </div>
       <div class="pestanas" role="tablist" aria-label="Preparación">
@@ -231,7 +243,7 @@
 
     <section id="dudas" class="seccion seccion-dudas">
       <div class="seccion-cabeza">
-        <h2>Las dudas y los miedos</h2>
+        <h2>Todas las dudas</h2>
         <p>Lo que da miedo suele tener respuesta. Elijan una pregunta o escriban lo que les preocupa.</p>
       </div>
       <div class="dudas">

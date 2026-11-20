@@ -44,7 +44,7 @@
       "id": "minimo",
       "nombre": "Lo justo",
       "eur": 2466,
-      "texto": "El mínimo que pide la embajada sin reserva de alojamiento (€1.326 + €1.140). Alcanza para unas 4–6 semanas sin trabajo."
+      "texto": "El mínimo que pide la embajada sin reserva de alojamiento ({{solvencia}} + {{extraAloj}}). Alcanza para unas 4–6 semanas sin trabajo."
     },
     {
       "id": "recomendado",
@@ -96,7 +96,7 @@
       "nombre": "Pasaporte",
       "offset": null,
       "resumen": "Quien no lo tiene, lo pide ya. Debe tener al menos 1 año de vigencia al postular.",
-      "detalle": "Se pide hora en el sitio del Registro Civil con ClaveÚnica y se retira en la oficina. Cuesta $69.660 y dura 10 años. Quien ya lo tiene: revisar que siga vigente un año completo después del día de la cita y que tenga 2 páginas en blanco.",
+      "detalle": "Se pide hora en el sitio del Registro Civil con ClaveÚnica y se retira en la oficina. Cuesta {{pasaporte}} y dura 10 años. Quien ya lo tiene: revisar que siga vigente un año completo después del día de la cita y que tenga 2 páginas en blanco.",
       "tareas": [
         {
           "id": "vigencia",
@@ -164,8 +164,8 @@
       "id": "fondos",
       "nombre": "Fondos congelados",
       "offset": -6,
-      "resumen": "El monto de solvencia debe estar quieto 90 días antes de la cita.",
-      "detalle": "Desde esta fecha la plata de solvencia no se toca: la embajada revisa que el saldo se haya mantenido 90 días hasta el día de la cita. Conviene dejar un 10% más que el mínimo por si sube el euro. Se puede seguir ahorrando encima; lo que no puede pasar es que baje.",
+      "resumen": "Cada uno debe tener {{congelado}} en su cuenta desde {{fechaFondos}}, sin tocarlos.",
+      "detalle": "Desde esta fecha la plata de solvencia no se toca: la embajada revisa que el saldo se haya mantenido 90 días hasta el día de la cita. El mínimo legal es {{pruebaEur}} por persona; el plan usa {{congelado}} para dejar un {{margen}} de margen por si sube el euro. Esta plata no se gasta: es parte de lo que llevan para vivir allá. Se puede seguir ahorrando encima; lo que no puede pasar es que baje.",
       "tareas": [
         {
           "id": "deposito",
@@ -207,7 +207,7 @@
       "nombre": "Seguro y cita",
       "offset": -3,
       "resumen": "Se postula máximo 3 meses antes del viaje. Cada uno toma su propia hora.",
-      "detalle": "La cita se pide online, categoría «Visa Working Holiday». Las horas suelen liberarse entre las 18:00 y las 20:00 de Chile: revisen los dos a esa hora y tomen la primera que salga. El seguro debe cubrir los 12 meses, con mínimo €30.000 y repatriación.",
+      "detalle": "La cita se pide online, categoría «Visa Working Holiday». Las horas suelen liberarse entre las 18:00 y las 20:00 de Chile: revisen los dos a esa hora y tomen la primera que salga. El seguro debe cubrir los 12 meses, con mínimo {{seguroMin}} y repatriación.",
       "tareas": [
         {
           "id": "cita",
@@ -215,7 +215,7 @@
         },
         {
           "id": "seguro",
-          "texto": "Contratar seguro de 12 meses (mín. €30.000, con repatriación)"
+          "texto": "Contratar seguro de 12 meses (mín. {{seguroMin}}, con repatriación)"
         },
         {
           "id": "videx",
@@ -227,7 +227,7 @@
       "id": "embajada",
       "nombre": "Día de la embajada",
       "offset": -2.5,
-      "resumen": "Ir con la carpeta completa, original y copia. Pagar €75 en pesos exactos.",
+      "resumen": "Ir con la carpeta completa, original y copia. Pagar {{arancel}} (≈ {{arancelClp}}) en pesos exactos.",
       "detalle": "Las Hualtatas 5677, Vitacura. Lleven todo en original y copia, cartola timbrada y firmada por el banco, y el arancel en efectivo con monto exacto (o tarjeta de crédito del titular). La respuesta tarda cerca de 3 semanas.",
       "tareas": [
         {
@@ -248,7 +248,7 @@
       "id": "pasajes",
       "nombre": "Visas y pasajes",
       "offset": -1.5,
-      "resumen": "Recién con las dos visas aprobadas se compran los pasajes.",
+      "resumen": "Recién con las dos visas aprobadas se compran los pasajes. Fecha estimada: {{fechaPasajes}}.",
       "detalle": "Si una visa sale antes, se espera a la otra. Busquen pasajes con cambio de fecha permitido. Mientras, reserven el hostal de las primeras dos semanas y avisen el término del arriendo en Chile según su contrato.",
       "tareas": [
         {
@@ -363,31 +363,31 @@
     {
       "id": "fondos",
       "nombre": "Cartola bancaria",
-      "corto": "€1.326 mín., 90 días, timbrada",
-      "detalle": "A nombre propio, con firma original y timbre del banco. Si no llevan reserva de alojamiento, suman €1.140; si viajan solo con ida, suman €1.200."
+      "corto": "{{congelado}} cada uno, 90 días, timbrada",
+      "detalle": "A nombre propio, con firma original y timbre del banco. El mínimo legal es {{solvencia}}; si no llevan reserva de alojamiento suman {{extraAloj}}, y si viajan solo con ida, {{extraIda}}. Con su plan, cada uno debe mostrar {{pruebaEur}}: la página usa {{congelado}} para dejar margen por el euro."
     },
     {
       "id": "pasaje",
       "nombre": "Pasaje",
-      "corto": "Ida y vuelta, o €1.200 extra",
-      "detalle": "La embajada recomienda comprarlo después de tener la cita. Si solo tienen ida, deben mostrar €1.200 más en la cuenta."
+      "corto": "Ida y vuelta, o {{extraIda}} extra",
+      "detalle": "La embajada recomienda comprarlo después de tener la cita. Si solo tienen ida, deben mostrar {{extraIda}} más en la cuenta."
     },
     {
       "id": "alojamiento",
       "nombre": "Alojamiento",
-      "corto": "3 meses, o €1.140 extra",
-      "detalle": "Reserva de hotel por 3 meses o carta de invitación firmada. Si no tienen ninguna, muestran €1.140 extra en la cuenta."
+      "corto": "3 meses, o {{extraAloj}} extra",
+      "detalle": "Reserva de hotel por 3 meses o carta de invitación firmada. Si no tienen ninguna, muestran {{extraAloj}} extra en la cuenta."
     },
     {
       "id": "seguro",
       "nombre": "Seguro médico",
-      "corto": "12 meses, mín. €30.000",
+      "corto": "12 meses, mín. {{seguroMin}}",
       "detalle": "Médico y de accidentes durante toda la estadía, con repatriación de restos. Los seguros de tarjeta de crédito no sirven porque duran pocos meses."
     },
     {
       "id": "arancel",
       "nombre": "Arancel",
-      "corto": "€75 en pesos exactos",
+      "corto": "{{arancel}} en pesos exactos (≈ {{arancelClp}})",
       "detalle": "En efectivo con monto exacto en pesos, o con tarjeta de crédito Visa/Mastercard (no débito) del titular, presente en la cita."
     }
   ],
