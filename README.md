@@ -16,6 +16,7 @@ Todo el contenido está en `data/`, en archivos JSON que se pueden editar sin to
 | `data/plan.json` | Nombres, tipo de cambio, requisitos de la embajada, costos, colchones, etapas de la ruta con sus tareas, documentos de la carpeta y fuentes |
 | `data/ciudades.json` | Ciudades, gastos mensuales estimados para la pareja y escenarios de ingreso |
 | `data/preparacion.json` | Plan de alemán de 12 semanas, frases con pronunciación, cursos, pasos para buscar hospedaje, mensaje para arrendadores, señales de estafa y experiencias de otras personas |
+| `data/refugio.json` | Sección «Cuando dudemos»: cómo se sienten hoy, las preguntas que deciden, el ejercicio de los tres meses, familia y distancia, y consecuencias |
 | `data/dudas.json` | Temas y preguntas con sus respuestas (las respuestas aceptan HTML simple: `<p>`, `<strong>`) |
 
 Para actualizar el tipo de cambio, cambien `tipoCambio.eur` en `data/plan.json` (también se puede ajustar en la página). Para agregar una duda, copien un bloque de `data/dudas.json` y cambien `id`, `tema`, `pregunta` y `respuesta`.
@@ -24,7 +25,7 @@ En la ruta, `offset` son los meses respecto al viaje (por ejemplo, `-6` es seis 
 
 ## Qué se guarda
 
-Las fechas, montos y tareas marcadas se guardan solo en el navegador de cada dispositivo (localStorage). No hay servidor ni cuentas.
+Las fechas, montos, sueldos, respuestas, planes de contacto y tareas marcadas se guardan solo en el navegador de cada dispositivo (localStorage). No hay servidor ni cuentas: lo que escribe uno en su celular no aparece en el del otro. Para compartir las respuestas, usen «Copiar nuestras respuestas».
 
 ## Fuentes
 

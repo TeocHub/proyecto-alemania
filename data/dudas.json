@@ -13,6 +13,10 @@
       "nombre": "Visa y trámites"
     },
     {
+      "id": "tramite",
+      "nombre": "Paso a paso hasta la visa"
+    },
+    {
       "id": "pareja",
       "nombre": "Ir los dos"
     },
@@ -30,6 +34,60 @@
     }
   ],
   "dudas": [
+    {
+      "id": "cita-paso",
+      "tema": "tramite",
+      "pregunta": "¿Cómo pedimos la cita, paso a paso?",
+      "respuesta": "<p>Entren a la página de la Embajada de Alemania en Santiago, sección visas, y abran el sistema de citas. Elijan la categoría <strong>«Visa Working Holiday»</strong> y busquen fechas disponibles. Cada uno pide su propia hora, con sus datos.</p><p>Si no aparecen horas, vuelvan a revisar entre las 18:00 y las 20:00 de Chile, que es cuando suelen liberarse. Guarden el correo de confirmación: lo piden al entrar.</p><p>Pueden postular como máximo 3 meses antes del viaje, y recién con la cita conviene comprar pasajes.</p>"
+    },
+    {
+      "id": "videx",
+      "tema": "tramite",
+      "pregunta": "¿Cómo llenamos el formulario VIDEX?",
+      "respuesta": "<p>VIDEX es el formulario online de visa nacional del Ministerio de Relaciones Exteriores alemán. Se completa en el navegador, se imprime y se firma. Cada uno llena el suyo.</p><p>Consejos: tengan a mano el pasaporte, la dirección del primer alojamiento y la fecha de entrada. Pongan <strong>la misma fecha de entrada</strong> los dos. Revisen que el nombre esté escrito igual que en el pasaporte, letra por letra, antes de imprimir.</p>"
+    },
+    {
+      "id": "carta-como",
+      "tema": "tramite",
+      "pregunta": "¿Qué escribimos en la carta de motivación?",
+      "respuesta": "<p>Una carilla, en alemán, personal. Una estructura que funciona:</p><p><strong>1.</strong> Quiénes son y por qué Alemania (qué les interesa conocer: ciudades, cultura, idioma).<br><strong>2.</strong> Qué planean hacer en el año: viajar, aprender alemán, conocer el país.<br><strong>3.</strong> Cómo lo van a financiar: ahorros y trabajos temporales para sostener el viaje.<br><strong>4.</strong> Que piensan volver a Chile al terminar y qué esperan traer de vuelta.</p><p>Lo principal debe ser el viaje y las vacaciones; el trabajo es el medio. Escríbanla primero en español con sus palabras, después tradúzcanla y que alguien que sepa alemán la revise. Nada copiado de internet.</p>"
+    },
+    {
+      "id": "foto",
+      "tema": "tramite",
+      "pregunta": "¿Dónde sacamos la foto biométrica?",
+      "respuesta": "<p>En cualquier local de fotos para documentos. Pidan explícitamente <strong>foto biométrica para pasaporte alemán</strong> (35 × 45 mm, fondo claro, cara de frente, sin sonreír ni lentes). Pidan que se la entreguen también en digital por si la necesitan de nuevo.</p>"
+    },
+    {
+      "id": "seguro-cual",
+      "tema": "tramite",
+      "pregunta": "¿Cómo elegimos el seguro?",
+      "respuesta": "<p>Antes de pagar, revisen que la póliza diga por escrito:</p><p>Que cubre <strong>los 12 meses completos</strong> desde la fecha de entrada. Que la cobertura es de <strong>al menos €30.000</strong>. Que incluye <strong>enfermedad, accidentes, hospitalización y repatriación de restos</strong>. Que sirve para Alemania y todo Schengen.</p><p>Comparen al menos tres cotizaciones de seguros que digan «Working Holiday». Los de tarjeta de crédito no sirven: duran pocos meses.</p>"
+    },
+    {
+      "id": "cartola-como",
+      "tema": "tramite",
+      "pregunta": "¿Cómo pedimos la cartola para la embajada?",
+      "respuesta": "<p>Vayan a una sucursal de su banco pocos días antes de la cita y pidan una <strong>cartola histórica de los últimos 3 meses o más</strong>, con <strong>firma y timbre del banco</strong>. Que aparezca su nombre como titular y que el saldo nunca haya bajado del mínimo en esos 90 días.</p><p>Una cartola impresa desde la app, sin timbre, puede no servir.</p>"
+    },
+    {
+      "id": "dia-cita",
+      "tema": "tramite",
+      "pregunta": "¿Qué pasa el día de la cita?",
+      "respuesta": "<p>Lleguen con tiempo, con el correo de confirmación y la carpeta completa: originales y una copia de cada cosa. Entregan los documentos, pagan el arancel (pesos exactos o tarjeta de crédito del titular) y pueden tomarles huellas y foto. A veces hacen preguntas cortas sobre el plan: respondan con calma y con lo mismo que dice la carta.</p><p>Si van el mismo día, igual cada uno es atendido por separado.</p>"
+    },
+    {
+      "id": "despues-cita",
+      "tema": "tramite",
+      "pregunta": "¿Y después de la cita, cómo sabemos si nos aprobaron?",
+      "respuesta": "<p>La tramitación toma unas tres semanas. La embajada les avisa y retiran el pasaporte con la visa pegada.</p><p>Al recibirla, revisen <strong>nombre, número de pasaporte, fechas de validez y tipo de visa</strong>. Si algo está mal, avisen ahí mismo. Recién con las dos visas en la mano compran los pasajes.</p>"
+    },
+    {
+      "id": "pasaporte-tiempo",
+      "tema": "tramite",
+      "pregunta": "¿Cuánto se demora el pasaporte?",
+      "respuesta": "<p>Depende de la disponibilidad de horas en el Registro Civil y del plazo de entrega, que puede ser de algunas semanas. Por eso es lo primero de la ruta: pidan hora apenas puedan, con ClaveÚnica, y revisen en ese momento el plazo de entrega.</p>"
+    },
     {
       "id": "y-si-no-resulta",
       "tema": "miedo",

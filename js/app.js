@@ -45,13 +45,16 @@
     try { localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch { /* sin almacenamiento: seguimos en memoria */ }
   }
 
-  let plan, ciudades, dudas, prep;
+  let plan, ciudades, dudas, prep, refugio;
   const hoy = new Date();
   const estado = Object.assign({
     viaje: null,
     colchon: "recomendado",
     ahorro: [0, 0],
-    ingreso: 0,
+    economia: {},
+    reparto: "mitad",
+    respuestas: {},
+    contacto: { 0: [], 1: [] },
     tc: null,
     pasaje: null,
     pasajeIda: null,
@@ -70,10 +73,10 @@
   const fechaViaje = () => new Date(estado.viaje.y, estado.viaje.m, 1);
 
   /* ---------- Cálculo del dinero ---------- */
-  function calcular() {
+  function calcular(fecha) {
     const e = plan.embajada, c = plan.costos;
     const tc = estado.tc;
-    const V = fechaViaje();
+    const V = fecha || fechaViaje();
     const F = sumarMeses(V, -6);      // fondos congelados (90 días antes de la cita + margen)
     const D2 = sumarMeses(V, -1.5);   // compra de pasajes con visas aprobadas
 
@@ -169,6 +172,7 @@
 
   function pintarLinea() {
     pintarMini();
+    pintarProximo();
     const ol = $("#linea");
     ol.innerHTML = "";
     plan.ruta.forEach((est) => {
@@ -271,7 +275,6 @@
     };
     campoPesos("#ahorro0", () => estado.ahorro[0], (v) => { estado.ahorro[0] = v; });
     campoPesos("#ahorro1", () => estado.ahorro[1], (v) => { estado.ahorro[1] = v; });
-    campoPesos("#ingreso", () => estado.ingreso, (v) => { estado.ingreso = v; });
     campoPesos("#tc", () => estado.tc, (v) => { estado.tc = v || plan.tipoCambio.eur; });
 
     const rango = (id, conf, clave) => {
@@ -317,9 +320,12 @@
     const persona = (i) => r.porPersona[i] === 0 ? `${p[i]} ya tiene su parte` : `${p[i]}: ${pesos(r.porPersona[i])}`;
 
     let porcentaje = "";
-    if (estado.ingreso > 0 && !imposible) {
-      const pct = Math.round((r.mensual / estado.ingreso) * 100);
-      porcentaje = `<div class="aviso">Ese ahorro es el <strong>${pct}%</strong> de lo que ganan juntos.${pct > 20 ? " Hoy les queda cerca del 20% después del arriendo y los básicos: para llegar, hay que bajar gastos, sumar ingresos o mover la fecha." : " Calza con lo que les queda después del arriendo y los básicos."}</div>`;
+    const eco = economia();
+    if (eco.hayDatos && !imposible && r.mensual > 0) {
+      const alcanza = eco.queda[0] + eco.queda[1] >= r.mensual;
+      porcentaje = `<div class="aviso">Ese ahorro es el <strong>${Math.round((r.mensual / eco.ingreso) * 100)}%</strong> de lo que ganan juntos. ${alcanza
+        ? "Con lo que les queda después de los gastos, alcanza."
+        : `Hoy les quedan ${pesos(Math.max(0, eco.queda[0] + eco.queda[1]))} al mes después de los gastos: abajo, en «Nuestra economía hoy», está la fecha más cercana que pueden sostener.`}</div>`;
     }
 
     caja.innerHTML = `
@@ -478,6 +484,329 @@
           ? `Les sobran cerca de ${euros(diff)} al mes (≈ ${pesos(diff * tc)}) para ahorrar o viajar.`
           : `Les faltan cerca de ${euros(-diff)} al mes (≈ ${pesos(-diff * tc)}). Así se gastaría el colchón: busquen más horas o una ciudad más barata.`}</p>
       </div>`;
+  }
+
+  /* ---------- Lo próximo ---------- */
+  function pendientes(est) {
+    const out = [];
+    est.tareas.forEach((t) => {
+      if (tareaHecha(est, t)) return;
+      const faltan = t.juntos ? [] : plan.personas.filter((_, i) => !marcado(claveMarca(est.id, t.id, i)));
+      out.push({ t, faltan });
+    });
+    return out;
+  }
+
+  function pintarProximo() {
+    const caja = $("#proximo");
+    if (!caja) return;
+    const est = plan.ruta.find((e) => !estacionLista(e));
+    if (!est) {
+      caja.innerHTML = `<p class="proximo-etiqueta">Lo próximo</p><p class="proximo-titulo">Terminaron la ruta.</p><p>Todo está marcado. Ahora queda disfrutar.</p>`;
+      return;
+    }
+    const f = fechaEstacion(est);
+    const pend = pendientes(est).slice(0, 3);
+    caja.innerHTML = `
+      <p class="proximo-etiqueta">Lo próximo</p>
+      <p class="proximo-titulo">${est.nombre}</p>
+      <p class="proximo-cuando${f.pasada ? " pasada" : ""}">${f.pasada ? `Atrasado: era en ${f.texto}` : f.texto}</p>
+      <div class="proximo-tareas">${pend.map(({ t, faltan }) => `<p>${t.texto}${faltan.length && faltan.length < plan.personas.length ? `<span> Falta: ${faltan.join(" y ")}</span>` : ""}</p>`).join("")}</div>
+      <button type="button" class="boton" id="ir-proximo">Abrir esta etapa</button>`;
+    $("#ir-proximo").addEventListener("click", () => {
+      estado.estacion = est.id; guardar(); pintarLinea(); pintarEstacion();
+      $("#ruta").scrollIntoView();
+    });
+  }
+
+  /* ---------- Economía de cada uno ---------- */
+  function economia() {
+    const e = estado.economia || {};
+    const n = (k) => Number(e[k]) || 0;
+    const sueldo = [n("sueldo0"), n("sueldo1")];
+    const casa = n("arriendo") + n("cuentas") + n("comida") + n("transporte") + n("deudas") + n("otrosCasa");
+    const personal = [n("personal0"), n("personal1")];
+    const ingreso = sueldo[0] + sueldo[1];
+    const parte = estado.reparto === "proporcional" && ingreso > 0
+      ? sueldo.map((x) => casa * (x / ingreso))
+      : [casa / 2, casa / 2];
+    const queda = sueldo.map((x, i) => x - parte[i] - personal[i]);
+    return { sueldo, casa, personal, ingreso, parte, queda, hayDatos: ingreso > 0, arriendo: n("arriendo") };
+  }
+
+  function fechaPosible(disponible) {
+    if (disponible <= 0) return null;
+    const base = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+    for (let m = 3; m <= 72; m++) {
+      const V = sumarMeses(base, m);
+      const r = calcular(V);
+      if (isFinite(r.mensual) && r.mensual <= disponible) return V;
+    }
+    return null;
+  }
+
+  function montarEconomia() {
+    document.querySelectorAll("[data-eco]").forEach((inp) => {
+      const k = inp.dataset.eco;
+      const mostrar = () => { const v = (estado.economia || {})[k]; inp.value = v ? Number(v).toLocaleString("es-CL") : ""; };
+      mostrar();
+      inp.addEventListener("input", () => { estado.economia = estado.economia || {}; estado.economia[k] = soloDigitos(inp.value); guardar(); todo(); });
+      inp.addEventListener("blur", mostrar);
+    });
+    const botones = document.querySelectorAll("#reparto button");
+    const marcar = () => botones.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.reparto === estado.reparto)));
+    botones.forEach((b) => b.addEventListener("click", () => { estado.reparto = b.dataset.reparto; guardar(); marcar(); todo(); }));
+    marcar();
+  }
+
+  function pintarEconomia(r) {
+    const caja = $("#economia-resultado");
+    const eco = economia();
+    const p = plan.personas;
+    if (!eco.hayDatos) {
+      caja.innerHTML = `<p class="eco-vacio">Anoten al menos lo que gana cada uno para ver el desglose. Los datos se quedan solo en este dispositivo.</p>`;
+      return;
+    }
+    const necesita = r.porPersona.map((x) => (isFinite(x) ? x : 0));
+    const persona = (i) => {
+      const s = eco.sueldo[i] || 0;
+      const libre = eco.queda[i] - necesita[i];
+      const total = Math.max(s, eco.parte[i] + eco.personal[i] + necesita[i], 1);
+      const w = (v) => `${Math.max(0, (v / total) * 100)}%`;
+      return `
+        <div class="eco-persona">
+          <div class="eco-fila"><h4>${p[i]}</h4><b>${pesos(s)}</b></div>
+          <div class="eco-barra${eco.queda[i] - necesita[i] < 0 ? " pasado" : ""}" role="img" aria-label="${p[i]}: aporta ${pesos(eco.parte[i])} a la casa, ${pesos(eco.personal[i])} en gastos personales, necesita ahorrar ${pesos(necesita[i])}">
+            <span class="e-casa" style="width:${w(eco.parte[i])}"></span>
+            <span class="e-personal" style="width:${w(eco.personal[i])}"></span>
+            <span class="e-ahorro" style="width:${w(necesita[i])}"></span>
+            ${s < total ? `<span class="marca-sueldo" style="left:${(s / total) * 100}%"></span>` : ""}
+          </div>
+          <table class="recibo">
+            <tbody>
+              <tr><td><i class="punto-color e-casa"></i>Su parte de la casa</td><td>${pesos(eco.parte[i])}</td></tr>
+              <tr><td><i class="punto-color e-personal"></i>Gastos personales</td><td>${pesos(eco.personal[i])}</td></tr>
+              <tr class="total"><td>Le queda al mes</td><td>${pesos(eco.queda[i])}</td></tr>
+              <tr><td><i class="punto-color e-ahorro"></i>Necesita ahorrar para el plan</td><td>${pesos(necesita[i])}</td></tr>
+              <tr class="total"><td>${libre >= 0 ? "Le sobra" : "Le falta"}</td><td class="${libre >= 0 ? "pos" : "neg"}">${pesos(Math.abs(libre))}</td></tr>
+            </tbody>
+          </table>
+        </div>`;
+    };
+
+    const disponible = Math.max(0, eco.queda[0]) + Math.max(0, eco.queda[1]);
+    const alcanza = isFinite(r.mensual) && r.mensual <= disponible;
+    const posible = alcanza ? null : fechaPosible(disponible);
+    const pctCasa = Math.round(((eco.casa + eco.personal[0] + eco.personal[1]) / eco.ingreso) * 100);
+    const desbalance = alcanza && (eco.queda[0] < necesita[0] || eco.queda[1] < necesita[1]);
+
+    let veredicto;
+    if (alcanza) {
+      veredicto = `<p class="veredicto bien">Con lo que les queda (${pesos(disponible)} al mes entre los dos) alcanza para viajar en ${mesAnio(r.V)}.${desbalance ? " Eso sí, a uno le sobra y al otro le falta: prueben repartir los gastos de la casa «según lo que gana cada uno», para que cada uno pueda juntar sus fondos en su propia cuenta." : ""}</p>`;
+    } else if (posible) {
+      veredicto = `<p class="veredicto mal">Hoy les quedan ${pesos(disponible)} al mes y el plan pide ${isFinite(r.mensual) ? pesos(r.mensual) : "más tiempo"}. Con lo que ganan hoy, la fecha más cercana que pueden sostener es <strong>${mesAnio(posible)}</strong>.</p>
+        <button type="button" class="boton" id="usar-fecha">Usar ${mesAnio(posible)} como fecha de viaje</button>
+        <p class="nota">También pueden acercar la fecha bajando gastos o sumando ingresos: cada cambio que anoten arriba se refleja acá al tiro.${posible.getFullYear() - hoy.getFullYear() >= 4 ? " Ojo: la visa exige tener 30 años o menos al momento de postular; revisen que esa fecha les calce a los dos." : ""}</p>`;
+    } else {
+      veredicto = `<p class="veredicto mal">Hoy no les queda plata después de los gastos, así que no hay una fecha que se pueda sostener todavía. El primer paso es liberar algo cada mes: bajar el arriendo, recortar un gasto fijo o sumar un ingreso.</p>`;
+    }
+
+    caja.innerHTML = `
+      <p class="nota eco-leyenda">Cada barra es lo que le toca cubrir a cada uno al mes: su parte de la casa, sus gastos y lo que debe ahorrar. La línea punteada marca su sueldo; lo que pasa la línea es lo que falta.</p>
+      <div class="eco-personas">${persona(0)}${persona(1)}</div>
+      <p class="nota">Entre los dos ganan ${pesos(eco.ingreso)} al mes y el ${pctCasa}% se va en la casa y gastos personales${eco.arriendo ? `; solo el arriendo es el ${Math.round((eco.arriendo / eco.ingreso) * 100)}%` : ""}.</p>
+      ${veredicto}`;
+    const usar = $("#usar-fecha");
+    if (usar) usar.addEventListener("click", () => {
+      estado.viaje = { m: posible.getMonth(), y: posible.getFullYear() };
+      $("#mes").value = estado.viaje.m; $("#anio").value = estado.viaje.y;
+      guardar(); todo();
+      $("#inicio").scrollIntoView();
+    });
+  }
+
+  /* ---------- Cuando dudemos ---------- */
+  function progreso() {
+    let total = 0, hechas = 0;
+    plan.ruta.forEach((est) => est.tareas.forEach((t) => { total++; if (tareaHecha(est, t)) hechas++; }));
+    const preguntas = refugio.grupos.flatMap((g) => g.temas.flatMap((t) => t.preguntas));
+    const respondidas = preguntas.filter((q) => plan.personas.every((_, i) => ((estado.respuestas[q.id] || {})[i] || "").trim())).length;
+    return { total, hechas, preguntas: preguntas.length, respondidas };
+  }
+
+  function montarRefugio() {
+    $("#refugio-intro").textContent = refugio.intro;
+    const cont = $("#estados");
+    const caja = $("#estado-respuesta");
+    refugio.estados.forEach((e) => {
+      const b = el("button", { type: "button", class: "estado", "aria-pressed": "false" }, e.nombre);
+      b.addEventListener("click", () => {
+        const abierto = b.getAttribute("aria-pressed") === "true";
+        cont.querySelectorAll(".estado").forEach((o) => o.setAttribute("aria-pressed", "false"));
+        if (abierto) { caja.hidden = true; return; }
+        b.setAttribute("aria-pressed", "true");
+        let texto = e.texto;
+        if (e.dinamico) {
+          const pr = progreso();
+          const r = calcular();
+          const est = plan.ruta.find((x) => !estacionLista(x));
+          texto = `Llevan <strong>${pr.hechas} de ${pr.total}</strong> tareas de la ruta y respondieron juntos <strong>${pr.respondidas} de ${pr.preguntas}</strong> preguntas que deciden. ${est ? `Están en la etapa «${est.nombre}».` : "Terminaron la ruta."} ${r.fondosListos ? "Los fondos de solvencia ya están." : `Para ${mesAnio(r.F)} cada uno necesita ${pesos(r.congelado)} en su cuenta.`} Ir lento también es avanzar.`;
+        }
+        caja.innerHTML = `<h3>${e.nombre}</h3><p>${texto}</p><div class="estado-ir">${e.ir.map(([href, txt]) => `<a href="${href}">${txt}</a>`).join("")}</div>`;
+        caja.hidden = false;
+      });
+      cont.append(b);
+    });
+    pintarPreguntasDeciden();
+    pintarMalMes();
+    pintarFamilia();
+    const c = refugio.consecuencias;
+    $("#consecuencias").innerHTML = `
+      <h3>Lo que puede pasar</h3>
+      <div class="consecuencias-grid">
+        <div class="cons bien"><h4>Si sale bien</h4>${c.bien.map((x) => `<p>${x}</p>`).join("")}</div>
+        <div class="cons mal"><h4>Si vamos sin plan</h4>${c.mal.map((x) => `<p>${x}</p>`).join("")}</div>
+      </div>
+      <p class="cons-cierre">${c.cierre}</p>`;
+    $("#apoyo").textContent = refugio.apoyo;
+    $("#copiar-respuestas").addEventListener("click", copiarRespuestas);
+  }
+
+  function areaRespuesta(id, i, etiqueta) {
+    const valor = ((estado.respuestas[id] || {})[i]) || "";
+    const t = el("textarea", { rows: "2", "aria-label": etiqueta, placeholder: `${plan.personas[i]} escribe aquí…` });
+    t.value = valor;
+    let reloj;
+    t.addEventListener("input", () => {
+      estado.respuestas[id] = estado.respuestas[id] || {};
+      estado.respuestas[id][i] = t.value;
+      clearTimeout(reloj);
+      reloj = setTimeout(() => { guardar(); contarRespuestas(); }, 400);
+    });
+    return t;
+  }
+
+  function contarRespuestas() {
+    const pr = progreso();
+    $("#contador-respuestas").textContent = `Respondidas por los dos: ${pr.respondidas} de ${pr.preguntas}.`;
+    document.querySelectorAll(".pregunta-decide").forEach((n) => {
+      const r = estado.respuestas[n.dataset.id] || {};
+      n.classList.toggle("respondida", plan.personas.every((_, i) => (r[i] || "").trim()));
+    });
+  }
+
+  function pintarPreguntasDeciden() {
+    const cont = $("#grupos-preguntas");
+    cont.innerHTML = "";
+    refugio.grupos.forEach((g) => {
+      const grupo = el("div", { class: "grupo-deciden " + g.id });
+      grupo.append(el("h4", { class: "grupo-nombre" }, g.nombre), el("p", { class: "grupo-texto" }, g.texto));
+      g.temas.forEach((tema) => {
+        const bloque = el("div", { class: "tema-deciden" });
+        bloque.append(el("h5", {}, tema.nombre));
+        tema.preguntas.forEach((q) => {
+          const d = el("details", { class: "pregunta-decide", "data-id": q.id });
+          d.append(el("summary", {}, `<span class="pd-marca" aria-hidden="true"></span><span>${q.texto}</span>`));
+          const cuerpo = el("div", { class: "pd-cuerpo" });
+          cuerpo.append(el("p", { class: "pd-ayuda" }, q.ayuda));
+          const dos = el("div", { class: "pd-areas" });
+          plan.personas.forEach((nombre, i) => {
+            const l = el("label", {}, `<span>${nombre}</span>`);
+            l.append(areaRespuesta(q.id, i, `${q.texto}: respuesta de ${nombre}`));
+            dos.append(l);
+          });
+          cuerpo.append(dos);
+          d.append(cuerpo);
+          bloque.append(d);
+        });
+        grupo.append(bloque);
+      });
+      cont.append(grupo);
+    });
+    contarRespuestas();
+  }
+
+  function pintarMalMes() {
+    const m = refugio.malMes;
+    const r = calcular();
+    const caja = $("#mal-mes");
+    caja.innerHTML = `<h3>${m.titulo}</h3><p>${m.texto}</p>
+      <p class="mal-dato">Con el plan actual, llegarían con unos <strong>${pesos(r.colchonPersona * 2)}</strong> entre los dos (≈ ${euros((r.colchonPersona * 2) / estado.tc)}), más los sueldos que vayan ganando.</p>`;
+    const grid = el("div", { class: "mal-campos" });
+    m.campos.forEach((c) => {
+      const l = el("label", { class: "mal-campo" }, `<span>${c.texto}</span>`);
+      const t = el("textarea", { rows: "2", placeholder: "Respuesta de los dos…" });
+      t.value = ((estado.respuestas[c.id] || {}).j) || "";
+      let reloj;
+      t.addEventListener("input", () => {
+        estado.respuestas[c.id] = { j: t.value };
+        clearTimeout(reloj); reloj = setTimeout(guardar, 400);
+      });
+      l.append(t);
+      grid.append(l);
+    });
+    caja.append(grid);
+  }
+
+  function pintarFamilia() {
+    const f = refugio.familia;
+    const caja = $("#familia");
+    caja.innerHTML = `<h3>Familia y distancia</h3><p>${f.texto}</p><div class="familia-grid" id="familia-grid"></div>
+      <div class="familia-consejos">${f.consejos.map((x) => `<p>${x}</p>`).join("")}</div>`;
+    const grid = $("#familia-grid");
+    plan.personas.forEach((nombre, i) => {
+      const col = el("div", { class: "familia-col" });
+      col.append(el("h4", {}, `El contacto de ${nombre}`));
+      const filas = el("div", { class: "contactos" });
+      const lista = () => (estado.contacto[i] = estado.contacto[i] || []);
+      const redibujar = () => {
+        filas.innerHTML = "";
+        if (!lista().length) filas.append(el("p", { class: "nota" }, "Todavía no hay nadie. Agreguen a quien quieran, o a nadie."));
+        lista().forEach((c, k) => {
+          const fila = el("div", { class: "contacto" });
+          const quien = el("input", { type: "text", placeholder: "¿Con quién?", "aria-label": "Con quién" });
+          quien.value = c.quien || "";
+          quien.addEventListener("input", () => { c.quien = quien.value; guardar(); });
+          const sel = (opciones, clave, etiqueta) => {
+            const s = el("select", { "aria-label": etiqueta });
+            opciones.forEach((o) => s.append(el("option", { value: o }, o)));
+            s.value = c[clave] || opciones[0];
+            c[clave] = s.value;
+            s.addEventListener("change", () => { c[clave] = s.value; guardar(); });
+            return s;
+          };
+          const quitar = el("button", { type: "button", class: "quitar", "aria-label": "Quitar" }, "×");
+          quitar.addEventListener("click", () => { lista().splice(k, 1); guardar(); redibujar(); });
+          fila.append(quien, sel(f.frecuencias, "cada", "Cada cuánto"), sel(f.medios, "como", "Cómo"), quitar);
+          filas.append(fila);
+        });
+      };
+      const agregar = el("button", { type: "button", class: "boton-texto" }, "Agregar a alguien");
+      agregar.addEventListener("click", () => { lista().push({}); guardar(); redibujar(); });
+      redibujar();
+      col.append(filas, agregar);
+      grid.append(col);
+    });
+  }
+
+  async function copiarRespuestas() {
+    const lineas = [];
+    refugio.grupos.forEach((g) => g.temas.forEach((t) => t.preguntas.forEach((q) => {
+      const r = estado.respuestas[q.id] || {};
+      if (!plan.personas.some((_, i) => (r[i] || "").trim())) return;
+      lineas.push(`• ${q.texto}`);
+      plan.personas.forEach((n, i) => { if ((r[i] || "").trim()) lineas.push(`  ${n}: ${r[i].trim()}`); });
+      lineas.push("");
+    })));
+    refugio.malMes.campos.forEach((c) => {
+      const v = ((estado.respuestas[c.id] || {}).j || "").trim();
+      if (v) lineas.push(`• ${c.texto}`, `  ${v}`, "");
+    });
+    const texto = lineas.length ? `Nuestras respuestas (Proyecto Alemania)\n\n${lineas.join("\n")}` : "";
+    const aviso = $("#copiado-respuestas");
+    if (!texto) { aviso.textContent = "Todavía no hay respuestas escritas."; return; }
+    try { await navigator.clipboard.writeText(texto); aviso.textContent = "Copiadas. Pueden pegarlas en WhatsApp o en una nota."; }
+    catch { aviso.textContent = "No se pudo copiar automáticamente en este navegador."; }
   }
 
   /* ---------- Prepararse ---------- */
@@ -724,19 +1053,24 @@
     pintarLinea();
     pintarEstacion();
     pintarDinero(r);
+    pintarEconomia(r);
+    const dato = document.querySelector(".mal-dato strong");
+    if (dato) dato.textContent = pesos(r.colchonPersona * 2);
     if (ciudades) pintarCiudad();
   }
 
   async function iniciar() {
     try {
       const cargar = (u) => fetch(u, { cache: "no-cache" }).then((x) => { if (!x.ok) throw new Error(u); return x.json(); });
-      [plan, ciudades, dudas, prep] = await Promise.all([cargar("data/plan.json"), cargar("data/ciudades.json"), cargar("data/dudas.json"), cargar("data/preparacion.json")]);
+      [plan, ciudades, dudas, prep, refugio] = await Promise.all([cargar("data/plan.json"), cargar("data/ciudades.json"), cargar("data/dudas.json"), cargar("data/preparacion.json"), cargar("data/refugio.json")]);
     } catch (err) {
       $("#frase-resultado").textContent = "No se pudieron cargar los datos. Si abriste el archivo directo desde la carpeta, usa la página publicada o un servidor local (ver README).";
       return;
     }
     montarFecha();
     montarControles();
+    montarEconomia();
+    montarRefugio();
     montarCiudades();
     montarDudas();
     pintarCarpeta();

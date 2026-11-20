@@ -539,3 +539,127 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
   .aleman-cuerpo, .hospedaje-ruta { grid-template-columns: 1fr; }
   .pestanas button { font-size: var(--t-2); }
 }
+
+/* Lo próximo (inicio) */
+.proximo {
+  margin-top: 1.8rem; max-width: 34rem;
+  background: var(--hoja); border-radius: var(--radio-panel); border: 1px solid var(--niebla);
+  border-left: 8px solid var(--linea); padding: 1.1rem 1.3rem 1.2rem;
+}
+.proximo-etiqueta { margin: 0; font-size: var(--t-0); color: var(--tinta-suave); font-weight: 700; }
+.proximo-titulo { margin: 0.1rem 0 0.2rem; font-family: var(--display); font-stretch: 78%; font-weight: 800; font-size: var(--t-4); line-height: 1.05; }
+.proximo-cuando { font-size: var(--t-0); font-weight: 700; margin-bottom: 0.7rem; }
+.proximo-cuando.pasada { color: var(--gasto); }
+.proximo-tareas p { margin: 0 0 0.4rem; padding-left: 1rem; position: relative; }
+.proximo-tareas p::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 0.45rem; height: 0.45rem; border-radius: 50%; border: 2px solid var(--tinta); }
+.proximo-tareas span { color: var(--tinta-suave); font-size: var(--t-0); }
+.proximo .boton { margin-top: 0.6rem; }
+
+/* Cuando dudemos */
+.refugio { background: #dfebe9; }
+.refugio-dentro { max-width: var(--ancho); margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) var(--margen); }
+.refugio .seccion-cabeza p { color: #335a56; }
+.estados { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.estado {
+  font: inherit; font-size: var(--t-2); padding: 0.65rem 1.1rem; border-radius: 999px; cursor: pointer;
+  border: 2px solid #9cc5bf; background: var(--hoja); color: var(--tinta);
+}
+.estado:hover { border-color: var(--suyo); }
+.estado[aria-pressed="true"] { background: var(--suyo); border-color: var(--suyo); color: var(--hoja); }
+.estado-respuesta {
+  margin-top: 1rem; max-width: 46rem; background: var(--hoja); border-radius: var(--radio-panel);
+  padding: clamp(1.2rem, 3vw, 1.8rem); border-left: 8px solid var(--suyo);
+}
+.estado-respuesta h3 { font-size: var(--t-3); margin-bottom: 0.5rem; }
+.estado-respuesta p { font-size: var(--t-2); }
+.estado-ir { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; }
+.estado-ir a { font-weight: 700; color: var(--suyo); text-underline-offset: 3px; }
+
+.deciden { margin-top: 3.5rem; }
+.deciden-cabeza { max-width: 42rem; }
+.deciden-cabeza h3, .mal-mes h3, .familia h3, .consecuencias h3 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); font-weight: 800; margin-bottom: 0.6rem; }
+.contador { font-weight: 700; color: var(--suyo); }
+#grupos-preguntas { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.4rem; }
+.grupo-nombre { font-family: var(--display); font-stretch: 82%; font-size: var(--t-3); margin: 0; }
+.grupo-texto { font-size: var(--t-0); color: #335a56; }
+.tema-deciden { margin-top: 1.1rem; }
+.tema-deciden h5 { margin: 0 0 0.4rem; font-size: var(--t-1); }
+.pregunta-decide { background: var(--hoja); border-radius: 10px; margin-bottom: 0.45rem; border: 1px solid transparent; }
+.pregunta-decide[open] { border-color: #9cc5bf; }
+.pregunta-decide summary { list-style: none; cursor: pointer; padding: 0.7rem 0.9rem; display: grid; grid-template-columns: 1.1rem 1fr; gap: 0.6rem; align-items: start; line-height: 1.35; }
+.pregunta-decide summary::-webkit-details-marker { display: none; }
+.pd-marca { width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 3px solid #9cc5bf; margin-top: 0.1rem; }
+.pregunta-decide.respondida .pd-marca { background: var(--suyo); border-color: var(--suyo); }
+.pd-cuerpo { padding: 0 0.9rem 0.9rem 2.6rem; }
+.pd-ayuda { font-size: var(--t-0); color: var(--tinta-suave); }
+.pd-areas { display: grid; gap: 0.6rem; }
+.pd-areas label { display: grid; gap: 0.2rem; font-size: var(--t-0); font-weight: 700; }
+.refugio textarea, .contacto input, .contacto select {
+  font: inherit; font-size: var(--t-1); font-weight: 400; color: var(--tinta);
+  border: 1px solid var(--niebla); border-radius: 8px; padding: 0.5rem 0.65rem; background: var(--papel); width: 100%;
+}
+.refugio textarea { resize: vertical; min-height: 3.2rem; }
+.deciden-pie { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin-top: 1.4rem; }
+
+.mal-mes, .familia { margin-top: 3.5rem; max-width: 52rem; }
+.mal-dato { background: var(--hoja); border-radius: 10px; padding: 0.8rem 1rem; }
+.mal-campos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 1rem; }
+.mal-campo { display: grid; gap: 0.3rem; font-weight: 700; font-size: var(--t-0); align-content: start; }
+
+.familia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1rem; }
+.familia-col { background: var(--hoja); border-radius: var(--radio-panel); padding: 1rem 1.1rem; }
+.familia-col h4 { margin: 0 0 0.6rem; font-family: var(--display); font-stretch: 85%; font-size: var(--t-2); }
+.contactos { display: grid; gap: 0.5rem; margin-bottom: 0.4rem; }
+.contacto { display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.35rem; }
+.contacto input { grid-column: 1 / -1; }
+.contacto input, .contacto select { font-size: var(--t-0); padding: 0.4rem 0.5rem; }
+.quitar { border: 0; background: none; font-size: 1.3rem; line-height: 1; cursor: pointer; color: var(--tinta-suave); padding: 0 0.3rem; }
+.familia-consejos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin-top: 1rem; }
+.familia-consejos p { margin: 0; font-size: var(--t-0); padding-left: 0.8rem; border-left: 4px solid var(--suyo); }
+
+.consecuencias { margin-top: 3.5rem; }
+.consecuencias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cons { border-radius: var(--radio-panel); padding: 1.2rem 1.3rem; }
+.cons h4 { margin: 0 0 0.6rem; font-family: var(--display); font-stretch: 82%; font-size: var(--t-3); }
+.cons p { margin: 0 0 0.5rem; }
+.cons.bien { background: var(--hoja); border-top: 6px solid var(--suyo); }
+.cons.mal { background: #f6e8ed; border-top: 6px solid var(--gasto); }
+.cons-cierre { margin-top: 1rem; font-weight: 700; max-width: 40rem; }
+.apoyo { margin-top: 2rem; font-size: var(--t-0); color: #335a56; max-width: 40rem; }
+
+/* Nuestra economía */
+.economia { margin-top: 3rem; }
+.economia-cabeza h3 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); font-weight: 800; margin-bottom: 0.5rem; }
+.economia-cabeza p { color: #b9c6d4; max-width: 44rem; }
+.economia-grid { display: grid; grid-template-columns: minmax(16rem, 26rem) 1fr; gap: 2.5rem; align-items: start; margin-top: 1.4rem; }
+.economia-datos { display: grid; gap: 1.2rem; }
+.eco-bloque { border: 0; padding: 0; margin: 0; color: #d5dee8; font-size: var(--t-0); }
+.eco-bloque legend { margin-bottom: 0.5rem; font-weight: 700; color: var(--hoja); }
+.eco-bloque .control.dos label { font-size: var(--t-0); }
+.economia .segmentos-claros { background: #26384f; }
+.economia .segmentos-claros button { color: #d5dee8; }
+.economia .segmentos-claros button[aria-pressed="true"] { background: var(--linea); color: var(--tinta); }
+.economia-resultado { background: var(--hoja); color: var(--tinta); border-radius: var(--radio-panel); padding: clamp(1.25rem, 3vw, 2rem); }
+.eco-vacio { color: var(--tinta-suave); margin: 0; }
+.eco-leyenda { margin-top: 0; margin-bottom: 1rem; }
+.eco-personas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.eco-fila { display: flex; justify-content: space-between; align-items: baseline; }
+.eco-fila h4 { margin: 0; font-family: var(--display); font-stretch: 80%; font-size: var(--t-3); }
+.eco-barra { position: relative; display: flex; height: 1.6rem; background: var(--papel); border-radius: 6px; margin: 0.6rem 0 0.8rem; }
+.eco-barra span:not(.marca-sueldo) { height: 100%; transition: width 0.3s ease; }
+.eco-barra span:first-child { border-radius: 6px 0 0 6px; }
+.e-casa { background: #8e2a4c; }
+.e-personal { background: #e3a5ba; }
+.e-ahorro { background: var(--suyo); }
+.eco-barra .marca-sueldo { top: -0.3rem; bottom: -0.3rem; }
+.recibo td.pos { color: var(--suyo); }
+.recibo td.neg { color: var(--gasto); }
+.economia-resultado .veredicto { margin-top: 1rem; }
+.economia-resultado .veredicto strong { font-size: 1.1em; }
+
+@media (max-width: 860px) {
+  #grupos-preguntas, .familia-grid, .consecuencias-grid, .economia-grid, .eco-personas { grid-template-columns: 1fr; }
+  .mal-campos, .familia-consejos { grid-template-columns: 1fr; }
+  .proximo-titulo { font-size: var(--t-3); }
+}
+

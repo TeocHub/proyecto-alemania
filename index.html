@@ -19,6 +19,7 @@
       <span class="marca-punto" aria-hidden="true"></span>Proyecto Alemania
     </a>
     <nav class="menu" aria-label="Secciones">
+      <a href="#refugio">Cuando dudemos</a>
       <a href="#ruta">Ruta</a>
       <a href="#dinero">Dinero</a>
       <a href="#carpeta">Carpeta</a>
@@ -41,12 +42,42 @@
           <select id="anio" class="select-grande"></select>
         </p>
         <p class="frase-resultado" id="frase-resultado" aria-live="polite"></p>
+        <aside class="proximo" id="proximo" aria-label="Lo próximo"></aside>
       </div>
 
       <nav class="linea-mini" aria-label="Avance del plan">
         <div class="mini-paradas" id="mini-paradas"></div>
         <div class="mini-extremos" aria-hidden="true"><span>Santiago, hoy</span><span id="mini-fin">Alemania</span></div>
       </nav>
+    </section>
+
+    <section id="refugio" class="refugio">
+      <div class="refugio-dentro">
+        <div class="seccion-cabeza">
+          <h2>Cuando dudemos</h2>
+          <p id="refugio-intro"></p>
+        </div>
+        <div class="estados" id="estados" role="group" aria-label="¿Qué sienten hoy?"></div>
+        <article class="estado-respuesta" id="estado-respuesta" aria-live="polite" hidden></article>
+
+        <div id="preguntas-que-deciden" class="deciden">
+          <div class="deciden-cabeza">
+            <h3>Las preguntas que deciden</h3>
+            <p>Cada uno escribe su respuesta. No hay respuestas correctas: hay respuestas honestas. Se guardan en este dispositivo; para compartirlas, usen el botón de copiar.</p>
+            <p class="contador" id="contador-respuestas"></p>
+          </div>
+          <div id="grupos-preguntas"></div>
+          <div class="deciden-pie">
+            <button type="button" class="boton" id="copiar-respuestas">Copiar nuestras respuestas</button>
+            <span class="nota" id="copiado-respuestas" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <div class="mal-mes" id="mal-mes"></div>
+        <div class="familia" id="familia"></div>
+        <div class="consecuencias" id="consecuencias"></div>
+        <p class="apoyo" id="apoyo"></p>
+      </div>
     </section>
 
     <section id="ruta" class="seccion">
@@ -83,11 +114,6 @@
             </label>
           </div>
 
-          <label class="control">
-            Lo que ganan los dos al mes (opcional)
-            <span class="campo-pesos"><input type="text" inputmode="numeric" id="ingreso" autocomplete="off" placeholder="Ej: 1.200.000"></span>
-          </label>
-
           <fieldset class="control">
             <legend>¿Cómo compran el pasaje?</legend>
             <div class="segmentos dos-opciones" id="tipo-pasaje">
@@ -117,6 +143,50 @@
         </form>
 
         <div class="resultado" id="resultado" aria-live="polite"></div>
+      </div>
+
+      <div class="economia" id="economia">
+        <div class="economia-cabeza">
+          <h3>Nuestra economía hoy</h3>
+          <p>Anoten lo que gana cada uno y lo que se va en la casa. La página calcula cuánto le queda a cada uno, si alcanza para ahorrar lo que pide el plan y cuál es la fecha más cercana que pueden sostener.</p>
+        </div>
+        <div class="economia-grid">
+          <form class="economia-datos" onsubmit="return false">
+            <fieldset class="eco-bloque">
+              <legend>Lo que gana cada uno (líquido, al mes)</legend>
+              <div class="control dos">
+                <label><span data-persona="0"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="sueldo0" autocomplete="off"></span></label>
+                <label><span data-persona="1"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="sueldo1" autocomplete="off"></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="eco-bloque">
+              <legend>Gastos de la casa (de los dos, al mes)</legend>
+              <div class="control dos">
+                <label><span>Arriendo</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="arriendo" autocomplete="off"></span></label>
+                <label><span>Luz, agua, gas, internet</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="cuentas" autocomplete="off"></span></label>
+                <label><span>Supermercado y comida</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="comida" autocomplete="off"></span></label>
+                <label><span>Transporte</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="transporte" autocomplete="off"></span></label>
+                <label><span>Deudas o créditos de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="deudas" autocomplete="off"></span></label>
+                <label><span>Otros de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="otrosCasa" autocomplete="off"></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="eco-bloque">
+              <legend>Gastos personales de cada uno (celular, salud, estudios, gustos)</legend>
+              <div class="control dos">
+                <label><span data-persona="0"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="personal0" autocomplete="off"></span></label>
+                <label><span data-persona="1"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="personal1" autocomplete="off"></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="eco-bloque">
+              <legend>¿Cómo se reparten los gastos de la casa?</legend>
+              <div class="segmentos-claros" id="reparto">
+                <button type="button" data-reparto="mitad">Mitad y mitad</button>
+                <button type="button" data-reparto="proporcional">Según lo que gana cada uno</button>
+              </div>
+            </fieldset>
+          </form>
+          <div class="economia-resultado" id="economia-resultado" aria-live="polite"></div>
+        </div>
       </div>
     </section>
 
