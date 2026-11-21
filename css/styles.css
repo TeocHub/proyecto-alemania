@@ -1288,6 +1288,13 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .detalle-rango { font-family: var(--display); font-stretch: 72%; font-weight: 800; font-size: clamp(1.6rem, 5vw, 2.2rem); color: var(--linea) !important; line-height: 1.05; }
 .detalle-req { font-size: var(--t-0); }
 .detalle-req strong { color: var(--hoja); }
+.entrada { display: inline-block; width: 0.55rem; height: 0.55rem; border-radius: 50%; margin-right: 0.4rem; vertical-align: 0.08em; }
+.entrada-libre { background: #6fbf8e; }
+.entrada-curso { background: #e3b55a; }
+.entrada-inversion { background: #d9765f; }
+.entrada-txt-curso strong { color: #e3b55a; }
+.entrada-txt-inversion strong { color: #d9765f; }
+.entradas-leyenda { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.8rem; opacity: 0.85; margin: 0.4rem 0 0; }
 .detalle-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .detalle-tags span { font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 999px; background: #2b3f58; }
 .detalle-fuentes { display: grid; gap: 0.2rem; font-size: var(--t-0); }
