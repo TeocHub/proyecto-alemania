@@ -1,6 +1,12 @@
 {
   "intro": "Antes de Alemania, un piso firme en Santiago. El colchón son meses de gastos guardados aparte: si se cae un trabajo o se atrasa algo, no parten de cero. Cuando esté completo, todo lo que sobre cada mes va directo al viaje.",
-  "mesesOpciones": [1, 2, 3, 4, 6],
+  "mesesOpciones": [
+    1,
+    2,
+    3,
+    4,
+    6
+  ],
   "etapas": [
     {
       "id": "deficit",
@@ -28,23 +34,119 @@
     }
   ],
   "escenarios": [
-    { "id": "hoy", "nombre": "Como estamos", "detalle": "Sin cambios" },
-    { "id": "part", "nombre": "Uno suma un part time", "detalle": "30 horas a la semana", "suma": ["part"] },
-    { "id": "full", "nombre": "Uno suma un full time", "detalle": "Jornada completa", "suma": ["full"] },
-    { "id": "ambos", "nombre": "Full time y part time", "detalle": "Los dos con un trabajo nuevo", "suma": ["full", "part"] },
-    { "id": "pieza", "nombre": "Full time y una pieza", "detalle": "Mudarse a una pieza con cuentas incluidas", "suma": ["full"], "pieza": true }
+    {
+      "id": "hoy",
+      "nombre": "Como estamos",
+      "detalle": "Sin cambios"
+    },
+    {
+      "id": "full",
+      "nombre": "Uno suma un full time",
+      "detalle": "Además de lo de hoy",
+      "suma": [
+        "full"
+      ]
+    },
+    {
+      "id": "dosfull",
+      "nombre": "Los dos con full time",
+      "detalle": "En vez de los trabajos de hoy",
+      "suma": [
+        "full",
+        "full"
+      ],
+      "reemplaza": true
+    },
+    {
+      "id": "full-pieza",
+      "nombre": "Uno suma full time y una pieza",
+      "detalle": "Mudarse a una pieza con cuentas incluidas",
+      "suma": [
+        "full"
+      ],
+      "pieza": true
+    },
+    {
+      "id": "dosfull-pieza",
+      "nombre": "Los dos con full time y una pieza",
+      "detalle": "Trabajos nuevos y vivir en una pieza",
+      "suma": [
+        "full",
+        "full"
+      ],
+      "reemplaza": true,
+      "pieza": true
+    },
+    {
+      "id": "ambos",
+      "nombre": "Full time y part time",
+      "detalle": "Además de lo de hoy",
+      "suma": [
+        "full",
+        "part"
+      ]
+    }
   ],
-  "sueldos": { "full": 440000, "part": 320000, "pieza": 250000 },
+  "sueldos": {
+    "full": 440000,
+    "part": 320000,
+    "pieza": 250000
+  },
   "sueldosNota": "Montos líquidos aproximados con el sueldo mínimo de 2026 ($539.000 bruto). Cámbienlos cuando sepan el sueldo real.",
   "acciones": [
-    { "id": "trabajo", "tipo": "Sube lo que entra", "titulo": "Postular al trabajo nuevo", "texto": "Full time o part time de 30 horas. Lo que se gane ahí decide cuándo llegan a cada etapa." },
-    { "id": "temporada", "tipo": "Sube lo que entra", "titulo": "Turnos de temporada", "texto": "Diciembre es el mes en que más contrata el comercio. Pidan turnos extra donde ya trabajan o postulen a reemplazos de verano." },
-    { "id": "vender", "tipo": "Sube lo que entra", "titulo": "Vender lo que no usan", "texto": "Ropa, juegos, cosas de la casa. Todo lo que salga de ahí va directo al colchón." },
-    { "id": "agua", "tipo": "Baja lo que sale", "titulo": "Bajar el agua caliente", "texto": "Duchas de cinco minutos y lavar con agua fría. El agua caliente del edificio se cobra por metro cúbico." },
-    { "id": "luz", "tipo": "Baja lo que sale", "titulo": "Revisar la luz", "texto": "Desenchufar lo que no se usa y cuidar la estufa y el hervidor, que son lo que más consume." },
-    { "id": "amenities", "tipo": "Baja lo que sale", "titulo": "Preguntar por el cobro de amenities", "texto": "Si no usan los espacios comunes, consulten en el edificio si se puede dar de baja." },
-    { "id": "contrato", "tipo": "Cuida lo que hay", "titulo": "Leer el contrato de arriendo", "texto": "Cuántos días de aviso hay que dar y si hay multa por salir antes. Lo necesitan para decidir si se quedan o se mudan." },
-    { "id": "cuenta", "tipo": "Cuida lo que hay", "titulo": "Una cuenta solo para el colchón", "texto": "Separada de la del día a día. Que el ahorro salga el mismo día del sueldo, antes de gastar." },
-    { "id": "gastos", "tipo": "Cuida lo que hay", "titulo": "Anotar los gastos reales un mes", "texto": "Comida, transporte y gustos. Con números reales, los plazos de esta página también son reales." }
+    {
+      "id": "trabajo",
+      "tipo": "Sube lo que entra",
+      "titulo": "Postular al trabajo nuevo",
+      "texto": "Full time o part time de 30 horas. Lo que se gane ahí decide cuándo llegan a cada etapa."
+    },
+    {
+      "id": "temporada",
+      "tipo": "Sube lo que entra",
+      "titulo": "Turnos de temporada",
+      "texto": "Diciembre es el mes en que más contrata el comercio. Pidan turnos extra donde ya trabajan o postulen a reemplazos de verano."
+    },
+    {
+      "id": "vender",
+      "tipo": "Sube lo que entra",
+      "titulo": "Vender lo que no usan",
+      "texto": "Ropa, juegos, cosas de la casa. Todo lo que salga de ahí va directo al colchón."
+    },
+    {
+      "id": "agua",
+      "tipo": "Baja lo que sale",
+      "titulo": "Bajar el agua caliente",
+      "texto": "Duchas de cinco minutos y lavar con agua fría. El agua caliente del edificio se cobra por metro cúbico."
+    },
+    {
+      "id": "luz",
+      "tipo": "Baja lo que sale",
+      "titulo": "Revisar la luz",
+      "texto": "Desenchufar lo que no se usa y cuidar la estufa y el hervidor, que son lo que más consume."
+    },
+    {
+      "id": "amenities",
+      "tipo": "Baja lo que sale",
+      "titulo": "Preguntar por el cobro de amenities",
+      "texto": "Si no usan los espacios comunes, consulten en el edificio si se puede dar de baja."
+    },
+    {
+      "id": "contrato",
+      "tipo": "Cuida lo que hay",
+      "titulo": "Leer el contrato de arriendo",
+      "texto": "Cuántos días de aviso hay que dar y si hay multa por salir antes. Lo necesitan para decidir si se quedan o se mudan."
+    },
+    {
+      "id": "cuenta",
+      "tipo": "Cuida lo que hay",
+      "titulo": "Una cuenta solo para el colchón",
+      "texto": "Separada de la del día a día. Que el ahorro salga el mismo día del sueldo, antes de gastar."
+    },
+    {
+      "id": "gastos",
+      "tipo": "Cuida lo que hay",
+      "titulo": "Anotar los gastos reales un mes",
+      "texto": "Comida, transporte y gustos. Con números reales, los plazos de esta página también son reales."
+    }
   ]
 }

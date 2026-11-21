@@ -1,0 +1,147 @@
+{
+  "revisado": "2026-11-20",
+  "intro": "Sueldos de avisos y estudios publicados en 2026 para trabajos que no piden título. Las barras van de lo más bajo a lo más alto que encontramos; la línea amarilla es la meta de cada uno y la punteada, lo que gana la mitad de los chilenos.",
+  "mediana": 680000,
+  "medianaFuente": { "nombre": "INE, Encuesta Suplementaria de Ingresos 2025", "url": "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/07/14/la-mitad-de-las-personas-ocupadas-en-chile-percibieron-ingresos-menores-o-iguales-a-$680.000-en-2025" },
+  "metaPersona": 1500000,
+  "filtros": [
+    { "id": "santiago", "nombre": "En Santiago" },
+    { "id": "sinExp", "nombre": "Sin experiencia" },
+    { "id": "estudiar", "nombre": "Se puede compatibilizar con estudiar" },
+    { "id": "ingles", "nombre": "Usa inglés" }
+  ],
+  "trabajos": [
+    {
+      "id": "caex",
+      "nombre": "Operador de camión minero (CAEX)",
+      "min": 1379000, "max": 1930000,
+      "detalle": "Turnos 7x7 en faenas del norte (Antofagasta, Atacama) o Los Bronces. Es lo único sin título que pasa holgado la meta, pero pide certificación en el modelo de camión y, casi siempre, experiencia previa en minería.",
+      "requisitos": "Licencia profesional, certificación del equipo y salud compatible con faena.",
+      "tags": [],
+      "fuentes": [
+        { "nombre": "Redimin: vacantes CAEX 2026", "url": "https://www.redimin.cl/operadores-caex-en-mineria-revisa-vacantes-con-sueldos-de-hasta-1-700-000/amp/" },
+        { "nombre": "Redimin: CAEX 930 El Salvador", "url": "https://www.redimin.cl/?p=11057" }
+      ]
+    },
+    {
+      "id": "ventas-terreno",
+      "nombre": "Ejecutivo comercial o representante de ventas",
+      "min": 900000, "max": 1200000,
+      "detalle": "Sueldo base más comisiones. Para quien ya atendió público y vendió, es el camino más directo a pasar el millón en Santiago. En los meses malos se gana solo el base.",
+      "requisitos": "Experiencia en ventas (aunque sea en tienda) y buena conversación.",
+      "tags": ["santiago"],
+      "fuentes": [
+        { "nombre": "Meganoticias: datos SENCE 2026 (percentil 75)", "url": "https://www.meganoticias.cl/dato-util/522353-trabajos-mejor-pagados-sin-educacion-superior-chile-sence-18-05-2026.html" },
+        { "nombre": "Jooble: avisos de ejecutivo comercial", "url": "https://cl.jooble.org/jdp/-2884325801050534003" }
+      ]
+    },
+    {
+      "id": "inmobiliaria",
+      "nombre": "Ventas inmobiliarias",
+      "min": 750000, "max": 1000000,
+      "detalle": "Base entre $750.000 y $950.000 más un porcentaje por departamento vendido. Varios avisos piden experiencia vendiendo departamentos; el telemarketing inmobiliario es la puerta de entrada.",
+      "requisitos": "Experiencia en ventas; algunos aceptan sin experiencia en el rubro.",
+      "tags": ["santiago"],
+      "fuentes": [
+        { "nombre": "Chiletrabajos: ejecutiva de ventas inmobiliaria, Providencia", "url": "https://www.chiletrabajos.cl/trabajo/3870739" },
+        { "nombre": "Chiletrabajos: telemarketing inmobiliario", "url": "https://www.chiletrabajos.cl/trabajo/ejecutivo-a-de-telemarketing-sector-inmobiliario-3923038" }
+      ]
+    },
+    {
+      "id": "callcenter-ventas",
+      "nombre": "Call center de ventas",
+      "min": 923000, "max": 1060000,
+      "detalle": "Los que venden (telefonía para pymes, seguros) pagan bastante más que los de atención: alrededor de un millón cumpliendo metas. Turnos de 42 horas, a veces con sábado.",
+      "requisitos": "Educación media; muchos piden algo de experiencia en ventas.",
+      "tags": ["santiago", "sinExp"],
+      "fuentes": [
+        { "nombre": "Computrabajo: Teleperformance, ventas", "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-asesora-call-center-ventas-en-santiago-huechuraba-44BE03D31164657961373E686DCF3405" },
+        { "nombre": "Indeed: call center ventas pyme", "url": "https://cl.indeed.com/l%c3%adder-call-center-jobs?fromage=3" }
+      ]
+    },
+    {
+      "id": "soporte-ti",
+      "nombre": "Soporte TI",
+      "min": 720000, "max": 1000000,
+      "detalle": "Mesa de ayuda y soporte a usuarios. Con inglés el sueldo sube cerca del millón, y con experiencia hay avisos de $1,2 a $1,8 millones. Es el camino natural para quien ya programa.",
+      "requisitos": "Conocimientos de Windows, redes y Office 365; varios piden técnico o un año de experiencia.",
+      "tags": ["santiago", "ingles"],
+      "fuentes": [
+        { "nombre": "Computrabajo: soporte N1 y técnico 1B", "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-ejecutivoa-call-center-atencion-soporte-tecnico-providencia-en-santiago-providencia-ec42d000809da0e161373e686dcf3405" },
+        { "nombre": "Chiletrabajos: soporte TI con inglés", "url": "https://www.chiletrabajos.cl/trabajo/3910821" },
+        { "nombre": "Indeed: help desk", "url": "https://cl.indeed.com/q-help-desk-empleos.html" }
+      ]
+    },
+    {
+      "id": "programacion",
+      "nombre": "Desarrollo de software",
+      "min": 720000, "max": 1190000,
+      "detalle": "El promedio de los avisos de desarrollador ronda $1,19 millones; un analista programador parte cerca de $720.000. Sin título se entra con un portafolio que muestre proyectos reales.",
+      "requisitos": "Portafolio (GitHub), un lenguaje bien manejado y algo de bases de datos.",
+      "tags": ["santiago", "estudiar"],
+      "fuentes": [
+        { "nombre": "Indeed: sueldos de desarrollador de software", "url": "https://cl.indeed.com/career/full-stack-developer/salaries/Remote" },
+        { "nombre": "Indeed: analista programador", "url": "https://cl.indeed.com/career/full-stack-developer/salaries" }
+      ]
+    },
+    {
+      "id": "ingles",
+      "nombre": "Atención al cliente en inglés",
+      "min": 529000, "max": 850000,
+      "detalle": "Call centers para empresas de afuera. Contratan sin experiencia si el inglés es fluido; el sueldo de entrada no es alto, pero suben según metas.",
+      "requisitos": "Inglés conversacional o fluido.",
+      "tags": ["santiago", "sinExp", "ingles"],
+      "fuentes": [
+        { "nombre": "Chiletrabajos: agente con inglés conversacional", "url": "https://www.chiletrabajos.cl/trabajo/se-necesita-agente-call-center-con-ingles-conversacional-3835824" },
+        { "nombre": "Chiletrabajos: call center bilingüe", "url": "https://www.chiletrabajos.cl/trabajo/operador-de-call-center-bilingue-3454743" }
+      ]
+    },
+    {
+      "id": "guardia",
+      "nombre": "Guardia de seguridad (OS10)",
+      "min": 540000, "max": 800000,
+      "detalle": "Turnos 4x4: cuatro días de 12 horas y cuatro libres. Esos días libres permiten estudiar o tener un segundo trabajo, y muchos pagan turnos extra.",
+      "requisitos": "Curso OS10 vigente y cuarto medio.",
+      "tags": ["santiago", "sinExp", "estudiar"],
+      "fuentes": [
+        { "nombre": "Chiletrabajos: guardia 4x4 noche, $800.000", "url": "https://www.chiletrabajos.cl/trabajo/3898707" },
+        { "nombre": "Chiletrabajos: guardia 4x4 noche, $540.000", "url": "https://www.chiletrabajos.cl/trabajo/guardias-con-os10-en-tramite-o-vigentes-4x4-noche-3860430" }
+      ]
+    },
+    {
+      "id": "bodega",
+      "nombre": "Bodega, turno noche",
+      "min": 589000, "max": 782000,
+      "detalle": "Lo más rápido de conseguir: muchos sin experiencia, con bus y colación. En temporada alta (Cyber, Black Friday, Navidad) pagan más.",
+      "requisitos": "Disponibilidad nocturna; algunos piden manejo de radiofrecuencia.",
+      "tags": ["santiago", "sinExp"],
+      "fuentes": [
+        { "nombre": "Computrabajo: bodega noche Quilicura", "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-operariosas-de-bodega-quilicura-full-time-1930-pm-a-0530-am-temporada-cyber-ingreso-inmediato-turno-de-noche-con-experiencia-en-santiago-quilicura-92DC7B58035526BF61373E686DCF3405" },
+        { "nombre": "Chiletrabajos: bodega noche $599.000 + bono", "url": "https://www.chiletrabajos.cl/trabajo/3884780" }
+      ]
+    },
+    {
+      "id": "uber",
+      "nombre": "Conductor de aplicación",
+      "min": 600000, "max": 1100000,
+      "detalle": "Neto a tiempo completo, después de comisión, bencina y mantención. Horario flexible, pero se necesita auto y se cotiza como independiente.",
+      "requisitos": "Auto en buen estado y licencia clase B.",
+      "tags": ["santiago", "estudiar"],
+      "fuentes": [
+        { "nombre": "Digital Trends: Uber en Santiago 2026", "url": "https://es.digitaltrends.com/autos/uber-cuanto-se-gana-ciudades-latinoamerica-2026/" }
+      ]
+    },
+    {
+      "id": "supervisor",
+      "nombre": "Supervisor de tienda",
+      "min": 750000, "max": 900000,
+      "detalle": "El paso siguiente para quien ya trabaja en retail. Pide experiencia en la tienda, así que conviene pedirlo donde ya trabajan.",
+      "requisitos": "Experiencia en tienda y manejo de equipo.",
+      "tags": ["santiago"],
+      "fuentes": [
+        { "nombre": "Meganoticias: datos SENCE 2026 (percentil 75)", "url": "https://www.meganoticias.cl/dato-util/522353-trabajos-mejor-pagados-sin-educacion-superior-chile-sence-18-05-2026.html" }
+      ]
+    }
+  ],
+  "conclusion": "Ganar $1,5 millones cada uno sin título en Santiago es muy poco común: la mitad de los chilenos gana $680.000 o menos. Lo realista en el corto plazo es entre $1,6 y $2 millones entre los dos, sumando un trabajo con comisiones y otro con turnos. Con eso el plan funciona igual, solo que con una fecha de viaje más adelante."
+}

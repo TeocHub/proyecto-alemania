@@ -67,9 +67,10 @@
     colchonMeses: 3,
     colchonPrimero: true,
     colchonSueldos: null,
-    escenario: "full"
+    escenario: "full",
+    combina: null
   };
-  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario"]);
+  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel"]);
   const copia = (o) => JSON.parse(JSON.stringify(o));
 
   function leerEstado() {
@@ -83,7 +84,7 @@
     if (window.Sincro) window.Sincro.cambio();
   }
 
-  let plan, ciudades, dudas, prep, refugio, colchonData;
+  let plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData;
   const hoy = new Date();
   const estado = Object.assign(copia(DEFAULTS), leerEstado());
 
@@ -97,6 +98,7 @@
     estado.colchonSueldos = Object.assign({}, colchonData.sueldos, estado.colchonSueldos || {});
     if (!colchonData.mesesOpciones.includes(estado.colchonMeses)) estado.colchonMeses = 3;
     if (typeof estado.colchonPrimero !== "boolean") estado.colchonPrimero = true;
+    if (!estado.combina || typeof estado.combina !== "object") estado.combina = { 0: "hoy", 1: "hoy", m0: false, m1: false };
     estado.tc = estado.tc || plan.tipoCambio.eur;
     estado.pasaje = estado.pasaje || c.pasaje.inicial;
     estado.pasajeIda = estado.pasajeIda || c.pasajeIda.inicial;
@@ -129,10 +131,12 @@
   const ETAPAS = ["deficit", "emergencia", "colchon", "alemania"];
   const totalColchon = () => Object.values(estado.movs || {}).reduce((s, m) => s + (m && Number(m.m) || 0), 0);
 
-  function colchon({ extra = 0, pieza = null } = {}) {
+  function colchon({ extra = 0, pieza = null, arriendo = null } = {}) {
     const eco = economia();
     const meses = estado.colchonMeses || 3;
-    const casa = pieza != null ? eco.casa - eco.arriendo - eco.cuentas + pieza : eco.casa;
+    // pieza reemplaza arriendo y cuentas; arriendo reemplaza solo el arriendo con gasto común
+    const casa = pieza != null ? eco.casa - eco.arriendo - eco.cuentas + pieza
+      : arriendo != null ? eco.casa - eco.arriendo + arriendo : eco.casa;
     const gastoMes = casa + eco.personal[0] + eco.personal[1];
     const ingreso = eco.ingreso + extra;
     const disp = ingreso - gastoMes;
@@ -218,7 +222,8 @@
 
   function simular(esc) {
     const s = estado.colchonSueldos;
-    const extra = (esc.suma || []).reduce((a, k) => a + (Number(s[k]) || 0), 0);
+    const suma = (esc.suma || []).reduce((a, k) => a + (Number(s[k]) || 0), 0);
+    const extra = esc.reemplaza ? suma - economia().ingreso : suma;
     const c = colchon({ extra, pieza: esc.pieza ? Number(s.pieza) || 0 : null });
     const inicio = estado.colchonPrimero ? (c.falta === 0 ? hoy : c.listo) : hoy;
     const fecha = c.hayDatos && c.disp > 0 && inicio ? fechaPosible(c.disp, inicio) : null;
@@ -535,7 +540,7 @@
         <div class="esc-cifra"><span>Colchón completo</span><b>${c.falta === 0 ? "Ya está" : c.listo ? mesAnio(c.listo) : "No llega"}</b></div>
         <div class="esc-cifra"><span>Alemania, lo antes posible</span><b>${fecha ? mesAnio(fecha) : "—"}</b></div>
       </div>
-      <p class="esc-explica">${sel.e.id === "hoy" ? "Con lo que ganan y gastan hoy." : `Suma ${pesos(extra)} líquidos al mes${sel.e.pieza ? ` y cambia arriendo, gasto común y cuentas por una pieza de ${pesos(estado.colchonSueldos.pieza)}` : ""}.`} ${compara}
+      <p class="esc-explica">${sel.e.id === "hoy" ? "Con lo que ganan y gastan hoy." : `${sel.e.reemplaza ? `Entrarían ${pesos(c.ingreso)} al mes entre los dos` : `Suma ${pesos(extra)} líquidos al mes`}${sel.e.pieza ? ` y cambia arriendo, gasto común y cuentas por una pieza de ${pesos(estado.colchonSueldos.pieza)}` : ""}.`} ${compara}
       ${fecha ? `<button type="button" class="boton-texto" id="usar-escenario">Usar ${mesAnio(fecha)} como fecha de viaje</button>` : ""}</p>`;
     const usar = $("#usar-escenario");
     if (usar) usar.addEventListener("click", () => {
@@ -1538,13 +1543,380 @@
     $("#respuesta").innerHTML = `<p class="respuesta-tema">${tema ? tema.nombre : ""}</p><h3>${d.pregunta}</h3><div class="respuesta-cuerpo">${t(d.respuesta)}</div>`;
   }
 
+  /* ---------- Ventana: las lucas (la cascada de prioridades) ---------- */
+  const DIA_PAGO = [
+    ["Lo que no se negocia, primero", "Apenas llega el sueldo, paguen arriendo y cuentas. Así nunca se gasta por accidente la plata del techo."],
+    ["El colchón se separa el mismo día", "Transfieran lo del colchón a una cuenta aparte antes de gastar en otra cosa. Lo que no se ve, no se gasta."],
+    ["La comida, por semana", "Dividan lo del supermercado en cuatro montos. Si una semana sobra, pasa a la siguiente."],
+    ["Lo que sobre a fin de mes, al colchón", "El último día del mes, todo lo que quedó en la cuenta del día a día se va a la del colchón."],
+    ["Si un mes no alcanza, se recorta desde abajo", "El orden de los baldes dice qué se sacrifica primero: nunca el techo ni la comida."]
+  ];
+
+  function montarLucas() {
+    const r = $("#lucas-ingreso"), out = $("#lucas-ingreso-out");
+    const poner = (v) => { estado.lucasIngreso = v; r.value = v; out.textContent = pesos(v); };
+    r.addEventListener("input", () => { poner(Number(r.value)); pintarLucas(); });
+    const atajos = $("#lucas-atajos");
+    const opciones = () => {
+      const eco = economia(), s = estado.colchonSueldos;
+      return [
+        ["hoy", "Lo que ganan hoy", eco.ingreso],
+        ["full", "+ un full time", eco.ingreso + (Number(s.full) || 0)],
+        ["ambos", "+ full y part time", eco.ingreso + (Number(s.full) || 0) + (Number(s.part) || 0)],
+        ["meta", "La meta: $3 millones", 3000000]
+      ];
+    };
+    atajos.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      const o = opciones().find((x) => x[0] === b.dataset.atajo);
+      if (o) { poner(o[2]); pintarLucas(); }
+    });
+    montarLucas.atajos = (actual) => {
+      atajos.innerHTML = opciones().map(([id, nombre, v]) => `<button type="button" data-atajo="${id}" aria-pressed="${v === actual}">${nombre}<small>${pesos(v)}</small></button>`).join("");
+    };
+    montarLucas.poner = poner;
+    $("#dia-pago").innerHTML = DIA_PAGO.map(([titulo, texto], i) => `<div class="pago"><span class="pago-num">${i + 1}</span><h4>${titulo}</h4><p>${texto}</p></div>`).join("");
+  }
+
+  function baldes(ingreso) {
+    const eco = economia();
+    const e = estado.economia || {};
+    const n = (k) => Number(e[k]) || 0;
+    const probar = estado.probarVivienda;
+    const techo = probar ? probar.monto + (probar.conCuentas ? 0 : n("cuentas")) : n("arriendo") + n("cuentas");
+    const lista = [
+      { id: "techo", nombre: "Techo", detalle: probar ? `${probar.nombre}${probar.conCuentas ? "" : " + luz, agua, gas e internet"}` : "Arriendo, gasto común, luz, agua, gas e internet", necesita: techo },
+      { id: "comer", nombre: "Comer y moverse", detalle: "Supermercado, transporte y lo demás de la casa", necesita: n("comida") + n("transporte") + n("otrosCasa") },
+      { id: "cada", nombre: "Lo de cada uno", detalle: "Celular, salud, estudios y gustos de cada uno", necesita: eco.personal[0] + eco.personal[1] },
+      { id: "deudas", nombre: "Cuotas de deudas", detalle: "Para que no crezcan ni lleguen a DICOM", necesita: n("deudas") }
+    ].filter((b) => b.id !== "deudas" || b.necesita > 0);
+    const c = colchon({ extra: ingreso - eco.ingreso, pieza: probar && probar.conCuentas ? probar.monto : null, arriendo: probar && !probar.conCuentas ? probar.monto : null });
+    const r = calcular();
+    let resto = ingreso;
+    lista.forEach((b) => { b.recibe = Math.min(resto, b.necesita); resto -= b.recibe; });
+    const fijo = lista.reduce((s, b) => s + b.necesita, 0);
+    const colchonB = { id: "colchon", nombre: "El colchón", necesita: c.falta, recibe: Math.min(resto, c.falta), flexible: true };
+    resto -= colchonB.recibe;
+    colchonB.detalle = c.falta === 0 ? "Completo: se queda quieto como respaldo" : `Faltan ${pesos(c.falta)} para ${c.meses} ${c.meses === 1 ? "mes" : "meses"} de gastos`;
+    const alemaniaNecesita = isFinite(r.mensual) ? r.mensual : 0;
+    const alemaniaB = { id: "alemania", nombre: "Alemania", necesita: alemaniaNecesita, recibe: Math.min(resto, alemaniaNecesita), flexible: true };
+    alemaniaB.detalle = alemaniaNecesita ? `El plan pide ${pesos(alemaniaNecesita)} al mes para viajar en ${mesAnio(r.V)}` : "Ya tienen lo necesario para el viaje";
+    resto -= alemaniaB.recibe;
+    return { lista: [...lista, colchonB, alemaniaB], sobra: resto, fijo, c, r };
+  }
+
+  function pintarLucas() {
+    if (!montarLucas.poner) return;
+    const eco = economia();
+    const ingreso = estado.lucasIngreso != null ? estado.lucasIngreso : eco.ingreso || 0;
+    $("#lucas-ingreso").value = ingreso; $("#lucas-ingreso-out").textContent = pesos(ingreso);
+    montarLucas.atajos(ingreso);
+    const probando = $("#lucas-probando");
+    if (estado.probarVivienda) {
+      probando.hidden = false;
+      probando.innerHTML = `Probando vivir en <strong>${escapar(estado.probarVivienda.nombre)}</strong> (${pesos(estado.probarVivienda.monto)}). <button type="button" class="boton-texto" id="dejar-probar">Volver a la vivienda de hoy</button>`;
+      $("#dejar-probar").addEventListener("click", () => { estado.probarVivienda = null; pintarLucas(); pintarVivir(); });
+    } else probando.hidden = true;
+
+    if (!eco.hayDatos) {
+      $("#cascada").innerHTML = "";
+      $("#lucas-resumen").innerHTML = `<p class="visor-etiqueta">Primero, sus números</p><p>Anoten lo que ganan y gastan en la ventana del colchón y aquí aparece cómo se reparte cada mes.</p><a class="boton" href="#economia">Anotar nuestra economía</a>`;
+      return;
+    }
+    const { lista, sobra, fijo, c } = baldes(ingreso);
+    let seco = false;
+    $("#cascada").innerHTML = lista.map((b) => {
+      const pct = b.necesita > 0 ? Math.min(100, (b.recibe / b.necesita) * 100) : 100;
+      const lleno = b.necesita === 0 || b.recibe >= b.necesita;
+      const marca = !seco && !lleno && !b.flexible;
+      const aqui = !seco && b.recibe < b.necesita ? ' <span class="balde-aqui">Aquí se acaba la plata</span>' : "";
+      const clase = ["balde", "bd-" + b.id, lleno ? "lleno" : "", seco ? "seco" : "", marca ? "falta" : ""].filter(Boolean).join(" ");
+      if (b.recibe < b.necesita) seco = true;
+      const cifra = b.flexible
+        ? (b.id === "colchon" && b.necesita === 0 ? "Completo" : `${pesos(b.recibe)} este mes`)
+        : `${pesos(b.recibe)} de ${pesos(b.necesita)}`;
+      return `<li class="${clase}">
+        <span class="balde-punto" aria-hidden="true"></span>
+        <div class="balde-texto">
+          <div class="balde-fila"><h4>${b.nombre}</h4><b>${cifra}</b></div>
+          <p>${b.detalle}${aqui}</p>
+          <span class="balde-barra" aria-hidden="true"><i style="width:${b.flexible && b.id === "colchon" && b.necesita > 0 ? Math.min(100, (b.recibe / Math.max(b.necesita, 1)) * 100) : pct}%"></i></span>
+        </div>
+      </li>`;
+    }).join("");
+
+    const paraAhorrar = Math.max(0, ingreso - fijo);
+    const meses = c.falta > 0 && paraAhorrar > 0 ? Math.ceil(c.falta / paraAhorrar) : null; // c ya considera la vivienda que se prueba
+    const extra = ingreso - eco.ingreso;
+    const pv = estado.probarVivienda;
+    const sim = colchon({ extra, pieza: pv && pv.conCuentas ? pv.monto : null, arriendo: pv && !pv.conCuentas ? pv.monto : null });
+    const inicio = estado.colchonPrimero ? (sim.falta === 0 ? hoy : sim.listo) : hoy;
+    const fecha = sim.disp > 0 && inicio ? fechaPosible(sim.disp, inicio) : null;
+    const cubreBasico = ingreso >= fijo;
+    $("#lucas-resumen").innerHTML = `
+      <p class="visor-etiqueta">Con ${pesos(ingreso)} al mes</p>
+      <p class="visor-titulo">${cubreBasico ? "Lo básico está cubierto" : "No alcanza para lo básico"}</p>
+      <p>${cubreBasico ? `Después de lo que no se negocia quedan <strong>${pesos(paraAhorrar)}</strong> para ahorrar.` : `Faltan <strong>${pesos(fijo - ingreso)}</strong> para cubrir techo, comida y lo de cada uno.`}</p>
+      <dl class="visor-datos">
+        <div><dt>Gastos que no se negocian</dt><dd>${pesos(fijo)}</dd></div>
+        <div><dt>Colchón completo</dt><dd>${c.falta === 0 ? "Ya está" : meses ? `en ${meses} ${meses === 1 ? "mes" : "meses"}` : "—"}</dd></div>
+        <div><dt>Alemania, lo antes posible</dt><dd>${fecha ? mesAnio(fecha) : "—"}</dd></div>
+        ${sobra > 0 ? `<div><dt>Sobra después de todo</dt><dd class="pos">${pesos(sobra)}</dd></div>` : ""}
+      </dl>
+      <p class="nota">Es una simulación: no cambia sus datos.</p>`;
+  }
+
+  /* ---------- Ventana: trabajos ---------- */
+  const ESCALA_MAX = 2200000;
+  function montarTrabajos() {
+    $("#trabajos-intro").textContent = trabajosData.intro;
+    $("#trabajos-conclusion").textContent = trabajosData.conclusion;
+    estado.filtrosTrabajo = estado.filtrosTrabajo || [];
+    const f = $("#trabajos-filtros");
+    f.innerHTML = trabajosData.filtros.map((x) => `<button type="button" data-filtro="${x.id}">${x.nombre}</button>`).join("");
+    f.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-filtro]");
+      if (!b) return;
+      const id = b.dataset.filtro;
+      const s = new Set(estado.filtrosTrabajo);
+      if (s.has(id)) s.delete(id); else s.add(id);
+      estado.filtrosTrabajo = [...s];
+      pintarTrabajos();
+    });
+    $("#escala").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-trabajo]");
+      if (!b) return;
+      estado.trabajo = b.dataset.trabajo;
+      pintarTrabajos();
+      if (angosta.matches) $("#trabajo-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+    const todas = new Map();
+    trabajosData.trabajos.forEach((t) => t.fuentes.forEach((x) => todas.set(x.url, x)));
+    todas.set(trabajosData.medianaFuente.url, trabajosData.medianaFuente);
+    $("#trabajos-fuentes").innerHTML = `<p class="visor-etiqueta">Fuentes (revisadas el ${fechaTexto(trabajosData.revisado)})</p>` +
+      [...todas.values()].map((x) => `<a href="${x.url}" target="_blank" rel="noopener">${x.nombre}</a>`).join("");
+
+    const cont = $("#combina-personas");
+    plan.personas.forEach((nombre, i) => {
+      const fila = el("div", { class: "combina-persona" });
+      fila.innerHTML = `<label><span>${nombre}</span><select data-combina="${i}">
+        <option value="hoy">Sigue como hoy</option>
+        <optgroup label="Con el sueldo mínimo">
+          <option value="full-min">Full time con sueldo mínimo</option>
+          <option value="part-min">Part time de 30 horas</option>
+        </optgroup>
+        <optgroup label="Trabajos del estudio">
+          ${trabajosData.trabajos.map((t) => `<option value="${t.id}">${t.nombre}</option>`).join("")}
+        </optgroup>
+      </select></label>
+      <label class="check-chico"><input type="checkbox" data-mantiene="${i}"> y mantiene su trabajo de hoy</label>`;
+      cont.append(fila);
+    });
+    const vive = el("div", { class: "combina-persona combina-vive" });
+    vive.innerHTML = `<label><span>Dónde viven</span><select data-vive>
+      <option value="hoy">Donde viven hoy</option>
+      <option value="pieza">Pieza para dos, cuentas incluidas</option>
+      <optgroup label="Departamento 1D (arriendo promedio + gasto común)">
+        ${barriosData.comunas.map((c) => `<option value="${c.id}">${c.nombre}</option>`).join("")}
+      </optgroup>
+    </select></label>`;
+    cont.append(vive);
+    cont.addEventListener("change", (e) => {
+      const v = e.target.closest("[data-vive]");
+      if (v) estado.combina.vive = v.value;
+      const s = e.target.closest("[data-combina]"), m = e.target.closest("[data-mantiene]");
+      if (s) estado.combina[s.dataset.combina] = s.value;
+      if (m) estado.combina["m" + m.dataset.mantiene] = m.checked;
+      guardar(); pintarCombina();
+    });
+    const mostrar = () => {
+      plan.personas.forEach((_, i) => {
+        cont.querySelector(`[data-combina="${i}"]`).value = estado.combina[i] || "hoy";
+        cont.querySelector(`[data-mantiene="${i}"]`).checked = Boolean(estado.combina["m" + i]);
+      });
+      cont.querySelector("[data-vive]").value = estado.combina.vive || "hoy";
+    };
+    mostrar();
+    sincronizadores.push(mostrar);
+  }
+
+  const fechaTexto = (iso) => { const [y, m, d] = iso.split("-").map(Number); return `${d} de ${MESES[m - 1]} de ${y}`; };
+
+  function pintarTrabajos() {
+    const filtros = new Set(estado.filtrosTrabajo || []);
+    document.querySelectorAll("#trabajos-filtros button").forEach((b) => b.setAttribute("aria-pressed", String(filtros.has(b.dataset.filtro))));
+    const visibles = trabajosData.trabajos.filter((t) => [...filtros].every((f) => t.tags.includes(f)));
+    if (!visibles.some((t) => t.id === estado.trabajo)) estado.trabajo = visibles[0] ? visibles[0].id : null;
+    const x = (v) => `${Math.min(100, (v / ESCALA_MAX) * 100)}%`;
+    const meta = trabajosData.metaPersona, med = trabajosData.mediana;
+    $("#escala").innerHTML = `
+      <div class="escala-ejes" aria-hidden="true">
+        <span class="eje-med" style="left:${x(med)}"><span>Mitad de Chile ${pesos(med)}</span></span>
+        <span class="eje-meta" style="left:${x(meta)}"><span>Meta ${pesos(meta)}</span></span>
+      </div>
+      ${visibles.length ? visibles.map((t) => `
+        <button type="button" class="escala-fila" data-trabajo="${t.id}" aria-pressed="${t.id === estado.trabajo}">
+          <span class="escala-nombre">${t.nombre}</span>
+          <span class="escala-pista"><i style="left:${x(t.min)};width:calc(${x(t.max)} - ${x(t.min)})"></i></span>
+          <span class="escala-monto">${pesos(t.min)} – ${pesos(t.max)}</span>
+        </button>`).join("") : `<p class="nota">Ningún trabajo cumple todos esos filtros a la vez.</p>`}
+      <div class="escala-pie" aria-hidden="true"><span>$0</span><span>${pesos(ESCALA_MAX / 2)}</span><span>${pesos(ESCALA_MAX)}</span></div>`;
+    const t = trabajosData.trabajos.find((j) => j.id === estado.trabajo);
+    $("#trabajo-detalle").innerHTML = t ? `
+      <p class="visor-etiqueta">Líquido al mes, según avisos de 2026</p>
+      <h3>${t.nombre}</h3>
+      <p class="detalle-rango">${pesos(t.min)} a ${pesos(t.max)}</p>
+      <p>${t.detalle}</p>
+      <p class="detalle-req"><strong>Piden:</strong> ${t.requisitos}</p>
+      <div class="detalle-tags">${t.tags.map((g) => `<span>${(trabajosData.filtros.find((f) => f.id === g) || {}).nombre || g}</span>`).join("")}</div>
+      <div class="detalle-fuentes">${t.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join("")}</div>` : "";
+    pintarCombina();
+  }
+
+  function pintarCombina() {
+    const caja = $("#combina-resultado");
+    if (!caja) return;
+    const eco = economia();
+    const sm = estado.colchonSueldos;
+    const medio = (id) => {
+      if (id === "full-min") return Number(sm.full) || 0;
+      if (id === "part-min") return Number(sm.part) || 0;
+      const t = trabajosData.trabajos.find((j) => j.id === id);
+      return t ? (t.min + t.max) / 2 : 0;
+    };
+    const ingresos = plan.personas.map((_, i) => {
+      const sel = estado.combina[i] || "hoy";
+      const hoyI = eco.sueldo[i] || 0;
+      if (sel === "hoy") return hoyI;
+      return medio(sel) + (estado.combina["m" + i] ? hoyI : 0);
+    });
+    const total = ingresos[0] + ingresos[1];
+    if (!eco.hayDatos) {
+      caja.innerHTML = `<p class="nota">Anoten lo que gana cada uno en la ventana del colchón para comparar con lo de hoy.</p>`;
+      return;
+    }
+    const extra = total - eco.ingreso;
+    const vive = estado.combina.vive || "hoy";
+    const comuna = barriosData.comunas.find((x) => x.id === vive);
+    const pieza = vive === "pieza" ? barriosData.pieza.max : null;
+    const arriendo = comuna ? comuna.arriendo + barriosData.gastosComunes : null;
+    const c = colchon({ extra, pieza, arriendo });
+    const inicio = estado.colchonPrimero ? (c.falta === 0 ? hoy : c.listo) : hoy;
+    const fecha = c.disp > 0 && inicio ? fechaPosible(c.disp, inicio) : null;
+    const metaDos = trabajosData.metaPersona * 2;
+    const vivienda = pieza != null ? pieza : (arriendo != null ? arriendo : eco.arriendo) + eco.cuentas;
+    const viviendaTexto = pieza != null ? "la pieza (todo incluido)" : comuna ? `${comuna.nombre} con gasto común y cuentas` : "la vivienda de hoy con cuentas";
+    caja.innerHTML = `
+      <div class="combina-barra" role="img" aria-label="Entrarían ${pesos(total)} de una meta de ${pesos(metaDos)}">
+        <i style="width:${Math.min(100, (total / metaDos) * 100)}%"></i>
+        <span>${Math.round((total / metaDos) * 100)}% de la meta de ${millones(metaDos)}</span>
+      </div>
+      <div class="esc-cifras">
+        <div class="esc-cifra"><span>Entrarían al mes</span><b>${pesos(total)}</b></div>
+        <div class="esc-cifra"><span>Colchón completo</span><b>${c.falta === 0 ? "Ya está" : c.listo ? mesAnio(c.listo) : "No llega"}</b></div>
+        <div class="esc-cifra"><span>Alemania, lo antes posible</span><b>${fecha ? mesAnio(fecha) : "—"}</b></div>
+      </div>
+      <p class="esc-explica">Vivienda: ${viviendaTexto}, ${pesos(vivienda)} al mes (${Math.round((vivienda / Math.max(total, 1)) * 100)}% de lo que entraría). ${c.disp > 0 ? `Después de todos los gastos les quedarían ${pesos(c.disp)} al mes.` : `Seguiría faltando ${pesos(-c.disp)} al mes.`}</p>
+      <div class="combina-botones">
+        <button type="button" class="boton" id="combina-lucas">Ver este mes en Las lucas</button>
+        ${fecha ? `<button type="button" class="boton-texto" id="usar-combina">Usar ${mesAnio(fecha)} como fecha de viaje</button>` : ""}
+      </div>`;
+    $("#combina-lucas").addEventListener("click", () => {
+      estado.lucasIngreso = total;
+      estado.probarVivienda = pieza != null ? { nombre: "una pieza para dos", monto: pieza, conCuentas: true }
+        : comuna ? { nombre: comuna.nombre, monto: arriendo, conCuentas: false } : null;
+      location.hash = "#lucas";
+      pintarLucas();
+    });
+    const usar = $("#usar-combina");
+    if (usar) usar.addEventListener("click", () => {
+      estado.viaje = { m: fecha.getMonth(), y: fecha.getFullYear() };
+      guardar(); refrescarTodo(); location.hash = "#inicio";
+    });
+  }
+
+  /* ---------- Ventana: dónde vivir ---------- */
+  const COLOR_LINEA = { L1: "#e2231a", L2: "#f6a800", L3: "#8c5a2b", L4: "#1b5fa8", L4A: "#3aa9e0", L5: "#2e9a4a", L6: "#8a3c97" };
+  function montarVivir() {
+    $("#vivir-intro").textContent = barriosData.intro;
+    $("#vivir-region").textContent = `${barriosData.regionVictimizacion} ${barriosData.linea7}`;
+    const r = $("#vivir-tope"), out = $("#vivir-tope-out");
+    if (!estado.vivirTope) estado.vivirTope = 350000;
+    r.value = estado.vivirTope; out.textContent = pesos(estado.vivirTope);
+    r.addEventListener("input", () => { estado.vivirTope = Number(r.value); out.textContent = pesos(estado.vivirTope); pintarVivir(); });
+    $("#carriles").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-comuna]");
+      if (!b) return;
+      estado.comunaSel = b.dataset.comuna;
+      pintarVivir();
+      if (angosta.matches) $("#comuna-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+    $("#vivir-fuentes").innerHTML = `<p class="visor-etiqueta">Fuentes (revisadas el ${fechaTexto(barriosData.revisado)})</p>` +
+      barriosData.fuentes.map((x) => `<a href="${x.url}" target="_blank" rel="noopener">${x.nombre}</a>`).join("");
+  }
+
+  const chipsLineas = (ls) => ls.map((l) => `<span class="linea-chip" style="--c:${COLOR_LINEA[l] || "#182638"}">${l}</span>`).join("");
+
+  function pintarVivir() {
+    if (!barriosData) return;
+    const tope = estado.vivirTope || 350000;
+    const gc = barriosData.gastosComunes;
+    const p = barriosData.pieza;
+    const items = [
+      { id: "pieza", nombre: "Pieza para dos", arriendo: p.min, max: p.max, lineas: [], seguridad: "sin-dato", pieza: true },
+      ...barriosData.comunas
+    ];
+    if (!items.some((c) => c.id === estado.comunaSel)) estado.comunaSel = "san-miguel";
+    $("#carriles").innerHTML = barriosData.niveles.map((n) => {
+      const enCarril = items.filter((c) => c.seguridad === n.id && !c.pieza).sort((a, b) => a.arriendo - b.arriendo);
+      if (n.id === "sin-dato") enCarril.unshift(items[0]);
+      if (!enCarril.length) return "";
+      return `<div class="carril carril-${n.id}">
+        <p class="carril-nombre">${n.id === "sin-dato" ? "Otras opciones" : n.nombre}</p>
+        <div class="carril-chips">${enCarril.map((c) => {
+          const sobre = c.arriendo > tope;
+          return `<button type="button" class="comuna-chip${sobre ? " sobre" : ""}" data-comuna="${c.id}" aria-pressed="${c.id === estado.comunaSel}">
+            <span class="chip-nombre">${c.nombre}</span>
+            <span class="chip-precio">${c.pieza ? `${pesos(c.arriendo)}–${pesos(c.max).replace("$", "")}` : pesos(c.arriendo)}</span>
+            ${c.lineas.length ? `<span class="chip-lineas">${chipsLineas(c.lineas)}</span>` : ""}
+          </button>`;
+        }).join("")}</div>
+      </div>`;
+    }).join("");
+
+    const c = items.find((x) => x.id === estado.comunaSel);
+    const eco = economia();
+    const total = c.pieza ? c.max : c.arriendo + gc;
+    const nivel = barriosData.niveles.find((n) => n.id === c.seguridad);
+    const pct = eco.ingreso ? Math.round((total / eco.ingreso) * 100) : null;
+    $("#comuna-detalle").innerHTML = `
+      <p class="visor-etiqueta">${c.pieza ? "Pieza, cuentas incluidas" : `Seguridad: ${nivel.nombre.toLowerCase()}`}</p>
+      <h3>${c.nombre}</h3>
+      ${c.lineas.length ? `<p class="detalle-lineas">${chipsLineas(c.lineas)} <span>Metro</span></p>` : ""}
+      <div class="esc-cifras">
+        <div class="esc-cifra"><span>${c.pieza ? "Arriendo" : "Arriendo 1D (2025)"}</span><b>${c.pieza ? `${pesos(c.arriendo)}–${pesos(c.max).replace("$", "")}` : pesos(c.arriendo)}</b></div>
+        <div class="esc-cifra"><span>${c.pieza ? "Total al mes" : `Con gasto común (~${pesos(gc)})`}</span><b>${pesos(total)}</b></div>
+        <div class="esc-cifra"><span>De lo que ganan hoy</span><b class="${pct != null && pct > 40 ? "neg" : "pos"}">${pct != null ? pct + "%" : "—"}</b></div>
+      </div>
+      ${c.pieza ? `<p>${barriosData.pieza.nota}</p>` : `${c.senales.map((s) => `<p class="senal">${s}</p>`).join("")}<p class="nota">${c.nota}</p>`}
+      <button type="button" class="boton" id="probar-vivienda">Probar en Las lucas</button>`;
+    $("#probar-vivienda").addEventListener("click", () => {
+      estado.probarVivienda = c.pieza
+        ? { nombre: "una pieza para dos", monto: c.max, conCuentas: true }
+        : { nombre: c.nombre, monto: c.arriendo + gc, conCuentas: false };
+      location.hash = "#lucas";
+      pintarLucas();
+    });
+  }
+
   /* ---------- Ventanas ---------- */
-  const VISTAS = ["inicio", "colchon", "refugio", "dinero", "ciudades", "ruta", "prepararse", "dudas", "conectar"];
+  const VISTAS = ["inicio", "colchon", "lucas", "trabajos", "vivir", "refugio", "dinero", "ciudades", "ruta", "prepararse", "dudas", "conectar"];
   const DENTRO = {
     economia: "colchon", escenarios: "colchon", registro: "colchon", acciones: "colchon", "ajustes-colchon": "colchon",
-    carpeta: "ruta", "preguntas-que-deciden": "refugio", familia: "refugio", "mal-mes": "refugio", contenido: null
+    carpeta: "ruta", combinador: "trabajos", "preguntas-que-deciden": "refugio", familia: "refugio", "mal-mes": "refugio", contenido: null
   };
-  const CON_ANOTAR = new Set(["inicio", "colchon"]);
+  const CON_ANOTAR = new Set(["inicio", "colchon", "lucas"]);
   let vistaActual = null;
 
   function leerHash() {
@@ -1569,7 +1941,7 @@
       $("#titulo-movil").textContent = titulo;
       document.title = vista === "inicio" ? "Proyecto Alemania de Teoc y Francis" : `${titulo} · Proyecto Alemania`;
       document.querySelector(".fab").hidden = !CON_ANOTAR.has(vista);
-      document.querySelector("#abrir-mas").classList.toggle("activo", ["refugio", "ciudades", "prepararse", "dudas", "conectar"].includes(vista));
+      document.querySelector("#abrir-mas").classList.toggle("activo", ["vivir", "refugio", "dinero", "ciudades", "ruta", "prepararse", "dudas", "conectar"].includes(vista));
       vistaActual = vista;
       if (vista === "dudas") ubicarRespuesta();
     }
@@ -1593,7 +1965,7 @@
     document.querySelectorAll("[data-sincro]").forEach((b) => b.addEventListener("click", () => { location.hash = "#conectar"; }));
 
     // «Sigue»: el orden natural de las ventanas
-    const ORDEN = [["colchon", "0. El colchón"], ["refugio", "1. Cuando dudemos"], ["dinero", "2. La plata"], ["ciudades", "3. ¿Dónde llegamos?"], ["ruta", "4. Los trámites"], ["prepararse", "5. Prepararse para llegar"], ["dudas", "Todas las dudas"]];
+    const ORDEN = [["colchon", "0. El colchón"], ["lucas", "Las lucas"], ["trabajos", "Trabajos"], ["vivir", "Dónde vivir"], ["refugio", "1. Cuando dudemos"], ["dinero", "2. La plata"], ["ciudades", "3. ¿Dónde llegamos?"], ["ruta", "4. Los trámites"], ["prepararse", "5. Prepararse para llegar"], ["dudas", "Todas las dudas"]];
     ORDEN.forEach(([id], i) => {
       const sec = document.getElementById(id);
       const sig = ORDEN[i + 1];
@@ -1750,6 +2122,9 @@
     pintarCiudad();
     pintarColchon();
     pintarVisores();
+    pintarLucas();
+    pintarTrabajos();
+    pintarVivir();
     pintarEstadoAbierto();
     if (dudas && $("#respuesta").innerHTML) pintarRespuesta();
     refrescarVivos();
@@ -1768,9 +2143,10 @@
   async function iniciar() {
     try {
       const cargar = (u) => fetch(u, { cache: "no-cache" }).then((x) => { if (!x.ok) throw new Error(u); return x.json(); });
-      [plan, ciudades, dudas, prep, refugio, colchonData] = await Promise.all([
+      [plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData] = await Promise.all([
         cargar("data/plan.json"), cargar("data/ciudades.json"), cargar("data/dudas.json"),
-        cargar("data/preparacion.json"), cargar("data/refugio.json"), cargar("data/colchon.json")
+        cargar("data/preparacion.json"), cargar("data/refugio.json"), cargar("data/colchon.json"),
+        cargar("data/trabajos.json"), cargar("data/barrios.json")
       ]);
     } catch (err) {
       $("#frase-resultado").textContent = "No se pudieron cargar los datos. Si abriste el archivo directo desde la carpeta, usa la página publicada o un servidor local (ver README).";
@@ -1784,6 +2160,9 @@
     montarEconomia();
     montarColchon();
     montarDialogo();
+    montarLucas();
+    montarTrabajos();
+    montarVivir();
     montarRefugio();
     montarCiudades();
     montarDudas();

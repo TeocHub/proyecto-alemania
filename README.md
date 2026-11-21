@@ -10,11 +10,14 @@ Página para planificar la Working Holiday en Alemania de Teoc y Francis, empeza
 
 ## Las ventanas
 
-Cada sección es una ventana. En el celular se ve una a la vez, con la barra de abajo (Inicio, Colchón, La plata, Trámites y Más). En tablet horizontal o computador, todas quedan en la barra lateral.
+Cada sección es una ventana. En el celular se ve una a la vez, con la barra de abajo (Inicio, Colchón, Las lucas, Trabajos y Más). En tablet horizontal o computador, todas quedan en la barra lateral.
 
 | Ventana | Qué tiene |
 |---|---|
 | Inicio | La línea completa (colchón → viaje) y los visores: el colchón, cada mes, lo próximo, Alemania en números y cómo se sienten |
+| Las lucas | La cascada de prioridades: el ingreso del mes llena en orden techo, comida y transporte, lo de cada uno, deudas, colchón y Alemania. Se puede mover el monto para simular |
+| Trabajos | Estudio de sueldos 2026 sin título, con filtros y un combinador para probar un trabajo por persona |
+| Dónde vivir | Arriendo promedio 1D por comuna, líneas de metro y señales de seguridad; «Probar en Las lucas» simula vivir ahí |
 | 0. El colchón | Nuestra economía hoy, las etapas (frenar el déficit, fondo de emergencia, colchón completo, ahorro para Alemania), «¿Y si…?» con trabajos nuevos, lo que llevamos guardado y lo que mueve los plazos |
 | 1. Cuando dudemos | Cómo se sienten, las preguntas que deciden, el mes malo, familia y consecuencias |
 | 2. La plata | La meta para Alemania y el desglose |
@@ -45,6 +48,8 @@ Todo el contenido está en `data/`, en archivos JSON que se pueden editar sin to
 
 | Archivo | Qué contiene |
 |---|---|
+| `data/trabajos.json` | Trabajos, rangos de sueldo, requisitos y fuentes (revisado el 20-nov-2026) |
+| `data/barrios.json` | Comunas, arriendo, metro, señales de seguridad y fuentes |
 | `data/colchon.json` | Textos del colchón, etapas, escenarios de «¿Y si…?», sueldos estimados de cada escenario y acciones para llegar antes |
 | `data/plan.json` | Nombres, tipo de cambio, requisitos de la embajada, costos, colchones para vivir allá, etapas de la ruta con sus tareas, documentos de la carpeta y fuentes |
 | `data/ciudades.json` | Ciudades, gastos mensuales estimados para la pareja y escenarios de ingreso |

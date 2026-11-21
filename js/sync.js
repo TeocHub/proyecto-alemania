@@ -11,9 +11,9 @@
   const CADA = 45000;
 
   // Lo que es de cada pantalla (qué pestaña está abierta) no se comparte.
-  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario"]);
+  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel"]);
   // Hasta qué profundidad se separa cada dato. Más profundo = menos choques.
-  const PROF = { economia: 2, respuestas: 3, marcas: 2, movs: 2, contacto: 2, colchonSueldos: 2 };
+  const PROF = { economia: 2, respuestas: 3, marcas: 2, movs: 2, contacto: 2, colchonSueldos: 2, combina: 2 };
 
   const esObj = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
   const leer = (k) => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
