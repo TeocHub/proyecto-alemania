@@ -8,8 +8,8 @@
   },
   "metaPersona": 1500000,
   "entradas": {
-    "libre": "Sin pagar nada",
-    "curso": "Curso pagado por ustedes",
+    "libre": "Se entra sin pagar",
+    "curso": "Curso: a veces lo da la empresa, a veces lo pagan ustedes",
     "titulo": "Suelen pedir técnico o carrera",
     "inversion": "Licencia, auto o certificación cara"
   },
@@ -17,6 +17,10 @@
     {
       "id": "libre",
       "nombre": "Sin pagar nada para entrar"
+    },
+    {
+      "id": "fijo",
+      "nombre": "Con sueldo fijo"
     },
     {
       "id": "sinExp",
@@ -63,6 +67,13 @@
           "nombre": "Chiletrabajos: tienda Entel Maipú",
           "url": "https://www.chiletrabajos.cl/trabajo/ejecutivo-a-comercial-tienda-entel-full-time-3919155"
         }
+      ],
+      "ojo": "Antes de postular, fíjense en que el aviso diga sueldo base. «Comisiones sin tope» sin base significa que en una semana mala se gana $0, aunque a otros les vaya bien con el mismo discurso. Y recibir rechazos todo el día cansa.",
+      "buscar": [
+        "ejecutivo comercial tienda",
+        "vendedor Entel",
+        "vendedor WOM",
+        "ejecutivo telefonía"
       ]
     },
     {
@@ -91,6 +102,12 @@
           "nombre": "Chiletrabajos: venta Costanera, $590.000 a $700.000",
           "url": "https://www.chiletrabajos.cl/trabajo/3930620"
         }
+      ],
+      "ojo": "Antes de postular, fíjense en que el aviso diga sueldo base. «Comisiones sin tope» sin base significa que en una semana mala se gana $0, aunque a otros les vaya bien con el mismo discurso. Y recibir rechazos todo el día cansa.",
+      "buscar": [
+        "vendedor mall",
+        "asesor de ventas",
+        "vendedora tienda"
       ]
     },
     {
@@ -116,15 +133,21 @@
           "nombre": "Indeed: call center ventas pyme",
           "url": "https://cl.indeed.com/l%c3%adder-call-center-jobs?fromage=3"
         }
+      ],
+      "ojo": "Antes de postular, fíjense en que el aviso diga sueldo base. «Comisiones sin tope» sin base significa que en una semana mala se gana $0, aunque a otros les vaya bien con el mismo discurso. Y recibir rechazos todo el día cansa.",
+      "buscar": [
+        "call center ventas",
+        "televentas",
+        "teleoperador ventas"
       ]
     },
     {
       "id": "ventas-remotas",
       "nombre": "Ventas por teléfono o remotas",
-      "min": 560000,
+      "min": 0,
       "max": 1800000,
       "entrada": "libre",
-      "detalle": "Seguros, servicios financieros o productos desde casa o call center. El base es el sueldo mínimo con gratificación; el resto depende de lo que vendan. Hay avisos 100% remotos con base de $800.000 y promedio de $1,8 millones, pero es el rango más inestable de todos.",
+      "detalle": "Seguros, suscripciones o servicios por teléfono o desde casa. Algunos pagan el sueldo mínimo más comisiones; otros pagan solo comisión, y ahí hay semanas de $0 y semanas buenas. Los avisos que prometen sobre un millón son los menos comunes.",
       "requisitos": "Buena conversación y tolerancia a metas; algunos piden experiencia.",
       "donde": "Call centers de seguros (Helpbank para BCI), empresas con ventas remotas.",
       "tags": [
@@ -141,6 +164,12 @@
           "nombre": "Indeed: ventas remotas, base $800.000, promedio $1.800.000",
           "url": "https://cl.indeed.com/q-remoto-empleos.html"
         }
+      ],
+      "ojo": "Si el aviso no dice sueldo base, asuman que no lo hay. Es el trabajo más inestable del estudio: el mismo discurso da resultados muy distintos según el día, la base de datos y la suerte, y el rechazo constante pesa.",
+      "buscar": [
+        "ventas remoto",
+        "televentas teletrabajo",
+        "ejecutivo ventas seguros"
       ]
     },
     {
@@ -165,6 +194,12 @@
           "nombre": "Jooble: ejecutivo comercial, ~$1.148.000",
           "url": "https://cl.jooble.org/jdp/-2884325801050534003"
         }
+      ],
+      "ojo": "Antes de postular, fíjense en que el aviso diga sueldo base. «Comisiones sin tope» sin base significa que en una semana mala se gana $0, aunque a otros les vaya bien con el mismo discurso. Y recibir rechazos todo el día cansa.",
+      "buscar": [
+        "ejecutivo comercial terreno",
+        "vendedor terreno",
+        "ejecutivo de captación"
       ]
     },
     {
@@ -179,7 +214,8 @@
       "tags": [
         "libre",
         "sinExp",
-        "estudiar"
+        "estudiar",
+        "fijo"
       ],
       "fuentes": [
         {
@@ -194,6 +230,12 @@
           "nombre": "Chiletrabajos: oficinas comerciales de Enel",
           "url": "https://www.chiletrabajos.cl/trabajo/3887617"
         }
+      ],
+      "buscar": [
+        "ejecutivo atención al cliente",
+        "call center atención",
+        "Konecta",
+        "Entel Connect"
       ]
     },
     {
@@ -203,11 +245,12 @@
       "max": 1100000,
       "entrada": "curso",
       "detalle": "Se suele entrar como cajero de reemplazo a través de una empresa externa ($600.000 a $700.000 líquidos). La meta es quedar contratado directo por el banco: BCI fijó un sueldo mínimo interno de $1.100.000 para contratos indefinidos (el anuncio no dice si es bruto o líquido).",
-      "requisitos": "Curso de cajero bancario ya hecho (excluyente) y, en varios avisos, experiencia en caja; algunos piden técnico.",
+      "requisitos": "Curso de cajero (propio o el que da la empresa) y cuarto medio. Algunos piden técnico o experiencia en caja.",
       "donde": "Adecco, Activos Chile, Progestion y Helpbank (para BancoEstado, BCI y BICE); Banco Falabella publica directo.",
-      "costo": "El curso de cajero bancario lo pagan ustedes antes de postular (los avisos lo piden ya hecho; pocas veces lo da la empresa). Hay de 18 horas en línea por unos $55.000.",
+      "costo": "Depende del banco y de la empresa que contrata. Algunas piden el curso de cajero ya hecho (hay de 18 horas en línea por unos $55.000); otras lo dan gratis, y una institución estatal paga $50.000 por 5 días de capacitación antes de entrar.",
       "tags": [
-        "curso"
+        "curso",
+        "fijo"
       ],
       "fuentes": [
         {
@@ -225,7 +268,20 @@
         {
           "nombre": "Computrabajo: curso de cajero bancario, 18 horas",
           "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-curso-de-cajero-bancario-online-region-de-los-lagos-en-puerto-montt-C42219D399ABE7CE61373E686DCF3405"
+        },
+        {
+          "nombre": "Computrabajo: capacitación bancaria pagada, después $700.000",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-capacitacion-opcion-laboral-bancaria-rancagua-en-rancagua-52D62898C070895B61373E686DCF3405"
+        },
+        {
+          "nombre": "Computrabajo: curso de cajero bancario gratuito",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-curso-cajero-bancario-osorno-en-osorno-71049A20046AA22D61373E686DCF3405"
         }
+      ],
+      "buscar": [
+        "cajero bancario",
+        "capacitación bancaria",
+        "curso cajero bancario gratis"
       ]
     },
     {
@@ -239,7 +295,8 @@
       "donde": "Estudios jurídicos, empresas de cobranza, bancos y casas comerciales.",
       "tags": [
         "comisiones",
-        "titulo"
+        "titulo",
+        "fijo"
       ],
       "fuentes": [
         {
@@ -255,7 +312,12 @@
           "url": "https://www.chiletrabajos.cl/trabajo/3861648"
         }
       ],
-      "costo": "No hay que pagar nada, pero sin carrera afín o experiencia cuesta quedar."
+      "costo": "No hay que pagar nada, pero sin carrera afín o experiencia cuesta quedar.",
+      "buscar": [
+        "ejecutivo de cobranza",
+        "gestor de cobranza",
+        "cobranza telefónica"
+      ]
     },
     {
       "id": "aeropuerto",
@@ -269,7 +331,8 @@
       "tags": [
         "libre",
         "ingles",
-        "estudiar"
+        "estudiar",
+        "fijo"
       ],
       "fuentes": [
         {
@@ -284,6 +347,11 @@
           "nombre": "Chiletrabajos: aeropuerto 29 h, $400.000",
           "url": "https://www.chiletrabajos.cl/trabajo/3911685"
         }
+      ],
+      "buscar": [
+        "aeropuerto atención pasajeros",
+        "agente bilingüe aeropuerto",
+        "servicio al pasajero"
       ]
     },
     {
@@ -297,7 +365,8 @@
       "donde": "Consultoras TI, empresas grandes con mesa de ayuda propia.",
       "tags": [
         "ingles",
-        "titulo"
+        "titulo",
+        "fijo"
       ],
       "fuentes": [
         {
@@ -309,7 +378,12 @@
           "url": "https://www.chiletrabajos.cl/trabajo/3910821"
         }
       ],
-      "costo": "Suelen pedir título técnico. Sin él, solo entra con experiencia demostrable."
+      "costo": "Suelen pedir título técnico. Sin él, solo entra con experiencia demostrable.",
+      "buscar": [
+        "soporte técnico",
+        "mesa de ayuda",
+        "help desk"
+      ]
     },
     {
       "id": "programacion",
@@ -322,7 +396,8 @@
       "donde": "GetOnBoard, LinkedIn, consultoras de software.",
       "tags": [
         "estudiar",
-        "titulo"
+        "titulo",
+        "fijo"
       ],
       "fuentes": [
         {
@@ -330,7 +405,12 @@
           "url": "https://cl.indeed.com/career/full-stack-developer/salaries/Remote"
         }
       ],
-      "costo": "Suelen pedir título. Sin él es un camino largo: portafolio y proyectos propios antes de postular."
+      "costo": "Suelen pedir título. Sin él es un camino largo: portafolio y proyectos propios antes de postular.",
+      "buscar": [
+        "desarrollador junior",
+        "programador trainee",
+        "analista programador"
+      ]
     },
     {
       "id": "asistente-aula",
@@ -343,7 +423,8 @@
       "donde": "Colegios particulares subvencionados, programas after school.",
       "tags": [
         "libre",
-        "estudiar"
+        "estudiar",
+        "fijo"
       ],
       "fuentes": [
         {
@@ -354,22 +435,30 @@
           "nombre": "Chiletrabajos: asistente para after school, $750.000",
           "url": "https://www.chiletrabajos.cl/trabajo/3723630"
         }
+      ],
+      "buscar": [
+        "asistente de aula",
+        "asistente de la educación",
+        "inspector de patio",
+        "after school"
       ]
     },
     {
       "id": "guardia",
       "nombre": "Guardia de seguridad (OS10)",
-      "min": 540000,
+      "min": 530000,
       "max": 800000,
       "entrada": "curso",
       "detalle": "Turnos 4x4: cuatro días de 12 horas y cuatro libres, que dejan espacio para estudiar o tener otro trabajo.",
-      "requisitos": "Curso OS10 vigente y cuarto medio.",
+      "requisitos": "Cuarto medio. El OS10 vigente, o entrar a una empresa que lo prepare.",
       "donde": "Prosegur, Eulen, guardias para metro, aeropuerto y universidades.",
-      "costo": "Curso OS10: hay ofertas desde unos €71 en dos cuotas.",
+      "costo": "Depende de la empresa: varias contratan sin OS10 y lo preparan gratis; otras lo piden vigente y hay que pagarlo antes.",
       "tags": [
         "curso",
         "sinExp",
-        "estudiar"
+        "estudiar",
+        "fijo",
+        "libre"
       ],
       "fuentes": [
         {
@@ -379,7 +468,20 @@
         {
           "nombre": "Emagister: curso OS10",
           "url": "https://www.emagister.com/cursos-seguridad-emergencias-chile-ctpa-5-20491.htm"
+        },
+        {
+          "nombre": "Computrabajo: guardias sin OS10, te preparamos gratis",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-guardias-sin-os10-te-preparamos-gratis-en-santiago-maipu-1E7C4F4F0D5BB82C61373E686DCF3405"
+        },
+        {
+          "nombre": "Computrabajo: guardias con y sin OS10, capacitación gratis",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-guardias-con-y-sin-os10-para-todas-las-comunas-de-santiago-en-puente-alto-eb10fc668748e65d61373e686dcf3405"
         }
+      ],
+      "buscar": [
+        "guardia sin OS10",
+        "guardia de seguridad",
+        "guardia 4x4"
       ]
     },
     {
@@ -393,13 +495,19 @@
       "donde": "Centros de distribución en Pudahuel, Quilicura y San Bernardo.",
       "tags": [
         "libre",
-        "sinExp"
+        "sinExp",
+        "fijo"
       ],
       "fuentes": [
         {
           "nombre": "Computrabajo: bodega noche Quilicura",
           "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-operariosas-de-bodega-quilicura-full-time-1930-pm-a-0530-am-temporada-cyber-ingreso-inmediato-turno-de-noche-con-experiencia-en-santiago-quilicura-92DC7B58035526BF61373E686DCF3405"
         }
+      ],
+      "buscar": [
+        "operario de bodega",
+        "bodega turno noche",
+        "peoneta"
       ]
     },
     {
@@ -421,6 +529,10 @@
           "nombre": "Digital Trends: Uber en Santiago 2026",
           "url": "https://es.digitaltrends.com/autos/uber-cuanto-se-gana-ciudades-latinoamerica-2026/"
         }
+      ],
+      "buscar": [
+        "conductor clase B",
+        "repartidor"
       ]
     },
     {
@@ -434,7 +546,8 @@
       "donde": "Faenas del norte, vía Manpower, Teamwork y Progestion.",
       "costo": "Licencia profesional y certificación del equipo. El SENCE ofrece cupos gratis para licencias clase A, pero no para la certificación de camiones mineros.",
       "tags": [
-        "inversion"
+        "inversion",
+        "fijo"
       ],
       "fuentes": [
         {
@@ -449,8 +562,60 @@
           "nombre": "PracticaTest: cursos SENCE para licencia profesional",
           "url": "https://practicatest.cl/blog/articulos-especiales/curso-gratuito-conductores-profesionales"
         }
+      ],
+      "buscar": [
+        "operador CAEX",
+        "operador camión minero"
       ]
     }
   ],
-  "conclusion": "Sin pagar cursos, licencias ni tener título, lo que más paga en Santiago es vender con comisiones: tiendas de telefonía, malls, call centers de ventas y terreno, entre $800.000 y $1.200.000 en meses buenos. Atención al cliente para empresas como Enel o Entel paga menos ($560.000 a $680.000), pero es estable y no exige experiencia. Banco y guardia piden un curso que se paga antes; cobranza y tecnología suelen pedir carrera."
+  "conclusion": "En el papel, lo que más paga sin título es vender con comisiones, pero es lo más inestable: hay semanas de $0, sobre todo donde no hay sueldo base. Lo seguro es un sueldo fijo de $560.000 a $700.000: atención al cliente para empresas como Enel o Entel, bodega, guardia o aeropuerto. Dos sueldos fijos de esos ya son entre $1,1 y $1,4 millones al mes, y las ventas pueden quedar como algo extra, solo si el aviso tiene base.",
+  "agregados": [
+    "sin experiencia",
+    "part time"
+  ],
+  "plataformas": [
+    {
+      "id": "computrabajo",
+      "nombre": "Computrabajo",
+      "para": "La que más avisos tiene de atención, ventas, bodega y guardias.",
+      "busca": "https://cl.computrabajo.com/trabajo-de-{guion}"
+    },
+    {
+      "id": "chiletrabajos",
+      "nombre": "Chiletrabajos",
+      "para": "Muy usada por pymes; muchos avisos con sueldo a la vista.",
+      "inicio": "https://www.chiletrabajos.cl/"
+    },
+    {
+      "id": "indeed",
+      "nombre": "Indeed",
+      "para": "Junta avisos de muchos portales y de las propias empresas.",
+      "busca": "https://cl.indeed.com/jobs?q={q}&l=Santiago"
+    },
+    {
+      "id": "linkedin",
+      "nombre": "LinkedIn",
+      "para": "Empresas grandes, bancos y aeropuerto; sirve tener el perfil al día.",
+      "busca": "https://www.linkedin.com/jobs/search/?keywords={q}&location=Santiago%2C%20Chile"
+    },
+    {
+      "id": "laborum",
+      "nombre": "Laborum",
+      "para": "Retail, bancos y empresas medianas y grandes.",
+      "inicio": "https://www.laborum.cl/"
+    },
+    {
+      "id": "bne",
+      "nombre": "Bolsa Nacional de Empleo",
+      "para": "Del Estado y gratis; también la usa la OMIL de cada comuna.",
+      "inicio": "https://www.bne.cl/"
+    },
+    {
+      "id": "jooble",
+      "nombre": "Jooble",
+      "para": "Buscador que reúne avisos de otros sitios.",
+      "busca": "https://cl.jooble.org/trabajo-{guion}/Santiago"
+    }
+  ]
 }

@@ -66,6 +66,7 @@
     movs: {},
     colchonMeses: 3,
     colchonPrimero: true,
+    colchonViaja: true,
     colchonSueldos: null,
     escenario: "full",
     combina: null
@@ -101,6 +102,7 @@
     if (estado.colchonSueldos.part === 320000) estado.colchonSueldos.part = colchonData.sueldos.part;
     if (!colchonData.mesesOpciones.includes(estado.colchonMeses)) estado.colchonMeses = 3;
     if (typeof estado.colchonPrimero !== "boolean") estado.colchonPrimero = true;
+    if (typeof estado.colchonViaja !== "boolean") estado.colchonViaja = true;
     if (!estado.combina || typeof estado.combina !== "object") estado.combina = { 0: "hoy", 1: "hoy", m0: false, m1: false };
     estado.tc = estado.tc || plan.tipoCambio.eur;
     estado.pasaje = estado.pasaje || c.pasaje.inicial;
@@ -170,8 +172,16 @@
     return c.listo; // null si hoy no alcanza a ahorrar
   }
 
+  /* Cuánto del colchón se suma a la plata del viaje al irse de Chile.
+     Si el colchón viaja con ellos, no es un gasto aparte: es la primera parte del ahorro para Alemania. */
+  function aporteDe(c) {
+    if (!estado.colchonViaja) return 0;
+    return estado.colchonPrimero && c.hayDatos ? Math.max(c.meta, c.ahorrado) : c.ahorrado;
+  }
+
   /* ---------- Cálculo del dinero para Alemania ---------- */
-  function calcular(fecha, inicio) {
+  function calcular(fecha, inicio, aporte) {
+    if (aporte == null) aporte = aporteDe(colchon());
     const e = plan.embajada, c = plan.costos;
     const tc = estado.tc;
     const V = fecha || fechaViaje();
@@ -190,12 +200,13 @@
     const colchonPersona = Math.max(colchonEur * tc, congelado);
     const meta = gastoTotal + colchonPersona * 2;
 
-    const actual = estado.ahorro[0] + estado.ahorro[1];
+    const ahorros = estado.ahorro.map((a) => a + aporte / 2);
+    const actual = ahorros[0] + ahorros[1];
     const mesesF = mesesEntre(S, F);
     const mesesD2 = mesesEntre(S, D2);
     // Un monto mensual parejo por persona que cumple dos cosas:
     // tener su solvencia completa al congelar (F) y su meta completa al comprar pasajes (D2).
-    const porPersona = estado.ahorro.map((a) => {
+    const porPersona = ahorros.map((a) => {
       const faltaF = Math.max(0, congelado - a);
       const faltaMeta = Math.max(0, meta / 2 - a);
       if (faltaMeta === 0) return 0;
@@ -203,7 +214,7 @@
       return Math.max(faltaF > 0 ? faltaF / mesesF : 0, faltaMeta / mesesD2);
     });
     const mensual = porPersona[0] + porPersona[1];
-    const fondosListos = estado.ahorro.every((a) => a >= congelado);
+    const fondosListos = ahorros.every((a) => a >= congelado);
 
     return {
       V, S, F, D2, visa, pasaje, gastoPersona, gastoTotal, pruebaEur, congelado, colchonPersona, meta,
@@ -212,15 +223,54 @@
     };
   }
 
-  function fechaPosible(disponible, inicio) {
+  function fechaPosible(disponible, inicio, aporte) {
     if (disponible <= 0) return null;
     const base = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
     for (let m = 3; m <= 96; m++) {
       const V = sumarMeses(base, m);
-      const r = calcular(V, inicio);
+      const r = calcular(V, inicio, aporte);
       if (isFinite(r.mensual) && r.mensual <= disponible) return V;
     }
     return null;
+  }
+
+  /* ---------- La fecha según lo que de verdad van guardando ----------
+     Suma todo lo anotado hasta "hasta" y mide el ritmo de los últimos días (entre 60 y 120),
+     así un depósito grande adelanta la fecha y semanas sin anotar la van atrasando. */
+  const DIA_MS = 864e5;
+  function ritmoReal(hasta = hoy) {
+    const fin = new Date(hasta.getFullYear(), hasta.getMonth(), hasta.getDate()).getTime() + DIA_MS;
+    const movs = Object.values(estado.movs || {})
+      .filter((m) => m && m.m && m.f)
+      .map((m) => { const [y, mm, d] = String(m.f).split("-").map(Number); return { t: new Date(y, mm - 1, d).getTime(), m: Number(m.m) }; })
+      .filter((m) => m.t < fin);
+    if (!movs.length) return null;
+    const total = movs.reduce((s, m) => s + m.m, 0);
+    const primero = Math.min(...movs.map((m) => m.t));
+    const dias = Math.min(120, Math.max(60, Math.round((fin - primero) / DIA_MS)));
+    const desde = fin - dias * DIA_MS;
+    const enVentana = movs.filter((m) => m.t >= desde).reduce((s, m) => s + m.m, 0);
+    return { total, dias, mensual: (enVentana / dias) * MES_DIAS };
+  }
+
+  function proyeccionReal(hasta = hoy) {
+    const r = ritmoReal(hasta);
+    if (!r) return null;
+    const c = colchon();
+    const quedaEnChile = estado.colchonViaja ? 0 : (c.hayDatos ? c.meta : 0);
+    const base = calcular(fechaViaje(), hoy, 0);
+    const necesitaF = base.congelado * 2 + quedaEnChile;
+    const necesitaTodo = base.meta + quedaEnChile;
+    const tiene = r.total + estado.ahorro[0] + estado.ahorro[1];
+    const inicioMes = new Date(hasta.getFullYear(), hasta.getMonth(), 1);
+    let fecha = null;
+    for (let m = 3; m <= 120; m++) {
+      const V = sumarMeses(inicioMes, m);
+      const enF = tiene + r.mensual * Math.max(0, mesesEntre(hasta, sumarMeses(V, -6)));
+      const enD2 = tiene + r.mensual * Math.max(0, mesesEntre(hasta, sumarMeses(V, -1.5)));
+      if (enF >= necesitaF && enD2 >= necesitaTodo) { fecha = V; break; }
+    }
+    return { ...r, tiene, necesita: necesitaTodo, fecha, quedaEnChile };
   }
 
   function simular(esc) {
@@ -229,7 +279,7 @@
     const extra = esc.reemplaza ? suma - economia().ingreso : suma;
     const c = colchon({ extra, pieza: esc.pieza ? Number(s.pieza) || 0 : null });
     const inicio = estado.colchonPrimero ? (c.falta === 0 ? hoy : c.listo) : hoy;
-    const fecha = c.hayDatos && c.disp > 0 && inicio ? fechaPosible(c.disp, inicio) : null;
+    const fecha = c.hayDatos && c.disp > 0 && inicio ? fechaPosible(c.disp, inicio, aporteDe(c)) : null;
     return { c, fecha, extra };
   }
 
@@ -414,9 +464,46 @@
       </div>`;
   }
 
+  /* La fecha al ritmo real: una línea de tiempo con la fecha de hoy y la de hace una semana. */
+  function htmlRitmo(enVentana) {
+    const etiqueta = `<p class="visor-etiqueta">Alemania, al ritmo de lo que anotan</p>`;
+    const p = proyeccionReal();
+    if (!p) {
+      return `${etiqueta}<p class="visor-titulo">Todavía sin fecha</p>
+        <p>Cada vez que anoten lo que guardan (o lo que sacan), aquí se recalcula la fecha de viaje con lo que de verdad llevan.</p>
+        <div class="visor-acciones"><button type="button" class="boton" data-anotar>Anotar ahorro</button></div>`;
+    }
+    const antes = proyeccionReal(new Date(hoy.getTime() - 7 * DIA_MS));
+    let cambio = "";
+    if (antes && antes.fecha && p.fecha) {
+      const dif = Math.round(mesesEntre(p.fecha, antes.fecha));
+      cambio = dif > 0 ? `Hace una semana era ${mesAnio(antes.fecha)}: <strong>se adelantó ${dif} ${dif === 1 ? "mes" : "meses"}</strong>.`
+        : dif < 0 ? `Hace una semana era ${mesAnio(antes.fecha)}: se atrasó ${-dif} ${dif === -1 ? "mes" : "meses"}.`
+        : "Igual que hace una semana.";
+    } else if (antes && !antes.fecha && p.fecha) cambio = "Hace una semana todavía no había fecha.";
+    const ini = new Date(hoy.getFullYear(), 0, 1), fin = new Date(hoy.getFullYear() + 7, 0, 1);
+    const pos = (d) => `${Math.min(100, Math.max(0, ((d - ini) / (fin - ini)) * 100))}%`;
+    const anios = Array.from({ length: 8 }, (_, i) => hoy.getFullYear() + i);
+    const pct = Math.min(100, (p.tiene / Math.max(1, p.necesita)) * 100);
+    return `${etiqueta}
+      <p class="ritmo-fecha">${p.fecha ? mesAnio(p.fecha) : "Al ritmo de estos días, todavía no llega"}</p>
+      <div class="ritmo-linea" role="img" aria-label="${p.fecha ? `Fecha posible: ${mesAnio(p.fecha)}` : "Sin fecha posible todavía"}">
+        <span class="ritmo-pista"></span>
+        <span class="ritmo-hoy" style="left:${pos(hoy)}"></span>
+        ${antes && antes.fecha && (!p.fecha || antes.fecha.getTime() !== p.fecha.getTime()) ? `<span class="ritmo-antes" style="left:${pos(antes.fecha)}"></span>` : ""}
+        ${p.fecha ? `<span class="ritmo-viaje" style="left:${pos(p.fecha)}"></span>` : ""}
+        ${anios.map((a) => `<span class="ritmo-anio" style="left:${pos(new Date(a, 0, 1))}">${a}</span>`).join("")}
+      </div>
+      <p class="ritmo-texto">Llevan <strong>${pesos(p.tiene)}</strong> de ${pesos(p.necesita)}${p.quedaEnChile ? " (con el colchón que queda en Chile)" : ""}. En los últimos ${p.dias} días guardaron al ritmo de <strong>${pesos(Math.max(0, p.mensual))} al mes</strong>. ${cambio}</p>
+      <div class="ritmo-barra" aria-hidden="true"><i style="width:${pct}%"></i></div>
+      ${enVentana ? `<p class="nota">Se recalcula cada día: un depósito grande la adelanta y las semanas sin anotar la van corriendo.${p.fecha ? ` <button type="button" class="boton-texto" id="usar-ritmo">Usar ${mesAnio(p.fecha)} como fecha de viaje</button>` : ""}</p>`
+        : `<div class="visor-acciones"><button type="button" class="boton" data-anotar>Anotar ahorro</button><a class="boton-texto" href="#registro">Ver lo anotado</a></div>`}`;
+  }
+
   function pintarVisores() {
     const c = colchon();
     $("#visor-colchon").innerHTML = htmlVisorColchon(c, false);
+    $("#visor-ritmo").innerHTML = htmlRitmo(false);
 
     const mes = $("#visor-mes");
     if (!c.hayDatos) {
@@ -476,6 +563,11 @@
     mostrarPrimero();
     sincronizadores.push(mostrarPrimero);
     primero.addEventListener("change", () => { estado.colchonPrimero = primero.checked; guardar(); todo(); });
+    const viaja = $("#colchon-viaja");
+    const mostrarViaja = () => { viaja.checked = estado.colchonViaja; };
+    mostrarViaja();
+    sincronizadores.push(mostrarViaja);
+    viaja.addEventListener("change", () => { estado.colchonViaja = viaja.checked; guardar(); todo(); });
 
     const esc = $("#escenarios-botones");
     colchonData.escenarios.forEach((e) => {
@@ -630,6 +722,22 @@
     $("#etapa-texto").innerHTML = actual ? t(actual.texto) : "Anoten su economía para saber en qué etapa están.";
     pintarEscenarios();
     pintarRegistro(c);
+    $("#ritmo-real").innerHTML = htmlRitmo(true);
+    const usar = $("#usar-ritmo");
+    if (usar) usar.addEventListener("click", () => {
+      const f = proyeccionReal().fecha;
+      estado.viaje = { m: f.getMonth(), y: f.getFullYear() };
+      guardar(); refrescarTodo(); location.hash = "#inicio";
+    });
+    // Cada largo de colchón con la fecha de Alemania que deja
+    const guardado = estado.colchonMeses;
+    document.querySelectorAll("#meses-colchon button").forEach((b) => {
+      const m = Number(b.dataset.meses);
+      estado.colchonMeses = m;
+      const sim = simular({});
+      estado.colchonMeses = guardado;
+      b.innerHTML = `${m} ${m === 1 ? "mes" : "meses"}<small>${sim.c.hayDatos ? (sim.fecha ? `Alemania ${MESES[sim.fecha.getMonth()].slice(0, 3)} ${sim.fecha.getFullYear()}` : "sin fecha") : ""}</small>`;
+    });
     pintarAcciones();
   }
 
@@ -1655,7 +1763,7 @@
     const pv = estado.probarVivienda;
     const sim = colchon({ extra, pieza: pv && pv.conCuentas ? pv.monto : null, arriendo: pv && !pv.conCuentas ? pv.monto : null });
     const inicio = estado.colchonPrimero ? (sim.falta === 0 ? hoy : sim.listo) : hoy;
-    const fecha = sim.disp > 0 && inicio ? fechaPosible(sim.disp, inicio) : null;
+    const fecha = sim.disp > 0 && inicio ? fechaPosible(sim.disp, inicio, aporteDe(sim)) : null;
     const cubreBasico = ingreso >= fijo;
     $("#lucas-resumen").innerHTML = `
       <p class="visor-etiqueta">Con ${pesos(ingreso)} al mes</p>
@@ -1696,6 +1804,18 @@
       estado.trabajo = b.dataset.trabajo;
       pintarTrabajos();
       if (angosta.matches) $("#trabajo-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+    $("#postular-armar").addEventListener("click", (e) => {
+      const k = e.target.closest("[data-kw]"), x = e.target.closest("[data-extra]");
+      if (k) buscaK = k.dataset.kw;
+      if (x) { const v = x.dataset.extra; if (buscaExtras.has(v)) buscaExtras.delete(v); else buscaExtras.add(v); }
+      if (k || x) pintarPostular();
+    });
+    $("#plataformas").addEventListener("click", (e) => {
+      const a = e.target.closest("[data-copiar]");
+      if (!a) return;
+      const texto = a.dataset.copiar;
+      if (navigator.clipboard) navigator.clipboard.writeText(texto).then(() => avisoBreve(`Copiado: «${texto}». Péguenlo en el buscador.`), () => {});
     });
     const todas = new Map();
     trabajosData.trabajos.forEach((t) => t.fuentes.forEach((x) => todas.set(x.url, x)));
@@ -1777,9 +1897,39 @@
       <p class="detalle-req"><strong>Piden:</strong> ${t.requisitos}</p>
       <p class="detalle-req detalle-entrada entrada-txt-${t.entrada}"><strong>Para entrar:</strong> ${t.costo || "no hay que pagar nada antes."}</p>
       ${t.donde ? `<p class="detalle-req"><strong>Dónde buscar:</strong> ${t.donde}</p>` : ""}
+      ${t.ojo ? `<p class="detalle-ojo"><strong>Ojo:</strong> ${t.ojo}</p>` : ""}
+      ${t.buscar ? `<a class="boton detalle-buscar" href="#postular">Buscar avisos de esto</a>` : ""}
       <div class="detalle-tags">${t.tags.map((g) => `<span>${(trabajosData.filtros.find((f) => f.id === g) || {}).nombre || trabajosData.entradas[g] || g}</span>`).join("")}</div>
       <div class="detalle-fuentes">${t.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join("")}</div>` : "";
+    pintarPostular();
     pintarCombina();
+  }
+
+  /* Dónde postular: las palabras del trabajo elegido, armadas como búsqueda en cada portal. */
+  let buscaK = null;
+  const buscaExtras = new Set();
+  const enGuiones = (q) => q.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  function pintarPostular() {
+    const caja = $("#postular-armar");
+    if (!caja) return;
+    const t = trabajosData.trabajos.find((j) => j.id === estado.trabajo);
+    const claves = (t && t.buscar) || [];
+    if (!claves.includes(buscaK)) buscaK = claves[0] || null;
+    const q = [buscaK, ...buscaExtras].filter(Boolean).join(" ");
+    caja.innerHTML = t && buscaK ? `
+      <p class="postular-para">Buscando <strong>${t.nombre}</strong>. Elijan las palabras:</p>
+      <div class="postular-claves" role="group" aria-label="Palabras para buscar">
+        ${claves.map((k) => `<button type="button" data-kw="${attr(k)}" aria-pressed="${k === buscaK}">${k}</button>`).join("")}
+        <span class="postular-mas">${trabajosData.agregados.map((x) => `<button type="button" data-extra="${attr(x)}" aria-pressed="${buscaExtras.has(x)}">+ ${x}</button>`).join("")}</span>
+      </div>` : `<p class="postular-para">Elijan un trabajo de la escala para armar la búsqueda.</p>`;
+    $("#plataformas").innerHTML = trabajosData.plataformas.map((p) => {
+      const url = q && p.busca ? p.busca.replace("{q}", encodeURIComponent(q)).replace("{guion}", enGuiones(q)) : (p.inicio || p.busca.replace(/\/(trabajo-|jobs).*$/, "/"));
+      const accion = q ? (p.busca ? `Ver «${escapar(q)}»` : `Copia «${escapar(q)}» y abre`) : "Abrir";
+      return `<a class="plataforma" href="${url}" target="_blank" rel="noopener" ${q && !p.busca ? `data-copiar="${attr(q)}"` : ""}>
+        <span class="plataforma-nombre">${p.nombre}</span>
+        <span class="plataforma-para">${p.para}</span>
+        <span class="plataforma-accion">${accion} ↗</span></a>`;
+    }).join("");
   }
 
   function pintarCombina() {
@@ -1811,7 +1961,7 @@
     const arriendo = comuna ? comuna.arriendo + barriosData.gastosComunes : null;
     const c = colchon({ extra, pieza, arriendo });
     const inicio = estado.colchonPrimero ? (c.falta === 0 ? hoy : c.listo) : hoy;
-    const fecha = c.disp > 0 && inicio ? fechaPosible(c.disp, inicio) : null;
+    const fecha = c.disp > 0 && inicio ? fechaPosible(c.disp, inicio, aporteDe(c)) : null;
     const metaDos = trabajosData.metaPersona * 2;
     const vivienda = pieza != null ? pieza : (arriendo != null ? arriendo : eco.arriendo) + eco.cuentas;
     const viviendaTexto = pieza != null ? "la pieza (todo incluido)" : comuna ? `${comuna.nombre} con gasto común y cuentas` : "la vivienda de hoy con cuentas";
@@ -1922,7 +2072,7 @@
   const VISTAS = ["inicio", "colchon", "lucas", "trabajos", "vivir", "refugio", "dinero", "ciudades", "ruta", "prepararse", "dudas", "conectar"];
   const DENTRO = {
     economia: "colchon", escenarios: "colchon", registro: "colchon", acciones: "colchon", "ajustes-colchon": "colchon",
-    carpeta: "ruta", combinador: "trabajos", "preguntas-que-deciden": "refugio", familia: "refugio", "mal-mes": "refugio", contenido: null
+    carpeta: "ruta", combinador: "trabajos", postular: "trabajos", "preguntas-que-deciden": "refugio", familia: "refugio", "mal-mes": "refugio", contenido: null
   };
   const CON_ANOTAR = new Set(["inicio", "colchon", "lucas"]);
   let vistaActual = null;
