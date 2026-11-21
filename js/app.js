@@ -1675,7 +1675,10 @@
   function montarTrabajos() {
     $("#trabajos-intro").textContent = trabajosData.intro;
     $("#trabajos-conclusion").textContent = trabajosData.conclusion;
-    estado.filtrosTrabajo = estado.filtrosTrabajo || [];
+    const idsFiltro = new Set(trabajosData.filtros.map((x) => x.id));
+    estado.filtrosTrabajo = (estado.filtrosTrabajo || []).filter((id) => idsFiltro.has(id));
+    const idsTrabajo = new Set(["hoy", "full-min", "part-min", ...trabajosData.trabajos.map((t) => t.id)]);
+    plan.personas.forEach((_, i) => { if (!idsTrabajo.has(estado.combina[i])) estado.combina[i] = "hoy"; });
     const f = $("#trabajos-filtros");
     f.innerHTML = trabajosData.filtros.map((x) => `<button type="button" data-filtro="${x.id}">${x.nombre}</button>`).join("");
     f.addEventListener("click", (e) => {
@@ -1760,7 +1763,7 @@
       </div>
       ${visibles.length ? visibles.map((t) => `
         <button type="button" class="escala-fila" data-trabajo="${t.id}" aria-pressed="${t.id === estado.trabajo}">
-          <span class="escala-nombre">${t.nombre}</span>
+          <span class="escala-nombre"><i class="entrada entrada-${t.entrada}" title="${trabajosData.entradas[t.entrada]}"></i>${t.nombre}</span>
           <span class="escala-pista"><i style="left:${x(t.min)};width:calc(${x(t.max)} - ${x(t.min)})"></i></span>
           <span class="escala-monto">${pesos(t.min)} – ${pesos(t.max)}</span>
         </button>`).join("") : `<p class="nota">Ningún trabajo cumple todos esos filtros a la vez.</p>`}
@@ -1772,7 +1775,9 @@
       <p class="detalle-rango">${pesos(t.min)} a ${pesos(t.max)}</p>
       <p>${t.detalle}</p>
       <p class="detalle-req"><strong>Piden:</strong> ${t.requisitos}</p>
-      <div class="detalle-tags">${t.tags.map((g) => `<span>${(trabajosData.filtros.find((f) => f.id === g) || {}).nombre || g}</span>`).join("")}</div>
+      <p class="detalle-req detalle-entrada entrada-txt-${t.entrada}"><strong>Para entrar:</strong> ${t.costo || "no hay que pagar nada antes."}</p>
+      ${t.donde ? `<p class="detalle-req"><strong>Dónde buscar:</strong> ${t.donde}</p>` : ""}
+      <div class="detalle-tags">${t.tags.map((g) => `<span>${(trabajosData.filtros.find((f) => f.id === g) || {}).nombre || trabajosData.entradas[g] || g}</span>`).join("")}</div>
       <div class="detalle-fuentes">${t.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join("")}</div>` : "";
     pintarCombina();
   }

@@ -1,147 +1,452 @@
 {
   "revisado": "2026-11-20",
-  "intro": "Sueldos de avisos y estudios publicados en 2026 para trabajos que no piden título. Las barras van de lo más bajo a lo más alto que encontramos; la línea amarilla es la meta de cada uno y la punteada, lo que gana la mitad de los chilenos.",
+  "intro": "Sueldos líquidos de avisos publicados en 2026 para trabajos que no piden título. Cada trabajo dice qué se necesita para entrar y si hay que pagar algo antes. La línea amarilla es la meta de cada uno y la punteada, lo que gana la mitad de los chilenos.",
   "mediana": 680000,
-  "medianaFuente": { "nombre": "INE, Encuesta Suplementaria de Ingresos 2025", "url": "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/07/14/la-mitad-de-las-personas-ocupadas-en-chile-percibieron-ingresos-menores-o-iguales-a-$680.000-en-2025" },
+  "medianaFuente": {
+    "nombre": "INE, Encuesta Suplementaria de Ingresos 2025",
+    "url": "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/07/14/la-mitad-de-las-personas-ocupadas-en-chile-percibieron-ingresos-menores-o-iguales-a-$680.000-en-2025"
+  },
   "metaPersona": 1500000,
+  "entradas": {
+    "libre": "Sin pagar nada",
+    "curso": "Curso corto pagado",
+    "inversion": "Licencia, auto o certificación cara"
+  },
   "filtros": [
-    { "id": "santiago", "nombre": "En Santiago" },
-    { "id": "sinExp", "nombre": "Sin experiencia" },
-    { "id": "estudiar", "nombre": "Se puede compatibilizar con estudiar" },
-    { "id": "ingles", "nombre": "Usa inglés" }
+    {
+      "id": "libre",
+      "nombre": "Sin pagar nada para entrar"
+    },
+    {
+      "id": "sinExp",
+      "nombre": "Sin experiencia"
+    },
+    {
+      "id": "estudiar",
+      "nombre": "Compatible con estudiar"
+    },
+    {
+      "id": "ingles",
+      "nombre": "Usa inglés"
+    },
+    {
+      "id": "comisiones",
+      "nombre": "Con comisiones"
+    }
   ],
   "trabajos": [
     {
-      "id": "caex",
-      "nombre": "Operador de camión minero (CAEX)",
-      "min": 1379000, "max": 1930000,
-      "detalle": "Turnos 7x7 en faenas del norte (Antofagasta, Atacama) o Los Bronces. Es lo único sin título que pasa holgado la meta, pero pide certificación en el modelo de camión y, casi siempre, experiencia previa en minería.",
-      "requisitos": "Licencia profesional, certificación del equipo y salud compatible con faena.",
-      "tags": [],
+      "id": "telecom-tienda",
+      "nombre": "Ejecutivo comercial en tienda de telefonía",
+      "min": 800000,
+      "max": 1000000,
+      "entrada": "libre",
+      "detalle": "Atender y vender planes, fibra y equipos en tiendas de Entel o WOM (casi siempre a través de socios comerciales). Base cercana a $610.000 líquidos más comisiones sin tope; los avisos hablan de un promedio de $810.000 a $1.000.000.",
+      "requisitos": "Cuarto medio y ganas de vender. Varios no piden experiencia.",
+      "donde": "Socios de Entel (CTF Tecnología) y de WOM (Telko), tiendas en malls.",
+      "tags": [
+        "libre",
+        "sinExp",
+        "comisiones"
+      ],
       "fuentes": [
-        { "nombre": "Redimin: vacantes CAEX 2026", "url": "https://www.redimin.cl/operadores-caex-en-mineria-revisa-vacantes-con-sueldos-de-hasta-1-700-000/amp/" },
-        { "nombre": "Redimin: CAEX 930 El Salvador", "url": "https://www.redimin.cl/?p=11057" }
+        {
+          "nombre": "Chiletrabajos: Telko, partner WOM (promedio $810.000 a $1.000.000)",
+          "url": "https://www.chiletrabajos.cl/trabajo/3890122"
+        },
+        {
+          "nombre": "Chiletrabajos: Entel Plaza Norte, base $610.000 + comisiones",
+          "url": "https://www.chiletrabajos.cl/trabajo/3915790"
+        },
+        {
+          "nombre": "Chiletrabajos: tienda Entel Maipú",
+          "url": "https://www.chiletrabajos.cl/trabajo/ejecutivo-a-comercial-tienda-entel-full-time-3919155"
+        }
       ]
     },
     {
-      "id": "ventas-terreno",
-      "nombre": "Ejecutivo comercial o representante de ventas",
-      "min": 900000, "max": 1200000,
-      "detalle": "Sueldo base más comisiones. Para quien ya atendió público y vendió, es el camino más directo a pasar el millón en Santiago. En los meses malos se gana solo el base.",
-      "requisitos": "Experiencia en ventas (aunque sea en tienda) y buena conversación.",
-      "tags": ["santiago"],
+      "id": "retail-mall",
+      "nombre": "Vendedor en tienda de mall",
+      "min": 700000,
+      "max": 970000,
+      "entrada": "libre",
+      "detalle": "Venta con comisiones en malls. El sueldo depende de la tienda y del mall: en Costanera o Parque Arauco se ven ofertas de $850.000 a $970.000 con comisiones; el piso suele rondar los $590.000.",
+      "requisitos": "Cuarto medio; muchos piden 6 meses de experiencia en venta.",
+      "donde": "Tiendas de accesorios, tecnología, relojería y vestuario en malls grandes.",
+      "tags": [
+        "libre",
+        "comisiones"
+      ],
       "fuentes": [
-        { "nombre": "Meganoticias: datos SENCE 2026 (percentil 75)", "url": "https://www.meganoticias.cl/dato-util/522353-trabajos-mejor-pagados-sin-educacion-superior-chile-sence-18-05-2026.html" },
-        { "nombre": "Jooble: avisos de ejecutivo comercial", "url": "https://cl.jooble.org/jdp/-2884325801050534003" }
-      ]
-    },
-    {
-      "id": "inmobiliaria",
-      "nombre": "Ventas inmobiliarias",
-      "min": 750000, "max": 1000000,
-      "detalle": "Base entre $750.000 y $950.000 más un porcentaje por departamento vendido. Varios avisos piden experiencia vendiendo departamentos; el telemarketing inmobiliario es la puerta de entrada.",
-      "requisitos": "Experiencia en ventas; algunos aceptan sin experiencia en el rubro.",
-      "tags": ["santiago"],
-      "fuentes": [
-        { "nombre": "Chiletrabajos: ejecutiva de ventas inmobiliaria, Providencia", "url": "https://www.chiletrabajos.cl/trabajo/3870739" },
-        { "nombre": "Chiletrabajos: telemarketing inmobiliario", "url": "https://www.chiletrabajos.cl/trabajo/ejecutivo-a-de-telemarketing-sector-inmobiliario-3923038" }
+        {
+          "nombre": "Chiletrabajos: vendedor Costanera Center, $850.000",
+          "url": "https://www.chiletrabajos.cl/trabajo/se-requiere-vendedor-full-time-mall-costanera-center-3267865"
+        },
+        {
+          "nombre": "Chiletrabajos: vendedor Parque Arauco, $970.000",
+          "url": "https://www.chiletrabajos.cl/trabajo/3310123"
+        },
+        {
+          "nombre": "Chiletrabajos: venta Costanera, $590.000 a $700.000",
+          "url": "https://www.chiletrabajos.cl/trabajo/3930620"
+        }
       ]
     },
     {
       "id": "callcenter-ventas",
       "nombre": "Call center de ventas",
-      "min": 923000, "max": 1060000,
-      "detalle": "Los que venden (telefonía para pymes, seguros) pagan bastante más que los de atención: alrededor de un millón cumpliendo metas. Turnos de 42 horas, a veces con sábado.",
-      "requisitos": "Educación media; muchos piden algo de experiencia en ventas.",
-      "tags": ["santiago", "sinExp"],
+      "min": 923000,
+      "max": 1060000,
+      "entrada": "libre",
+      "detalle": "Los que venden (telefonía para pymes, seguros) pagan bastante más que los de atención: alrededor de un millón cumpliendo metas.",
+      "requisitos": "Cuarto medio; algunos piden experiencia en ventas.",
+      "donde": "Teleperformance, call centers de telecomunicaciones.",
+      "tags": [
+        "libre",
+        "sinExp",
+        "comisiones"
+      ],
       "fuentes": [
-        { "nombre": "Computrabajo: Teleperformance, ventas", "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-asesora-call-center-ventas-en-santiago-huechuraba-44BE03D31164657961373E686DCF3405" },
-        { "nombre": "Indeed: call center ventas pyme", "url": "https://cl.indeed.com/l%c3%adder-call-center-jobs?fromage=3" }
+        {
+          "nombre": "Computrabajo: Teleperformance, ventas",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-asesora-call-center-ventas-en-santiago-huechuraba-44BE03D31164657961373E686DCF3405"
+        },
+        {
+          "nombre": "Indeed: call center ventas pyme",
+          "url": "https://cl.indeed.com/l%c3%adder-call-center-jobs?fromage=3"
+        }
+      ]
+    },
+    {
+      "id": "ventas-remotas",
+      "nombre": "Ventas por teléfono o remotas",
+      "min": 560000,
+      "max": 1800000,
+      "entrada": "libre",
+      "detalle": "Seguros, servicios financieros o productos desde casa o call center. El base es el sueldo mínimo con gratificación; el resto depende de lo que vendan. Hay avisos 100% remotos con base de $800.000 y promedio de $1,8 millones, pero es el rango más inestable de todos.",
+      "requisitos": "Buena conversación y tolerancia a metas; algunos piden experiencia.",
+      "donde": "Call centers de seguros (Helpbank para BCI), empresas con ventas remotas.",
+      "tags": [
+        "libre",
+        "comisiones",
+        "estudiar"
+      ],
+      "fuentes": [
+        {
+          "nombre": "Jooble: ventas de seguros, $553.553 + gratificación + comisiones",
+          "url": "https://cl.jooble.org/jdp/6970111353745676677"
+        },
+        {
+          "nombre": "Indeed: ventas remotas, base $800.000, promedio $1.800.000",
+          "url": "https://cl.indeed.com/q-remoto-empleos.html"
+        }
+      ]
+    },
+    {
+      "id": "ventas-terreno",
+      "nombre": "Ejecutivo comercial en terreno",
+      "min": 900000,
+      "max": 1200000,
+      "entrada": "libre",
+      "detalle": "Visitar clientes y empresas. Para quien ya vendió, es de los caminos más directos al millón en Santiago. En los meses malos se gana solo el base.",
+      "requisitos": "Experiencia en ventas (aunque sea en tienda).",
+      "donde": "Empresas de servicios, distribuidoras, telecomunicaciones para empresas.",
+      "tags": [
+        "libre",
+        "comisiones"
+      ],
+      "fuentes": [
+        {
+          "nombre": "Meganoticias: datos SENCE 2026 (percentil 75)",
+          "url": "https://www.meganoticias.cl/dato-util/522353-trabajos-mejor-pagados-sin-educacion-superior-chile-sence-18-05-2026.html"
+        },
+        {
+          "nombre": "Jooble: ejecutivo comercial, ~$1.148.000",
+          "url": "https://cl.jooble.org/jdp/-2884325801050534003"
+        }
+      ]
+    },
+    {
+      "id": "atencion-servicios",
+      "nombre": "Atención al cliente (Enel, Entel y otras)",
+      "min": 559000,
+      "max": 683000,
+      "entrada": "libre",
+      "detalle": "Atender llamados, chats y reclamos de empresas de luz y telefonía, casi siempre a través de empresas externas. Hay versión de 30 horas por unos $421.000. Las oficinas comerciales de Enel piden un año de experiencia en atención.",
+      "requisitos": "Cuarto medio; experiencia deseable, no siempre exigida.",
+      "donde": "Konecta (para Enel y Chilquinta), Entel Connect, Atento, Teleperformance.",
+      "tags": [
+        "libre",
+        "sinExp",
+        "estudiar"
+      ],
+      "fuentes": [
+        {
+          "nombre": "Jooble: Konecta, atención al cliente para Enel, $559.000",
+          "url": "https://cl.jooble.org/jdp/-4891037851662697978"
+        },
+        {
+          "nombre": "Indeed: Entel Connect, $683.000 (42 h) y $421.000 (30 h)",
+          "url": "https://cl.indeed.com/cmp/Entel/salaries"
+        },
+        {
+          "nombre": "Chiletrabajos: oficinas comerciales de Enel",
+          "url": "https://www.chiletrabajos.cl/trabajo/3887617"
+        }
+      ]
+    },
+    {
+      "id": "banco",
+      "nombre": "Banco: caja y atención en sucursal",
+      "min": 600000,
+      "max": 1100000,
+      "entrada": "curso",
+      "detalle": "Se suele entrar como cajero de reemplazo a través de una empresa externa ($600.000 a $700.000 líquidos). La meta es quedar contratado directo por el banco: BCI fijó un sueldo mínimo interno de $1.100.000 para contratos indefinidos (el anuncio no dice si es bruto o líquido).",
+      "requisitos": "Curso de cajero bancario (casi siempre excluyente) y, en varios avisos, algo de experiencia en caja.",
+      "donde": "Adecco, Activos Chile, Progestion y Helpbank (para BancoEstado, BCI y BICE); Banco Falabella publica directo.",
+      "costo": "Curso de cajero bancario: hay de 18 horas en línea por unos $55.000.",
+      "tags": [
+        "curso"
+      ],
+      "fuentes": [
+        {
+          "nombre": "Computrabajo: cajero bancario La Cisterna, $700.000",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-cajeroa-bancario-para-la-cisterna-en-santiago-san-miguel-92CCE4D1CDB2A87C61373E686DCF3405"
+        },
+        {
+          "nombre": "Computrabajo: cajero reemplazo, $610.000",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-cajero-bancario-reemplazo-santiago-centro-en-santiago-centro-741169427c1e09c861373e686dcf3405"
+        },
+        {
+          "nombre": "Meganoticias: BCI fija sueldo mínimo interno de $1.100.000",
+          "url": "https://www.meganoticias.cl/nacional/506534-banco-bci-sueldo-minimo-1-millon-beneficios-trabajadores-21-11-2025.html"
+        },
+        {
+          "nombre": "Computrabajo: curso de cajero bancario, 18 horas",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-curso-de-cajero-bancario-online-region-de-los-lagos-en-puerto-montt-C42219D399ABE7CE61373E686DCF3405"
+        }
+      ]
+    },
+    {
+      "id": "cobranza",
+      "nombre": "Ejecutivo de cobranza",
+      "min": 553553,
+      "max": 800000,
+      "entrada": "libre",
+      "detalle": "Llamar o visitar a deudores para negociar pagos. Sueldo base más comisiones por lo recuperado; los fijos van de $553.553 a $800.000.",
+      "requisitos": "Cuarto medio; muchos piden un año de experiencia en cobranza.",
+      "donde": "Estudios jurídicos, empresas de cobranza, bancos y casas comerciales.",
+      "tags": [
+        "libre",
+        "comisiones"
+      ],
+      "fuentes": [
+        {
+          "nombre": "Chiletrabajos: cobranza área salud, $800.000 líquidos",
+          "url": "https://www.chiletrabajos.cl/trabajo/3919731"
+        },
+        {
+          "nombre": "Chiletrabajos: cobranza Providencia, $600.000",
+          "url": "https://www.chiletrabajos.cl/trabajo/3908019"
+        },
+        {
+          "nombre": "Chiletrabajos: cobranza en terreno, base $553.553 + comisiones",
+          "url": "https://www.chiletrabajos.cl/trabajo/3861648"
+        }
+      ]
+    },
+    {
+      "id": "aeropuerto",
+      "nombre": "Atención de pasajeros en el aeropuerto",
+      "min": 400000,
+      "max": 880000,
+      "entrada": "libre",
+      "detalle": "Orientar pasajeros, objetos perdidos, salones y seguridad bilingüe. Hay jornadas de 27 a 36 horas, turnos de noche y buses de acercamiento desde el metro.",
+      "requisitos": "Inglés intermedio o avanzado (casi siempre excluyente).",
+      "donde": "GSB, Longport, Swissport y Acciona en el Aeropuerto de Santiago.",
+      "tags": [
+        "libre",
+        "ingles",
+        "estudiar"
+      ],
+      "fuentes": [
+        {
+          "nombre": "Chiletrabajos: agente bilingüe aeropuerto, $470.000 a $880.000",
+          "url": "https://www.chiletrabajos.cl/trabajo/3869466"
+        },
+        {
+          "nombre": "Chiletrabajos: aeropuerto turno noche, $600.000 por 36 h",
+          "url": "https://www.chiletrabajos.cl/trabajo/postular/3816948"
+        },
+        {
+          "nombre": "Chiletrabajos: aeropuerto 29 h, $400.000",
+          "url": "https://www.chiletrabajos.cl/trabajo/3911685"
+        }
       ]
     },
     {
       "id": "soporte-ti",
       "nombre": "Soporte TI",
-      "min": 720000, "max": 1000000,
-      "detalle": "Mesa de ayuda y soporte a usuarios. Con inglés el sueldo sube cerca del millón, y con experiencia hay avisos de $1,2 a $1,8 millones. Es el camino natural para quien ya programa.",
-      "requisitos": "Conocimientos de Windows, redes y Office 365; varios piden técnico o un año de experiencia.",
-      "tags": ["santiago", "ingles"],
+      "min": 720000,
+      "max": 1000000,
+      "entrada": "libre",
+      "detalle": "Mesa de ayuda y soporte a usuarios. Con inglés sube cerca del millón, y con experiencia hay avisos de $1,2 a $1,8 millones. Es el camino natural para quien ya programa.",
+      "requisitos": "Windows, redes y Office 365; varios piden técnico o un año de experiencia.",
+      "donde": "Consultoras TI, empresas grandes con mesa de ayuda propia.",
+      "tags": [
+        "libre",
+        "ingles"
+      ],
       "fuentes": [
-        { "nombre": "Computrabajo: soporte N1 y técnico 1B", "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-ejecutivoa-call-center-atencion-soporte-tecnico-providencia-en-santiago-providencia-ec42d000809da0e161373e686dcf3405" },
-        { "nombre": "Chiletrabajos: soporte TI con inglés", "url": "https://www.chiletrabajos.cl/trabajo/3910821" },
-        { "nombre": "Indeed: help desk", "url": "https://cl.indeed.com/q-help-desk-empleos.html" }
+        {
+          "nombre": "Computrabajo: soporte N1 y técnico 1B",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-ejecutivoa-call-center-atencion-soporte-tecnico-providencia-en-santiago-providencia-ec42d000809da0e161373e686dcf3405"
+        },
+        {
+          "nombre": "Chiletrabajos: soporte TI con inglés",
+          "url": "https://www.chiletrabajos.cl/trabajo/3910821"
+        }
       ]
     },
     {
       "id": "programacion",
       "nombre": "Desarrollo de software",
-      "min": 720000, "max": 1190000,
-      "detalle": "El promedio de los avisos de desarrollador ronda $1,19 millones; un analista programador parte cerca de $720.000. Sin título se entra con un portafolio que muestre proyectos reales.",
-      "requisitos": "Portafolio (GitHub), un lenguaje bien manejado y algo de bases de datos.",
-      "tags": ["santiago", "estudiar"],
+      "min": 720000,
+      "max": 1190000,
+      "entrada": "libre",
+      "detalle": "El promedio de los avisos de desarrollador ronda $1,19 millones; un analista programador parte cerca de $720.000. Sin título se entra con un portafolio de proyectos reales.",
+      "requisitos": "Portafolio en GitHub, un lenguaje bien manejado y algo de bases de datos.",
+      "donde": "GetOnBoard, LinkedIn, consultoras de software.",
+      "tags": [
+        "libre",
+        "estudiar"
+      ],
       "fuentes": [
-        { "nombre": "Indeed: sueldos de desarrollador de software", "url": "https://cl.indeed.com/career/full-stack-developer/salaries/Remote" },
-        { "nombre": "Indeed: analista programador", "url": "https://cl.indeed.com/career/full-stack-developer/salaries" }
+        {
+          "nombre": "Indeed: sueldos de desarrollador de software",
+          "url": "https://cl.indeed.com/career/full-stack-developer/salaries/Remote"
+        }
       ]
     },
     {
-      "id": "ingles",
-      "nombre": "Atención al cliente en inglés",
-      "min": 529000, "max": 850000,
-      "detalle": "Call centers para empresas de afuera. Contratan sin experiencia si el inglés es fluido; el sueldo de entrada no es alto, pero suben según metas.",
-      "requisitos": "Inglés conversacional o fluido.",
-      "tags": ["santiago", "sinExp", "ingles"],
+      "id": "asistente-aula",
+      "nombre": "Asistente de aula o de la educación",
+      "min": 436000,
+      "max": 750000,
+      "entrada": "libre",
+      "detalle": "Apoyo en sala, after school o inspectoría. La media de los avisos ronda los $436.000 a $451.000; hay jornadas de 34 a 35 horas y algunos colegios buscan justamente estudiantes de pedagogía.",
+      "requisitos": "Experiencia con niños; algunos piden técnico en educación.",
+      "donde": "Colegios particulares subvencionados, programas after school.",
+      "tags": [
+        "libre",
+        "estudiar"
+      ],
       "fuentes": [
-        { "nombre": "Chiletrabajos: agente con inglés conversacional", "url": "https://www.chiletrabajos.cl/trabajo/se-necesita-agente-call-center-con-ingles-conversacional-3835824" },
-        { "nombre": "Chiletrabajos: call center bilingüe", "url": "https://www.chiletrabajos.cl/trabajo/operador-de-call-center-bilingue-3454743" }
+        {
+          "nombre": "Chiletrabajos: media de asistente de aula",
+          "url": "https://www.chiletrabajos.cl/sueldos/asistente/aula"
+        },
+        {
+          "nombre": "Chiletrabajos: asistente para after school, $750.000",
+          "url": "https://www.chiletrabajos.cl/trabajo/3723630"
+        }
       ]
     },
     {
       "id": "guardia",
       "nombre": "Guardia de seguridad (OS10)",
-      "min": 540000, "max": 800000,
-      "detalle": "Turnos 4x4: cuatro días de 12 horas y cuatro libres. Esos días libres permiten estudiar o tener un segundo trabajo, y muchos pagan turnos extra.",
+      "min": 540000,
+      "max": 800000,
+      "entrada": "curso",
+      "detalle": "Turnos 4x4: cuatro días de 12 horas y cuatro libres, que dejan espacio para estudiar o tener otro trabajo.",
       "requisitos": "Curso OS10 vigente y cuarto medio.",
-      "tags": ["santiago", "sinExp", "estudiar"],
+      "donde": "Prosegur, Eulen, guardias para metro, aeropuerto y universidades.",
+      "costo": "Curso OS10: hay ofertas desde unos €71 en dos cuotas.",
+      "tags": [
+        "curso",
+        "sinExp",
+        "estudiar"
+      ],
       "fuentes": [
-        { "nombre": "Chiletrabajos: guardia 4x4 noche, $800.000", "url": "https://www.chiletrabajos.cl/trabajo/3898707" },
-        { "nombre": "Chiletrabajos: guardia 4x4 noche, $540.000", "url": "https://www.chiletrabajos.cl/trabajo/guardias-con-os10-en-tramite-o-vigentes-4x4-noche-3860430" }
+        {
+          "nombre": "Chiletrabajos: guardia 4x4 noche, $800.000",
+          "url": "https://www.chiletrabajos.cl/trabajo/3898707"
+        },
+        {
+          "nombre": "Emagister: curso OS10",
+          "url": "https://www.emagister.com/cursos-seguridad-emergencias-chile-ctpa-5-20491.htm"
+        }
       ]
     },
     {
       "id": "bodega",
       "nombre": "Bodega, turno noche",
-      "min": 589000, "max": 782000,
+      "min": 589000,
+      "max": 782000,
+      "entrada": "libre",
       "detalle": "Lo más rápido de conseguir: muchos sin experiencia, con bus y colación. En temporada alta (Cyber, Black Friday, Navidad) pagan más.",
-      "requisitos": "Disponibilidad nocturna; algunos piden manejo de radiofrecuencia.",
-      "tags": ["santiago", "sinExp"],
+      "requisitos": "Disponibilidad nocturna.",
+      "donde": "Centros de distribución en Pudahuel, Quilicura y San Bernardo.",
+      "tags": [
+        "libre",
+        "sinExp"
+      ],
       "fuentes": [
-        { "nombre": "Computrabajo: bodega noche Quilicura", "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-operariosas-de-bodega-quilicura-full-time-1930-pm-a-0530-am-temporada-cyber-ingreso-inmediato-turno-de-noche-con-experiencia-en-santiago-quilicura-92DC7B58035526BF61373E686DCF3405" },
-        { "nombre": "Chiletrabajos: bodega noche $599.000 + bono", "url": "https://www.chiletrabajos.cl/trabajo/3884780" }
+        {
+          "nombre": "Computrabajo: bodega noche Quilicura",
+          "url": "https://cl.computrabajo.com/ofertas-de-trabajo/oferta-de-trabajo-de-operariosas-de-bodega-quilicura-full-time-1930-pm-a-0530-am-temporada-cyber-ingreso-inmediato-turno-de-noche-con-experiencia-en-santiago-quilicura-92DC7B58035526BF61373E686DCF3405"
+        }
       ]
     },
     {
       "id": "uber",
       "nombre": "Conductor de aplicación",
-      "min": 600000, "max": 1100000,
-      "detalle": "Neto a tiempo completo, después de comisión, bencina y mantención. Horario flexible, pero se necesita auto y se cotiza como independiente.",
+      "min": 600000,
+      "max": 1100000,
+      "entrada": "inversion",
+      "detalle": "Neto a tiempo completo después de comisión, bencina y mantención. Horario flexible, pero se necesita auto propio y se cotiza como independiente.",
       "requisitos": "Auto en buen estado y licencia clase B.",
-      "tags": ["santiago", "estudiar"],
+      "donde": "Uber, DiDi, Cabify.",
+      "costo": "Un auto propio, o arrendado (lo que se come buena parte de la ganancia).",
+      "tags": [
+        "inversion",
+        "estudiar"
+      ],
       "fuentes": [
-        { "nombre": "Digital Trends: Uber en Santiago 2026", "url": "https://es.digitaltrends.com/autos/uber-cuanto-se-gana-ciudades-latinoamerica-2026/" }
+        {
+          "nombre": "Digital Trends: Uber en Santiago 2026",
+          "url": "https://es.digitaltrends.com/autos/uber-cuanto-se-gana-ciudades-latinoamerica-2026/"
+        }
       ]
     },
     {
-      "id": "supervisor",
-      "nombre": "Supervisor de tienda",
-      "min": 750000, "max": 900000,
-      "detalle": "El paso siguiente para quien ya trabaja en retail. Pide experiencia en la tienda, así que conviene pedirlo donde ya trabajan.",
-      "requisitos": "Experiencia en tienda y manejo de equipo.",
-      "tags": ["santiago"],
+      "id": "caex",
+      "nombre": "Operador de camión minero (CAEX)",
+      "min": 1379000,
+      "max": 1930000,
+      "entrada": "inversion",
+      "detalle": "El que más paga, pero no es un trabajo de entrada: turnos 7x7 en el norte y avisos que exigen certificación en el modelo de camión y experiencia en faena. La licencia profesional A4 exige además tener la clase B al menos dos años.",
+      "requisitos": "Licencia profesional, certificación del equipo y experiencia en minería.",
+      "donde": "Faenas del norte, vía Manpower, Teamwork y Progestion.",
+      "costo": "Licencia profesional y certificación del equipo. El SENCE ofrece cupos gratis para licencias clase A, pero no para la certificación de camiones mineros.",
+      "tags": [
+        "inversion"
+      ],
       "fuentes": [
-        { "nombre": "Meganoticias: datos SENCE 2026 (percentil 75)", "url": "https://www.meganoticias.cl/dato-util/522353-trabajos-mejor-pagados-sin-educacion-superior-chile-sence-18-05-2026.html" }
+        {
+          "nombre": "Redimin: vacantes CAEX 2026",
+          "url": "https://www.redimin.cl/operadores-caex-en-mineria-revisa-vacantes-con-sueldos-de-hasta-1-700-000/amp/"
+        },
+        {
+          "nombre": "ChileAtiende: licencia profesional clase A",
+          "url": "https://www.chileatiende.gob.cl/fichas/24034"
+        },
+        {
+          "nombre": "PracticaTest: cursos SENCE para licencia profesional",
+          "url": "https://practicatest.cl/blog/articulos-especiales/curso-gratuito-conductores-profesionales"
+        }
       ]
     }
   ],
-  "conclusion": "Ganar $1,5 millones cada uno sin título en Santiago es muy poco común: la mitad de los chilenos gana $680.000 o menos. Lo realista en el corto plazo es entre $1,6 y $2 millones entre los dos, sumando un trabajo con comisiones y otro con turnos. Con eso el plan funciona igual, solo que con una fecha de viaje más adelante."
+  "conclusion": "Sin pagar cursos ni licencias, lo que más paga en Santiago es vender con comisiones: tiendas de telefonía, malls, call centers de ventas y terreno, entre $800.000 y $1.200.000 en meses buenos. Atención al cliente para empresas como Enel o Entel paga menos ($560.000 a $680.000), pero es estable y no exige experiencia. Los bancos pagan bien a quien queda contratado directo, y se entra con un curso corto de cajero."
 }
