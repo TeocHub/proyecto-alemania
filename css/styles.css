@@ -896,15 +896,16 @@ main { padding-bottom: 5.5rem; }
 .animo-botones .estado { font-size: var(--t-0); padding: 0.45rem 0.85rem; }
 
 @media (min-width: 700px) {
-  .visores { grid-template-columns: 1fr 1fr; grid-template-areas: "colchon mes" "proximo plan" "animo animo"; }
+  .visores { grid-template-columns: 1fr 1fr; grid-template-areas: "colchon ritmo" "mes proximo" "plan plan" "animo animo"; }
   .visor-colchon { grid-area: colchon; }
+  .visor-ritmo { grid-area: ritmo; }
   .visor-mes { grid-area: mes; }
   .visor.proximo { grid-area: proximo; }
   .visor-plan { grid-area: plan; }
   .visor-animo { grid-area: animo; }
 }
 @media (min-width: 1200px) {
-  .visores { grid-template-columns: 1.15fr 1fr 1fr; grid-template-areas: "colchon mes proximo" "colchon plan plan" "animo animo animo"; }
+  .visores { grid-template-columns: 1.15fr 1fr 1fr; grid-template-areas: "colchon ritmo ritmo" "colchon mes proximo" "plan plan plan" "animo animo animo"; }
   .visor-plan .numeros { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .visor-plan .numero:nth-child(3) { border-left: 1px solid var(--niebla); }
   .visor-plan .numero:nth-child(n+3) { border-top-width: 6px; }
@@ -1371,3 +1372,41 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .escala-ejes span span { z-index: 1; background: var(--hoja); padding: 0 0.2rem; }
 .combina-vive { border-left: 6px solid var(--suyo); }
 .combina-botones { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.2rem; margin-top: 0.8rem; }
+
+/* La fecha al ritmo real */
+.ritmo-fecha { font-family: var(--display); font-stretch: 72%; font-weight: 800; font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1; text-transform: capitalize; }
+.ritmo-linea { position: relative; align-self: stretch; height: 2.6rem; margin: 0.2rem 0 0 !important; }
+.ritmo-pista { position: absolute; left: 0; right: 0; top: 0.75rem; height: 2px; background: var(--niebla); }
+.ritmo-anio { position: absolute; top: 1.25rem; transform: translateX(-50%); font-size: 0.68rem; font-weight: 700; color: var(--tinta-suave); }
+.ritmo-anio::before { content: ""; position: absolute; left: 50%; top: -0.6rem; height: 0.35rem; border-left: 1px solid var(--niebla); }
+.ritmo-anio:first-of-type { transform: none; }
+.ritmo-hoy, .ritmo-viaje, .ritmo-antes { position: absolute; top: 0.75rem; transform: translate(-50%, -50%); border-radius: 50%; }
+.ritmo-hoy { width: 0.6rem; height: 0.6rem; background: var(--tinta); }
+.ritmo-antes { width: 0.85rem; height: 0.85rem; border: 2px dashed var(--tinta-suave); background: var(--hoja); }
+.ritmo-viaje { width: 1.15rem; height: 1.15rem; background: var(--linea); box-shadow: 0 0 0 4px rgba(240, 179, 35, 0.25); transition: left 0.5s ease; }
+.ritmo-texto { font-size: var(--t-0); }
+.ritmo-barra { align-self: stretch; height: 0.45rem; border-radius: 999px; background: var(--papel); overflow: hidden; }
+.ritmo-barra i { display: block; height: 100%; background: var(--linea); border-radius: 999px; transition: width 0.4s ease; }
+.ritmo-real { display: flex; flex-direction: column; gap: 0.55rem; margin: 1.2rem 0; padding: 1.1rem 1.2rem; border: 1px solid var(--niebla); border-radius: var(--radio-panel); background: var(--hoja); }
+.ritmo-real > * { margin: 0; }
+#meses-colchon button { display: flex; flex-direction: column; align-items: center; line-height: 1.15; }
+#meses-colchon button small { font-size: 0.68rem; font-weight: 600; opacity: 0.75; }
+
+/* Dónde postular */
+.detalle-ojo { font-size: var(--t-0); padding: 0.6rem 0.75rem; border-left: 3px solid #e3b55a; background: rgba(227, 181, 90, 0.12); border-radius: 0 8px 8px 0; }
+.detalle-ojo strong { color: #e3b55a; }
+.detalle-buscar { align-self: flex-start; text-decoration: none; }
+.postular-armar { margin-bottom: 0.9rem; }
+.postular-para { margin: 0 0 0.5rem; font-size: var(--t-0); }
+.postular-claves { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.postular-claves button { font: inherit; font-size: var(--t-0); font-weight: 700; padding: 0.4rem 0.8rem; border-radius: 999px; border: 1.5px solid var(--tinta); background: var(--hoja); color: var(--tinta); cursor: pointer; }
+.postular-claves button[aria-pressed="true"] { background: var(--tinta); color: var(--hoja); }
+.postular-mas { display: inline-flex; flex-wrap: wrap; gap: 0.4rem; margin-left: 0.3rem; }
+.postular-mas button { border-style: dashed; font-weight: 600; }
+.plataformas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13.5rem), 1fr)); gap: 0.6rem; }
+.plataforma { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.85rem 0.95rem; border-radius: var(--radio-panel); border: 1px solid var(--niebla); background: var(--hoja); color: var(--tinta); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+.plataforma:hover, .plataforma:focus-visible { border-color: var(--tinta); transform: translateY(-2px); }
+.plataforma-nombre { font-family: var(--display); font-stretch: 82%; font-weight: 800; font-size: var(--t-2); }
+.plataforma-para { font-size: 0.82rem; color: var(--tinta-suave); flex: 1; }
+.plataforma-accion { font-size: 0.8rem; font-weight: 700; color: #9a6b00; overflow-wrap: anywhere; }
+.trabajo-detalle .detalle-buscar { background: var(--linea); color: var(--tinta); }
