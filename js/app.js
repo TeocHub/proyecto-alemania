@@ -131,10 +131,12 @@
   const ETAPAS = ["deficit", "emergencia", "colchon", "alemania"];
   const totalColchon = () => Object.values(estado.movs || {}).reduce((s, m) => s + (m && Number(m.m) || 0), 0);
 
-  function colchon({ extra = 0, pieza = null } = {}) {
+  function colchon({ extra = 0, pieza = null, arriendo = null } = {}) {
     const eco = economia();
     const meses = estado.colchonMeses || 3;
-    const casa = pieza != null ? eco.casa - eco.arriendo - eco.cuentas + pieza : eco.casa;
+    // pieza reemplaza arriendo y cuentas; arriendo reemplaza solo el arriendo con gasto común
+    const casa = pieza != null ? eco.casa - eco.arriendo - eco.cuentas + pieza
+      : arriendo != null ? eco.casa - eco.arriendo + arriendo : eco.casa;
     const gastoMes = casa + eco.personal[0] + eco.personal[1];
     const ingreso = eco.ingreso + extra;
     const disp = ingreso - gastoMes;
@@ -220,7 +222,8 @@
 
   function simular(esc) {
     const s = estado.colchonSueldos;
-    const extra = (esc.suma || []).reduce((a, k) => a + (Number(s[k]) || 0), 0);
+    const suma = (esc.suma || []).reduce((a, k) => a + (Number(s[k]) || 0), 0);
+    const extra = esc.reemplaza ? suma - economia().ingreso : suma;
     const c = colchon({ extra, pieza: esc.pieza ? Number(s.pieza) || 0 : null });
     const inicio = estado.colchonPrimero ? (c.falta === 0 ? hoy : c.listo) : hoy;
     const fecha = c.hayDatos && c.disp > 0 && inicio ? fechaPosible(c.disp, inicio) : null;
@@ -537,7 +540,7 @@
         <div class="esc-cifra"><span>Colchón completo</span><b>${c.falta === 0 ? "Ya está" : c.listo ? mesAnio(c.listo) : "No llega"}</b></div>
         <div class="esc-cifra"><span>Alemania, lo antes posible</span><b>${fecha ? mesAnio(fecha) : "—"}</b></div>
       </div>
-      <p class="esc-explica">${sel.e.id === "hoy" ? "Con lo que ganan y gastan hoy." : `Suma ${pesos(extra)} líquidos al mes${sel.e.pieza ? ` y cambia arriendo, gasto común y cuentas por una pieza de ${pesos(estado.colchonSueldos.pieza)}` : ""}.`} ${compara}
+      <p class="esc-explica">${sel.e.id === "hoy" ? "Con lo que ganan y gastan hoy." : `${sel.e.reemplaza ? `Entrarían ${pesos(c.ingreso)} al mes entre los dos` : `Suma ${pesos(extra)} líquidos al mes`}${sel.e.pieza ? ` y cambia arriendo, gasto común y cuentas por una pieza de ${pesos(estado.colchonSueldos.pieza)}` : ""}.`} ${compara}
       ${fecha ? `<button type="button" class="boton-texto" id="usar-escenario">Usar ${mesAnio(fecha)} como fecha de viaje</button>` : ""}</p>`;
     const usar = $("#usar-escenario");
     if (usar) usar.addEventListener("click", () => {
@@ -1588,7 +1591,7 @@
       { id: "cada", nombre: "Lo de cada uno", detalle: "Celular, salud, estudios y gustos de cada uno", necesita: eco.personal[0] + eco.personal[1] },
       { id: "deudas", nombre: "Cuotas de deudas", detalle: "Para que no crezcan ni lleguen a DICOM", necesita: n("deudas") }
     ].filter((b) => b.id !== "deudas" || b.necesita > 0);
-    const c = colchon();
+    const c = colchon({ extra: ingreso - eco.ingreso, pieza: probar && probar.conCuentas ? probar.monto : null, arriendo: probar && !probar.conCuentas ? probar.monto : null });
     const r = calcular();
     let resto = ingreso;
     lista.forEach((b) => { b.recibe = Math.min(resto, b.necesita); resto -= b.recibe; });
@@ -1644,9 +1647,10 @@
     }).join("");
 
     const paraAhorrar = Math.max(0, ingreso - fijo);
-    const meses = c.falta > 0 && paraAhorrar > 0 ? Math.ceil(c.falta / paraAhorrar) : null;
+    const meses = c.falta > 0 && paraAhorrar > 0 ? Math.ceil(c.falta / paraAhorrar) : null; // c ya considera la vivienda que se prueba
     const extra = ingreso - eco.ingreso;
-    const sim = colchon({ extra, pieza: estado.probarVivienda && estado.probarVivienda.conCuentas ? estado.probarVivienda.monto : null });
+    const pv = estado.probarVivienda;
+    const sim = colchon({ extra, pieza: pv && pv.conCuentas ? pv.monto : null, arriendo: pv && !pv.conCuentas ? pv.monto : null });
     const inicio = estado.colchonPrimero ? (sim.falta === 0 ? hoy : sim.listo) : hoy;
     const fecha = sim.disp > 0 && inicio ? fechaPosible(sim.disp, inicio) : null;
     const cubreBasico = ingreso >= fijo;
@@ -1698,12 +1702,29 @@
       const fila = el("div", { class: "combina-persona" });
       fila.innerHTML = `<label><span>${nombre}</span><select data-combina="${i}">
         <option value="hoy">Sigue como hoy</option>
-        ${trabajosData.trabajos.map((t) => `<option value="${t.id}">${t.nombre}</option>`).join("")}
+        <optgroup label="Con el sueldo mínimo">
+          <option value="full-min">Full time con sueldo mínimo</option>
+          <option value="part-min">Part time de 30 horas</option>
+        </optgroup>
+        <optgroup label="Trabajos del estudio">
+          ${trabajosData.trabajos.map((t) => `<option value="${t.id}">${t.nombre}</option>`).join("")}
+        </optgroup>
       </select></label>
       <label class="check-chico"><input type="checkbox" data-mantiene="${i}"> y mantiene su trabajo de hoy</label>`;
       cont.append(fila);
     });
+    const vive = el("div", { class: "combina-persona combina-vive" });
+    vive.innerHTML = `<label><span>Dónde viven</span><select data-vive>
+      <option value="hoy">Donde viven hoy</option>
+      <option value="pieza">Pieza para dos, cuentas incluidas</option>
+      <optgroup label="Departamento 1D (arriendo promedio + gasto común)">
+        ${barriosData.comunas.map((c) => `<option value="${c.id}">${c.nombre}</option>`).join("")}
+      </optgroup>
+    </select></label>`;
+    cont.append(vive);
     cont.addEventListener("change", (e) => {
+      const v = e.target.closest("[data-vive]");
+      if (v) estado.combina.vive = v.value;
       const s = e.target.closest("[data-combina]"), m = e.target.closest("[data-mantiene]");
       if (s) estado.combina[s.dataset.combina] = s.value;
       if (m) estado.combina["m" + m.dataset.mantiene] = m.checked;
@@ -1714,6 +1735,7 @@
         cont.querySelector(`[data-combina="${i}"]`).value = estado.combina[i] || "hoy";
         cont.querySelector(`[data-mantiene="${i}"]`).checked = Boolean(estado.combina["m" + i]);
       });
+      cont.querySelector("[data-vive]").value = estado.combina.vive || "hoy";
     };
     mostrar();
     sincronizadores.push(mostrar);
@@ -1756,7 +1778,13 @@
     const caja = $("#combina-resultado");
     if (!caja) return;
     const eco = economia();
-    const medio = (id) => { const t = trabajosData.trabajos.find((j) => j.id === id); return t ? (t.min + t.max) / 2 : null; };
+    const sm = estado.colchonSueldos;
+    const medio = (id) => {
+      if (id === "full-min") return Number(sm.full) || 0;
+      if (id === "part-min") return Number(sm.part) || 0;
+      const t = trabajosData.trabajos.find((j) => j.id === id);
+      return t ? (t.min + t.max) / 2 : 0;
+    };
     const ingresos = plan.personas.map((_, i) => {
       const sel = estado.combina[i] || "hoy";
       const hoyI = eco.sueldo[i] || 0;
@@ -1769,10 +1797,16 @@
       return;
     }
     const extra = total - eco.ingreso;
-    const c = colchon({ extra });
+    const vive = estado.combina.vive || "hoy";
+    const comuna = barriosData.comunas.find((x) => x.id === vive);
+    const pieza = vive === "pieza" ? barriosData.pieza.max : null;
+    const arriendo = comuna ? comuna.arriendo + barriosData.gastosComunes : null;
+    const c = colchon({ extra, pieza, arriendo });
     const inicio = estado.colchonPrimero ? (c.falta === 0 ? hoy : c.listo) : hoy;
     const fecha = c.disp > 0 && inicio ? fechaPosible(c.disp, inicio) : null;
     const metaDos = trabajosData.metaPersona * 2;
+    const vivienda = pieza != null ? pieza : (arriendo != null ? arriendo : eco.arriendo) + eco.cuentas;
+    const viviendaTexto = pieza != null ? "la pieza (todo incluido)" : comuna ? `${comuna.nombre} con gasto común y cuentas` : "la vivienda de hoy con cuentas";
     caja.innerHTML = `
       <div class="combina-barra" role="img" aria-label="Entrarían ${pesos(total)} de una meta de ${pesos(metaDos)}">
         <i style="width:${Math.min(100, (total / metaDos) * 100)}%"></i>
@@ -1783,8 +1817,18 @@
         <div class="esc-cifra"><span>Colchón completo</span><b>${c.falta === 0 ? "Ya está" : c.listo ? mesAnio(c.listo) : "No llega"}</b></div>
         <div class="esc-cifra"><span>Alemania, lo antes posible</span><b>${fecha ? mesAnio(fecha) : "—"}</b></div>
       </div>
-      <p class="esc-explica">${c.disp > 0 ? `Les quedarían ${pesos(c.disp)} al mes después de los gastos de hoy.` : `Seguiría faltando ${pesos(-c.disp)} al mes.`}
-      ${fecha ? `<button type="button" class="boton-texto" id="usar-combina">Usar ${mesAnio(fecha)} como fecha de viaje</button>` : ""}</p>`;
+      <p class="esc-explica">Vivienda: ${viviendaTexto}, ${pesos(vivienda)} al mes (${Math.round((vivienda / Math.max(total, 1)) * 100)}% de lo que entraría). ${c.disp > 0 ? `Después de todos los gastos les quedarían ${pesos(c.disp)} al mes.` : `Seguiría faltando ${pesos(-c.disp)} al mes.`}</p>
+      <div class="combina-botones">
+        <button type="button" class="boton" id="combina-lucas">Ver este mes en Las lucas</button>
+        ${fecha ? `<button type="button" class="boton-texto" id="usar-combina">Usar ${mesAnio(fecha)} como fecha de viaje</button>` : ""}
+      </div>`;
+    $("#combina-lucas").addEventListener("click", () => {
+      estado.lucasIngreso = total;
+      estado.probarVivienda = pieza != null ? { nombre: "una pieza para dos", monto: pieza, conCuentas: true }
+        : comuna ? { nombre: comuna.nombre, monto: arriendo, conCuentas: false } : null;
+      location.hash = "#lucas";
+      pintarLucas();
+    });
     const usar = $("#usar-combina");
     if (usar) usar.addEventListener("click", () => {
       estado.viaje = { m: fecha.getMonth(), y: fecha.getFullYear() };

@@ -1360,3 +1360,5 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .comuna-detalle .esc-cifra:nth-child(2) { border-left-color: var(--suyo); }
 .comuna-detalle .esc-cifra:nth-child(3) { border-left-color: var(--linea); }
 .escala-ejes span span { z-index: 1; background: var(--hoja); padding: 0 0.2rem; }
+.combina-vive { border-left: 6px solid var(--suyo); }
+.combina-botones { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.2rem; margin-top: 0.8rem; }

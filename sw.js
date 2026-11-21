@@ -1,6 +1,6 @@
 /* Modo sin conexión: siempre intenta traer lo más nuevo y, si no hay señal,
    muestra la última versión guardada. No toca la planilla de Google. */
-const CACHE = "proyecto-alemania-v2";
+const CACHE = "proyecto-alemania-v5";
 
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => {
@@ -15,7 +15,7 @@ self.addEventListener("fetch", (e) => {
   const fuentes = url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com";
   if (!propio && !fuentes) return;
   e.respondWith(
-    fetch(req).then((res) => {
+    (propio ? fetch(req.url, { cache: "no-cache" }) : fetch(req)).then((res) => {
       if (res.ok) { const copia = res.clone(); caches.open(CACHE).then((c) => c.put(req, copia)); }
       return res;
     }).catch(() => caches.match(req, { ignoreSearch: propio }).then((r) => r || caches.match("./")))
