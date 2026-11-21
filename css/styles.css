@@ -1292,6 +1292,8 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .entrada-libre { background: #6fbf8e; }
 .entrada-curso { background: #e3b55a; }
 .entrada-inversion { background: #d9765f; }
+.entrada-titulo { background: #9b8bd1; }
+.entrada-txt-titulo strong { color: #9b8bd1; }
 .entrada-txt-curso strong { color: #e3b55a; }
 .entrada-txt-inversion strong { color: #d9765f; }
 .entradas-leyenda { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.8rem; opacity: 0.85; margin: 0.4rem 0 0; }
