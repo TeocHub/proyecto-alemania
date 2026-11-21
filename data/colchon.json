@@ -88,11 +88,11 @@
     }
   ],
   "sueldos": {
-    "full": 440000,
-    "part": 320000,
+    "full": 560000,
+    "part": 400000,
     "pieza": 250000
   },
-  "sueldosNota": "Montos líquidos aproximados con el sueldo mínimo de 2026 ($539.000 bruto). Cámbienlos cuando sepan el sueldo real.",
+  "sueldosNota": "Sueldo mínimo desde mayo de 2026: $553.553 bruto. Líquido queda en unos $450.000; si el empleador paga la gratificación mensual (25%, muy común), sube a unos $560.000. El part time de 30 horas es proporcional a la jornada de 42: unos $400.000 con gratificación. Cámbienlos cuando sepan el sueldo real.",
   "acciones": [
     {
       "id": "trabajo",

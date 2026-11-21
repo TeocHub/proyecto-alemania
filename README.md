@@ -65,7 +65,7 @@ Todos los montos que aparecen en los textos salen de un solo cálculo. En los JS
 
 ## Fuentes
 
-Datos revisados el 20 de noviembre de 2026. Los requisitos salen de la página oficial de la Embajada de Alemania en Santiago; confírmenlos ahí antes de pagar o postular. Los sueldos de los escenarios usan el sueldo mínimo de 2026 ($539.000 bruto) como referencia.
+Datos revisados el 20 de noviembre de 2026. Los requisitos salen de la página oficial de la Embajada de Alemania en Santiago; confírmenlos ahí antes de pagar o postular. Los sueldos de los escenarios usan el sueldo mínimo vigente desde mayo de 2026 ($553.553 bruto): unos $560.000 líquidos con gratificación mensual en jornada completa.
 
 ## Estructura
 
