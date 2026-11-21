@@ -29,6 +29,9 @@
     <symbol id="i-prepararse" viewBox="0 0 24 24"><path d="M4 6.5C6.5 5 9.5 5 12 6.5 14.5 5 17.5 5 20 6.5V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 6.5V19"/></symbol>
     <symbol id="i-dudas" viewBox="0 0 24 24"><path d="M5 5h14v10h-7l-4 4v-4H5z"/><path d="M10.3 8.6a1.8 1.8 0 1 1 2.3 1.8c-.4.2-.6.5-.6.9v.4M12 13.4v.1"/></symbol>
     <symbol id="i-conectar" viewBox="0 0 24 24"><path d="M7 12a5 5 0 0 1 5-5h1M17 12a5 5 0 0 1-5 5h-1"/><path d="M11 4.5 13.5 7 11 9.5M13 14.5 10.5 17l2.5 2.5"/></symbol>
+    <symbol id="i-lucas" viewBox="0 0 24 24"><path d="M4 7.5h14a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M4 7.5 15 4l1 3.5"/><path d="M16 13.5h4"/></symbol>
+    <symbol id="i-trabajos" viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5h6v2M3.5 12.5h17"/></symbol>
+    <symbol id="i-vivir" viewBox="0 0 24 24"><path d="M5 20V6.5L12 4v16M12 9h7v11M8 8.5v.01M8 12v.01M8 15.5v.01M15.5 12.5v.01M15.5 16v.01M3.5 20h17"/></symbol>
     <symbol id="i-mas" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></symbol>
   </svg>
 
@@ -40,6 +43,9 @@
         <p class="riel-grupo">Ahora, en Santiago</p>
         <a href="#inicio" data-vista="inicio"><svg><use href="#i-inicio"/></svg>Inicio</a>
         <a href="#colchon" data-vista="colchon"><svg><use href="#i-colchon"/></svg>El colchón</a>
+        <a href="#lucas" data-vista="lucas"><svg><use href="#i-lucas"/></svg>Las lucas</a>
+        <a href="#trabajos" data-vista="trabajos"><svg><use href="#i-trabajos"/></svg>Trabajos</a>
+        <a href="#vivir" data-vista="vivir"><svg><use href="#i-vivir"/></svg>Dónde vivir</a>
         <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg>Cuando dudemos</a>
         <p class="riel-grupo">El plan de Alemania</p>
         <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
@@ -204,6 +210,75 @@
               </div>
             </div>
           </div>
+        </section>
+
+        <section id="lucas" class="vista seccion seccion-lucas" data-titulo="Las lucas" hidden>
+          <div class="seccion-cabeza">
+            <h2>Las lucas</h2>
+            <p>La plata del mes cae como agua desde arriba y llena cada balde en orden: primero lo que no se negocia, al final lo que puede esperar. Muevan el monto y vean hasta dónde alcanza.</p>
+          </div>
+          <div class="lucas-cuerpo">
+            <div class="lucas-izq">
+              <div class="lucas-control">
+                <label for="lucas-ingreso">Si este mes entran</label>
+                <output id="lucas-ingreso-out" for="lucas-ingreso"></output>
+                <input type="range" id="lucas-ingreso" min="0" max="3500000" step="10000">
+                <div class="lucas-atajos" id="lucas-atajos" role="group" aria-label="Montos rápidos"></div>
+              </div>
+              <p class="lucas-probando" id="lucas-probando" hidden></p>
+              <ol class="cascada" id="cascada" aria-label="Prioridades del mes"></ol>
+            </div>
+            <aside class="lucas-resumen" id="lucas-resumen" aria-live="polite"></aside>
+          </div>
+          <div class="sub-seccion">
+            <div class="sub-cabeza">
+              <h3>El día de pago</h3>
+              <p>Cinco costumbres que hacen que el orden de los baldes se cumpla en la vida real.</p>
+            </div>
+            <div class="dia-pago" id="dia-pago"></div>
+          </div>
+        </section>
+
+        <section id="trabajos" class="vista seccion" data-titulo="Trabajos" hidden>
+          <div class="seccion-cabeza">
+            <h2>Trabajos sin título</h2>
+            <p id="trabajos-intro"></p>
+          </div>
+          <div class="trabajos-filtros" id="trabajos-filtros" role="group" aria-label="Filtrar trabajos"></div>
+          <div class="trabajos-cuerpo">
+            <div class="escala" id="escala" aria-label="Sueldos por trabajo"></div>
+            <article class="trabajo-detalle" id="trabajo-detalle" aria-live="polite"></article>
+          </div>
+          <p class="conclusion" id="trabajos-conclusion"></p>
+          <div class="sub-seccion" id="combinador">
+            <div class="sub-cabeza">
+              <h3>Armen su combinación</h3>
+              <p>Elijan un trabajo para cada uno y vean cuánto entraría, cuándo estaría el colchón y desde cuándo podrían viajar. Se usa el punto medio de cada rango.</p>
+            </div>
+            <div class="combinador">
+              <div class="combina-personas" id="combina-personas"></div>
+              <div class="combina-resultado" id="combina-resultado" aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="fuentes-vista" id="trabajos-fuentes"></div>
+        </section>
+
+        <section id="vivir" class="vista seccion" data-titulo="Dónde vivir" hidden>
+          <div class="seccion-cabeza">
+            <h2>Dónde vivir</h2>
+            <p id="vivir-intro"></p>
+          </div>
+          <div class="vivir-control">
+            <label for="vivir-tope">Arriendo hasta</label>
+            <output id="vivir-tope-out" for="vivir-tope"></output>
+            <input type="range" id="vivir-tope" min="200000" max="900000" step="10000">
+          </div>
+          <div class="vivir-cuerpo">
+            <div class="carriles" id="carriles"></div>
+            <article class="comuna-detalle" id="comuna-detalle" aria-live="polite"></article>
+          </div>
+          <p class="nota" id="vivir-region"></p>
+          <div class="fuentes-vista" id="vivir-fuentes"></div>
         </section>
 
         <section id="refugio" class="vista refugio" data-titulo="Cuando dudemos" hidden>
@@ -389,8 +464,8 @@
     <nav class="tabbar" aria-label="Ventanas principales">
       <a href="#inicio" data-vista="inicio"><svg><use href="#i-inicio"/></svg>Inicio</a>
       <a href="#colchon" data-vista="colchon"><svg><use href="#i-colchon"/></svg>Colchón</a>
-      <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
-      <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Trámites</a>
+      <a href="#lucas" data-vista="lucas"><svg><use href="#i-lucas"/></svg>Las lucas</a>
+      <a href="#trabajos" data-vista="trabajos"><svg><use href="#i-trabajos"/></svg>Trabajos</a>
       <button type="button" id="abrir-mas" aria-expanded="false" aria-controls="mas"><svg><use href="#i-mas"/></svg>Más</button>
     </nav>
 
@@ -398,9 +473,16 @@
       <div class="mas-fondo" data-cerrar-mas></div>
       <div class="mas-hoja" role="dialog" aria-modal="true" aria-label="Más ventanas">
         <span class="mas-asa" aria-hidden="true"></span>
+        <p class="mas-grupo">Ahora, en Santiago</p>
         <div class="mas-grid">
+          <a href="#vivir" data-vista="vivir"><svg><use href="#i-vivir"/></svg>Dónde vivir</a>
           <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg>Cuando dudemos</a>
+        </div>
+        <p class="mas-grupo">El plan de Alemania</p>
+        <div class="mas-grid">
+          <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
           <a href="#ciudades" data-vista="ciudades"><svg><use href="#i-donde"/></svg>¿Dónde llegamos?</a>
+          <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
           <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
           <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
           <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Guardar entre los dos</a>

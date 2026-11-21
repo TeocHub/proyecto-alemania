@@ -1,0 +1,100 @@
+{
+  "revisado": "2026-11-20",
+  "intro": "Arriendo promedio de un departamento de un dormitorio en 2025, las líneas de metro de cada comuna y lo que dicen los datos de seguridad. La seguridad cambia mucho de una cuadra a otra: úsenlo para elegir dónde buscar y después visiten el barrio de día y de noche.",
+  "gastosComunes": 70000,
+  "regionVictimizacion": "En la Región Metropolitana, el 10,2% de los hogares fue víctima de un delito violento en 2025, la cifra más alta del país (ENUSC 2025).",
+  "niveles": [
+    { "id": "tranquila", "nombre": "Más tranquila" },
+    { "id": "intermedia", "nombre": "Intermedia" },
+    { "id": "compleja", "nombre": "Más compleja" },
+    { "id": "sin-dato", "nombre": "Sin dato revisado" }
+  ],
+  "comunas": [
+    {
+      "id": "estacion-central", "nombre": "Estación Central", "arriendo": 263000, "lineas": ["L1"],
+      "seguridad": "compleja",
+      "senales": ["Mencionada entre las comunas con más hogares víctimas de delitos violentos en la ENUSC 2023."],
+      "nota": "La más barata de la lista. Mucha oferta en edificios nuevos cerca de la Alameda."
+    },
+    {
+      "id": "san-joaquin", "nombre": "San Joaquín", "arriendo": 292067, "lineas": ["L5", "L6"],
+      "seguridad": "intermedia",
+      "senales": ["Según un estudio del CEP sobre la ENUSC 2023, sus vecinos esperan ser víctimas de algún delito más que el promedio.", "Fue la única de la lista donde el arriendo bajó en 2025 (-2,2%)."],
+      "nota": "Barata y con dos líneas de metro hacia el centro y Ñuñoa."
+    },
+    {
+      "id": "la-cisterna", "nombre": "La Cisterna", "arriendo": 293000, "lineas": ["L2", "L4A"],
+      "seguridad": "intermedia",
+      "senales": ["No encontramos datos comunales recientes de victimización; tómenla con cautela."],
+      "nota": "Terminal de la Línea 2 y combinación con la 4A: rápida al centro por Gran Avenida."
+    },
+    {
+      "id": "independencia", "nombre": "Independencia", "arriendo": 315000, "lineas": ["L3"],
+      "seguridad": "intermedia",
+      "senales": ["En la ENUSC 2023 aparecía entre las comunas con más delitos violentos.", "Según CIPER, en 2025 fue la única de las comunas que revisó con una baja significativa de delitos graves."],
+      "nota": "A pocas estaciones del centro por la Línea 3."
+    },
+    {
+      "id": "santiago", "nombre": "Santiago", "arriendo": 328000, "lineas": ["L1", "L2", "L3", "L5", "L6"],
+      "seguridad": "compleja",
+      "senales": ["15,1% de los hogares víctimas de delitos violentos en la ENUSC 2023.", "Encabeza los delitos vinculados al crimen organizado del país.", "Tiene, en cambio, una de las tasas más bajas de robo en lugar habitado: vivir en edificio con conserjería ayuda."],
+      "nota": "La mejor conectada de todas. Departamentos de 1D cerca de $300.000 más gasto común."
+    },
+    {
+      "id": "san-miguel", "nombre": "San Miguel", "arriendo": 335000, "lineas": ["L2"],
+      "seguridad": "intermedia",
+      "senales": ["Los delitos de mayor connotación social subieron en la primera mitad de 2025 según el CEAD (reportaje de CIPER).", "En el estudio del CEP, sus vecinos esperan ser víctimas más que el promedio."],
+      "nota": "Línea 2 por Gran Avenida, mucho comercio y edificios nuevos."
+    },
+    {
+      "id": "la-florida", "nombre": "La Florida", "arriendo": 348000, "lineas": ["L4", "L5"],
+      "seguridad": "intermedia",
+      "senales": ["Lidera las encerronas de la región junto a Macul y Peñalolén: afecta sobre todo a quienes andan en auto."],
+      "nota": "Dos líneas de metro, pero lejos del centro (40 minutos o más)."
+    },
+    {
+      "id": "nunoa", "nombre": "Ñuñoa", "arriendo": 408000, "lineas": ["L3", "L4", "L6"],
+      "seguridad": "tranquila",
+      "senales": ["En la ENUSC 2025 su victimización por delitos violentos quedó bajo los promedios regional y nacional, y tuvo la mayor baja del país en la percepción de que la delincuencia aumenta.", "CIPER reportó un alza de delitos en 2025, que el municipio discute."],
+      "nota": "La más tranquila de las alcanzables, pero cuesta unos $80.000 más que Santiago."
+    },
+    {
+      "id": "macul", "nombre": "Macul", "arriendo": 410000, "lineas": ["L4", "L5"],
+      "seguridad": "intermedia",
+      "senales": ["Muy pocos homicidios en 2023 (0,7 por cada 100 mil habitantes).", "Entre las comunas con más encerronas (delito contra autos)."],
+      "nota": "Barrios residenciales y universidades. Precio parecido a Ñuñoa."
+    },
+    {
+      "id": "providencia", "nombre": "Providencia", "arriendo": 695000, "lineas": ["L1", "L6"],
+      "seguridad": "sin-dato",
+      "senales": ["No revisamos datos comunales: con este arriendo queda fuera del presupuesto."],
+      "nota": "Subió 13,9% en 2025, la mayor alza de la lista."
+    },
+    {
+      "id": "las-condes", "nombre": "Las Condes", "arriendo": 876843, "lineas": ["L1"],
+      "seguridad": "sin-dato",
+      "senales": ["No revisamos datos comunales: es la comuna más cara del país para arrendar."],
+      "nota": "Solo como referencia de precio."
+    }
+  ],
+  "pieza": {
+    "nombre": "Pieza para dos, cuentas incluidas",
+    "min": 200000, "max": 280000,
+    "nota": "En Santiago Centro y alrededores. Muchas piezas son para una persona: pregunten siempre si cobran por la segunda."
+  },
+  "linea7": "La Línea 7 (Renca a Vitacura, pasando por Quinta Normal, Santiago, Recoleta y Providencia) se inauguraría a fines de 2028.",
+  "fuentes": [
+    { "nombre": "Assetplan vía Radio Agricultura: arriendos 1D/1B 2025", "url": "https://www.radioagricultura.cl/tendencias/variacion-en-el-precio-de-arriendos-durante-2025-en-la-rm_20260128/" },
+    { "nombre": "Assetplan vía 24horas: San Joaquín, Estación Central, Ñuñoa y La Florida", "url": "https://www.24horas.cl/tendencias/turismo/cuanto-subio-el-arriendo-en-tu-comuna-el-mapa-de-precios-en-la-region" },
+    { "nombre": "ENUSC 2025 (Subsecretaría de Prevención del Delito)", "url": "https://subprevenciondeldelito.gob.cl/noticia/enusc-2025-bajan-la-victimizacion-de-hogares-por-delitos-violentos-y-la-percepcion-de-inseguridad-en-el-pais/" },
+    { "nombre": "ENUSC 2023 por comuna (En Cancha)", "url": "https://www.encancha.cl/enlahora/nacional/2024/8/8/estas-son-las-5-comunas-que-mas-sufren-por-delitos-violentos-segun-importante-estudio-todas-son-de-la-rm-247327.html" },
+    { "nombre": "Ñuñoa en la ENUSC 2025 (Radio Agricultura)", "url": "https://www.radioagricultura.cl/noticias/nacional/nunoa-lidera-caida-en-percepcion-del-aumento-de-la-delincuencia-segun-encuesta-enusc-2025_20260711/" },
+    { "nombre": "CIPER: delitos en comunas de la RM, 2025", "url": "https://www.ciperchile.cl/2025/11/12/la-deuda-de-los-alcaldes-opositores-que-se-eligieron-en-la-region-metropolitana-con-la-promesa-de-mejorar-la-seguridad/" },
+    { "nombre": "La Tercera: comunas más seguras (DMCS 2023)", "url": "https://www.latercera.com/la-tercera-sabado/noticia/delitos-de-mayor-connotacion-social-estas-son-las-comunas-mas-seguras-del-pais/RFHI5LSMZBEJDOICZXTQZ2CQCI/" },
+    { "nombre": "La Tercera: estudio CEP sobre la ENUSC", "url": "https://www.latercera.com/nacional/noticia/estudio-cep-rm-concentra-los-robos-con-violencia-y-en-el-sector-poniente-existe-la-peor-evaluacion-a-carabineros-y-municipios/FE5MJDXIJNHBDLIZLJBCXISSOQ/" },
+    { "nombre": "T13: comunas con más delitos de crimen organizado", "url": "https://www.t13.cl/noticia/nacional/las-50-comunas-del-pais-mas-delitos-vinculados-crimen-organizado-2-10-2025" },
+    { "nombre": "13.cl: mapa de encerronas", "url": "https://www.13.cl/programas/tu-dia/momentos/mapa-de-encerronas-revela-dias-horarios-y-comunas-con-mas-asaltos-en-la" },
+    { "nombre": "Emol: gastos comunes y 1D en Santiago Centro", "url": "https://www.emol.com/noticias/Economia/2026/04/02/1196074/arriendos-en-la-rm.html" },
+    { "nombre": "Emol: Línea 7 a fines de 2028", "url": "https://www.emol.com/noticias/Nacional/2026/02/03/1190459/linea-7-metro-avances-santiago.html" }
+  ]
+}
