@@ -1,6 +1,6 @@
 {
   "revisado": "2026-11-20",
-  "intro": "Sueldos líquidos de avisos publicados en 2026 para trabajos que no piden título. Cada trabajo dice qué se necesita para entrar y si hay que pagar algo antes. La línea amarilla es la meta de cada uno y la punteada, lo que gana la mitad de los chilenos.",
+  "intro": "Sueldos líquidos de avisos publicados en 2026 para trabajos que se pueden conseguir sin título. Cada trabajo dice qué piden y si hay que pagar algo antes. La línea amarilla es la meta de cada uno y la punteada, lo que gana la mitad de los chilenos.",
   "mediana": 680000,
   "medianaFuente": {
     "nombre": "INE, Encuesta Suplementaria de Ingresos 2025",
@@ -9,7 +9,8 @@
   "metaPersona": 1500000,
   "entradas": {
     "libre": "Sin pagar nada",
-    "curso": "Curso corto pagado",
+    "curso": "Curso pagado por ustedes",
+    "titulo": "Suelen pedir técnico o carrera",
     "inversion": "Licencia, auto o certificación cara"
   },
   "filtros": [
@@ -202,9 +203,9 @@
       "max": 1100000,
       "entrada": "curso",
       "detalle": "Se suele entrar como cajero de reemplazo a través de una empresa externa ($600.000 a $700.000 líquidos). La meta es quedar contratado directo por el banco: BCI fijó un sueldo mínimo interno de $1.100.000 para contratos indefinidos (el anuncio no dice si es bruto o líquido).",
-      "requisitos": "Curso de cajero bancario (casi siempre excluyente) y, en varios avisos, algo de experiencia en caja.",
+      "requisitos": "Curso de cajero bancario ya hecho (excluyente) y, en varios avisos, experiencia en caja; algunos piden técnico.",
       "donde": "Adecco, Activos Chile, Progestion y Helpbank (para BancoEstado, BCI y BICE); Banco Falabella publica directo.",
-      "costo": "Curso de cajero bancario: hay de 18 horas en línea por unos $55.000.",
+      "costo": "El curso de cajero bancario lo pagan ustedes antes de postular (los avisos lo piden ya hecho; pocas veces lo da la empresa). Hay de 18 horas en línea por unos $55.000.",
       "tags": [
         "curso"
       ],
@@ -232,13 +233,13 @@
       "nombre": "Ejecutivo de cobranza",
       "min": 553553,
       "max": 800000,
-      "entrada": "libre",
+      "entrada": "titulo",
       "detalle": "Llamar o visitar a deudores para negociar pagos. Sueldo base más comisiones por lo recuperado; los fijos van de $553.553 a $800.000.",
-      "requisitos": "Cuarto medio; muchos piden un año de experiencia en cobranza.",
+      "requisitos": "Muchos avisos piden carrera afín (contabilidad, finanzas o administración) o experiencia en cobranza.",
       "donde": "Estudios jurídicos, empresas de cobranza, bancos y casas comerciales.",
       "tags": [
-        "libre",
-        "comisiones"
+        "comisiones",
+        "titulo"
       ],
       "fuentes": [
         {
@@ -253,7 +254,8 @@
           "nombre": "Chiletrabajos: cobranza en terreno, base $553.553 + comisiones",
           "url": "https://www.chiletrabajos.cl/trabajo/3861648"
         }
-      ]
+      ],
+      "costo": "No hay que pagar nada, pero sin carrera afín o experiencia cuesta quedar."
     },
     {
       "id": "aeropuerto",
@@ -289,13 +291,13 @@
       "nombre": "Soporte TI",
       "min": 720000,
       "max": 1000000,
-      "entrada": "libre",
+      "entrada": "titulo",
       "detalle": "Mesa de ayuda y soporte a usuarios. Con inglés sube cerca del millón, y con experiencia hay avisos de $1,2 a $1,8 millones. Es el camino natural para quien ya programa.",
-      "requisitos": "Windows, redes y Office 365; varios piden técnico o un año de experiencia.",
+      "requisitos": "Casi siempre técnico en informática, redes o afín; Windows, redes y Office 365.",
       "donde": "Consultoras TI, empresas grandes con mesa de ayuda propia.",
       "tags": [
-        "libre",
-        "ingles"
+        "ingles",
+        "titulo"
       ],
       "fuentes": [
         {
@@ -306,27 +308,29 @@
           "nombre": "Chiletrabajos: soporte TI con inglés",
           "url": "https://www.chiletrabajos.cl/trabajo/3910821"
         }
-      ]
+      ],
+      "costo": "Suelen pedir título técnico. Sin él, solo entra con experiencia demostrable."
     },
     {
       "id": "programacion",
       "nombre": "Desarrollo de software",
       "min": 720000,
       "max": 1190000,
-      "entrada": "libre",
+      "entrada": "titulo",
       "detalle": "El promedio de los avisos de desarrollador ronda $1,19 millones; un analista programador parte cerca de $720.000. Sin título se entra con un portafolio de proyectos reales.",
-      "requisitos": "Portafolio en GitHub, un lenguaje bien manejado y algo de bases de datos.",
+      "requisitos": "La mayoría pide técnico o ingeniería en informática; sin título, solo con portafolio y experiencia real.",
       "donde": "GetOnBoard, LinkedIn, consultoras de software.",
       "tags": [
-        "libre",
-        "estudiar"
+        "estudiar",
+        "titulo"
       ],
       "fuentes": [
         {
           "nombre": "Indeed: sueldos de desarrollador de software",
           "url": "https://cl.indeed.com/career/full-stack-developer/salaries/Remote"
         }
-      ]
+      ],
+      "costo": "Suelen pedir título. Sin él es un camino largo: portafolio y proyectos propios antes de postular."
     },
     {
       "id": "asistente-aula",
@@ -401,13 +405,13 @@
     {
       "id": "uber",
       "nombre": "Conductor de aplicación",
-      "min": 600000,
+      "min": 400000,
       "max": 1100000,
       "entrada": "inversion",
-      "detalle": "Neto a tiempo completo después de comisión, bencina y mantención. Horario flexible, pero se necesita auto propio y se cotiza como independiente.",
-      "requisitos": "Auto en buen estado y licencia clase B.",
+      "detalle": "Neto a tiempo completo después de comisión, bencina y mantención. Horario flexible, pero hay que tener licencia clase B y auto propio o arrendado; si se arrienda, el arriendo se come buena parte de lo que se gana.",
+      "requisitos": "Licencia clase B, auto en buen estado y cotizar como independiente.",
       "donde": "Uber, DiDi, Cabify.",
-      "costo": "Un auto propio, o arrendado (lo que se come buena parte de la ganancia).",
+      "costo": "Sacar la licencia B (escuela de conductores más el trámite en la municipalidad) y conseguir auto: comprarlo, o arrendarlo por semana a un dueño.",
       "tags": [
         "inversion",
         "estudiar"
@@ -448,5 +452,5 @@
       ]
     }
   ],
-  "conclusion": "Sin pagar cursos ni licencias, lo que más paga en Santiago es vender con comisiones: tiendas de telefonía, malls, call centers de ventas y terreno, entre $800.000 y $1.200.000 en meses buenos. Atención al cliente para empresas como Enel o Entel paga menos ($560.000 a $680.000), pero es estable y no exige experiencia. Los bancos pagan bien a quien queda contratado directo, y se entra con un curso corto de cajero."
+  "conclusion": "Sin pagar cursos, licencias ni tener título, lo que más paga en Santiago es vender con comisiones: tiendas de telefonía, malls, call centers de ventas y terreno, entre $800.000 y $1.200.000 en meses buenos. Atención al cliente para empresas como Enel o Entel paga menos ($560.000 a $680.000), pero es estable y no exige experiencia. Banco y guardia piden un curso que se paga antes; cobranza y tecnología suelen pedir carrera."
 }
