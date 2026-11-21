@@ -96,6 +96,9 @@
     for (const k of ["economia", "respuestas", "marcas", "movs"]) if (!estado[k] || typeof estado[k] !== "object") estado[k] = {};
     if (!estado.contacto || typeof estado.contacto !== "object") estado.contacto = { 0: [], 1: [] };
     estado.colchonSueldos = Object.assign({}, colchonData.sueldos, estado.colchonSueldos || {});
+    // Los montos viejos (sueldo mínimo de enero, sin gratificación) pasan a los nuevos
+    if (estado.colchonSueldos.full === 440000) estado.colchonSueldos.full = colchonData.sueldos.full;
+    if (estado.colchonSueldos.part === 320000) estado.colchonSueldos.part = colchonData.sueldos.part;
     if (!colchonData.mesesOpciones.includes(estado.colchonMeses)) estado.colchonMeses = 3;
     if (typeof estado.colchonPrimero !== "boolean") estado.colchonPrimero = true;
     if (!estado.combina || typeof estado.combina !== "object") estado.combina = { 0: "hoy", 1: "hoy", m0: false, m1: false };
@@ -1703,8 +1706,8 @@
       fila.innerHTML = `<label><span>${nombre}</span><select data-combina="${i}">
         <option value="hoy">Sigue como hoy</option>
         <optgroup label="Con el sueldo mínimo">
-          <option value="full-min">Full time con sueldo mínimo</option>
-          <option value="part-min">Part time de 30 horas</option>
+          <option value="full-min">Full time con sueldo mínimo (con gratificación)</option>
+          <option value="part-min">Part time de 30 horas (con gratificación)</option>
         </optgroup>
         <optgroup label="Trabajos del estudio">
           ${trabajosData.trabajos.map((t) => `<option value="${t.id}">${t.nombre}</option>`).join("")}
