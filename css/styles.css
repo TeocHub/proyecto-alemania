@@ -431,7 +431,7 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
 
 .plantilla { background: var(--hoja); border: 1px solid var(--niebla); border-radius: var(--radio-panel); padding: clamp(1.1rem, 3vw, 1.8rem); margin-bottom: 2.5rem; }
 .plantilla-cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.8rem; }
-.segmentos-claros { display: flex; gap: 0.3rem; background: var(--papel); padding: 0.25rem; border-radius: 9px; }
+.segmentos-claros { display: flex; gap: 0.3rem; background: #e2e8ee; padding: 0.25rem; border-radius: 9px; }
 .segmentos-claros button { font: inherit; font-size: var(--t-0); font-weight: 700; border: 0; background: none; padding: 0.35rem 0.8rem; border-radius: 6px; cursor: pointer; color: var(--tinta); }
 .segmentos-claros button[aria-pressed="true"] { background: var(--tinta); color: var(--hoja); }
 .plantilla-texto {
@@ -628,8 +628,7 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
 }
 
 
-/* =========================================================
-   Ventanas: barra lateral en tablet y computador,
+/* ==================================================   Ventanas: barra lateral en tablet y computador,
    barra de abajo en el celular
    ========================================================= */
 [hidden] { display: none !important; }
@@ -1410,3 +1409,44 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .plataforma-para { font-size: 0.82rem; color: var(--tinta-suave); flex: 1; }
 .plataforma-accion { font-size: 0.8rem; font-weight: 700; color: #9a6b00; overflow-wrap: anywhere; }
 .trabajo-detalle .detalle-buscar { background: var(--linea); color: var(--tinta); }
+=======
+/* Cómo leer un precio de arriendo */
+.arriendo-grid { display: grid; grid-template-columns: minmax(15rem, 22rem) 1fr; gap: 2rem; align-items: start; }
+.arriendo-datos { display: grid; gap: 1.1rem; }
+.arriendo-campo { display: grid; gap: 0.4rem; border: 0; padding: 0; margin: 0; font-size: var(--t-0); font-weight: 700; }
+.arriendo-campo legend { padding: 0; margin-bottom: 0.4rem; }
+.arriendo-campo input {
+  font: inherit; font-size: var(--t-2); font-weight: 700; padding: 0.5rem 0.7rem; border-radius: 8px;
+  border: 2px solid var(--tinta); background: var(--hoja); color: var(--tinta); width: 100%;
+}
+.segmentos-claros.tres { display: grid; grid-template-columns: repeat(3, 1fr); }
+.segmentos-claros.tres button { line-height: 1.2; padding: 0.45rem 0.4rem; }
+.segmentos-claros button small { display: block; font-weight: 400; font-size: 0.72rem; opacity: 0.8; }
+.arriendo-resultado { background: var(--hoja); border: 1px solid var(--niebla); border-radius: var(--radio-panel); padding: clamp(1.1rem, 3vw, 1.8rem); }
+.capas { display: grid; gap: 4px; }
+.capa {
+  position: relative; display: grid; grid-template-columns: 1fr auto; gap: 0 0.8rem; align-items: center;
+  padding: 0.55rem 0.8rem; border-radius: 8px; background: #f6e8ed; overflow: hidden; border: 1px dashed #d99ab0;
+}
+.capa.incluida { background: #ddf0ed; border: 1px solid #9cc5bf; }
+.capa-barra { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(178, 58, 98, 0.13); transition: width 0.3s ease; }
+.capa.incluida .capa-barra { background: rgba(23, 118, 111, 0.16); }
+.capa > span:not(.capa-barra) { position: relative; }
+.capa-nombre { font-weight: 700; font-size: var(--t-0); }
+.capa-monto { font-family: var(--display); font-stretch: 80%; font-weight: 800; font-size: var(--t-2); text-align: right; }
+.capa-estado { grid-column: 1 / -1; font-size: 0.75rem; color: var(--tinta-suave); }
+.capa.incluida .capa-estado { color: #0e4f4a; }
+.c-base { border-radius: 8px 8px 12px 12px; }
+.arriendo-total { margin: 1.1rem 0 0; font-size: var(--t-2); }
+.ajuste-anual { margin-top: 2.2rem; max-width: 46rem; }
+.ajuste-anual h4 { font-family: var(--display); font-stretch: 82%; font-size: var(--t-3); margin: 0 0 0.4rem; }
+.ajuste-anual .segmentos-claros { max-width: 30rem; margin: 0.6rem 0 1rem; }
+.aa-meses { display: flex; gap: 3px; align-items: flex-end; margin-bottom: 0.8rem; }
+.aa-meses span { flex: 1; height: 1.1rem; background: var(--linea); border-radius: 3px; }
+.aa-meses b { flex: 2.2; height: 2rem; border-radius: 4px; background: var(--tinta); margin-left: 0.4rem; position: relative; }
+.aa-meses b::after { content: "Liquidación"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--hoja); font-size: 0.7rem; font-weight: 700; }
+.aa-veredicto { font-weight: 700; padding: 0.7rem 0.9rem; border-radius: 10px; }
+.aa-veredicto.mal { background: #f7e1e8; color: #7c2042; }
+.aa-veredicto.bien { background: #ddf0ed; color: #0e4f4a; }
+.aa-veredicto.neutro { background: var(--hoja); }
+@media (max-width: 860px) { .arriendo-grid { grid-template-columns: 1fr; } }
