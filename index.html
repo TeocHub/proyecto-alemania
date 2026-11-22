@@ -394,6 +394,32 @@
             <article class="ciudad-panel" id="ciudad-panel" role="tabpanel" aria-live="polite"></article>
             <p class="nota" id="ciudades-nota"></p>
           </div>
+
+          <div class="sub-seccion arriendo" id="leer-arriendo">
+            <div class="sub-cabeza">
+              <h3>Cómo leer un precio de arriendo</h3>
+              <p>En Alemania un mismo departamento puede anunciarse con precios distintos según qué incluye. Escriban el precio de un anuncio y elijan qué tipo de precio es: la página lo desarma capa por capa y les muestra lo que pagarían de verdad.</p>
+            </div>
+            <div class="arriendo-grid">
+              <form class="arriendo-datos" onsubmit="return false">
+                <label class="arriendo-campo"><span>Precio del anuncio (€ al mes)</span><input type="number" id="precio-anuncio" min="0" step="10" inputmode="numeric"></label>
+                <fieldset class="arriendo-campo">
+                  <legend>¿Qué tipo de precio dice el anuncio?</legend>
+                  <div class="segmentos-claros tres" id="tipo-precio"></div>
+                </fieldset>
+                <label class="arriendo-campo"><span>Metros cuadrados (m²)</span><input type="number" id="m2" min="5" max="200" step="1" inputmode="numeric"></label>
+                <p class="nota">Los gastos de la casa se calculan con el promedio alemán por m²: el Mieterbund registró €2,67 por m² al mes en 2024, de los cuales €1,32 son calefacción y agua caliente.</p>
+              </form>
+              <div class="arriendo-resultado" id="arriendo-resultado" aria-live="polite"></div>
+            </div>
+
+            <div class="ajuste-anual">
+              <h4>El ajuste de fin de año</h4>
+              <p>La parte de calefacción es un adelanto estimado. A fin de año se compara con lo que ustedes realmente usaron. Elijan cuánto calefaccionarían en invierno:</p>
+              <div class="segmentos-claros tres" id="calefaccion" role="group" aria-label="Cuánta calefacción usarían"></div>
+              <div id="ajuste-resultado" aria-live="polite"></div>
+            </div>
+          </div>
         </section>
 
         <section id="ruta" class="vista seccion" data-titulo="Los trámites" hidden>

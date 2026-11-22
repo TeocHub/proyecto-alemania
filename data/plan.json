@@ -415,6 +415,36 @@
     {
       "nombre": "YoMeAnimo: experiencias con citas y seguros",
       "url": "https://www.yomeanimo.com/requisitos-visa-working-holiday-alemania-para-chilenos"
+    },
+    {
+      "nombre": "Deutscher Mieterbund: Betriebskostenspiegel",
+      "url": "https://www.mieterbund.de/service/checks-formulare/betriebskosten/betriebskostenspiegel/"
+    },
+    {
+      "nombre": "gesund.bund.de: medicamentos, recetas y copago",
+      "url": "https://gesund.bund.de/arzneimittel-kostenuebernahme-und-zuzahlung"
+    },
+    {
+      "nombre": "Verbraucherzentrale: medicamentos desde el extranjero",
+      "url": "https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/medikamente/arzneimittelkauf-im-ausland-10735"
     }
-  ]
+  ],
+  "vivir": {
+    "nebenkostenM2": 2.67,
+    "calefaccionM2": 1.32,
+    "luzKwh": 0.33,
+    "luzConsumoDos": 1900,
+    "internet": 35,
+    "rundfunk": 18.36,
+    "rundfunk2027": 18.64,
+    "copagoHoy": [
+      5,
+      10
+    ],
+    "copago2027": [
+      7.5,
+      15
+    ],
+    "fuente": "Betriebskostenspiegel del Deutscher Mieterbund (año 2024), precios de luz 2026 y Beitragsservice"
+  }
 }

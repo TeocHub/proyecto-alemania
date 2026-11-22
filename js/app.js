@@ -293,6 +293,9 @@
     document.querySelectorAll("[data-raw]").forEach((n) => { n.innerHTML = t(n.dataset.raw); });
   }
 
+  const num = (n) => n.toLocaleString("es-CL", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
+  const luzMes = () => (plan.vivir.luzConsumoDos * plan.vivir.luzKwh) / 12;
+
   function contexto(r) {
     const e = plan.embajada, s = plan.sueldo, tc = estado.tc || plan.tipoCambio.eur;
     const ciudad = ciudades.ciudades.find((x) => x.id === estado.ciudad) || ciudades.ciudades[0];
@@ -332,7 +335,14 @@
       emergencia: pesos(c.emergencia),
       metaColchon: pesos(c.meta),
       mesesColchon: String(c.meses),
-      ahorradoColchon: pesos(c.ahorrado)
+      ahorradoColchon: pesos(c.ahorrado),
+      luzMes: euros(luzMes()),
+      rundfunk: eurDec(plan.vivir.rundfunk),
+      rundfunk2027: eurDec(plan.vivir.rundfunk2027),
+      copagoHoyMin: num(plan.vivir.copagoHoy[0]),
+      copagoHoyMax: num(plan.vivir.copagoHoy[1]),
+      copago2027Min: num(plan.vivir.copago2027[0]),
+      copago2027Max: num(plan.vivir.copago2027[1])
     };
   }
 
@@ -1590,6 +1600,90 @@
       </div>`;
   }
 
+  /* ---------- Cómo leer un precio de arriendo ---------- */
+  const TIPOS_PRECIO = [
+    ["kalt", "Kaltmiete", "Solo el departamento"],
+    ["warm", "Warmmiete", "Departamento + gastos de la casa"],
+    ["todo", "Todo incluido", "Incluye luz e internet"]
+  ];
+  const CALEFACCION = [["poco", "Poca", 0.7], ["normal", "Como el promedio", 1], ["mucho", "Mucha", 1.45]];
+
+  function montarArriendo() {
+    estado.arriendo = Object.assign({ precio: 650, tipo: "kalt", m2: 35, calef: "normal" }, estado.arriendo || {});
+    const a = estado.arriendo;
+    const tipos = $("#tipo-precio");
+    TIPOS_PRECIO.forEach(([id, nombre, sub]) => {
+      const b = el("button", { type: "button", "data-tipo": id }, `${nombre}<small>${sub}</small>`);
+      b.addEventListener("click", () => { a.tipo = id; guardar(); pintarArriendo(); });
+      tipos.append(b);
+    });
+    const calef = $("#calefaccion");
+    CALEFACCION.forEach(([id, nombre]) => {
+      const b = el("button", { type: "button", "data-calef": id }, nombre);
+      b.addEventListener("click", () => { a.calef = id; guardar(); pintarArriendo(); });
+      calef.append(b);
+    });
+    const precio = $("#precio-anuncio"), m2 = $("#m2");
+    precio.value = a.precio; m2.value = a.m2;
+    precio.addEventListener("input", () => { a.precio = Number(precio.value) || 0; guardar(); pintarArriendo(); });
+    m2.addEventListener("input", () => { a.m2 = Number(m2.value) || 0; guardar(); pintarArriendo(); });
+  }
+
+  function pintarArriendo() {
+    const a = estado.arriendo, v = plan.vivir;
+    document.querySelectorAll("#tipo-precio button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tipo === a.tipo)));
+    document.querySelectorAll("#calefaccion button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.calef === a.calef)));
+    const calefaccion = v.calefaccionM2 * a.m2;
+    const frias = (v.nebenkostenM2 - v.calefaccionM2) * a.m2;
+    const luz = luzMes();
+    const capas = [
+      ["base", "Departamento (Kaltmiete)", null],
+      ["frias", "Agua, basura, conserje, escalera", frias],
+      ["calor", "Calefacción y agua caliente", calefaccion],
+      ["luz", "Luz", luz],
+      ["internet", "Internet", v.internet],
+      ["radio", "Tasa de radio y TV (una por vivienda)", v.rundfunk]
+    ];
+    const incluidas = { kalt: ["base"], warm: ["base", "frias", "calor"], todo: ["base", "frias", "calor", "luz", "internet", "radio"] }[a.tipo];
+    const dentro = capas.filter(([id]) => id !== "base" && incluidas.includes(id)).reduce((s, c) => s + c[2], 0);
+    const base = Math.max(0, a.precio - dentro);
+    capas[0][2] = base;
+    const total = capas.reduce((s, c) => s + c[2], 0);
+    const extra = total - a.precio;
+    const max = Math.max(total, 1);
+
+    const filas = capas.slice().reverse().map(([id, nombre, monto]) => {
+      const inc = incluidas.includes(id);
+      return `<div class="capa c-${id}${inc ? " incluida" : ""}">
+        <span class="capa-barra" style="width:${Math.max(4, (monto / max) * 100)}%"></span>
+        <span class="capa-nombre">${nombre}</span>
+        <span class="capa-monto">${euros(monto)}</span>
+        <span class="capa-estado">${inc ? "Ya está en el precio" : "Se suma aparte"}</span>
+      </div>`;
+    }).join("");
+
+    const tc = estado.tc || plan.tipoCambio.eur;
+    const tipoNombre = TIPOS_PRECIO.find((x) => x[0] === a.tipo)[1];
+    $("#arriendo-resultado").innerHTML = `
+      <div class="capas">${filas}</div>
+      <p class="arriendo-total">Si el anuncio dice <strong>${euros(a.precio)} ${tipoNombre}</strong>, en realidad pagarían cerca de <strong>${euros(total)} al mes</strong> (≈ ${pesos(total * tc)})${extra > 1 ? `: ${euros(extra)} más que el número del anuncio` : ""}.</p>`;
+
+    // Ajuste anual de la calefacción
+    const factor = CALEFACCION.find((x) => x[0] === a.calef)[2];
+    const adelantoAnual = calefaccion * 12;
+    const realAnual = adelantoAnual * factor;
+    const dif = realAnual - adelantoAnual;
+    const caja = $("#ajuste-resultado");
+    if (a.tipo === "kalt" || a.tipo === "warm") {
+      caja.innerHTML = `
+        <div class="aa-meses" aria-hidden="true">${Array.from({ length: 12 }, () => `<span></span>`).join("")}<b></b></div>
+        <p>Cada mes pagan un adelanto de ${euros(calefaccion)} por calefacción y agua caliente (${euros(adelantoAnual)} en el año). A fin de año se mide lo que <strong>ustedes</strong> usaron: ${euros(realAnual)}.</p>
+        <p class="aa-veredicto ${dif > 1 ? "mal" : dif < -1 ? "bien" : "neutro"}">${dif > 1 ? `Tendrían que pagar ${euros(dif)} de diferencia en la liquidación anual.` : dif < -1 ? `Les devolverían ${euros(-dif)}.` : "Quedarían a mano: el adelanto coincidió con lo que usaron."}</p>`;
+    } else {
+      caja.innerHTML = `<p>Con todo incluido pagan un monto fijo. La liquidación anual la ve quien arrienda el departamento; pregunten por escrito si después les pueden cobrar una diferencia.</p>`;
+    }
+  }
+
   /* ---------- Dudas ---------- */
   const normal = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
@@ -1616,6 +1710,8 @@
   function pintarPreguntas() {
     const q = normal($("#buscar").value.trim());
     const cont = $("#preguntas");
+    const resp = $("#respuesta");
+    if (resp && cont.contains(resp)) $(".dudas-cuerpo").append(resp);
     cont.innerHTML = "";
     const visibles = dudas.dudas.filter((d) =>
       (!estado.tema || d.tema === estado.tema) &&
@@ -2283,6 +2379,7 @@
     pintarLucas();
     pintarTrabajos();
     pintarVivir();
+    pintarArriendo();
     pintarEstadoAbierto();
     if (dudas && $("#respuesta").innerHTML) pintarRespuesta();
     refrescarVivos();
@@ -2323,6 +2420,7 @@
     montarVivir();
     montarRefugio();
     montarCiudades();
+    montarArriendo();
     montarDudas();
     pintarCarpeta();
     montarPreparacion();

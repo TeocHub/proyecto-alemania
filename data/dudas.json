@@ -31,6 +31,14 @@
     {
       "id": "planb",
       "nombre": "Si algo sale mal"
+    },
+    {
+      "id": "cuentas",
+      "nombre": "Vivir allá: cuentas de la casa"
+    },
+    {
+      "id": "salud",
+      "nombre": "Vivir allá: salud y farmacias"
     }
   ],
   "dudas": [
@@ -231,6 +239,66 @@
       "tema": "visa",
       "pregunta": "¿Sirve una cuenta de Tenpo, Mercado Pago o similares?",
       "respuesta": "<p>La embajada acepta cuenta corriente, cuenta vista/CuentaRUT y cuenta de ahorro, y pide la cartola con firma original y timbre del banco. Las billeteras digitales no están en esa lista y normalmente no entregan cartolas timbradas, así que no vale la pena arriesgarse: usen un banco.</p>"
+    },
+    {
+      "id": "como-se-paga",
+      "tema": "cuentas",
+      "pregunta": "¿Cómo se pagan el arriendo y las cuentas en Alemania?",
+      "respuesta": "<p>Casi nunca se entra a la página de cada servicio a pagar como en Chile. El arriendo se paga con una <strong>transferencia automática mensual</strong> (Dauerauftrag) a la cuenta del arrendador, y la luz, el internet o el celular se descuentan solos de la cuenta bancaria (Lastschrift), con una cuota fija cada mes.</p><p>Por eso la cuenta bancaria alemana es tan importante: casi todo se paga desde ahí.</p>"
+    },
+    {
+      "id": "kalt-warm",
+      "tema": "cuentas",
+      "pregunta": "¿Qué es Kaltmiete y qué es Warmmiete?",
+      "respuesta": "<p><strong>Kaltmiete</strong> («arriendo frío») es solo el departamento. <strong>Warmmiete</strong> («arriendo caliente») es eso más los gastos de la casa: agua, basura, conserje, limpieza de la escalera y también la calefacción y el agua caliente. Por eso se llama «caliente».</p><p>Ninguna de las dos incluye normalmente la luz, el internet ni la tasa de radio y TV. En «¿Dónde llegamos?» hay una calculadora que desarma un precio de anuncio capa por capa.</p>"
+    },
+    {
+      "id": "ajuste-anual",
+      "tema": "cuentas",
+      "pregunta": "¿Por qué a veces hay que pagar más a fin de año?",
+      "respuesta": "<p>Los gastos de la casa que pagan cada mes son un <strong>adelanto</strong>: un monto estimado, calculado normalmente con lo que se gastó el año anterior en ese departamento. Una vez al año el arrendador hace la cuenta real (Nebenkostenabrechnung) con <strong>lo que ustedes consumieron</strong>.</p><p>Si gastaron más que el adelanto (por ejemplo, calefaccionaron mucho en invierno), pagan la diferencia. Si gastaron menos, les devuelven plata. No pagan lo que gastó el arrendatario anterior: pagan lo suyo. El riesgo es que el adelanto esté puesto muy bajo, así que pidan ver la última liquidación anual antes de firmar.</p><p>En una pieza con todo incluido en un piso compartido, normalmente pagan un monto fijo y el ajuste lo ve quien arrienda el departamento. Pregunten cómo se reparte.</p>"
+    },
+    {
+      "id": "luz-internet",
+      "tema": "cuentas",
+      "pregunta": "¿Y la luz y el internet?",
+      "respuesta": "<p>Van aparte del arriendo. Se contrata un proveedor de luz con un pago mensual fijo y un ajuste anual, igual que los gastos de la casa. Para dos personas en un departamento, calculen unos {{luzMes}} al mes.</p><p>Con el internet, ojo: muchos contratos duran 24 meses. Para un año, busquen planes mensuales o una pieza donde el internet ya venga incluido.</p>"
+    },
+    {
+      "id": "rundfunk",
+      "tema": "cuentas",
+      "pregunta": "¿Qué es la carta de la tasa de radio y TV?",
+      "respuesta": "<p>Es el Rundfunkbeitrag: una tasa obligatoria de <strong>{{rundfunk}} al mes por vivienda</strong>, aunque no tengan tele. Se paga una sola por departamento: en un piso compartido la paga uno y se reparte entre todos. Si se aprueba la recomendación actual, sube a {{rundfunk2027}} en 2027.</p><p>Suele llegar una carta poco después de registrar el domicilio. No es estafa: hay que responderla.</p>"
+    },
+    {
+      "id": "seguro-como-paga",
+      "tema": "salud",
+      "pregunta": "¿Cómo funciona el seguro si vamos al médico?",
+      "respuesta": "<p>Con el seguro de la visa (privado), lo normal es <strong>pagar la consulta y pedir el reembolso</strong> después. Guarden todas las boletas (Rechnung) y las recetas.</p><p>Antes de contratarlo, revisen dos cosas: si paga directo en caso de hospitalización y si excluye <strong>enfermedades o tratamientos que ya tenían antes de viajar</strong>. Muchos seguros de viaje no cubren tratamientos permanentes ni medicamentos sin receta, así que esos gastos conviene presupuestarlos aparte.</p><p>Si consiguen un trabajo formal por sobre el minijob, entran al sistema público y la consulta deja de pagarse.</p>"
+    },
+    {
+      "id": "farmacia",
+      "tema": "salud",
+      "pregunta": "¿Cómo funcionan las farmacias y las recetas?",
+      "respuesta": "<p>Los medicamentos se compran en la <strong>Apotheke</strong>. Los que requieren receta solo se venden con ella; muchos otros (analgésicos comunes, antialérgicos) se venden sin receta, pero solo en farmacia: en el supermercado no están. En las droguerías como dm o Rossmann hay vitaminas y cosas básicas.</p><p>En el sistema público se paga un copago por medicamento con receta: entre €{{copagoHoyMin}} y €{{copagoHoyMax}} hoy, y entre €{{copago2027Min}} y €{{copago2027Max}} desde enero de 2027. Con el seguro de viaje les darán una receta privada: pagan el precio completo y piden el reembolso.</p>"
+    },
+    {
+      "id": "medico",
+      "tema": "salud",
+      "pregunta": "¿Dónde vamos si nos enfermamos?",
+      "respuesta": "<p>Para algo común, al <strong>médico general (Hausarzt)</strong>: se pide hora por teléfono o por aplicaciones de agendamiento. Para una emergencia, el <strong>112</strong>. Si no es urgente pero es de noche o fin de semana, el <strong>116117</strong> deriva a un médico de turno.</p><p>De noche siempre hay una farmacia de turno (Notdienst); cada farmacia muestra en su puerta cuál es.</p>"
+    },
+    {
+      "id": "medicamento-permanente",
+      "tema": "salud",
+      "pregunta": "¿Qué hacemos si tomamos un medicamento todo el año?",
+      "respuesta": "<p>Pueden llevar desde Chile la cantidad que alcance para <strong>unos tres meses</strong> según la dosis indicada, en su envase original. Lleven también una carta del médico en inglés con el diagnóstico y el nombre del <strong>principio activo</strong> (no la marca): así es fácil encontrar el equivalente allá.</p><p>Varios antialérgicos comunes se venden sin receta en las farmacias alemanas (loratadina, desloratadina, cetirizina, levocetirizina y bilastina), y los genéricos son baratos. Otros, como la fexofenadina, requieren receta.</p><p>Si el tratamiento cambia seguido o la dosis ha ido subiendo, conviene revisarlo con un especialista en Chile antes de viajar y llevar el plan por escrito.</p>"
+    },
+    {
+      "id": "alergias-estaciones",
+      "tema": "salud",
+      "pregunta": "¿Las alergias pueden cambiar allá?",
+      "respuesta": "<p>Sí. Las estaciones están al revés que en Chile y las plantas son otras. En Alemania la temporada fuerte de polen es la primavera y el comienzo del verano (abedul y árboles al principio, después los pastos). Si llegan entre marzo y mayo, llegan justo en esa temporada.</p><p>Un test de alergias antes de viajar ayuda a saber a qué son alérgicos y qué esperar allá.</p>"
     }
   ]
 }
