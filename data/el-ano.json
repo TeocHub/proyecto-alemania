@@ -86,6 +86,7 @@
       "miedo": "¿Llego sin saber dónde voy a dormir?",
       "realidad": "Casi todos parten en hostal, departamento temporal o donde un conocido. Ojo: en un hostal u hotel normalmente no se puede registrar el domicilio, y sin registro no hay número de impuestos.",
       "hacer": "Reserven las dos primeras semanas antes de volar y empiecen a escribir a pisos compartidos desde Chile con el mensaje armado de «Prepararse». Las videollamadas sirven para conocerse, pero no paguen nada sin haber visto la pieza.",
+      "hacerUno": "Reserva las dos primeras semanas antes de volar y empieza a escribir a pisos compartidos desde Chile con el mensaje armado de «Prepararse». Las videollamadas sirven para conocerse, pero no pagues nada sin haber visto la pieza.",
       "fuentes": [
         {
           "nombre": "Make it in Germany: vivienda y registro",
@@ -102,7 +103,9 @@
       "tema": "salud",
       "miedo": "¿Y si me enfermo antes de tener seguro alemán?",
       "realidad": "Al principio los cubre el seguro de viaje que presentaron para la visa. Muchas consultas en Alemania les van a cobrar como pacientes privados: pagan ustedes y después el seguro les devuelve, si la póliza lo cubre.",
+      "realidadUno": "Al principio te cubre el seguro de viaje que presentaste para la visa. Muchas consultas en Alemania te van a cobrar como paciente privado: pagas tú y después el seguro te devuelve, si la póliza lo cubre.",
       "hacer": "Lean la póliza antes de pagarla: si paga directo al médico o reembolsa, qué cubre de dentista y de remedios que ya toman. Guarden siempre la factura detallada. Lleven receta y remedios para los primeros meses.",
+      "hacerUno": "Lee la póliza antes de pagarla: si paga directo al médico o reembolsa, qué cubre de dentista y de remedios que ya tomas. Guarda siempre la factura detallada. Lleva receta y remedios para los primeros meses.",
       "fuentes": [
         {
           "nombre": "Barmer: factura médica",
@@ -401,6 +404,7 @@
       "miedo": "¿Cuándo se siente como casa?",
       "realidad": "Toma tiempo, y el invierno es cuando más se duda. Hay quien tardó más de un año y medio en sentir Alemania como su casa. En una Working Holiday de un año, la primavera suele ser cuando todo empieza a fluir.",
       "hacer": "Si dudan en enero, no decidan en enero. Anoten en «Cuando dudemos» qué sienten y vuelvan a leerlo en marzo.",
+      "hacerUno": "Si dudas en enero, no decidas en enero. Anota en «Cuando dudes» qué sientes y vuelve a leerlo en marzo.",
       "fuentes": [
         {
           "nombre": "Eurodicas: relato",

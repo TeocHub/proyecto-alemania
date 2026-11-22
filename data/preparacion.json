@@ -156,6 +156,7 @@
       },
       {
         "nombre": "Buscar de a dos",
+        "soloDos": true,
         "texto": "Muchos pisos compartidos no aceptan parejas en una misma pieza. Si son pareja, filtren por piezas aptas para dos o busquen un estudio pequeño (1-Zimmer-Wohnung). Si son amigos, busquen pisos con dos piezas libres a la vez."
       },
       {

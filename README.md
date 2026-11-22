@@ -51,8 +51,8 @@ Todo el contenido está en `data/`, en archivos JSON que se pueden editar sin to
 | `data/trabajos.json` | Trabajos, rangos de sueldo, requisitos y fuentes (revisado el 20-nov-2026) |
 | `data/barrios.json` | Comunas, arriendo, metro, señales de seguridad y fuentes |
 | `data/colchon.json` | Textos del colchón, etapas, escenarios de «¿Y si…?», sueldos estimados de cada escenario y acciones para llegar antes |
-| `data/plan.json` | Nombres, tipo de cambio, requisitos de la embajada, costos, colchones para vivir allá, etapas de la ruta con sus tareas, documentos de la carpeta y fuentes |
-| `data/ciudades.json` | Ciudades, gastos mensuales estimados para la pareja y escenarios de ingreso |
+| `data/plan.json` | Tipo de cambio, requisitos de la embajada (incluida la edad para postular), costos, colchones para vivir allá, etapas de la ruta con sus tareas, documentos de la carpeta y fuentes |
+| `data/ciudades.json` | Ciudades, gastos mensuales estimados para dos personas (`gastos`) y para una (`gastosUno`), y escenarios de ingreso de cada grupo |
 | `data/preparacion.json` | Plan de alemán de 12 semanas, frases con pronunciación, cursos, pasos para buscar hospedaje, mensaje para arrendadores, señales de estafa y experiencias de otras personas |
 | `data/refugio.json` | Ventana «Cuando dudemos» |
 | `data/buscar-alemania.json` | Ventana «Buscar allá»: trabajos en Alemania con sueldo por hora, portales de empleo y de arriendo por ciudad, y la carpeta para arrendar |
@@ -83,7 +83,9 @@ manifest.webmanifest   para instalar en el celular
 
 ## Grupo (perfil)
 
-`estado.perfil = { nombres: [1 o 2], tipo: "pareja" | "amigos" | "solo", edades: [] }` se sincroniza con la planilla. Sin perfil, la página muestra la vista `#bienvenida`. Los cálculos usan `N()` (personas que viajan); los textos que cambian con una persona usan `ld(dos, uno)` en JS o `data-uno` en el HTML. El mensaje para arriendos sale de `preparacion.json > hospedaje.plantillas[tipo]` con `{nombres}`. Los dispositivos que ya tenían datos antes del perfil se migran una vez a Teoc y Francis.
+`estado.perfil = { nombres: [1 o 2], tipo: "pareja" | "amigos" | "solo", edades: [] }` se sincroniza con la planilla. Sin perfil, la página muestra la vista `#bienvenida`. Los cálculos usan `N()` (personas que viajan); los textos que cambian con una persona usan `ld(dos, uno)` en JS o `data-uno` en el HTML. El mensaje para arriendos sale de `preparacion.json > hospedaje.plantillas[tipo]` con `{nombres}`. Ningún JSON lleva nombres ni edades: salen del perfil (por ejemplo, la duda «edad» usa `{{plazoEdad}}`, que calcula cuántos años le quedan a cada persona con `plan.json > embajada.edadMinima` y `edadMaxima`). Un dispositivo con datos pero sin perfil abre la bienvenida y conserva lo anotado.
+
+Los textos de los JSON se escriben para dos. Cuando cambian para una persona, el mismo objeto trae la versión en singular con el sufijo `Uno` (`texto` y `textoUno`, `pregunta` y `preguntaUno`, `suma` y `sumaUno`…). Lo que solo sirve a dos lleva `"soloDos": true` y lo que solo sirve a una, `"soloUno": true`. `porGrupo()` en `js/app.js` aplica esto al cargar los datos.
 
 ## Su año allá (`data/el-ano.json`)
 
