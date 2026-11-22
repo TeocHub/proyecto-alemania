@@ -11,7 +11,7 @@
   const CADA = 45000;
 
   // Lo que es de cada pantalla (qué pestaña está abierta) no se comparte.
-  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel"]);
+  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "plataVista"]);
   // Hasta qué profundidad se separa cada dato. Más profundo = menos choques.
   const PROF = { economia: 2, respuestas: 3, marcas: 2, movs: 2, contacto: 2, colchonSueldos: 2, combina: 2 };
 

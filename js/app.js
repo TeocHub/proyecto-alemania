@@ -73,7 +73,7 @@
     escenario: "full",
     combina: null
   };
-  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento", "anoModo"]);
+  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento", "anoModo", "plataVista"]);
   const copia = (o) => JSON.parse(JSON.stringify(o));
 
   function leerEstado() {
@@ -196,6 +196,8 @@
       const d = sumarMeses(new Date(hoy.getFullYear(), hoy.getMonth(), 1), 12);
       estado.viaje = { m: d.getMonth(), y: d.getFullYear() };
     }
+    // El mes viene puesto por defecto; cuenta como elegido solo si lo eligieron (o ya marcaron esa tarea).
+    if (typeof estado.viajeElegido !== "boolean") estado.viajeElegido = Boolean(estado.marcas["decidir.fecha.j"]);
   }
 
   const fechaViaje = () => new Date(estado.viaje.y, estado.viaje.m, 1);
@@ -472,26 +474,127 @@
   const sincronizadores = [];
 
   /* ---------- Inicio ---------- */
+  /* ¿Ya eligieron el mes de viaje? Mientras no, Inicio no muestra fechas calculadas. */
+  const conFecha = () => estado.viajeElegido === true;
+
+  /* La plata del viaje contada como una historia: total = lo que se paga antes + lo que llevan,
+     y de lo que llevan, lo que queda congelado. Cada cifra se toca para ver de dónde sale.
+     Todos los montos salen de calcular(). */
+  let plataAbierta = null;
   function pintarNumeros(r) {
-    const imposible = !isFinite(r.mensual);
-    const desde = r.empiezaDespues ? `Ahorro al mes desde ${mesAnio(r.S)}` : ld("Ahorro al mes entre los dos", "Ahorro al mes");
-    $("#numeros").innerHTML = `
-      <div class="numero n-meta"><span class="n-valor">${ctx.meta}</span><span class="n-nombre">${ld("Meta entre los dos", "Tu meta")}</span></div>
-      <div class="numero n-gasto"><span class="n-valor">${ctx.gasto}</span><span class="n-nombre">Se gasta antes de viajar</span></div>
-      <div class="numero n-llevan"><span class="n-valor">${ctx.llevan}</span><span class="n-nombre">${ld("Llevan para vivir allá", "Llevas para vivir allá")}</span></div>
-      <div class="numero n-mensual"><span class="n-valor">${imposible ? "—" : ctx.mensual}</span><span class="n-nombre">${desde}</span></div>
-      <p class="numeros-pie">Meta = lo que se gasta + lo que llevan. De lo que llevan, ${ctx.congeladoDos} queda congelado en sus cuentas desde ${ctx.fechaFondos}. <a href="#dinero">Ver el detalle</a></p>`;
+    const caja = $("#numeros");
+    const txt = plan.plataInicio, det = txt.detalle;
+    const dos = N() === 2;
+    const cada = dos && estado.plataVista === "persona";
+    const tc = estado.tc;
+    const pasaporte = estado.pasaporte ? plan.costos.pasaporte : 0;
+    // En «cada uno», el pasaporte queda fuera: lo paga solo quien lo saca (se dice en el detalle).
+    const m = cada
+      ? { meta: r.gastoPersona + r.colchonPersona, gasto: r.gastoPersona, llevan: r.colchonPersona, congelado: r.congelado }
+      : { meta: r.meta, gasto: r.gastoTotal, llevan: r.colchonPersona * N(), congelado: r.congelado * N() };
+    const desde = conFecha() ? `<strong>${t(txt.desde)}</strong>` : txt.desdeSinFecha;
+    const cifra = (parte, valor) => `<button type="button" class="cifra c-${parte}" data-parte="${parte}" aria-expanded="${plataAbierta === parte}" aria-controls="plata-detalle">${valor}</button>`;
+    const relleno = {
+      meta: cifra("meta", millones(m.meta)),
+      gasto: cifra("gasto", millones(m.gasto)),
+      llevan: cifra("llevan", millones(m.llevan)),
+      llevanTexto: millones(m.llevan),
+      congelado: cifra("congelado", pesos(m.congelado)),
+      congeladoCada: pesos(r.congelado),
+      desde
+    };
+    const plantilla = cada ? txt.historiaPersona : txt.historia;
+    const historia = plantilla.replace(/\{(\w+)\}/g, (x, k) => (k in relleno ? relleno[k] : x));
+
+    // La barra: el largo total es la meta; rosado se gasta, verde se lleva (oscuro = congelado).
+    const resto = Math.max(0, m.llevan - m.congelado);
+    const barra = `<div class="plata-barra" aria-hidden="true">
+        <span class="b-gasto" style="flex-grow:${m.gasto}"></span><span class="b-congelado" style="flex-grow:${m.congelado}"></span><span class="b-resto" style="flex-grow:${resto}"></span>
+      </div>
+      <div class="plata-escala" aria-hidden="true"><span style="flex-grow:${m.gasto}">se gasta</span><span style="flex-grow:${m.llevan}">${cada ? "lo lleva" : ld("se llevan", "te lo llevas")}</span></div>`;
+
+    // Cuánto guardar al mes: solo con un mes elegido.
+    let mes = "";
+    // Sin mes elegido no hay cuota mensual: la frase de arriba ya pide elegirlo.
+    if (conFecha() && isFinite(r.mensual) && r.mensual > 0) {
+      const desdeS = r.empiezaDespues ? `, desde ${mesAnio(r.S)}` : "";
+      let cuanto;
+      if (!dos) cuanto = `necesitas guardar <strong>${pesos(r.mensual)}</strong> al mes${desdeS}`;
+      else if (!cada) cuanto = `necesitan guardar <strong>${pesos(r.mensual)}</strong> al mes entre los dos${desdeS}`;
+      else {
+        const [a, b] = r.porPersona;
+        cuanto = Math.round(a) === Math.round(b)
+          ? `cada uno necesita guardar <strong>${pesos(a)}</strong> al mes${desdeS}`
+          : `${escapar(plan.personas[0])} necesita guardar <strong>${pesos(a)}</strong> y ${escapar(plan.personas[1])}, <strong>${pesos(b)}</strong> al mes${desdeS}`;
+      }
+      mes = `<p class="plata-mes">Para viajar en ${mesAnio(r.V)}, ${cuanto}.</p>`;
+    }
+
+    // El detalle de la cifra tocada.
+    let detalle = "";
+    if (plataAbierta === "meta") {
+      const cuando = conFecha() ? t(det.cuando) : det.cuandoSinFecha;
+      detalle = `<p><b>${millones(m.gasto)}</b> + <b>${millones(m.llevan)}</b> = <b>${millones(m.meta)}</b>. ${det.meta.replace("{cuando}", cuando)}</p>`;
+    } else if (plataAbierta === "gasto") {
+      const partes = `visa ${pesos(r.visa)}, seguro ${pesos(estado.seguro)}, pasaje ${estado.soloIda ? "de ida " : ""}${pesos(r.pasaje)} y documentos ${pesos(plan.costos.documentos)}`;
+      const pp = pasaporte ? (dos ? ` El pasaporte (${pesos(pasaporte)}) se suma una vez, para quien lo saca${cada ? "; no está en esta cuenta" : ""}.` : ` Más el pasaporte, ${pesos(pasaporte)}.`) : "";
+      detalle = `<p>${det.gasto} ${dos ? "Por persona incluye" : "Incluye"} ${partes}.${pp}</p><a class="boton-texto" href="#dinero">Cambiar pasaje o seguro</a>`;
+    } else if (plataAbierta === "llevan") {
+      const col = plan.colchones.find((x) => x.id === estado.colchon);
+      const minimo = r.colchonPersona > col.eur * tc;
+      const base = minimo ? det.llevanMinimo.replace("{eur}", pesos(r.colchonPersona)) : t(det.llevan).replace("{eur}", `${euros(col.eur)} (${pesos(r.colchonPersona)})`);
+      detalle = `<p>${base} ${minimo ? "" : t(col.texto)}</p><a class="boton-texto" href="#dinero">Elegir otro colchón</a>`;
+    } else if (plataAbierta === "congelado") {
+      const d = conFecha() ? t(det.desde) : det.desdeSinFecha;
+      detalle = `<p>${t(det.congelado).replace("{desde}", d)}</p><a class="boton-texto" href="#ruta" data-estacion="fondos">Ver «Fondos congelados» en Los trámites</a>`;
+    }
+
+    caja.innerHTML = `
+      <div class="plata-cabeza">
+        <p class="visor-etiqueta">La plata del viaje</p>
+        ${dos ? `<div class="plata-vista" role="group" aria-label="Ver los montos">
+          <button type="button" data-vista="juntos" aria-pressed="${!cada}">Entre los dos</button><button type="button" data-vista="persona" aria-pressed="${cada}">Cada uno</button>
+        </div>` : ""}
+      </div>
+      <p class="plata-historia">${historia}</p>
+      ${barra}
+      <div class="plata-detalle c-${plataAbierta || "nada"}" id="plata-detalle" aria-live="polite" ${detalle ? "" : "hidden"}>${detalle}</div>
+      <p class="plata-que-es">${txt.queEs}</p>
+      ${mes}
+      <p class="plata-toca">Toca cada cifra para ver de dónde sale.</p>`;
+
+    caja.querySelectorAll(".cifra").forEach((b) => b.addEventListener("click", () => {
+      plataAbierta = plataAbierta === b.dataset.parte ? null : b.dataset.parte;
+      pintarNumeros(r);
+      const nb = caja.querySelector(`.cifra[data-parte="${b.dataset.parte}"]`);
+      if (nb) nb.focus();
+    }));
+    caja.querySelectorAll("[data-vista]").forEach((b) => b.addEventListener("click", () => {
+      estado.plataVista = b.dataset.vista; guardarLocal(); pintarNumeros(r);
+    }));
+    caja.querySelectorAll("[data-estacion]").forEach((a) => a.addEventListener("click", () => {
+      estado.estacion = a.dataset.estacion; guardarLocal(); pintarLinea(); pintarEstacion();
+    }));
   }
 
   function montarFecha() {
     const mes = $("#mes"), anio = $("#anio");
+    mes.append(el("option", { value: "", disabled: true }, "elige el mes"));
     MESES.forEach((m, i) => mes.append(el("option", { value: i }, m)));
     for (let y = hoy.getFullYear(); y <= hoy.getFullYear() + 7; y++) anio.append(el("option", { value: y }, y));
-    const mostrar = () => { mes.value = estado.viaje.m; anio.value = estado.viaje.y; };
+    const mostrar = () => {
+      mes.value = conFecha() ? estado.viaje.m : "";
+      anio.value = estado.viaje.y;
+      $(".frase-fecha").classList.toggle("por-elegir", !conFecha());
+    };
     mostrar();
     sincronizadores.push(mostrar);
     const cambio = () => {
+      if (mes.value === "") { estado.viaje = { m: estado.viaje.m, y: Number(anio.value) }; guardar(); return; }
       estado.viaje = { m: Number(mes.value), y: Number(anio.value) };
+      // Elegir el mes es la primera tarea de Los trámites: queda marcada.
+      if (!conFecha()) { estado.viajeElegido = true; estado.marcas["decidir.fecha.j"] = true; }
+      mostrar();
       guardar(); todo();
     };
     mes.addEventListener("change", cambio);
@@ -501,6 +604,10 @@
 
   function pintarFrase(r) {
     const nodo = $("#frase-resultado");
+    if (!conFecha()) {
+      nodo.innerHTML = `<strong>${ld("Elijan el mes en que se van.", "Elige el mes en que te vas.")}</strong> Con esa fecha se calcula cuándo toca cada trámite y cuánto guardar al mes.`;
+      return;
+    }
     const meses = Math.round(r.mesesViaje);
     if (r.mesesViaje < 1) {
       nodo.innerHTML = "Esa fecha ya pasó o es muy pronto. Elijan un mes con al menos 7 meses de margen.";
@@ -524,10 +631,20 @@
         const f = fechaPosible(disp);
         texto += f ? `Con lo que les queda hoy, la fecha más cercana que pueden sostener es <strong>${mesAnio(f)}</strong>.` : "Con lo que les queda hoy todavía no hay una fecha que se pueda sostener.";
       }
-    } else if (!r.fondosListos) {
-      texto += `El hito más importante: en <strong>${mesAnio(r.F)}</strong> ${ld("cada uno debe tener", "debes tener")} ${pesos(r.congelado)} congelados en ${ld("su", "tu")} cuenta.`;
     }
     nodo.innerHTML = texto + avisosEdad(r);
+  }
+
+  /* «Estás aquí»: lo que ya marcaron en Los trámites y lo que les toca, con el link a esa estación. */
+  function htmlEstasAqui() {
+    let total = 0, hechas = 0;
+    plan.ruta.forEach((est) => est.tareas.forEach((x) => { total++; if (tareaHecha(est, x)) hechas++; }));
+    const aqui = `<b class="aqui-marca">${ld("Están aquí", "Estás aquí")}</b>`;
+    const est = plan.ruta.find((e) => !estacionLista(e));
+    if (!est) return `${aqui} ${ld("Marcaron", "Marcaste")} las ${total} tareas de <a href="#ruta">Los trámites</a>.`;
+    const { tarea, faltan } = pendientes(est)[0];
+    const falta = faltan.length && faltan.length < plan.personas.length ? ` (falta ${faltan.map(escapar).join(" y ")})` : "";
+    return `${aqui} ${ld("Llevan", "Llevas")} <strong>${hechas} de ${total}</strong> tareas marcadas en Los trámites. ${ld("Les toca", "Te toca")} «${t(tarea.texto)}»${falta}, en <a href="#ruta" data-estacion="${est.id}">${est.nombre}</a>.`;
   }
 
   /* La línea completa: el colchón en Santiago y después la ruta a Alemania. */
@@ -544,17 +661,14 @@
     }));
     const llenoC = idx < 0 ? 0 : Math.min(1, c.meta > 0 ? c.ahorrado / c.meta : 0);
     const hechasR = pr.filter((p) => p.lista).length / pr.length;
-    let aqui;
-    if (idx < 0) aqui = ld("Anoten su economía para ubicarse en la línea", "Anota tu economía para ubicarte en la línea");
-    else if (!colchonListo) aqui = `Están en: <strong>${colchonData.etapas[idx].nombre}</strong>`;
-    else aqui = rutaActual ? `Están en: <strong>${rutaActual.nombre}</strong>` : "<strong>Terminaron la ruta</strong>";
+    const aqui = htmlEstasAqui();
     $("#viaje-tramos").innerHTML = `
       <div class="v-tramo v-colchon">
         <p class="v-nombre">El colchón<span>Santiago</span></p>
         <div class="v-linea" style="--lleno:${llenoC}">${pc.map(paradaHtml).join("")}</div>
       </div>
       <div class="v-tramo v-alemania">
-        <p class="v-nombre">El viaje<span>${mesAnio(fechaViaje())}</span></p>
+        <p class="v-nombre">El viaje<span>${conFecha() ? mesAnio(fechaViaje()) : "sin fecha"}</span></p>
         <div class="v-linea" style="--lleno:${hechasR}">${pr.map(paradaHtml).join("")}</div>
       </div>
       <p class="v-aqui">${aqui}</p>`;
@@ -575,17 +689,14 @@
     const pr = plan.ruta.map((est) => ({ nombre: est.nombre, lista: estacionLista(est), actual: rutaActual && rutaActual.id === est.id, href: "#ruta", est: est.id }));
     const llenoA = c.hayDatos ? Math.min(1, tieneViaje(c) / Math.max(1, r.meta)) : 0;
     const hechasR = pr.filter((p) => p.lista).length / pr.length;
-    const en = ld("Están en", "Estás en");
-    let aqui = rutaActual ? `${en}: <strong>${rutaActual.nombre}</strong>` : `<strong>${ld("Terminaron", "Terminaste")} la ruta</strong>`;
-    if (idx < 0) aqui += ` · ${ld("anoten su economía para ver el ahorro", "anota tu economía para ver el ahorro")}`;
-    else if (id !== "listo") aqui += ` · ahorro: ${etapas[idx].nombre.toLowerCase()}`;
+    const aqui = htmlEstasAqui();
     $("#viaje-tramos").innerHTML = `
       <div class="v-tramo v-colchon">
         <p class="v-nombre">El ahorro<span>Santiago</span></p>
         <div class="v-linea" style="--lleno:${llenoA}">${pa.map(paradaHtml).join("")}</div>
       </div>
       <div class="v-tramo v-alemania">
-        <p class="v-nombre">El viaje<span>${mesAnio(fechaViaje())}</span></p>
+        <p class="v-nombre">El viaje<span>${conFecha() ? mesAnio(fechaViaje()) : "sin fecha"}</span></p>
         <div class="v-linea" style="--lleno:${hechasR}">${pr.map(paradaHtml).join("")}</div>
       </div>
       <p class="v-aqui">${aqui}</p>`;
@@ -614,8 +725,8 @@
     if (id === "listo") cuando = ld("La plata del plan está. Lo que sigan guardando es margen.", "La plata del plan está. Lo que sigas guardando es margen.");
     else if (id === "deficit") cuando = `Faltan ${pesos(-c.disp)} al mes para cubrir los gastos.`;
     else if (id === "colchon") cuando = `Colchón completo en ${c.listo ? mesAnio(c.listo) : "—"}; después, todo al viaje.`;
-    else if (id === "fondos") cuando = `${pesos(fondos)} antes de ${mesAnio(r.F)}${ld(", la mitad en la cuenta de cada uno", "")}.`;
-    else cuando = `Faltan ${pesos(r.meta - tiene)} para la meta, antes de ${mesAnio(r.D2)}.`;
+    else if (id === "fondos") cuando = `${pesos(fondos)} ${conFecha() ? `antes de ${mesAnio(r.F)}` : "seis meses antes del viaje"}${ld(", la mitad en la cuenta de cada uno", "")}.`;
+    else cuando = `Faltan ${pesos(r.meta - tiene)} para la meta, ${conFecha() ? `antes de ${mesAnio(r.D2)}` : "un mes y medio antes del viaje"}.`;
     const pide = isFinite(r.mensual) ? pesos(r.mensual) : "—";
     return `${etiqueta}
       <p class="visor-monto"><b>${pesos(tiene)}</b><span>de ${pesos(r.meta)}</span></p>
@@ -627,7 +738,7 @@
       ${enVentana ? `<dl class="visor-datos">
         <div><dt>${c.disp >= 0 ? ld("Les queda al mes", "Te queda al mes") : ld("Les falta al mes", "Te falta al mes")}</dt><dd class="${c.disp >= 0 ? "pos" : "neg"}">${pesos(Math.abs(c.disp))}</dd></div>
         <div><dt>El plan pide al mes</dt><dd>${pide}</dd></div>
-        <div><dt>Meta para ${mesAnio(r.V)}</dt><dd>${pesos(r.meta)}</dd></div>
+        <div><dt>${conFecha() ? `Meta para ${mesAnio(r.V)}` : "Meta del viaje"}</dt><dd>${pesos(r.meta)}</dd></div>
       </dl>` : ""}
       <div class="visor-acciones">
         <button type="button" class="boton" data-anotar>Anotar ahorro</button>
@@ -711,7 +822,10 @@
     $("#visor-colchon").innerHTML = htmlVisorColchon(c, false);
     $("#visor-ritmo").innerHTML = htmlRitmo(false);
 
+    // Sin datos anotados, estos dos visores solo repetirían «anoten su economía»: se esconden.
+    $("#visor-ritmo").hidden = !c.hayDatos && !ritmoReal();
     const mes = $("#visor-mes");
+    mes.hidden = !c.hayDatos;
     if (!c.hayDatos) {
       mes.innerHTML = `<p class="visor-etiqueta">Cada mes</p><p class="visor-titulo">¿Entra más de lo que sale?</p><p>Aparece aquí cuando ${ld("anoten su", "anotes tu")} economía en la ventana ${lv("del colchón", "del ahorro")}.</p>`;
     } else {
@@ -1076,7 +1190,7 @@
         const k = claveMarca(est.id, tarea.id, idx);
         const b = el("button", { type: "button", class: "marca-persona", "aria-pressed": String(marcado(k)) }, nombre);
         b.setAttribute("aria-label", `${t(tarea.texto)}: ${tarea.juntos ? "listo" : nombre}`);
-        b.addEventListener("click", () => { alternar(k); pintarLinea(); pintarEstacion(); pintarViaje(); pintarProximo(); });
+        b.addEventListener("click", () => { alternar(k); pintarLinea(); pintarEstacion(); pintarViaje(); });
         marcas.append(b);
       });
       fila.append(marcas);
@@ -1350,24 +1464,6 @@
     return out;
   }
 
-  function pintarProximo() {
-    const caja = $("#proximo");
-    const est = plan.ruta.find((e) => !estacionLista(e));
-    if (!est) {
-      caja.innerHTML = `<p class="visor-etiqueta">Lo próximo en los trámites</p><p class="proximo-titulo">Terminaron la ruta.</p><p>Todo está marcado. Ahora queda disfrutar.</p>`;
-      return;
-    }
-    const f = fechaEstacion(est);
-    const pend = pendientes(est).slice(0, 3);
-    caja.innerHTML = `
-      <p class="visor-etiqueta">Lo próximo en los trámites</p>
-      <p class="proximo-titulo">${est.nombre}</p>
-      <p class="proximo-cuando${f.pasada ? " pasada" : ""}">${f.pasada ? `Atrasado: era en ${f.texto}` : f.texto}</p>
-      <div class="proximo-tareas">${pend.map(({ tarea, faltan }) => `<p>${t(tarea.texto)}${faltan.length && faltan.length < plan.personas.length ? `<span> Falta: ${faltan.join(" y ")}</span>` : ""}</p>`).join("")}</div>
-      <a class="boton" href="#ruta" id="ir-proximo">Abrir esta etapa</a>`;
-    $("#ir-proximo").addEventListener("click", () => { estado.estacion = est.id; guardarLocal(); pintarLinea(); pintarEstacion(); });
-  }
-
   /* ---------- Economía de cada uno ---------- */
   function montarEconomia() {
     document.querySelectorAll("[data-eco]").forEach((inp) => {
@@ -1451,6 +1547,7 @@
     const usar = $("#usar-fecha");
     if (usar) usar.addEventListener("click", () => {
       estado.viaje = { m: posible.getMonth(), y: posible.getFullYear() };
+      estado.viajeElegido = true; estado.marcas["decidir.fecha.j"] = true;
       guardar(); refrescarTodo();
       location.hash = "#inicio";
     });
@@ -3323,7 +3420,6 @@
     pintarNumeros(r);
     pintarFrase(r);
     pintarViaje();
-    pintarProximo();
     pintarLinea();
     pintarEstacion();
     pintarDinero(r);

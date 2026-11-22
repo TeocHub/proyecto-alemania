@@ -462,18 +462,6 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
   .pestanas button { font-size: var(--t-2); }
 }
 
-/* Lo próximo (inicio) */
-.proximo {
-  border-left: 8px solid var(--linea);
-}
-.proximo-etiqueta { margin: 0; font-size: var(--t-0); color: var(--tinta-suave); font-weight: 700; }
-.proximo-titulo { margin: 0.1rem 0 0.2rem; font-family: var(--display); font-stretch: 78%; font-weight: 800; font-size: var(--t-4); line-height: 1.05; }
-.proximo-cuando { font-size: var(--t-0); font-weight: 700; margin-bottom: 0.7rem; }
-.proximo-cuando.pasada { color: var(--gasto); }
-.proximo-tareas p { margin: 0 0 0.4rem; padding-left: 1rem; position: relative; }
-.proximo-tareas p::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 0.45rem; height: 0.45rem; border-radius: 50%; border: 2px solid var(--tinta); }
-.proximo-tareas span { color: var(--tinta-suave); font-size: var(--t-0); }
-.proximo .boton { margin-top: 0.6rem; }
 
 /* Cuando dudemos */
 .refugio { background: #dfebe9; }
@@ -580,7 +568,6 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
 @media (max-width: 860px) {
   #grupos-preguntas, .familia-grid, .consecuencias-grid, .economia-grid, .eco-personas { grid-template-columns: 1fr; }
   .mal-campos, .familia-consejos { grid-template-columns: 1fr; }
-  .proximo-titulo { font-size: var(--t-3); }
 }
 
 
@@ -605,27 +592,8 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
 .sub-cabeza h3 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); font-weight: 800; margin-bottom: 0.5rem; }
 .sub-cabeza p { color: var(--tinta-suave); }
 
-/* Números del plan (inicio) */
-.numeros {
-  margin-top: 1.8rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;
-  background: var(--hoja); border: 1px solid var(--niebla); border-radius: var(--radio-panel); overflow: hidden; max-width: 52rem;
-}
-.numero { padding: 0.9rem 1rem 1rem; border-top: 6px solid var(--niebla); display: grid; gap: 0.15rem; align-content: start; }
-.numero + .numero { border-left: 1px solid var(--niebla); }
-.n-valor { font-family: var(--display); font-stretch: 72%; font-weight: 800; font-size: clamp(1.2rem, 2.3vw, 1.6rem); line-height: 1.1; white-space: nowrap; }
-.n-nombre { font-size: var(--t-0); color: var(--tinta-suave); }
-.n-meta { border-top-color: var(--tinta); }
-.n-gasto { border-top-color: var(--gasto); }
-.n-llevan { border-top-color: var(--suyo); }
-.n-mensual { border-top-color: var(--linea); }
-.numeros-pie { grid-column: 1 / -1; margin: 0; padding: 0.7rem 1rem; border-top: 1px solid var(--niebla); font-size: var(--t-0); color: var(--tinta-suave); }
 .leyenda-grupo { flex-basis: 100%; font-weight: 700; color: var(--tinta); margin-top: 0.2rem; }
 .colchon-ciudad { margin-top: 1.2rem; padding: 0.8rem 1rem; border-radius: 10px; background: #ddf0ed; color: #0e4f4a; }
-@media (max-width: 700px) {
-  .numeros { grid-template-columns: 1fr 1fr; }
-  .numero:nth-child(3) { border-left: 0; }
-  .numero:nth-child(n+3) { border-top-width: 6px; }
-}
 
 
 /* ==================================================   Ventanas: barra lateral en tablet y computador,
@@ -885,29 +853,80 @@ main { padding-bottom: 5.5rem; }
 .mes-barra .entra { background: var(--suyo); }
 .mes-barra .sale { background: var(--gasto); }
 
-.visor.proximo .proximo-titulo { font-size: var(--t-4); }
-.visor.proximo .proximo-cuando { margin: 0; }
-.visor.proximo .proximo-tareas { align-self: stretch; }
-.visor-plan .numeros { margin-top: 0.2rem; max-width: none; align-self: stretch; grid-template-columns: 1fr 1fr; }
-.visor-plan .numero:nth-child(3) { border-left: 0; }
-.visor-plan .numero:nth-child(n+3) { border-top-width: 6px; }
+/* La plata del viaje (inicio): una historia con cifras que se tocan */
+.plata { align-self: stretch; display: grid; gap: 0.75rem; }
+.plata > * { margin: 0; }
+.plata-cabeza { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem 1rem; }
+.plata-cabeza .visor-etiqueta { margin: 0; }
+.plata-vista { display: inline-flex; padding: 0.2rem; border-radius: 999px; background: var(--papel); border: 1px solid var(--niebla); }
+.plata-vista button { font: inherit; font-size: 0.8rem; font-weight: 700; border: 0; background: none; color: var(--tinta-suave); padding: 0.25rem 0.75rem; border-radius: 999px; cursor: pointer; }
+.plata-vista button[aria-pressed="true"] { background: var(--tinta); color: var(--hoja); }
+.plata-historia { font-size: var(--t-2); line-height: 1.6; text-wrap: pretty; }
+.cifra {
+  --c: var(--tinta);
+  font: inherit; font-family: var(--display); font-stretch: 80%; font-weight: 800; font-size: 1.12em; line-height: 1.2;
+  color: var(--tinta); background: none; border: 0; padding: 0 0.1em; margin: 0; cursor: pointer; white-space: nowrap;
+  box-shadow: inset 0 -0.28em 0 color-mix(in srgb, var(--c) 28%, transparent);
+  border-bottom: 2px solid var(--c); border-radius: 2px;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+.cifra:hover { box-shadow: inset 0 -1.2em 0 color-mix(in srgb, var(--c) 18%, transparent); }
+.cifra[aria-expanded="true"] { background: var(--c); color: var(--hoja); box-shadow: none; }
+.c-meta { --c: var(--tinta); }
+.c-gasto { --c: var(--gasto); }
+.c-llevan { --c: var(--suyo); }
+.c-congelado { --c: #0e4f4a; }
+.plata-barra { display: flex; height: 0.85rem; border-radius: 999px; overflow: hidden; gap: 2px; background: var(--hoja); }
+.plata-barra span { display: block; min-width: 4px; transition: flex-grow 0.3s ease; }
+.plata-barra .b-congelado { background: #0e4f4a; }
+.plata-barra .b-resto { background: var(--suyo); }
+.plata-escala { display: flex; gap: 2px; margin-top: -0.45rem !important; font-size: 0.75rem; color: var(--tinta-suave); }
+.plata-escala span { min-width: 0; white-space: nowrap; }
+.plata-escala span + span { padding-left: 0.3rem; border-left: 1px solid var(--niebla); }
+.plata-detalle { --c: var(--tinta); border-left: 4px solid var(--c); background: var(--papel); border-radius: 0 10px 10px 0; padding: 0.7rem 0.9rem; font-size: var(--t-0); }
+.plata-detalle p { margin: 0 0 0.3rem; }
+.plata-detalle .boton-texto { font-size: var(--t-0); padding: 0; }
+.plata-detalle.c-gasto { --c: var(--gasto); }
+.plata-detalle.c-llevan { --c: var(--suyo); }
+.plata-detalle.c-congelado { --c: #0e4f4a; }
+.plata-que-es { font-size: var(--t-0); color: var(--tinta-suave); padding-left: 0.9rem; border-left: 2px dashed #0e4f4a; }
+.plata-mes { font-size: var(--t-0); padding-top: 0.7rem; border-top: 1px solid var(--niebla); }
+.plata-toca { font-size: 0.75rem; color: var(--tinta-suave); }
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  .cifra { box-shadow: none; }
+}
+
+/* «Estás aquí» bajo la línea */
+.v-aqui a { font-weight: 700; color: var(--tinta); text-underline-offset: 3px; }
+.aqui-marca { display: inline-block; margin-right: 0.3rem; padding: 0 0.45rem; border-radius: 999px; background: var(--tinta); color: var(--hoja); font-size: 0.75rem; letter-spacing: 0.01em; }
+
+/* Mes de viaje sin elegir */
+.frase-fecha.por-elegir #mes { border-color: var(--linea-oscura); background-color: var(--aviso); box-shadow: 0 0 0 4px color-mix(in srgb, var(--linea) 35%, transparent); color: var(--tinta-suave); }
+
 .animo-botones { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .animo-botones .estado { font-size: var(--t-0); padding: 0.45rem 0.85rem; }
+@media (max-width: 699px) {
+  /* En el celular, los ánimos corren en una fila que se desliza con el dedo. */
+  .visor-animo { padding-right: 0; overflow: hidden; }
+  .animo-botones {
+    flex-wrap: nowrap; overflow-x: auto; align-self: stretch; padding: 0.1rem 1.25rem 0.4rem 0.1rem;
+    scroll-snap-type: x proximity; scrollbar-width: none;
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+  .animo-botones::-webkit-scrollbar { display: none; }
+  .animo-botones .estado { flex: none; scroll-snap-align: start; }
+}
 
 @media (min-width: 700px) {
-  .visores { grid-template-columns: 1fr 1fr; grid-template-areas: "colchon ritmo" "mes proximo" "plan plan" "animo animo"; }
+  .visores { grid-template-columns: 1fr 1fr; grid-template-areas: "colchon plan" "ritmo plan" "mes plan" "animo animo"; align-items: start; }
   .visor-colchon { grid-area: colchon; }
   .visor-ritmo { grid-area: ritmo; }
   .visor-mes { grid-area: mes; }
-  .visor.proximo { grid-area: proximo; }
   .visor-plan { grid-area: plan; }
   .visor-animo { grid-area: animo; }
 }
 @media (min-width: 1200px) {
-  .visores { grid-template-columns: 1.15fr 1fr 1fr; grid-template-areas: "colchon ritmo ritmo" "colchon mes proximo" "plan plan plan" "animo animo animo"; }
-  .visor-plan .numeros { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .visor-plan .numero:nth-child(3) { border-left: 1px solid var(--niebla); }
-  .visor-plan .numero:nth-child(n+3) { border-top-width: 6px; }
+  .visores { grid-template-columns: 1.15fr 1fr 1fr; grid-template-areas: "colchon plan plan" "ritmo plan plan" "mes plan plan" "animo animo animo"; }
 }
 @media (max-width: 560px) {
   .viaje { padding: 0.9rem 0.9rem 0.8rem; }
@@ -1681,10 +1700,3 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .mas-grid a .opcional { margin-left: 0.4rem; }
 .aviso-opcional { margin-top: 0.8rem; padding: 0.6rem 0.8rem; background: var(--aviso); border-left: 4px solid var(--linea-oscura); border-radius: 4px; font-size: var(--t-0); }
 .sin-colchon .ajuste-colchon { display: none; }
-body.en-familia .visor.proximo { order: -1; }
-@media (min-width: 700px) {
-  body.en-familia .visores { grid-template-areas: "proximo colchon" "mes ritmo" "plan plan" "animo animo"; }
-}
-@media (min-width: 1200px) {
-  body.en-familia .visores { grid-template-areas: "proximo colchon colchon" "mes ritmo ritmo" "plan plan plan" "animo animo animo"; }
-}
