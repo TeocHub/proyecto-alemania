@@ -51,6 +51,14 @@
     {
       "id": "estudiar",
       "nombre": "Estudiar"
+    },
+    {
+      "id": "derechos",
+      "nombre": "Derechos en el trabajo"
+    },
+    {
+      "id": "cultura",
+      "nombre": "Lo que choca"
     }
   ],
   "dudas": [
@@ -377,6 +385,72 @@
       "tema": "estudiar",
       "pregunta": "¿Cómo nos inscribimos y qué hacemos desde ya?",
       "respuesta": "<p><strong>Desde Chile, ahora:</strong> empiecen con lo gratuito de «Prepararse» hasta tener una base de A1. Si pueden pagar un curso, el Goethe-Institut de Santiago tiene cursos presenciales y en línea.</p><p><strong>Al llegar:</strong> primero registren el domicilio, porque varias VHS solo inscriben a quienes viven en la ciudad. Después vayan a la asesoría de la VHS más cercana, den la prueba de nivel y elijan un curso que no choque con el trabajo (hay de mañana, de tarde y de noche).</p><p><strong>Durante el año:</strong> sumen todas las horas que puedan, den el examen oficial del nivel que alcancen y guarden los certificados. Recuerden que los cursos dentro de la Working Holiday no pueden pasar de seis meses en total.</p>"
+    },
+    {
+      "id": "derechos-sueldo",
+      "tema": "derechos",
+      "pregunta": "¿Cuánto me tienen que pagar como mínimo?",
+      "respuesta": "<p>El sueldo mínimo legal es por hora y bruto (antes de descuentos): {{hora2026}} en 2026 y {{hora2027}} desde enero de 2027 (<a href=\"https://magazin.minijob-zentrale.de/minijob-mindestlohn-2026-2027/\" target=\"_blank\" rel=\"noopener\">Minijob-Zentrale</a>). Vale para casi todos los trabajos, también los de media jornada y los minijobs.</p><p>Un minijob es un trabajo chico con tope de sueldo mensual: desde 2027 el tope es {{minijob2027}} al mes, y casi no tiene descuentos. Los trabajos más grandes tienen descuentos de impuestos y seguro social, y por eso el sueldo líquido es menor que el bruto.</p>"
+    },
+    {
+      "id": "derechos-horas",
+      "tema": "derechos",
+      "pregunta": "¿Cuántas horas me pueden hacer trabajar?",
+      "respuesta": "<p>Por ley, como máximo 8 horas por día de lunes a sábado. Se puede llegar a 10 horas si en un período de seis meses el promedio vuelve a ser de 8 (<a href=\"https://karrierebibel.de/?p=87575\" target=\"_blank\" rel=\"noopener\">Karrierebibel</a>).</p><p>Pausas: al menos 30 minutos si se trabaja más de 6 horas y 45 minutos si se trabaja más de 9. Entre el fin de una jornada y el inicio de la siguiente tienen que pasar al menos 11 horas; en algunos rubros pueden ser 10 (<a href=\"https://karrierebibel.de/?p=87575\" target=\"_blank\" rel=\"noopener\">Karrierebibel</a>).</p><p>Las 11 horas de descanso se cuentan aunque se tengan dos trabajos distintos. Si tienen dos empleos, ojo con los turnos de noche seguidos de turnos temprano.</p>"
+    },
+    {
+      "id": "derechos-vacaciones",
+      "tema": "derechos",
+      "pregunta": "¿Tengo vacaciones pagadas aunque sea por poco tiempo?",
+      "respuesta": "<p>Sí. La ley da al menos 20 días de vacaciones pagadas al año si se trabajan 5 días a la semana, o 24 si se trabajan 6. El derecho a todos los días completos llega después de seis meses en la misma empresa (<a href=\"https://e-pflicht.ub.uni-duesseldorf.de/download/pdf/322311\" target=\"_blank\" rel=\"noopener\">Ministerio del Trabajo de Renania del Norte-Westfalia</a>); antes se acumula la parte proporcional.</p><p>Si se enferman durante las vacaciones y tienen certificado médico, esos días no se descuentan de las vacaciones (<a href=\"https://karrierebibel.de/smartphone-am-arbeitsplatz/\" target=\"_blank\" rel=\"noopener\">Karrierebibel</a>).</p>"
+    },
+    {
+      "id": "derechos-enfermo",
+      "tema": "derechos",
+      "pregunta": "¿Qué pasa si me enfermo y tengo trabajo?",
+      "respuesta": "<p>Avisen a la empresa ese mismo día, antes de su turno. Si faltan más de tres días seguidos, a más tardar el cuarto día deben tener un certificado médico de que no pueden trabajar (<a href=\"https://www.frankfurt-main.ihk.de/recht/uebersicht-alle-rechtsthemen/arbeitsrecht/arbeitnehmererkrankung-5189794\" target=\"_blank\" rel=\"noopener\">IHK Fráncfort</a>); algunas empresas lo piden desde el primer día.</p><p>La empresa sigue pagando el sueldo completo hasta seis semanas. Ese derecho empieza recién cuando se cumplen cuatro semanas en el trabajo: si se enferman en el primer mes, la empresa no está obligada a pagar esos días (<a href=\"https://www.aok.de/fk/bremen/sozialversicherung/entgeltfortzahlung-und-ausgleichsverfahren/arbeitsunfaehigkeit-und-entgeltfortzahlung/\" target=\"_blank\" rel=\"noopener\">AOK</a>).</p>"
+    },
+    {
+      "id": "derechos-prueba",
+      "tema": "derechos",
+      "pregunta": "¿Me pueden despedir de un día para otro? ¿Cómo renuncio?",
+      "respuesta": "<p>Casi todos los contratos tienen un período de prueba de hasta seis meses. En ese período cualquiera de las dos partes puede terminar el contrato con dos semanas de aviso (<a href=\"https://wageindicator.org/de-de/arbeiten-in-deutschland/arbeitsrecht/vertrage-und-entlassungen\" target=\"_blank\" rel=\"noopener\">WageIndicator</a>). Después, el aviso legal es de cuatro semanas, contado hasta el día 15 o el último día del mes.</p><p>La renuncia y el despido tienen que ser por escrito y firmados; un mensaje por WhatsApp no sirve. Guarden siempre una copia.</p>"
+    },
+    {
+      "id": "derechos-contrato",
+      "tema": "derechos",
+      "pregunta": "¿Qué tengo que pedir siempre en un trabajo?",
+      "respuesta": "<p><strong>Contrato por escrito</strong>, con inicio, período de prueba, tareas, lugar, horario, sueldo, vacaciones y plazo de aviso (<a href=\"https://karrierebibel.de/versicherungen-fuer-berufsanfaenger/\" target=\"_blank\" rel=\"noopener\">Karrierebibel</a>).</p><p><strong>Una liquidación de sueldo cada mes</strong> (Lohnabrechnung), que muestra lo descontado.</p><p><strong>Sueldo pagado a una cuenta</strong>, no en efectivo sin papeles. Trabajar en negro deja sin seguro de salud ni de accidentes, sin derecho a reclamar, y puede traer problemas con la visa.</p>"
+    },
+    {
+      "id": "cultura-puntualidad",
+      "tema": "cultura",
+      "pregunta": "¿Qué es lo que más les choca a los latinoamericanos?",
+      "respuesta": "<p><strong>La puntualidad.</strong> Una hora acordada es esa hora exacta, no diez minutos después, en el trabajo y en lo personal.</p><p><strong>La forma directa de hablar.</strong> Las críticas se dicen sin rodeos y no son un ataque: es la forma normal de dar una opinión (<a href=\"https://www.study-abroad.org/de/blog/kulturelle-eingewoehnung-in-deutschland/\" target=\"_blank\" rel=\"noopener\">Study Abroad</a>).</p><p><strong>La distancia con desconocidos.</strong> La gente es reservada al principio y cuida su privacidad. Las amistades se forman más lento, pero suelen durar.</p>"
+    },
+    {
+      "id": "cultura-silencio",
+      "tema": "cultura",
+      "pregunta": "¿Es verdad que hay horas en que no se puede hacer ruido?",
+      "respuesta": "<p>Sí. En la mayoría de las ciudades hay que guardar silencio de 22:00 a 6:00, y los domingos y feriados todo el día (<a href=\"https://www.deutschland.de/de/topic/leben/wohnkultur-deutschland-keller-kehrwoche-keine-kueche\" target=\"_blank\" rel=\"noopener\">deutschland.de</a>). Eso incluye música fuerte, taladro o aspiradora. Cada edificio tiene además su reglamento (Hausordnung); léanlo al llegar.</p><p>Los domingos las tiendas y los supermercados están cerrados. Compren el sábado.</p>"
+    },
+    {
+      "id": "cultura-basura",
+      "tema": "cultura",
+      "pregunta": "¿Cómo funciona la basura y lo de devolver botellas?",
+      "respuesta": "<p>La basura se separa en varios contenedores: restos, orgánico, papel y envases (bolsa o tarro amarillo) (<a href=\"https://www.deutschland.de/de/topic/leben/wohnkultur-deutschland-keller-kehrwoche-keine-kueche\" target=\"_blank\" rel=\"noopener\">deutschland.de</a>). En un piso compartido es de lo primero que les van a explicar.</p><p>Muchas botellas y latas se pagan con un depósito (Pfand): se devuelven en una máquina del supermercado y se recupera el dinero, entre 8 y 25 centavos por envase (<a href=\"https://www.sprachschule.org/en/blog/culture-shock-first-weeks-germany-tips/\" target=\"_blank\" rel=\"noopener\">Sprachschule</a>).</p>"
+    },
+    {
+      "id": "viajar-alemania",
+      "tema": "viajar",
+      "pregunta": "¿Cómo nos movemos y viajamos dentro de Alemania sin gastar mucho?",
+      "respuesta": "<p>El Deutschlandticket es un abono mensual para todo el transporte local y regional del país (metro, buses, tranvías y trenes regionales, no los trenes rápidos ICE). Cuesta {{dticket}} al mes en 2026 y {{dticket2027}} desde enero de 2027, y solo se vende como suscripción (<a href=\"https://www.zdfheute.de/politik/deutschland/deutschlandticket-preis-2027-regionalverkehr-nahverkehr-100.html\" target=\"_blank\" rel=\"noopener\">ZDF</a>).</p><p>Con ese mismo abono pueden hacer paseos de fin de semana a otras ciudades en trenes regionales, sin pagar más pasaje. Es más lento, pero es la forma más barata de conocer el país.</p>"
+    },
+    {
+      "id": "plan-aleman",
+      "tema": "estudiar",
+      "pregunta": "¿Con Duolingo y Busuu alcanza para llegar con alemán básico?",
+      "respuesta": "<p>Sirven para el vocabulario y para la constancia, pero solos no bastan para hablar. El Goethe-Institut calcula que el nivel A1 toma entre 60 y 150 horas de estudio, y el A2 entre 150 y 260 (<a href=\"https://www.goethe.de/ins/gb/de/sta/lon/kur/faq.html\" target=\"_blank\" rel=\"noopener\">Goethe-Institut</a>).</p><p>Una forma de llegar a A1 antes de viajar:</p><p><strong>Todos los días (20 a 30 minutos):</strong> Duolingo o Busuu, como ya hacen.</p><p><strong>Tres veces por semana (30 minutos):</strong> un curso con historia y gramática ordenada, como «Nicos Weg» de DW, que es gratis.</p><p><strong>Una vez por semana:</strong> hablar en voz alta entre ustedes solo en alemán, sobre su día, aunque sea con pocas palabras.</p><p>Con unas 5 horas a la semana, en 4 a 7 meses se llega a las horas que pide el A1. Si pueden, den el examen A1 en el Goethe-Institut de Santiago antes de viajar: les sirve para mostrar en entrevistas de trabajo.</p>"
     }
   ]
 }

@@ -380,6 +380,9 @@
       copagoHoyMax: num(plan.vivir.copagoHoy[1]),
       copago2027Min: num(plan.vivir.copago2027[0]),
       copago2027Max: num(plan.vivir.copago2027[1]),
+      dticket: eurDec(plan.vivir.deutschlandticket),
+      dticket2027: eurDec(plan.vivir.deutschlandticket2027),
+      minijob2027: euros(plan.sueldo.minijob2027),
       paisesWH: (() => { const l = plan.extranjero.paisesWorkingHolidayLatam; return l.length > 1 ? `${l.slice(0, -1).join(", ")} y ${l[l.length - 1]}` : l.join(""); })(),
       comisionRut: num(plan.extranjero.comisionCuentaRut) + "%",
       efectivo: `€${plan.extranjero.efectivoLlegada[0]}–${plan.extranjero.efectivoLlegada[1]}`
@@ -1744,6 +1747,7 @@
           <div><dt>Oscurece</dt><dd>cerca de las ${c.anochece}<small> en Berlín</small></dd></div>
           <div class="ano-dato-largo"><dt>Trabajo</dt><dd>${c.trabajo}</dd></div>
           ${c.fechas ? `<div class="ano-dato-largo"><dt>Fechas</dt><dd>${c.fechas}</dd></div>` : ""}
+          ${c.hacer ? `<div class="ano-dato-largo"><dt>Para hacer</dt><dd>${c.hacer}</dd></div>` : ""}
         </dl>`;
     }
     if (!p.fecha) delete cab.dataset.estacion;

@@ -506,84 +506,96 @@
       "estacion": "invierno",
       "anochece": "16:30",
       "trabajo": "Después de las fiestas suele haber menos ofertas: buen momento para reforzar el alemán.",
-      "fechas": "1 de enero: feriado, todo cerrado."
+      "fechas": "1 de enero: feriado, todo cerrado.",
+      "hacer": "Ir a ver el año nuevo, ponerse al día con el alemán y recorrer museos, que son buen panorama de invierno."
     },
     {
       "mes": 2,
       "estacion": "invierno",
       "anochece": "17:20",
       "trabajo": "Sigue la temporada baja; empiezan a buscar gente para la primavera.",
-      "fechas": ""
+      "fechas": "",
+      "hacer": "Carnaval en Colonia, Düsseldorf y Maguncia (en febrero o a comienzos de marzo, según el año), con desfiles el lunes antes del miércoles de ceniza."
     },
     {
       "mes": 3,
       "estacion": "primavera",
       "anochece": "18:10",
       "trabajo": "Restaurantes, terrazas y hoteles empiezan a contratar para la temporada.",
-      "fechas": "Último domingo: los relojes se adelantan una hora."
+      "fechas": "Último domingo: los relojes se adelantan una hora.",
+      "hacer": "Primeros días de sol en parques; buen mes para postular a trabajos de temporada."
     },
     {
       "mes": 4,
       "estacion": "primavera",
       "anochece": "20:00",
       "trabajo": "Comienza la temporada alta de gastronomía y turismo.",
-      "fechas": "Semana Santa: viernes y lunes son feriados."
+      "fechas": "Semana Santa: viernes y lunes son feriados.",
+      "hacer": "Empieza la temporada de espárragos y de terrazas al aire libre."
     },
     {
       "mes": 5,
       "estacion": "primavera",
       "anochece": "20:50",
       "trabajo": "Temporada alta: más ofertas en restaurantes, hoteles y eventos.",
-      "fechas": "1 de mayo: feriado."
+      "fechas": "1 de mayo: feriado.",
+      "hacer": "Biergarten (cervecerías al aire libre) y paseos en bicicleta junto a ríos y lagos."
     },
     {
       "mes": 6,
       "estacion": "verano",
       "anochece": "21:30",
       "trabajo": "Temporada alta: festivales, terrazas y turismo.",
-      "fechas": ""
+      "fechas": "",
+      "hacer": "Días más largos del año: festivales de música y lagos para nadar cerca de muchas ciudades."
     },
     {
       "mes": 7,
       "estacion": "verano",
       "anochece": "21:20",
       "trabajo": "Temporada alta; muchos alemanes salen de vacaciones y buscan reemplazos.",
-      "fechas": ""
+      "fechas": "",
+      "hacer": "Lagos, ríos y festivales de verano; buena época para conocer otras ciudades con el abono regional."
     },
     {
       "mes": 8,
       "estacion": "verano",
       "anochece": "20:30",
       "trabajo": "Último mes fuerte de la temporada de verano.",
-      "fechas": ""
+      "fechas": "",
+      "hacer": "Fin de la temporada alta; buen momento para viajes cortos antes del otoño."
     },
     {
       "mes": 9,
       "estacion": "otoño",
       "anochece": "19:30",
       "trabajo": "Baja el turismo; empiezan ferias y fiestas de otoño en algunas ciudades.",
-      "fechas": ""
+      "fechas": "",
+      "hacer": "Oktoberfest en Múnich (empieza a fines de septiembre) y fiestas del vino en el sur y el oeste."
     },
     {
       "mes": 10,
       "estacion": "otoño",
       "anochece": "18:20",
       "trabajo": "El comercio empieza a buscar gente para fin de año.",
-      "fechas": "3 de octubre: feriado. Último domingo: los relojes se atrasan una hora y oscurece de golpe más temprano."
+      "fechas": "3 de octubre: feriado. Último domingo: los relojes se atrasan una hora y oscurece de golpe más temprano.",
+      "hacer": "Bosques de otoño y caminatas; el último domingo cambia la hora y oscurece más temprano."
     },
     {
       "mes": 11,
       "estacion": "otoño",
       "anochece": "16:20",
       "trabajo": "Mercados navideños, comercio y reparto buscan refuerzos.",
-      "fechas": ""
+      "fechas": "",
+      "hacer": "Abren los mercados navideños (Weihnachtsmärkte) a fines de mes."
     },
     {
       "mes": 12,
       "estacion": "invierno",
       "anochece": "15:55",
       "trabajo": "Temporada de mercados navideños y comercio hasta el 24.",
-      "fechas": "24: cierran temprano. 25 y 26: feriados. 31: cierran a media tarde."
+      "fechas": "24: cierran temprano. 25 y 26: feriados. 31: cierran a media tarde.",
+      "hacer": "Mercados navideños hasta antes del 24; planifiquen la cena con otros latinos y las compras antes de los feriados."
     }
   ],
   "nota": "Las horas de oscurecer son de Berlín; en el sur oscurece unos minutos después. Las preguntas puntuales están en «Todas las dudas».",
