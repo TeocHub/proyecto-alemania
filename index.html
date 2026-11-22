@@ -98,15 +98,17 @@
               <div class="perfil-personas" id="perfil-personas"></div>
               <p class="nota">La edad es opcional: con ella la página avisa si la fecha de viaje deja a alguien fuera del límite de edad.</p>
 
-              <section class="puedes" id="puedes" aria-labelledby="puedes-titulo">
+              <details class="pliegue puedes" id="puedes">
+                <summary><h3 class="pliegue-titulo" id="puedes-titulo">¿Pueden ir?</h3><span class="pliegue-resumen" id="puedes-resumen"></span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+                <div class="pliegue-cuerpo">
                 <div class="puedes-cabeza">
-                  <h3 class="prep-titulo" id="puedes-titulo">¿Pueden ir?</h3>
                   <p class="nota" id="puedes-intro"></p>
                 </div>
                 <div class="puedes-linea" id="puedes-linea" role="group" aria-label="Requisitos de la visa"></div>
                 <div class="puedes-ficha" id="puedes-ficha" aria-live="polite"></div>
                 <p class="puedes-fuente"><a id="puedes-fuente" target="_blank" rel="noopener">Requisitos oficiales en la Embajada de Alemania en Santiago ↗</a></p>
-              </section>
+                </div>
+              </details>
 
               <div class="vivienda">
                 <h3 class="prep-titulo" id="vivienda-titulo">¿Pagan arriendo o viven con su familia?</h3>
@@ -125,13 +127,15 @@
                 <h3>¿Les mandaron un enlace de su grupo?</h3>
                 <p>Ábranlo directo desde el mensaje (WhatsApp, correo). Este teléfono se conecta solo y trae los nombres y datos del grupo: no hace falta llenar nada aquí.</p>
               </div>
-              <div class="bienv-caja">
-                <h3>Qué hay adentro</h3>
+              <details class="pliegue">
+                <summary><h3 class="pliegue-titulo">Qué hay adentro</h3><span class="pliegue-resumen">El plan de Alemania, lo de ahora en Santiago y lo que está siempre a mano.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+                <div class="pliegue-cuerpo">
                 <p><strong>El plan de Alemania:</strong> los trámites hasta la visa, la plata del viaje, las ciudades, trabajo y arriendo allá, y cómo prepararse.</p>
                 <p><strong>Ahora, en Santiago:</strong> el ahorro (o el colchón, si pagan arriendo), el reparto del sueldo, trabajos y dónde vivir en Chile.</p>
                 <p><strong>Siempre a mano:</strong> todas las dudas, conectar dispositivos y esta guía.</p>
-              </div>
-              <p class="nota">Los montos son estimaciones para planificar, revisadas con fuentes oficiales. Antes de pagar o postular, confírmenlos en la página de la Embajada de Alemania en Santiago.</p>
+                <p class="nota">Los montos son estimaciones para planificar, revisadas con fuentes oficiales. Antes de pagar o postular, confírmenlos en la página de la Embajada de Alemania en Santiago.</p>
+                </div>
+              </details>
             </div>
           </div>
         </section>
@@ -180,9 +184,11 @@
                 <p class="etapa-texto" id="etapa-texto"></p>
               </div>
 
-              <div class="economia" id="economia">
+              <div class="pliegues">
+              <details class="economia pliegue" id="economia">
+                <summary><h3 class="pliegue-titulo" data-uno="Mi economía hoy">Nuestra economía hoy</h3><span class="pliegue-resumen" data-uno="Sueldo y gastos del mes: de aquí sale todo lo demás.">Sueldos y gastos del mes: de aquí sale todo lo demás.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+                <div class="pliegue-cuerpo">
                 <div class="economia-cabeza">
-                  <h3 data-uno="Mi economía hoy">Nuestra economía hoy</h3>
                   <p data-uno="Lo que ganas y lo que se va en la casa. De aquí salen la meta del colchón, cuánto puedes guardar al mes y la fecha posible para Alemania." data-familia="Lo que gana cada uno y lo que gastan al mes. De aquí sale cuánto pueden guardar para el viaje y la fecha posible para Alemania." data-familia-uno="Lo que ganas y lo que gastas al mes. De aquí sale cuánto puedes guardar para el viaje y la fecha posible para Alemania.">Lo que gana cada uno y lo que se va en la casa. De aquí salen la meta del colchón, cuánto pueden guardar al mes y la fecha posible para Alemania.</p>
                 </div>
                 <div class="economia-grid">
@@ -222,11 +228,13 @@
                   </form>
                   <div class="economia-resultado" id="economia-resultado" aria-live="polite"></div>
                 </div>
-              </div>
+                </div>
+              </details>
 
-              <div class="sub-seccion" id="escenarios">
+              <details class="sub-seccion pliegue" id="escenarios">
+                <summary><h3 class="pliegue-titulo">¿Y si…?</h3><span class="pliegue-resumen" data-uno="Cuándo estarías listo con otro trabajo o viviendo en una pieza." data-familia="Desde cuándo podrían viajar con otro trabajo." data-familia-uno="Desde cuándo podrías viajar con otro trabajo.">Cuándo estarían listos con otro trabajo o viviendo en una pieza.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+                <div class="pliegue-cuerpo">
                 <div class="sub-cabeza">
-                  <h3>¿Y si…?</h3>
                   <p data-uno="Elige un camino y mira cuándo estaría listo el colchón y cuándo podrías viajar. No cambia tus datos: es para comparar." data-familia="Elijan un camino y vean desde cuándo podrían viajar. No cambia sus datos: es para comparar." data-familia-uno="Elige un camino y mira desde cuándo podrías viajar. No cambia tus datos: es para comparar.">Elijan un camino y vean cuándo estaría listo el colchón y cuándo podrían viajar. No cambia sus datos: es para comparar.</p>
                 </div>
                 <div class="escenarios" id="escenarios-botones" role="group" aria-label="Escenarios"></div>
@@ -240,12 +248,14 @@
                   </div>
                   <p class="nota" id="sueldos-nota"></p>
                 </details>
-              </div>
+                </div>
+              </details>
 
-              <div class="sub-seccion" id="registro">
+              <details class="sub-seccion pliegue" id="registro">
+                <summary><h3 class="pliegue-titulo" data-uno="Lo que llevo">Lo que llevamos</h3><span class="pliegue-resumen" data-uno="Lo que has guardado y sacado, mes a mes." data-familia="Lo que han guardado y sacado para el viaje, mes a mes." data-familia-uno="Lo que has guardado y sacado para el viaje, mes a mes.">Lo que han guardado y sacado, mes a mes.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+                <div class="pliegue-cuerpo">
                 <div class="sub-cabeza registro-cabeza">
                   <div>
-                    <h3 data-uno="Lo que llevo">Lo que llevamos</h3>
                     <p data-uno="Cada vez que guardes o saques plata del colchón, anótalo. Las barras son los meses: la línea marca lo que tendrías que guardar al mes." data-familia="Cada vez que guarden o saquen plata para el viaje, anótenlo. Las barras son los meses: la línea marca lo que el plan pide guardar al mes." data-familia-uno="Cada vez que guardes o saques plata para el viaje, anótalo. Las barras son los meses: la línea marca lo que el plan pide guardar al mes.">Cada vez que guarden o saquen plata del colchón, anótenlo. Las barras son los meses: la línea marca lo que tendrían que guardar al mes.</p>
                   </div>
                   <button type="button" class="boton" data-anotar>Anotar</button>
@@ -253,20 +263,22 @@
                 <div class="meses-barras" id="meses-barras"></div>
                 <div class="ritmo-real" id="ritmo-real" aria-live="polite"></div>
                 <div class="movimientos" id="movimientos"></div>
-              </div>
+                </div>
+              </details>
 
-              <div class="sub-seccion" id="acciones">
+              <details class="sub-seccion pliegue" id="acciones">
+                <summary><h3 class="pliegue-titulo">Para llegar antes</h3><span class="pliegue-resumen" id="acciones-resumen">Lo que mueve los plazos.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+                <div class="pliegue-cuerpo">
                 <div class="sub-cabeza">
-                  <h3>Para llegar antes</h3>
-                  <p>Lo que mueve los plazos. Márquenlo cuando lo hayan hecho.</p>
+                  <p data-uno="Lo que mueve los plazos. Márcalo cuando lo hayas hecho.">Lo que mueve los plazos. Márquenlo cuando lo hayan hecho.</p>
                 </div>
                 <div class="acciones" id="acciones-grid"></div>
-              </div>
-
-              <div class="sub-seccion" id="ajustes-colchon">
-                <div class="sub-cabeza">
-                  <h3 data-uno="Cómo lo armo" data-familia="Un colchón en Santiago, si quieren" data-familia-uno="Un colchón en Santiago, si quieres">Cómo lo armamos</h3>
                 </div>
+              </details>
+
+              <details class="sub-seccion pliegue" id="ajustes-colchon">
+                <summary><h3 class="pliegue-titulo" data-uno="Cómo lo armo" data-familia="Un colchón en Santiago, si quieren" data-familia-uno="Un colchón en Santiago, si quieres">Cómo lo armamos</h3><span class="pliegue-resumen" data-familia="Si quieren juntar también un respaldo antes del viaje." data-familia-uno="Si quieres juntar también un respaldo antes del viaje.">De cuántos meses es y qué pasa con él al viajar.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+                <div class="pliegue-cuerpo">
                 <div class="ajustes">
                   <label class="ajuste ajuste-check" data-solo-familia hidden>
                     <input type="checkbox" id="colchon-opcional">
@@ -285,6 +297,8 @@
                     <span><strong>El colchón se va con nosotros.</strong> Al irse de Chile, lo del colchón se suma a la plata para Alemania, así no hay que juntar dos veces. Desmárquenlo si prefieren dejarlo guardado en Chile para la vuelta.</span>
                   </label>
                 </div>
+                </div>
+              </details>
               </div>
             </div>
           </div>
@@ -322,32 +336,42 @@
             <h2>Trabajos sin título</h2>
             <p id="trabajos-intro"></p>
           </div>
+          <details class="pliegue pliegue-corto" id="trabajos-resumen">
+            <summary><h3 class="pliegue-titulo">En corto</h3><span class="pliegue-resumen" id="trabajos-corto"></span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+            <div class="pliegue-cuerpo"><p class="conclusion" id="trabajos-conclusion"></p></div>
+          </details>
           <div class="trabajos-filtros" id="trabajos-filtros" role="group" aria-label="Filtrar trabajos"></div>
           <p class="entradas-leyenda"><span><i class="entrada entrada-libre"></i>Se entra sin pagar</span><span><i class="entrada entrada-curso"></i>Curso: a veces lo da la empresa</span><span><i class="entrada entrada-titulo"></i>Suelen pedir técnico o carrera</span><span><i class="entrada entrada-inversion"></i>Licencia, auto o certificación cara</span></p>
+          <p class="escala-ayuda" data-uno="Toca un trabajo para ver su ficha; tócalo de nuevo para cerrarla.">Toquen un trabajo para ver su ficha; tóquenlo de nuevo para cerrarla.</p>
           <div class="trabajos-cuerpo">
             <div class="escala" id="escala" aria-label="Sueldos por trabajo"></div>
             <article class="trabajo-detalle" id="trabajo-detalle" aria-live="polite"></article>
           </div>
-          <p class="conclusion" id="trabajos-conclusion"></p>
-          <div class="sub-seccion" id="postular">
+          <div class="pliegues">
+          <details class="sub-seccion pliegue" id="postular">
+            <summary><h3 class="pliegue-titulo">Dónde postular</h3><span class="pliegue-resumen">Los portales, ya con la búsqueda del trabajo elegido.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+            <div class="pliegue-cuerpo">
             <div class="sub-cabeza">
-              <h3>Dónde postular</h3>
               <p>Las palabras que más resultados dan para el trabajo elegido, ya puestas en cada portal. En los que no permiten un enlace directo, se copian solas para pegarlas en el buscador.</p>
             </div>
             <div class="postular-armar" id="postular-armar"></div>
             <div class="plataformas" id="plataformas"></div>
-          </div>
-          <div class="sub-seccion" id="combinador">
+            </div>
+          </details>
+          <details class="sub-seccion pliegue" id="combinador">
+            <summary><h3 class="pliegue-titulo" data-uno="Arma tu combinación: trabajo y vivienda">Armen su combinación: trabajo y vivienda</h3><span class="pliegue-resumen" data-uno="Cuánto entraría y desde cuándo podrías viajar.">Cuánto entraría y desde cuándo podrían viajar.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+            <div class="pliegue-cuerpo">
             <div class="sub-cabeza">
-              <h3 data-uno="Arma tu combinación: trabajo y vivienda">Armen su combinación: trabajo y vivienda</h3>
               <p data-uno="Elige un trabajo y dónde vivirías. Ves cuánto entraría, cuándo estaría el colchón y desde cuándo podrías viajar. De los trabajos del estudio se usa el punto medio del rango.">Elijan un trabajo para cada uno y dónde vivirían. Ven cuánto entraría, cuándo estaría el colchón y desde cuándo podrían viajar. De los trabajos del estudio se usa el punto medio del rango.</p>
             </div>
             <div class="combinador">
               <div class="combina-personas" id="combina-personas"></div>
               <div class="combina-resultado" id="combina-resultado" aria-live="polite"></div>
             </div>
-          </div>
+            </div>
+          </details>
           <div class="fuentes-vista" id="trabajos-fuentes"></div>
+          </div>
         </section>
 
         <section id="vivir" class="vista seccion" data-titulo="Dónde vivir" hidden>
@@ -361,12 +385,18 @@
             <output id="vivir-tope-out" for="vivir-tope"></output>
             <input type="range" id="vivir-tope" min="200000" max="900000" step="10000">
           </div>
+          <p class="escala-ayuda" data-uno="Toca una comuna para ver su ficha; tócala de nuevo para cerrarla.">Toquen una comuna para ver su ficha; tóquenla de nuevo para cerrarla.</p>
           <div class="vivir-cuerpo">
             <div class="carriles" id="carriles"></div>
             <article class="comuna-detalle" id="comuna-detalle" aria-live="polite"></article>
           </div>
-          <p class="nota" id="vivir-region"></p>
-          <div class="fuentes-vista" id="vivir-fuentes"></div>
+          <div class="pliegues">
+            <details class="pliegue">
+              <summary><h3 class="pliegue-titulo">Santiago en general</h3><span class="pliegue-resumen">Cuántos hogares sufren delitos violentos y cuándo llega la Línea 7.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+              <div class="pliegue-cuerpo"><p class="nota" id="vivir-region"></p></div>
+            </details>
+            <div class="fuentes-vista" id="vivir-fuentes"></div>
+          </div>
         </section>
 
         <section id="refugio" class="vista refugio" data-titulo="Cuando dudemos" data-titulo-uno="Cuando dudes" hidden>
@@ -378,9 +408,12 @@
             <div class="estados" id="estados" role="group" aria-label="¿Qué sienten hoy?" data-aria-uno="¿Qué sientes hoy?"></div>
             <article class="estado-respuesta" id="estado-respuesta" aria-live="polite" hidden></article>
 
+            <div class="pliegues">
+            <details class="pliegue pliegue-refugio">
+              <summary><h3 class="pliegue-titulo">Las preguntas que deciden</h3><span class="pliegue-resumen" id="deciden-resumen"></span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+              <div class="pliegue-cuerpo">
             <div id="preguntas-que-deciden" class="deciden">
               <div class="deciden-cabeza">
-                <h3>Las preguntas que deciden</h3>
                 <p data-uno="Escribe tu respuesta. No hay respuestas correctas: hay respuestas honestas.">Cada uno escribe su respuesta. No hay respuestas correctas: hay respuestas honestas.</p>
                 <p class="contador" id="contador-respuestas"></p>
               </div>
@@ -390,10 +423,22 @@
                 <span class="nota" id="copiado-respuestas" aria-live="polite"></span>
               </div>
             </div>
+              </div>
+            </details>
 
-            <div class="mal-mes" id="mal-mes"></div>
-            <div class="familia" id="familia"></div>
-            <div class="consecuencias" id="consecuencias"></div>
+            <details class="pliegue pliegue-refugio">
+              <summary><h3 class="pliegue-titulo" id="mal-mes-titulo"></h3><span class="pliegue-resumen" data-uno="Cuánta plata, hasta qué fecha y a quién llamas, escrito antes de irte.">Cuánta plata, hasta qué fecha y a quién llaman, escrito antes de irse.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+              <div class="pliegue-cuerpo"><div class="mal-mes" id="mal-mes"></div></div>
+            </details>
+            <details class="pliegue pliegue-refugio">
+              <summary><h3 class="pliegue-titulo">Familia y distancia</h3><span class="pliegue-resumen" data-uno="Con quién quieres mantener contacto, y cada cuánto.">Con quién quiere mantener contacto cada uno, y cada cuánto.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+              <div class="pliegue-cuerpo"><div class="familia" id="familia"></div></div>
+            </details>
+            <details class="pliegue pliegue-refugio">
+              <summary><h3 class="pliegue-titulo">Lo que puede pasar</h3><span class="pliegue-resumen" data-uno="Si sale bien y si vas sin plan.">Si sale bien y si van sin plan.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+              <div class="pliegue-cuerpo"><div class="consecuencias" id="consecuencias"></div></div>
+            </details>
+            </div>
             <p class="apoyo" id="apoyo"></p>
           </div>
         </section>
@@ -468,10 +513,12 @@
             <p class="nota" id="ciudades-nota"></p>
           </div>
 
-          <div class="sub-seccion arriendo" id="leer-arriendo">
+          <div class="pliegues">
+          <details class="sub-seccion pliegue arriendo" id="leer-arriendo">
+            <summary><h3 class="pliegue-titulo">Cómo leer un precio de arriendo</h3><span class="pliegue-resumen">Kaltmiete, Warmmiete o todo incluido: cuánto se paga de verdad.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+            <div class="pliegue-cuerpo">
             <div class="sub-cabeza">
-              <h3>Cómo leer un precio de arriendo</h3>
-              <p>En Alemania un mismo departamento puede anunciarse con precios distintos según qué incluye. Escriban el precio de un anuncio y elijan qué tipo de precio es: la página lo desarma capa por capa y les muestra lo que pagarían de verdad.</p>
+              <p data-uno="En Alemania un mismo departamento puede anunciarse con precios distintos según qué incluye. Escribe el precio de un anuncio y elige qué tipo de precio es: la página lo desarma capa por capa y te muestra lo que pagarías de verdad.">En Alemania un mismo departamento puede anunciarse con precios distintos según qué incluye. Escriban el precio de un anuncio y elijan qué tipo de precio es: la página lo desarma capa por capa y les muestra lo que pagarían de verdad.</p>
             </div>
             <div class="arriendo-grid">
               <form class="arriendo-datos" onsubmit="return false">
@@ -492,13 +539,15 @@
               <div class="segmentos-claros tres" id="calefaccion" role="group" aria-label="Cuánta calefacción usarían" data-aria-uno="Cuánta calefacción usarías"></div>
               <div id="ajuste-resultado" aria-live="polite"></div>
             </div>
+            </div>
+          </details>
           </div>
         </section>
 
         <section id="el-ano" class="vista seccion" data-titulo="Su año allá" data-titulo-uno="Tu año allá" hidden>
           <div class="seccion-cabeza">
             <h2 data-uno="Tu año en Alemania, mes a mes">Su año en Alemania, mes a mes</h2>
-            <p id="ano-intro"></p>
+            <div id="ano-intro"></div>
           </div>
           <div class="segmentos-claros ano-modo" id="ano-modo" role="group" aria-label="Cómo ver">
             <button type="button" data-anomodo="mes">Mes a mes</button>
@@ -526,18 +575,23 @@
           <div class="buscar-panel" id="panel-buscar-trabajo" role="tabpanel" aria-labelledby="tab-buscar-trabajo">
             <div class="trabajos-filtros" id="de-filtros" role="group" aria-label="Filtrar trabajos"></div>
             <p class="entradas-leyenda"><span><i class="entrada entrada-libre"></i>Se entra sin pagar</span><span><i class="entrada entrada-curso"></i>Certificado sanitario (€25–33)</span><span><i class="entrada entrada-inversion"></i>Revisen bien el contrato</span></p>
+            <p class="escala-ayuda" data-uno="Toca un trabajo para ver su ficha; tócalo de nuevo para cerrarla.">Toquen un trabajo para ver su ficha; tóquenlo de nuevo para cerrarla.</p>
             <div class="trabajos-cuerpo">
               <div class="escala" id="de-escala" aria-label="Sueldo por hora de cada trabajo"></div>
               <article class="trabajo-detalle" id="de-detalle" aria-live="polite"></article>
             </div>
             <p class="nota" id="de-nota"></p>
-            <div class="sub-seccion" id="de-postular">
+            <div class="pliegues">
+            <details class="sub-seccion pliegue" id="de-postular">
+              <summary><h3 class="pliegue-titulo">Dónde postular</h3><span class="pliegue-resumen">Los portales alemanes, ya con la búsqueda del trabajo y la ciudad elegidos.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+              <div class="pliegue-cuerpo">
               <div class="sub-cabeza">
-                <h3>Dónde postular</h3>
                 <p>Las palabras en alemán que más resultados dan para el trabajo elegido, ya puestas en cada portal y en la ciudad elegida. En los que no permiten un enlace directo, se copian solas para pegarlas en el buscador.</p>
               </div>
               <div class="postular-armar" id="de-armar"></div>
               <div class="plataformas" id="de-portales"></div>
+              </div>
+            </details>
             </div>
           </div>
 
@@ -549,19 +603,25 @@
               <input type="range" id="viv-tope" min="400" max="1600" step="25">
             </div>
             <div class="viv-opciones" id="viv-opciones" aria-live="polite"></div>
-            <div class="sub-seccion">
+            <div class="pliegues">
+            <details class="sub-seccion pliegue">
+              <summary><h3 class="pliegue-titulo">Dónde buscar</h3><span class="pliegue-resumen">Los portales de arriendo, ya filtrados en la ciudad elegida.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+              <div class="pliegue-cuerpo">
               <div class="sub-cabeza">
-                <h3>Dónde buscar</h3>
                 <p>Cada portal abre ya filtrado en la ciudad elegida. Antes de escribir, revisen las señales de estafa en «Prepararse».</p>
               </div>
               <div class="plataformas" id="viv-portales"></div>
-            </div>
-            <div class="sub-seccion">
+              </div>
+            </details>
+            <details class="sub-seccion pliegue">
+              <summary><h3 class="pliegue-titulo">La carpeta para arrendar</h3><span class="pliegue-resumen">Los papeles que piden los arrendadores, para tenerlos en PDF.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+              <div class="pliegue-cuerpo">
               <div class="sub-cabeza">
-                <h3>La carpeta para arrendar</h3>
                 <p>En Alemania se postula a un arriendo como a un trabajo: con papeles. Tener esto listo en PDF les da ventaja, porque muchos arrendadores eligen al primero que lo manda completo.</p>
               </div>
               <div class="carpeta" id="viv-mappe"></div>
+              </div>
+            </details>
             </div>
             <p class="nota">¿El anuncio dice Kaltmiete o Warmmiete? <a href="#leer-arriendo">Desármenlo en «¿Dónde llegamos?»</a>. ¿Qué escribirle al arrendador? <a href="#prepararse">Hay un mensaje en alemán en «Prepararse»</a>.</p>
           </div>
@@ -576,12 +636,16 @@
             <ol class="linea" id="linea" aria-label="Etapas del plan"></ol>
             <article class="estacion-panel" id="estacion-panel" aria-live="polite"></article>
           </div>
-          <div class="sub-seccion">
-            <div class="sub-cabeza" id="carpeta">
-              <h3 data-uno="Tu carpeta">La carpeta de cada uno</h3>
-              <p>Lo que hay que llevar el día de la cita, en original y copia. Toquen un documento para ver el detalle y marquen quién ya lo tiene listo.</p>
+          <div class="pliegues">
+          <details class="sub-seccion pliegue" id="carpeta">
+            <summary><h3 class="pliegue-titulo" data-uno="Tu carpeta">La carpeta de cada uno</h3><span class="pliegue-resumen" id="carpeta-resumen">Lo que hay que llevar el día de la cita.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+            <div class="pliegue-cuerpo">
+            <div class="sub-cabeza">
+              <p data-uno="Lo que hay que llevar el día de la cita, en original y copia. Toca un documento para ver el detalle y marca lo que ya tienes listo.">Lo que hay que llevar el día de la cita, en original y copia. Toquen un documento para ver el detalle y marquen quién ya lo tiene listo.</p>
             </div>
             <div class="carpeta" id="carpeta-grid"></div>
+            </div>
+          </details>
           </div>
         </section>
 
@@ -603,13 +667,17 @@
         <section id="dudas" class="vista seccion seccion-dudas" data-titulo="Todas las dudas" hidden>
           <div class="seccion-cabeza">
             <h2>Todas las dudas</h2>
-            <p>Lo que da miedo suele tener respuesta. Elijan una pregunta o escriban lo que les preocupa.</p>
+            <p data-uno="Lo que da miedo suele tener respuesta. Elige un tema o escribe lo que te preocupa: la búsqueda revisa todas las preguntas.">Lo que da miedo suele tener respuesta. Elijan un tema o escriban lo que les preocupa: la búsqueda revisa todas las preguntas.</p>
           </div>
           <div class="dudas">
             <div class="dudas-filtros">
               <label class="sr" for="buscar">Buscar una duda</label>
-              <input type="search" id="buscar" placeholder="Escriban una palabra: plata, rechazo, idioma…">
-              <div class="temas" id="temas"></div>
+              <input type="search" id="buscar" placeholder="Escriban una palabra: plata, rechazo, idioma…" data-placeholder-uno="Escribe una palabra: plata, rechazo, idioma…">
+              <div class="temas" id="temas" role="group" aria-label="Temas"></div>
+              <div class="dudas-lista-cabeza" id="dudas-lista-cabeza" hidden>
+                <button type="button" class="volver" id="dudas-volver"><span aria-hidden="true">←</span> Todos los temas</button>
+                <h3 id="dudas-lista-titulo" tabindex="-1"></h3>
+              </div>
             </div>
             <div class="dudas-cuerpo">
               <div class="preguntas" id="preguntas"></div>
@@ -628,6 +696,9 @@
             <div class="conectar-pasos">
               <h3 class="prep-titulo">Cómo se conecta</h3>
               <p class="conectar-resumen" data-uno="Se configura &lt;strong&gt;una sola vez, en un solo dispositivo&lt;/strong&gt;. En los demás no se repite nada: solo abres el enlace (paso 5) y quedan conectados con tus datos.">Se configura <strong>una sola vez, en un solo dispositivo</strong>, el de quien crea la planilla. Los demás no repiten nada: solo abren el enlace que les llega (paso 5) y quedan conectados con los nombres y datos del grupo.</p>
+              <details class="pliegue">
+                <summary><h4 class="pliegue-titulo">Los cinco pasos</h4><span class="pliegue-resumen">Crear la planilla, pegar el código, publicarlo, dar permiso y conectar aquí.</span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+                <div class="pliegue-cuerpo">
               <ol class="pasos">
                 <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Crear la planilla</h4><p data-uno="Con tu cuenta de Google, abre &lt;a href=&quot;https://sheets.new&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;sheets.new&lt;/a&gt; y ponle de nombre «Proyecto Alemania».">Con la cuenta de Google de una sola persona del grupo, abran <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a> y pónganle de nombre «Proyecto Alemania».</p></div></li>
                 <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Pegar el código</h4><p data-uno="En la planilla: &lt;strong&gt;Extensiones → Apps Script&lt;/strong&gt;. Borra lo que aparece, pega el código y, en la primera línea, cambia &lt;code&gt;cambien-esta-clave&lt;/code&gt; por una frase que solo tú sepas.">En la planilla: <strong>Extensiones → Apps Script</strong>. Borren lo que aparece, peguen el código y, en la primera línea, cambien <code>cambien-esta-clave</code> por una frase que solo ustedes sepan.</p><p><button type="button" class="boton" id="copiar-codigo">Copiar el código</button> <span class="nota" id="codigo-copiado" aria-live="polite"></span></p></div></li>
@@ -636,6 +707,8 @@
                 <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Conectar aquí</h4><p data-uno="Pega la dirección y la clave en el recuadro y toca Conectar. Después toca «Mandar el enlace a otro dispositivo» y envíatelo por WhatsApp o correo. En el otro dispositivo solo lo abres: no hay que crear nada ni configurar de nuevo.">Peguen la dirección y la clave en el recuadro y toquen Conectar. Después toquen «Mandar el enlace a otro dispositivo» y envíenlo por WhatsApp. La otra persona solo lo abre en su teléfono: no tiene que crear nada ni configurar su grupo.</p></div></li>
               </ol>
               <p class="nota" data-uno="Si algún día cambias el código, usa &lt;strong&gt;Implementar → Administrar implementaciones → Editar → Nueva versión&lt;/strong&gt;: así la dirección no cambia y no hay que volver a conectar.">Si algún día cambian el código, usen <strong>Implementar → Administrar implementaciones → Editar → Nueva versión</strong>: así la dirección no cambia y no hay que volver a conectar.</p>
+                </div>
+              </details>
             </div>
           </div>
         </section>
@@ -644,7 +717,10 @@
       <footer class="pie">
         <p id="pie-fecha"></p>
         <p>Los montos son estimaciones para planificar: confirmen requisitos y valores en la página de la embajada antes de pagar o postular.</p>
-        <div class="fuentes" id="fuentes"></div>
+        <details class="pliegue pliegue-pie">
+          <summary><h2 class="pliegue-titulo">Fuentes de toda la página</h2><span class="pliegue-resumen" id="fuentes-cuantas"></span><span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span></summary>
+          <div class="pliegue-cuerpo"><div class="fuentes" id="fuentes"></div></div>
+        </details>
       </footer>
     </div>
 
