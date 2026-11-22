@@ -39,6 +39,14 @@
     {
       "id": "salud",
       "nombre": "Vivir allá: salud y farmacias"
+    },
+    {
+      "id": "despues",
+      "nombre": "Después del año"
+    },
+    {
+      "id": "viajar",
+      "nombre": "Viajar"
     }
   ],
   "dudas": [
@@ -223,12 +231,6 @@
       "respuesta": "<p>El seguro de viaje que exige la visa los cubre todo el año. Además, cuando tengan un trabajo formal por sobre el minijob, entran al sistema de salud público alemán y el empleador descuenta la cotización del sueldo. Mantengan igual el seguro privado: lo exige la visa y cubre los períodos sin contrato.</p>"
     },
     {
-      "id": "quedarse",
-      "tema": "vivir",
-      "pregunta": "¿Nos podemos quedar después del año?",
-      "respuesta": "<p>La Working Holiday no se renueva. En algunos casos es posible cambiar a otro permiso estando allá, por ejemplo con un contrato de formación técnica (Ausbildung) o un empleo calificado, pero no es automático y depende de la oficina de extranjería. Si les interesa, pregúntenlo apenas lleguen, no al final del año.</p>"
-    },
-    {
       "id": "chile",
       "tema": "dinero",
       "pregunta": "¿Qué hacemos con el arriendo y las cosas en Chile?",
@@ -299,6 +301,54 @@
       "tema": "salud",
       "pregunta": "¿Las alergias pueden cambiar allá?",
       "respuesta": "<p>Sí. Las estaciones están al revés que en Chile y las plantas son otras. En Alemania la temporada fuerte de polen es la primavera y el comienzo del verano (abedul y árboles al principio, después los pastos). Si llegan entre marzo y mayo, llegan justo en esa temporada.</p><p>Un test de alergias antes de viajar ayuda a saber a qué son alérgicos y qué esperar allá.</p>"
+    },
+    {
+      "id": "quedarse",
+      "tema": "despues",
+      "pregunta": "¿Nos podemos quedar a vivir en Alemania después del año?",
+      "respuesta": "<p>Sí es posible, pero no con la Working Holiday: esa visa no se renueva ni se repite. Para quedarse hay que cambiar a otro permiso con otro motivo (formación, estudio o trabajo calificado), y cumplir los requisitos de ese permiso.</p><p>La ley alemana permite pedir ese nuevo permiso estando dentro de Alemania si se tiene una visa nacional o un permiso de residencia, y la Working Holiday es una visa nacional (<a href=\"https://lxgesetze.de/aufenthv/39\" target=\"_blank\" rel=\"noopener\">§ 39 de la Aufenthaltsverordnung</a>). O sea: no es obligatorio volver a Chile para cambiar, si el nuevo permiso se pide antes de que venza la visa.</p><p>Ojo con el plazo: en Berlín, a quien tiene una visa de más de 90 días le entregan el permiso nuevo recién desde seis semanas antes de que venza la visa, no antes (<a href=\"https://www.berlin.de/einwanderung/einreise/visum-verlaengern/artikel.872652.php\" target=\"_blank\" rel=\"noopener\">Oficina de Inmigración de Berlín</a>). Pidan hora con varios meses de anticipación, porque las horas se demoran.</p>"
+    },
+    {
+      "id": "ausbildung",
+      "tema": "despues",
+      "pregunta": "¿Qué es la Ausbildung y por qué es el camino más común sin título universitario?",
+      "respuesta": "<p>La Ausbildung es una formación técnica de dos o tres años en una empresa, con clases en un instituto y sueldo desde el primer mes. Es el camino más usado por personas sin título universitario para quedarse en Alemania.</p><p>Para el permiso de formación piden: una oferta concreta de una empresa o instituto, alemán nivel B1 (o el que exija la formación, o un curso de alemán antes o durante), y demostrar que el sueldo de la formación alcanza para vivir. En Múnich, para 2025, ese mínimo era de 959 euros al mes para una formación (<a href=\"https://stadt.muenchen.de/service/info/servicestelle-fur-zuwanderung-und-einburgerung/1080786/\" target=\"_blank\" rel=\"noopener\">Ciudad de Múnich</a>).</p><p>Si todavía no tienen la oferta, existe un permiso para buscar un puesto de formación: hasta seis meses en Alemania postulando, pero durante ese tiempo no se puede trabajar (<a href=\"https://stadt.muenchen.de/service/info/auslanderbehorde/10374635\" target=\"_blank\" rel=\"noopener\">Ciudad de Múnich</a>).</p><p>Lo práctico: el alemán es la llave. Si les interesa este camino, estudien alemán durante el año y postulen a puestos de formación antes del mes 9.</p>"
+    },
+    {
+      "id": "chancenkarte",
+      "tema": "despues",
+      "pregunta": "¿Sirve la Chancenkarte (tarjeta de oportunidad) para quedarnos?",
+      "respuesta": "<p>Solo si tienen un título universitario o una carrera técnica de al menos dos años reconocida por el Estado en Chile. La Chancenkarte es un permiso de un año para buscar trabajo calificado en Alemania.</p><p>Requisitos: título reconocido en Alemania, o bien título reconocido en Chile y al menos seis puntos en un sistema que suma por idioma, experiencia y edad. Además, alemán nivel A1 o inglés B2, y demostrar al menos 1.091 euros netos al mes para vivir (monto de 2026) (<a href=\"https://www.make-it-in-germany.com/de/visum-aufenthalt/chancenkarte/jobsuche\" target=\"_blank\" rel=\"noopener\">Make it in Germany</a>).</p><p>Sin título de carrera técnica o universitaria, esta vía no aplica: el camino es la Ausbildung.</p>"
+    },
+    {
+      "id": "despues-que-no",
+      "tema": "despues",
+      "pregunta": "¿Qué cosas no se pueden hacer después de la Working Holiday?",
+      "respuesta": "<p>No se puede:</p><p><strong>Renovarla ni pedirla otra vez.</strong> Se entrega una sola vez en la vida por persona.</p><p><strong>Quedarse trabajando cuando vence.</strong> El permiso de trabajo termina con la visa. Seguir trabajando sin permiso es ilegal y puede impedir volver a entrar a Europa.</p><p><strong>Quedarse en Alemania como turista para seguir buscando trabajo.</strong> Como turista no se puede trabajar, y para un permiso de trabajo o formación hay que cumplir los requisitos del nuevo permiso.</p><p>Sí se puede volver a Alemania más adelante, desde Chile, con otra visa (formación, estudio, trabajo calificado), pidiéndola en la embajada en Santiago.</p>"
+    },
+    {
+      "id": "viajar-europa",
+      "tema": "viajar",
+      "pregunta": "¿Podemos viajar a París, Ámsterdam u otros países de Europa con la Working Holiday?",
+      "respuesta": "<p>Sí. Con una visa nacional alemana se puede viajar a los otros países del espacio Schengen (Francia, España, Italia, Países Bajos y casi toda la Unión Europea) hasta 90 días dentro de cualquier período de 180 días (<a href=\"https://dofi.ibz.be/en/themes/entry/border-control/visa-free-residence-permits/general-principles\" target=\"_blank\" rel=\"noopener\">Oficina de Extranjería de Bélgica</a>).</p><p>Lo que no se puede es trabajar en esos otros países: el permiso de trabajo vale solo en Alemania (<a href=\"https://www.remitly.com/blog/immigration/d-visa/\" target=\"_blank\" rel=\"noopener\">Remitly, guía de la visa D</a>).</p><p>Lleven siempre el pasaporte con la visa. Para volver a Alemania basta con la visa vigente.</p>"
+    },
+    {
+      "id": "viajar-londres",
+      "tema": "viajar",
+      "pregunta": "¿Y a Londres o a países fuera de Schengen?",
+      "respuesta": "<p>El Reino Unido no es parte de Schengen, así que la visa alemana no sirve para entrar. Con pasaporte chileno no se necesita visa para visitas cortas, pero sí una autorización electrónica de viaje (ETA) que se pide antes de viajar: cuesta 20 libras desde el 8 de abril de 2026 (<a href=\"https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta\" target=\"_blank\" rel=\"noopener\">gov.uk</a>). Sin ella, la aerolínea no deja embarcar.</p><p>Para otros países fuera de Schengen (Irlanda, países de los Balcanes, Turquía, Marruecos) revisen los requisitos para pasaporte chileno de cada país antes de comprar pasajes.</p>"
+    },
+    {
+      "id": "etias",
+      "tema": "viajar",
+      "pregunta": "¿Necesitamos el ETIAS para entrar a Europa?",
+      "respuesta": "<p>No mientras tengan la visa alemana: quienes tienen una visa o un permiso de residencia de un país europeo no necesitan ETIAS (<a href=\"https://www.familytravel.org/?p=58790\" target=\"_blank\" rel=\"noopener\">FamilyTravel</a>).</p><p>El ETIAS es un permiso electrónico que se pedirá a turistas de países sin visa, como Chile. No está funcionando todavía y la Unión Europea dice que anunciará la fecha de inicio con varios meses de anticipación (<a href=\"https://www.connexionfrance.com/news/delays-forecast-for-eu-travel-authorisation-scheme-after-website-changes/808384\" target=\"_blank\" rel=\"noopener\">Connexion France</a>). Les importa si viajan a Europa como turistas antes o después de la visa.</p>"
+    },
+    {
+      "id": "despues-turista",
+      "tema": "viajar",
+      "pregunta": "¿Podemos quedarnos viajando por Europa cuando se acabe la visa?",
+      "respuesta": "<p>Como chilenos pueden estar en Schengen como turistas hasta 90 días dentro de cualquier período de 180 días, sin trabajar. Los días que estuvieron con la visa de Working Holiday normalmente no se descuentan de esos 90, porque eran una estadía con visa nacional; aun así, confirmen su cuenta con la calculadora oficial antes de planear (<a href=\"https://www.bj.admin.ch/sem/en/home/themen/einreise/info-einreise/voraussetzungen-nach-staat/mit-visum/aufenthaltsrechner.html\" target=\"_blank\" rel=\"noopener\">calculadora de la Secretaría de Migración de Suiza</a>).</p><p>Durante esos días turísticos no pueden trabajar ni seguir arrendando a su nombre como residentes: denle de baja al domicilio (Abmeldung) antes de partir.</p>"
     }
   ]
 }

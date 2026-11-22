@@ -464,6 +464,40 @@
           "url": "https://www.make-it-in-germany.com/es/llegar-establecerse/primeros-pasos/vivienda-registro"
         }
       ]
+    },
+    {
+      "momento": "viajar",
+      "tema": "papeles",
+      "miedo": "¿Podemos viajar a otros países mientras estamos con la visa?",
+      "realidad": "Sí. Con la visa alemana se puede viajar al resto del espacio Schengen (Francia, España, Italia, Países Bajos y otros) hasta 90 días dentro de cada período de 180, pero sin trabajar allá: el permiso de trabajo vale solo en Alemania. El Reino Unido no es Schengen: con pasaporte chileno necesitan una autorización electrónica (ETA) pedida antes de viajar.",
+      "hacer": "Viajen con el pasaporte que tiene la visa. Para Londres, pidan la ETA en gov.uk antes de comprar el pasaje. Más detalles en «Todas las dudas», tema Viajar.",
+      "fuentes": [
+        {
+          "nombre": "Oficina de Extranjería de Bélgica: viajar con visa D",
+          "url": "https://dofi.ibz.be/en/themes/entry/border-control/visa-free-residence-permits/general-principles"
+        },
+        {
+          "nombre": "gov.uk: ETA",
+          "url": "https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta"
+        }
+      ]
+    },
+    {
+      "momento": "quedarse",
+      "tema": "papeles",
+      "miedo": "¿Y si queremos quedarnos después del año?",
+      "realidad": "La Working Holiday no se renueva ni se repite. Para quedarse hay que cambiar a otro permiso: sin título universitario, el camino más común es una formación técnica pagada (Ausbildung), que pide una oferta de una empresa y alemán nivel B1. El cambio se puede pedir dentro de Alemania, antes de que venza la visa.",
+      "hacer": "Si les interesa, decídanlo ahora y no en el mes 11: estudien alemán, postulen a puestos de formación y pidan hora en la oficina de extranjería con meses de anticipación. Todo el detalle está en «Todas las dudas», tema Después del año.",
+      "fuentes": [
+        {
+          "nombre": "Ciudad de Múnich: permiso para formación",
+          "url": "https://stadt.muenchen.de/service/info/servicestelle-fur-zuwanderung-und-einburgerung/1080786/"
+        },
+        {
+          "nombre": "§ 39 Aufenthaltsverordnung",
+          "url": "https://lxgesetze.de/aufenthv/39"
+        }
+      ]
     }
   ],
   "calendario": [
