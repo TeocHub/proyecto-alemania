@@ -72,7 +72,7 @@
     escenario: "full",
     combina: null
   };
-  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento"]);
+  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento", "anoModo"]);
   const copia = (o) => JSON.parse(JSON.stringify(o));
 
   function leerEstado() {
@@ -1649,12 +1649,13 @@
   /* Cada momento cae en el mes en que suele pasar. */
   const MOMENTO_MES = { semana: [1, "La primera semana"], mes: [2, "Primeras cartas y primer sueldo"], finmes: [3, "Ya en rutina: lo de todos los meses"], aviso: [9, "Tres meses antes de volver"], irse: [12, "Antes de volver"] };
 
+  /* Cada relato está en el mes en que le pasó (0 = antes de volar) o, si depende de la estación, en su mes del calendario. */
   function relatosDeParada(p) {
     const R = anoData.relatos || [];
-    if (p.id === "antes") return R.filter((x) => x.momento === "antes");
-    const delMomento = Object.entries(MOMENTO_MES).filter(([, [n]]) => n === p.n).map(([m]) => m);
+    if (p.id === "antes") return R.filter((x) => x.mes === 0);
     const mesCal = p.fecha.getMonth() + 1;
-    return R.filter((x) => delMomento.includes(x.momento) || (x.momento === "invierno" && x.mesCalendario === mesCal));
+    const orden = (x) => (x.nivel === "persona" ? 0 : 1);
+    return R.filter((x) => x.mes === p.n || (x.mes == null && x.mesCalendario === mesCal)).sort((a, b) => orden(a) - orden(b));
   }
 
   function itemsDeParada(p) {
@@ -1670,6 +1671,17 @@
   }
 
   function montarAno() {
+    $("#ano-modo").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-anomodo]");
+      if (!b) return;
+      estado.anoModo = b.dataset.anomodo; guardar(); pintarAno();
+    });
+    $("#ano-cuerpo").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-ir-parada]");
+      if (!b) return;
+      estado.anoModo = "mes"; estado.anoMomento = b.dataset.irParada; guardar(); pintarAno();
+      $("#ano-linea").scrollIntoView({ block: "start", behavior: "smooth" });
+    });
     $("#ano-linea").addEventListener("click", (e) => {
       const b = e.target.closest("[data-parada]");
       if (!b) return;
@@ -1711,6 +1723,12 @@
       </button>`;
     }).join("");
 
+    const modo = estado.anoModo === "personas" ? "personas" : "mes";
+    document.querySelectorAll("#ano-modo button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.anomodo === modo)));
+    $("#ano-linea").hidden = modo !== "mes";
+    $("#ano-mes").hidden = modo !== "mes";
+    if (modo === "personas") { pintarPersonas(paradas); return; }
+
     const p = paradas.find((x) => x.id === estado.anoMomento);
     const cab = $("#ano-mes");
     if (!p.fecha) {
@@ -1738,9 +1756,10 @@
     const htmlRelatos = relatos.length ? `
       <section class="ano-bloque ano-relatos" aria-labelledby="ano-t-relatos">
         <h3 class="ano-bloque-titulo" id="ano-t-relatos">Lo que contaron</h3>
-        <p class="ano-bloque-sub">Personas con nombre que vivieron en Alemania. Resumen con nuestras palabras; el original está en el enlace.</p>
+        <p class="ano-bloque-sub">Primero las personas con nombre; después foros y blogs. Resumen con nuestras palabras; el original está en el enlace.</p>
         <div class="relatos">${relatos.map((x) => `
-          <article class="relato">
+          <article class="relato" data-nivel="${x.nivel}">
+            <p class="relato-nivel">${x.nivel === "persona" ? "Persona con nombre" : "Foro o blog"}</p>
             <header>
               <p class="relato-nombre">${escapar(x.nombre)}</p>
               <p class="relato-meta">${escapar(x.pais === "no lo dice" ? "País no indicado" : x.pais)} · ${escapar(x.ciudad)}</p>
@@ -1779,13 +1798,46 @@
     cuerpo.innerHTML = htmlRelatos + htmlGuia + vacio + `<p class="ano-nota">${t(A.nota)}</p>`;
   }
 
+  /* Vista «Todas las personas»: cada una con todo lo que contó y el mes donde aparece. */
+  function pintarPersonas(paradas) {
+    const R = anoData.relatos || [];
+    const dondeEsta = (x) => paradas.find((p) => (p.id === "antes" ? x.mes === 0 : x.mes === p.n || (x.mes == null && x.mesCalendario === p.fecha.getMonth() + 1)));
+    const porNombre = new Map();
+    R.forEach((x) => { if (!porNombre.has(x.nombre)) porNombre.set(x.nombre, []); porNombre.get(x.nombre).push(x); });
+    const gente = [...porNombre.values()].sort((a, b) => (a[0].nivel === "persona" ? 0 : 1) - (b[0].nivel === "persona" ? 0 : 1));
+    const etiqueta = (p) => (p.id === "antes" ? "Antes de volar" : `Mes ${p.n} · ${mesCorto(p.fecha)}`);
+    $("#ano-cuerpo").innerHTML = `
+      <div class="relatos personas">${gente.map((lista) => {
+        const x = lista[0];
+        return `
+        <article class="relato" data-nivel="${x.nivel}">
+          <p class="relato-nivel">${x.nivel === "persona" ? "Persona con nombre" : "Foro o blog"}</p>
+          <header>
+            <p class="relato-nombre">${escapar(x.nombre)}</p>
+            <p class="relato-meta">${escapar(x.pais === "no lo dice" ? "País no indicado" : x.pais)} · ${escapar(x.ciudad)}</p>
+          </header>
+          ${lista.map((y) => { const p = dondeEsta(y); return `
+            <div class="persona-momento">
+              ${p ? `<button type="button" class="persona-mes" data-ir-parada="${p.id}">${etiqueta(p)}</button>` : ""}
+              <p class="relato-texto">${escapar(y.texto)}</p>
+            </div>`; }).join("")}
+          <footer class="relato-pie">
+            <span class="relato-sello">${escapar(mayus(x.formato))}${x.idioma !== "español" ? ` · traducido del ${escapar(x.idioma)}` : ""}</span>
+            <a href="${x.url}" target="_blank" rel="noopener">Leer el original en ${escapar(x.fuente)}</a>
+          </footer>
+        </article>`; }).join("")}
+      </div>
+      <p class="ano-nota">${t(anoData.nota)}</p>`;
+  }
+
   /* Resumen de quiénes contaron, para que se vea de dónde viene todo. */
   function resumenRelatos() {
     const R = anoData.relatos || [];
-    const personas = new Set(R.map((x) => x.nombre)).size;
+    const personas = new Set(R.filter((x) => x.nivel === "persona").map((x) => x.nombre)).size;
+    const foros = new Set(R.filter((x) => x.nivel !== "persona").map((x) => x.nombre)).size;
     const paises = new Set(R.map((x) => x.pais).filter((x) => !x.startsWith("no lo dice"))).size;
     const idiomas = new Set(R.map((x) => x.idioma)).size;
-    return `<p class="ano-criterio"><strong>${personas} personas de ${paises} países, en ${idiomas} idiomas.</strong> ${anoData.criterio}</p>`;
+    return `<p class="ano-criterio"><strong>${personas} personas con nombre y ${foros} textos de foros o blogs, de ${paises} países y en ${idiomas} idiomas.</strong> ${anoData.criterio}</p>`;
   }
 
   /* ---------- Cómo leer un precio de arriendo ---------- */

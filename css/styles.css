@@ -1597,3 +1597,13 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .ano-guia .ano-grupo { font-size: var(--t-2); margin-top: 1rem; }
 .ano-pregunta { font-family: var(--display); }
 .ano-paso h6 { margin: 0 0 0.3rem; font-size: var(--t-0); }
+.ano-modo { display: inline-flex; margin: 1.4rem 0 0; }
+.relato-nivel { margin: 0; justify-self: start; font-size: 0.72rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 999px; background: #dcefeb; color: var(--suyo); }
+.relato[data-nivel="foro"] { border-top-color: var(--tinta-suave); background: var(--hoja); }
+.relato[data-nivel="foro"] .relato-nivel { background: #e2e8ee; color: var(--tinta-suave); }
+.relato { grid-template-rows: none; align-content: start; }
+.relato-pie { margin-top: auto; }
+.persona-momento { display: grid; gap: 0.3rem; }
+.persona-mes { justify-self: start; font: inherit; font-size: 0.78rem; font-weight: 700; color: var(--tinta); background: #fff6dc; border: 1px solid var(--linea); border-radius: 6px; padding: 0.15rem 0.5rem; cursor: pointer; }
+.persona-mes:hover, .persona-mes:focus-visible { background: var(--linea); }
+.personas { margin-top: 1.4rem; }
