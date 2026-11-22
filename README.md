@@ -55,6 +55,7 @@ Todo el contenido está en `data/`, en archivos JSON que se pueden editar sin to
 | `data/ciudades.json` | Ciudades, gastos mensuales estimados para la pareja y escenarios de ingreso |
 | `data/preparacion.json` | Plan de alemán de 12 semanas, frases con pronunciación, cursos, pasos para buscar hospedaje, mensaje para arrendadores, señales de estafa y experiencias de otras personas |
 | `data/refugio.json` | Ventana «Cuando dudemos» |
+| `data/buscar-alemania.json` | Ventana «Buscar allá»: trabajos en Alemania con sueldo por hora, portales de empleo y de arriendo por ciudad, y la carpeta para arrendar |
 | `data/dudas.json` | Temas y preguntas con sus respuestas (las respuestas aceptan HTML simple: `<p>`, `<strong>`) |
 
 En la ruta, `offset` son los meses respecto al viaje (por ejemplo, `-6` es seis meses antes; `null` significa "ahora").

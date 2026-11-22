@@ -85,7 +85,7 @@
     if (window.Sincro) window.Sincro.cambio();
   }
 
-  let plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData;
+  let plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData;
   const hoy = new Date();
   const estado = Object.assign(copia(DEFAULTS), leerEstado());
 
@@ -1088,6 +1088,7 @@
     const filas = TRAMOS.map(([k, nombre]) =>
       `<tr><td><i class="punto-color t-${k}"></i>${nombre}</td><td>${euros(g[k])}</td><td>${Math.round((g[k] / ing.eur) * 100)}%</td></tr>`).join("");
 
+    document.querySelectorAll("#ciudad-selector button").forEach((b) => b.setAttribute("aria-selected", String(b.id === "tab-" + c.id)));
     $("#ciudad-panel").setAttribute("aria-labelledby", "tab-" + c.id);
     $("#ciudad-panel").innerHTML = `
       <div>
@@ -1453,7 +1454,7 @@
   }
 
   function montarPreparacion() {
-    const tabs = document.querySelectorAll(".pestanas [role=tab]");
+    const tabs = document.querySelectorAll("#prepararse .pestanas [role=tab]");
     const elegir = (id) => {
       estado.pestana = id; guardarLocal();
       tabs.forEach((tb) => {
@@ -2164,11 +2165,255 @@
     });
   }
 
+  /* ---------- Buscar allá: trabajo y vivienda en Alemania ---------- */
+  const ENTRADA_CLASE = { libre: "libre", certificado: "curso", ojo: "inversion" };
+  const HORAS_MES = 173.33, LIQUIDO = 0.72;
+  let deClave = null;
+  const deExtras = new Set();
+
+  function ciudadBuscar() {
+    const ids = Object.keys(buscarData.vivienda.ciudades);
+    if (!ids.includes(estado.ciudad) && estado.ciudad !== "temporada") return ids[0];
+    return estado.ciudad;
+  }
+
+  function montarBuscarAlla() {
+    if (!buscarData) return;
+    const b = buscarData;
+    $("#buscar-intro").textContent = b.intro;
+    $("#de-nota").textContent = b.trabajo.nota;
+    $("#viv-intro").textContent = b.vivienda.intro;
+    estado.deFiltros = estado.deFiltros || [];
+    estado.vivTope = estado.vivTope || 900;
+
+    // Ciudad compartida con «¿Dónde llegamos?»
+    $("#buscar-ciudades").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-bciudad]");
+      if (!btn) return;
+      estado.ciudad = btn.dataset.bciudad; guardar(); todo();
+    });
+
+    // Pestañas
+    const tabs = document.querySelectorAll("#buscar-alla [role=tab]");
+    const elegir = (id) => {
+      estado.buscarPestana = id; guardar();
+      tabs.forEach((t) => {
+        const on = t.id === "tab-buscar-" + id;
+        t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1;
+        $("#" + t.getAttribute("aria-controls")).hidden = !on;
+      });
+    };
+    tabs.forEach((t) => t.addEventListener("click", () => elegir(t.id.replace("tab-buscar-", ""))));
+    elegir(estado.buscarPestana || "trabajo");
+
+    // Trabajo
+    const f = $("#de-filtros");
+    f.innerHTML = b.trabajo.filtros.map((x) => `<button type="button" data-dfiltro="${x.id}">${x.nombre}</button>`).join("");
+    f.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-dfiltro]");
+      if (!btn) return;
+      const set = new Set(estado.deFiltros);
+      const id = btn.dataset.dfiltro;
+      if (set.has(id)) set.delete(id); else set.add(id);
+      estado.deFiltros = [...set]; guardar(); pintarBuscarAlla();
+    });
+    $("#de-escala").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-detrabajo]");
+      if (!btn) return;
+      estado.deTrabajo = btn.dataset.detrabajo; guardar(); pintarBuscarAlla();
+      if (angosta.matches) $("#de-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+    $("#de-armar").addEventListener("click", (e) => {
+      const k = e.target.closest("[data-dkw]"), x = e.target.closest("[data-dextra]");
+      if (k) deClave = k.dataset.dkw;
+      if (x) { const v = x.dataset.dextra; if (deExtras.has(v)) deExtras.delete(v); else deExtras.add(v); }
+      if (k || x) pintarDePortales();
+    });
+    const copiarAlAbrir = (e) => {
+      const a = e.target.closest("[data-copiar]");
+      if (!a) return;
+      const texto = a.dataset.copiar;
+      if (navigator.clipboard) navigator.clipboard.writeText(texto).then(() => avisoBreve(`Copiado: «${texto}». Péguenlo en el buscador.`), () => {});
+    };
+    $("#de-portales").addEventListener("click", copiarAlAbrir);
+    $("#viv-portales").addEventListener("click", copiarAlAbrir);
+
+    // Vivienda
+    const r = $("#viv-tope"), out = $("#viv-tope-out");
+    r.value = estado.vivTope; out.textContent = euros(estado.vivTope);
+    r.addEventListener("input", () => { estado.vivTope = Number(r.value); out.textContent = euros(estado.vivTope); guardar(); pintarViviendaAlla(); });
+    $("#viv-opciones").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-bciudad]");
+      if (btn) { estado.ciudad = btn.dataset.bciudad; guardar(); todo(); }
+    });
+
+    montarMappe();
+
+    // Fuentes
+    const todas = new Map();
+    b.trabajo.trabajos.forEach((t) => t.fuentes.forEach((x) => todas.set(x.url, x)));
+    b.vivienda.fuentes.forEach((x) => todas.set(x.url, x));
+    $("#buscar-fuentes").innerHTML = `<p class="visor-etiqueta">Fuentes (revisadas el ${fechaTexto(b.revisado)})</p>` +
+      [...todas.values()].map((x) => `<a href="${x.url}" target="_blank" rel="noopener">${x.nombre}</a>`).join("");
+  }
+
+  function montarMappe() {
+    const V = buscarData.vivienda;
+    const grid = $("#viv-mappe");
+    grid.innerHTML = "";
+    V.mappe.forEach((d) => {
+      const completo = plan.personas.every((_, i) => marcado(claveMarca("mappe", d.id, i)));
+      const card = el("div", { class: "doc" + (completo ? " completo" : "") });
+      card.innerHTML = `<details><summary><span class="doc-nombre">${d.nombre}</span><span class="doc-corto">Toquen para ver qué es</span></summary><p class="doc-detalle">${d.texto}</p></details>`;
+      const marcas = el("div", { class: "marcas" });
+      plan.personas.forEach((nombre, i) => {
+        const k = claveMarca("mappe", d.id, i);
+        const b = el("button", { type: "button", class: "marca-persona", "aria-pressed": String(marcado(k)), "aria-label": `${d.nombre}: ${nombre}` }, nombre);
+        b.addEventListener("click", () => {
+          alternar(k);
+          b.setAttribute("aria-pressed", String(marcado(k)));
+          card.classList.toggle("completo", plan.personas.every((_, j) => marcado(claveMarca("mappe", d.id, j))));
+        });
+        marcas.append(b);
+      });
+      card.append(marcas);
+      grid.append(card);
+    });
+  }
+
+  function pintarBuscarAlla() {
+    if (!buscarData) return;
+    const idC = ciudadBuscar();
+    $("#buscar-ciudades").innerHTML = ciudades.ciudades.map((c) =>
+      `<button type="button" data-bciudad="${c.id}" aria-pressed="${c.id === idC}">${c.nombre}</button>`).join("");
+    pintarDeTrabajos();
+    pintarViviendaAlla();
+  }
+
+  function pintarDeTrabajos() {
+    const T = buscarData.trabajo;
+    const filtros = new Set(estado.deFiltros || []);
+    document.querySelectorAll("#de-filtros button").forEach((b) => b.setAttribute("aria-pressed", String(filtros.has(b.dataset.dfiltro))));
+    const visibles = T.trabajos.filter((t) => [...filtros].every((f) => t.tags.includes(f)));
+    if (!visibles.some((t) => t.id === estado.deTrabajo)) estado.deTrabajo = visibles[0] ? visibles[0].id : null;
+    const max = T.escalaMax, minimo = plan.sueldo.hora2027;
+    const x = (v) => `${Math.min(100, (v / max) * 100)}%`;
+    const eur2 = (v) => "€" + v.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    $("#de-escala").innerHTML = `
+      <div class="escala-ejes" aria-hidden="true">
+        <span class="eje-meta" style="left:${x(minimo)}"><span>Mínimo 2027 ${eur2(minimo)}</span></span>
+      </div>
+      ${visibles.length ? visibles.map((t) => `
+        <button type="button" class="escala-fila" data-detrabajo="${t.id}" aria-pressed="${t.id === estado.deTrabajo}">
+          <span class="escala-nombre"><i class="entrada entrada-${ENTRADA_CLASE[t.entrada]}" title="${T.entradas[t.entrada]}"></i>${t.nombre}</span>
+          <span class="escala-pista"><i style="left:${x(t.min)};width:calc(${x(t.max)} - ${x(t.min)})"></i></span>
+          <span class="escala-monto">${eur2(t.min)} – ${eur2(t.max)} la hora · ${T.idiomas[t.idioma]}</span>
+        </button>`).join("") : `<p class="nota">Ningún trabajo cumple todos esos filtros a la vez.</p>`}
+      <div class="escala-pie" aria-hidden="true"><span>€0</span><span>${eur2(max / 2)}</span><span>${eur2(max)} la hora</span></div>`;
+
+    const t = T.trabajos.find((j) => j.id === estado.deTrabajo);
+    const idC = ciudadBuscar();
+    const c = ciudades.ciudades.find((z) => z.id === idC) || ciudades.ciudades[0];
+    const gastoCiudad = c.gastos.vivienda + c.gastos.comida + c.gastos.transporte + c.gastos.otros;
+    if (t) {
+      const medio = (t.min + t.max) / 2;
+      const liquidoMes = medio * HORAS_MES * LIQUIDO;
+      const dos = liquidoMes * 2;
+      const sobra = dos - gastoCiudad;
+      $("#de-detalle").innerHTML = `
+        <p class="visor-etiqueta">${t.de}</p>
+        <h3>${t.nombre}</h3>
+        <p class="detalle-rango">${eur2(t.min)} a ${eur2(t.max)} la hora</p>
+        <div class="esc-cifras">
+          <div class="esc-cifra"><span>Líquido al mes, jornada completa</span><b>${euros(liquidoMes)}</b></div>
+          <div class="esc-cifra"><span>Los dos en esto</span><b>${euros(dos)}</b></div>
+          <div class="esc-cifra"><span>Después de vivir en ${c.nombre}</span><b class="${sobra >= 0 ? "pos" : "neg"}">${sobra >= 0 ? "+" : "−"}${euros(Math.abs(sobra))}</b></div>
+        </div>
+        <p>${t.detalle}</p>
+        <p class="detalle-req"><strong>Idioma:</strong> ${T.idiomas[t.idioma]}.</p>
+        <p class="detalle-req"><strong>Piden:</strong> ${t.requisitos}</p>
+        <p class="detalle-req detalle-entrada entrada-txt-${ENTRADA_CLASE[t.entrada]}"><strong>Para entrar:</strong> ${t.costo || (t.entrada === "libre" ? "no hay que pagar nada antes." : T.entradas[t.entrada] + ".")}</p>
+        ${t.donde ? `<p class="detalle-req"><strong>Dónde buscar:</strong> ${t.donde}</p>` : ""}
+        ${t.ojo ? `<p class="detalle-ojo"><strong>Ojo:</strong> ${t.ojo}</p>` : ""}
+        <a class="boton detalle-buscar" href="#de-postular">Buscar avisos de esto</a>
+        <div class="detalle-tags">${t.tags.map((g) => `<span>${(T.filtros.find((f) => f.id === g) || {}).nombre || g}</span>`).join("")}</div>
+        ${t.fuentes.length ? `<div class="detalle-fuentes">${t.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join("")}</div>` : ""}`;
+    } else $("#de-detalle").innerHTML = "";
+    pintarDePortales();
+  }
+
+  function pintarDePortales() {
+    const T = buscarData.trabajo;
+    const t = T.trabajos.find((j) => j.id === estado.deTrabajo);
+    const claves = (t && t.buscar) || [];
+    if (!claves.includes(deClave)) deClave = claves[0] || null;
+    const q = [deClave, ...deExtras].filter(Boolean).join(" ");
+    const idC = ciudadBuscar();
+    const datosC = buscarData.vivienda.ciudades[idC];
+    const ciudadDe = datosC ? datosC.de : "";
+    const nombreC = (ciudades.ciudades.find((z) => z.id === idC) || {}).nombre || "";
+    $("#de-armar").innerHTML = t && deClave ? `
+      <p class="postular-para">Buscando <strong>${t.nombre}</strong>${ciudadDe ? ` en <strong>${nombreC}</strong>` : ""}. Elijan las palabras:</p>
+      <div class="postular-claves" role="group" aria-label="Palabras para buscar">
+        ${claves.map((k) => `<button type="button" data-dkw="${attr(k)}" aria-pressed="${k === deClave}">${k}</button>`).join("")}
+        <span class="postular-mas">${T.agregados.map((x) => `<button type="button" data-dextra="${attr(x)}" aria-pressed="${deExtras.has(x)}">+ ${x}</button>`).join("")}</span>
+      </div>` : `<p class="postular-para">Elijan un trabajo de la escala para armar la búsqueda.</p>`;
+    const grupo = `latinos en ${ciudadDe || "Alemania"}`;
+    $("#de-portales").innerHTML = T.portales.map((p) => {
+      let url, accion, copiar = "";
+      if (p.grupos) { url = p.grupos.replace("{grupo}", encodeURIComponent(grupo)); accion = `Buscar «${grupo}»`; }
+      else if (p.busca && q) {
+        url = p.busca.replace("{q}", encodeURIComponent(q)).replace("{guion}", enGuiones(q))
+          .replace("{ciudad}", encodeURIComponent(ciudadDe)).replace("{ciudadGuion}", enGuiones(ciudadDe || "deutschland"));
+        accion = `Ver «${escapar(q)}»`;
+      } else { url = p.inicio || p.busca.split("?")[0]; accion = q ? `Copia «${escapar(q)}» y abre` : "Abrir"; if (q) copiar = `data-copiar="${attr(q)}"`; }
+      return `<a class="plataforma" href="${url}" target="_blank" rel="noopener" ${copiar}>
+        <span class="plataforma-nombre">${p.nombre}</span>
+        <span class="plataforma-para">${p.para}</span>
+        <span class="plataforma-accion">${accion} ↗</span></a>`;
+    }).join("");
+  }
+
+  function pintarViviendaAlla() {
+    const V = buscarData.vivienda;
+    const tope = estado.vivTope || 900;
+    const idC = ciudadBuscar();
+    const tc = estado.tc || plan.tipoCambio.eur;
+    // Opciones de vivienda para los dos, en cada ciudad
+    $("#viv-opciones").innerHTML = `<div class="viv-grid">${ciudades.ciudades.map((c) => {
+      const dos = c.gastos.vivienda;
+      const piezas = c.pieza ? c.pieza * 2 : null;
+      const alcanza = dos <= tope;
+      return `<button type="button" class="viv-ciudad${alcanza ? "" : " sobre"}" data-bciudad="${c.id}" aria-pressed="${c.id === idC}">
+        <span class="viv-nombre">${c.nombre}</span>
+        <span class="viv-monto">${euros(dos)}<small> al mes para los dos</small></span>
+        <span class="viv-detalle">${c.pieza ? `Dos piezas en piso compartido: ${euros(piezas)}` : "Alojamiento de personal, descontado del sueldo"}</span>
+        <span class="viv-estado">${alcanza ? "Entra en lo que pueden pagar" : `Se pasa por ${euros(dos - tope)}`}</span>
+      </button>`;
+    }).join("")}</div>
+    <p class="nota">«Para los dos» es la estimación de vivienda del capítulo «¿Dónde llegamos?» (pieza para dos o estudio pequeño, con gastos). Las primeras semanas en hostal salen cerca de ${euros(V.hostalNoche * 2 * 30)} al mes para los dos (≈ ${pesos(V.hostalNoche * 2 * 30 * tc)}): sirven para llegar, no para quedarse.</p>`;
+
+    // Portales de la ciudad elegida
+    const datos = V.ciudades[idC];
+    const nombreC = (ciudades.ciudades.find((z) => z.id === idC) || {}).nombre || "";
+    $("#viv-portales").innerHTML = datos ? V.portales.map((p) => {
+      let url, accion, copiar = "";
+      if (p.plantilla) { url = p.plantilla.replace("{wg}", datos.wg).replace("{immowelt}", datos.immowelt); accion = `Ver ${nombreC}`; }
+      else if (p.grupos) { const g = `latinos en ${datos.de}`; url = p.grupos.replace("{grupo}", encodeURIComponent(g)); accion = `Buscar «${g}»`; }
+      else { const c = p.copiar.replace("{de}", datos.de); url = p.inicio; accion = `Copia «${c}» y abre`; copiar = `data-copiar="${attr(c)}"`; }
+      return `<a class="plataforma" href="${url}" target="_blank" rel="noopener" ${copiar}>
+        <span class="plataforma-nombre">${p.nombre}</span>
+        <span class="plataforma-para">${p.para}</span>
+        <span class="plataforma-accion">${accion} ↗</span></a>`;
+    }).join("") : `<p class="nota">En los hoteles de temporada el alojamiento viene con el trabajo: búsquenlo en la pestaña Trabajo, con el filtro «Con alojamiento».</p>`;
+
+  }
+
   /* ---------- Ventanas ---------- */
-  const VISTAS = ["inicio", "colchon", "lucas", "trabajos", "vivir", "refugio", "dinero", "ciudades", "ruta", "prepararse", "dudas", "conectar"];
+  const VISTAS = ["inicio", "colchon", "lucas", "trabajos", "vivir", "refugio", "dinero", "ciudades", "buscar-alla", "ruta", "prepararse", "dudas", "conectar"];
   const DENTRO = {
     economia: "colchon", escenarios: "colchon", registro: "colchon", acciones: "colchon", "ajustes-colchon": "colchon",
-    carpeta: "ruta", combinador: "trabajos", postular: "trabajos", "preguntas-que-deciden": "refugio", familia: "refugio", "mal-mes": "refugio", contenido: null
+    carpeta: "ruta", combinador: "trabajos", postular: "trabajos", "leer-arriendo": "ciudades", "de-postular": "buscar-alla", "preguntas-que-deciden": "refugio", familia: "refugio", "mal-mes": "refugio", contenido: null
   };
   const CON_ANOTAR = new Set(["inicio", "colchon", "lucas"]);
   let vistaActual = null;
@@ -2195,7 +2440,7 @@
       $("#titulo-movil").textContent = titulo;
       document.title = vista === "inicio" ? "Proyecto Alemania de Teoc y Francis" : `${titulo} · Proyecto Alemania`;
       document.querySelector(".fab").hidden = !CON_ANOTAR.has(vista);
-      document.querySelector("#abrir-mas").classList.toggle("activo", ["vivir", "refugio", "dinero", "ciudades", "ruta", "prepararse", "dudas", "conectar"].includes(vista));
+      document.querySelector("#abrir-mas").classList.toggle("activo", ["vivir", "refugio", "dinero", "ciudades", "buscar-alla", "ruta", "prepararse", "dudas", "conectar"].includes(vista));
       vistaActual = vista;
       if (vista === "dudas") ubicarRespuesta();
     }
@@ -2379,6 +2624,7 @@
     pintarLucas();
     pintarTrabajos();
     pintarVivir();
+    pintarBuscarAlla();
     pintarArriendo();
     pintarEstadoAbierto();
     if (dudas && $("#respuesta").innerHTML) pintarRespuesta();
@@ -2398,10 +2644,10 @@
   async function iniciar() {
     try {
       const cargar = (u) => fetch(u, { cache: "no-cache" }).then((x) => { if (!x.ok) throw new Error(u); return x.json(); });
-      [plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData] = await Promise.all([
+      [plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData] = await Promise.all([
         cargar("data/plan.json"), cargar("data/ciudades.json"), cargar("data/dudas.json"),
         cargar("data/preparacion.json"), cargar("data/refugio.json"), cargar("data/colchon.json"),
-        cargar("data/trabajos.json"), cargar("data/barrios.json")
+        cargar("data/trabajos.json"), cargar("data/barrios.json"), cargar("data/buscar-alemania.json")
       ]);
     } catch (err) {
       $("#frase-resultado").textContent = "No se pudieron cargar los datos. Si abriste el archivo directo desde la carpeta, usa la página publicada o un servidor local (ver README).";
@@ -2418,6 +2664,7 @@
     montarLucas();
     montarTrabajos();
     montarVivir();
+    montarBuscarAlla();
     montarRefugio();
     montarCiudades();
     montarArriendo();

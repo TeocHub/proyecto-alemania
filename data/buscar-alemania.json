@@ -1,0 +1,219 @@
+{
+  "revisado": "2026-11-22",
+  "intro": "Lo mismo que hicieron para Chile, pero para allá: qué trabajos están a su alcance sin título y sin alemán, cuánto pagan por hora, dónde buscarlos, y cómo conseguir dónde vivir sin llegar a ciegas.",
+  "trabajo": {
+    "nota": "Sueldo bruto por hora. El piso es el sueldo mínimo de 2027 (€14,60). A jornada completa (173 horas al mes) se calcula el líquido como el 72% del bruto, igual que en el resto de la página.",
+    "escalaMax": 18,
+    "entradas": {
+      "libre": "Se entra sin pagar",
+      "certificado": "Certificado sanitario (€25–33 una vez)",
+      "ojo": "Revisen bien el contrato"
+    },
+    "idiomas": {
+      "sin": "Sin alemán",
+      "ingles": "Con inglés",
+      "aleman": "Pide algo de alemán"
+    },
+    "filtros": [
+      { "id": "sinAleman", "nombre": "Sin alemán" },
+      { "id": "pocoHablar", "nombre": "Hablando poco con clientes" },
+      { "id": "juntos", "nombre": "Suelen contratar a varios" },
+      { "id": "alojamiento", "nombre": "Con alojamiento" },
+      { "id": "propinas", "nombre": "Con propinas" },
+      { "id": "temporada", "nombre": "Por temporada" }
+    ],
+    "trabajos": [
+      {
+        "id": "bodega",
+        "nombre": "Bodega por agencia",
+        "de": "Lagerhelfer, Kommissionierer",
+        "min": 15.33, "max": 17.5,
+        "idioma": "sin", "entrada": "libre",
+        "detalle": "Preparar pedidos, empacar, cargar y ordenar en centros de distribución. Casi siempre se entra por una agencia de trabajo temporal (Zeitarbeit), que tiene un sueldo mínimo propio por convenio: €15,33 la hora desde septiembre de 2026. Los avisos de bodega en agencias grandes ofrecen entre €16,08 y €17,50.",
+        "requisitos": "Buena condición física, puntualidad y disposición a turnos, a veces de noche. Zapatos de seguridad: algunas agencias los entregan.",
+        "donde": "Agencias como Randstad, Adecco o Manpower, y centros de distribución en las afueras de Leipzig, Hamburgo o Berlín.",
+        "ojo": "Para la visa, la agencia cuenta como empleador: máximo 6 meses con la misma. Pidan siempre contrato escrito y revisen que el turno de noche tenga recargo.",
+        "buscar": ["Lagerhelfer", "Kommissionierer", "Produktionshelfer", "Lagerhelfer ohne Deutschkenntnisse"],
+        "tags": ["sinAleman", "pocoHablar", "juntos"],
+        "fuentes": [
+          { "nombre": "DGB: convenio de trabajo temporal 2026 (grupo 1: €15,33 desde septiembre)", "url": "https://www.dgb.de/fileadmin/download_center/Uploads/2025-09-12_Entgelttarifvertrag_DGB-GVP_ab_01012026.pdf" },
+          { "nombre": "Agencia Federal de Empleo: avisos de bodega con €16,08–17,50", "url": "https://www.arbeitsagentur.de/jobsuche/suche?was=Lagerarbeiter" }
+        ]
+      },
+      {
+        "id": "cocina",
+        "nombre": "Lavaplatos o ayudante de cocina",
+        "de": "Spülkraft, Küchenhilfe",
+        "min": 14.6, "max": 15.5,
+        "idioma": "sin", "entrada": "certificado",
+        "detalle": "Lavar, ordenar, preparar verduras y apoyar en la cocina de restaurantes, hoteles y comedores. Es el trabajo de entrada más común para quien llega sin alemán, y muchas veces se consigue con un día de prueba.",
+        "requisitos": "Ganas, rapidez y aguante de pie. Para trabajar con alimentos piden el certificado sanitario.",
+        "donde": "Restaurantes, hoteles, cocinas de empresas y casinos. Funciona muy bien ir en persona con el CV impreso.",
+        "costo": "Certificado sanitario (Belehrung): una charla del Gesundheitsamt que cuesta entre €25 y €32,50. En varias ciudades se hace online y en otros idiomas.",
+        "ojo": "El certificado se saca cuando ya tienen una oferta: vale si empiezan a trabajar dentro de los 3 meses siguientes.",
+        "buscar": ["Spülkraft", "Küchenhilfe", "Spüler", "Küchenhilfe ohne Deutsch"],
+        "tags": ["sinAleman", "pocoHablar"],
+        "fuentes": [
+          { "nombre": "Ciudad de Münster: certificado sanitario online, €25", "url": "https://www.stadt-muenster.de/gesundheit/infektionsschutz/belehrung-fuer-beschaeftigte-im-lebensmittelgewerbe.html" },
+          { "nombre": "Bremen: certificado sanitario, €32,50", "url": "https://www.service.bremen.de/dienstleistungen/infektionsschutzbelehrung-inklusive-bescheinigung-beantragen-186710?reg=kosten" }
+        ]
+      },
+      {
+        "id": "housekeeping",
+        "nombre": "Limpieza de piezas de hotel",
+        "de": "Housekeeping, Zimmerreinigung",
+        "min": 14.6, "max": 15.5,
+        "idioma": "sin", "entrada": "libre",
+        "detalle": "Limpiar y preparar las piezas de hoteles y hostales. Mucha demanda en ciudades turísticas y en temporada alta. Se trabaja en equipo y con poca conversación con huéspedes.",
+        "requisitos": "Rapidez, orden y buena condición física.",
+        "donde": "Hoteles de cadena, hostales y empresas de limpieza que trabajan para hoteles.",
+        "ojo": "Algunas empresas intentan pagar por pieza limpiada. En Alemania rige el sueldo mínimo por hora: exijan que el contrato diga pago por hora.",
+        "buscar": ["Housekeeping", "Zimmerreinigung", "Roomboy", "Zimmermädchen"],
+        "tags": ["sinAleman", "pocoHablar", "juntos"],
+        "fuentes": []
+      },
+      {
+        "id": "mesero",
+        "nombre": "Mesero o barra",
+        "de": "Servicekraft, Kellner",
+        "min": 14.6, "max": 16,
+        "idioma": "ingles", "entrada": "certificado",
+        "detalle": "Atender mesas o barra en restaurantes, bares y cafés. Además del sueldo hay propinas. En Berlín y zonas turísticas hay locales que atienden en inglés; en el resto, un alemán básico abre muchas más puertas.",
+        "requisitos": "Inglés para atender y ganas de aprender las frases del menú en alemán. La experiencia en atención de público es una gran ventaja.",
+        "donde": "Barrios turísticos de Berlín, Hamburgo y Múnich; restaurantes de cadena y locales internacionales.",
+        "ojo": "Las propinas varían mucho. Hagan las cuentas solo con el sueldo por hora.",
+        "buscar": ["Servicekraft englisch", "Kellner", "Barkeeper", "Servicekraft ohne Deutsch"],
+        "tags": ["propinas"],
+        "fuentes": []
+      },
+      {
+        "id": "barista",
+        "nombre": "Barista en café",
+        "de": "Barista",
+        "min": 14.6, "max": 16,
+        "idioma": "ingles", "entrada": "certificado",
+        "detalle": "Preparar café y atender en cafés de especialidad y cadenas. En Berlín muchos cafés funcionan en inglés.",
+        "requisitos": "Inglés y trato con clientes. Algunos piden experiencia, pero muchos enseñan.",
+        "donde": "Cafés de especialidad en Berlín y Hamburgo, cadenas de café y panaderías con café.",
+        "ojo": "Muchos ofrecen minijob (máximo unos €633 al mes en 2027): sirve para complementar, no para vivir.",
+        "buscar": ["Barista", "Barista englisch", "Café Aushilfe"],
+        "tags": ["propinas"],
+        "fuentes": []
+      },
+      {
+        "id": "hostal",
+        "nombre": "Recepción de hostal",
+        "de": "Rezeption Hostel",
+        "min": 14.6, "max": 16,
+        "idioma": "ingles", "entrada": "libre",
+        "detalle": "Check-in, reservas y atención a viajeros de todo el mundo. Hablar español y portugués además de inglés es una ventaja real aquí.",
+        "requisitos": "Buen inglés, trato amable y turnos rotativos (incluida la noche).",
+        "donde": "Hostales de cadena y hostales independientes en ciudades turísticas.",
+        "ojo": "A veces ofrecen cama gratis a cambio de horas de trabajo. Eso no es un empleo: con la visa conviene un contrato con sueldo.",
+        "buscar": ["Rezeption Hostel", "Hostel Rezeptionist", "Front Desk Hostel"],
+        "tags": [],
+        "fuentes": []
+      },
+      {
+        "id": "tienda",
+        "nombre": "Vendedor en tienda",
+        "de": "Verkäufer, Aushilfe Einzelhandel",
+        "min": 14.6, "max": 17,
+        "idioma": "aleman", "entrada": "libre",
+        "detalle": "Atender, reponer y cobrar en tiendas y supermercados. Las tiendas de zonas turísticas y aeropuertos a veces aceptan inglés; en la mayoría piden alemán básico a intermedio.",
+        "requisitos": "Alemán básico (A2) para la mayoría de los avisos. La experiencia en ventas suma mucho.",
+        "donde": "Zonas comerciales del centro, aeropuertos y estaciones de tren.",
+        "ojo": "Es un buen segundo trabajo para cuando ya tengan algo de alemán, a mitad de año.",
+        "buscar": ["Verkäufer Aushilfe", "Verkäufer englisch", "Mitarbeiter Einzelhandel"],
+        "tags": [],
+        "fuentes": []
+      },
+      {
+        "id": "temporada",
+        "nombre": "Hotel de temporada con alojamiento",
+        "de": "Saisonkraft mit Unterkunft",
+        "min": 14.6, "max": 16,
+        "idioma": "sin", "entrada": "libre",
+        "detalle": "Hoteles de los Alpes bávaros o de las costas del norte contratan para la temporada e incluyen alojamiento de personal (y a veces comida), que se descuenta del sueldo a un precio bajo. Es la forma más simple de resolver trabajo y techo al mismo tiempo, y suelen contratar parejas.",
+        "requisitos": "Disponibilidad para vivir en un pueblo chico durante la temporada. Cocina, limpieza, servicio o lavandería.",
+        "donde": "Portales de hotelería y avisos de hoteles en zonas turísticas.",
+        "ojo": "Pregunten cuánto descuentan por el alojamiento y la comida, y si la pieza de personal es para dos.",
+        "buscar": ["Saisonkraft mit Unterkunft", "Saisonstelle Hotel", "Saisonarbeit Unterkunft"],
+        "tags": ["alojamiento", "juntos", "temporada", "sinAleman"],
+        "fuentes": []
+      },
+      {
+        "id": "cosecha",
+        "nombre": "Cosecha y campo",
+        "de": "Erntehelfer",
+        "min": 14.6, "max": 15,
+        "idioma": "sin", "entrada": "libre",
+        "detalle": "Cosecha de frutillas, espárragos, manzanas o uva, de primavera a otoño. Trabajo físico al aire libre, muchas veces con alojamiento en el mismo campo.",
+        "requisitos": "Resistencia física y horarios tempranos.",
+        "donde": "Campos en el norte y el sur de Alemania; avisos en portales de empleo y en la Agencia Federal de Empleo.",
+        "ojo": "Pregunten antes cuánto descuentan por el alojamiento y si pagan por hora (no por kilo cosechado).",
+        "buscar": ["Erntehelfer", "Saisonarbeit Landwirtschaft", "Erntehelfer mit Unterkunft"],
+        "tags": ["sinAleman", "pocoHablar", "juntos", "alojamiento", "temporada"],
+        "fuentes": []
+      },
+      {
+        "id": "reparto",
+        "nombre": "Reparto en bicicleta por app",
+        "de": "Fahrradkurier",
+        "min": 14.6, "max": 15,
+        "idioma": "sin", "entrada": "ojo",
+        "detalle": "Repartir comida en bicicleta. Se consigue rápido y no pide alemán, pero muchas plataformas exigen trabajar como independiente, sin contrato de empleo.",
+        "requisitos": "Bicicleta, celular y condición física.",
+        "donde": "Aplicaciones de reparto en las ciudades grandes.",
+        "ojo": "Solo acepten si es con contrato de empleado (Arbeitsvertrag). Como independientes tendrían que pagar sus propios seguros e impuestos, algo que quienes ya fueron no recomiendan sin saber bien cómo funciona.",
+        "buscar": ["Fahrradkurier Festanstellung", "Rider Festanstellung"],
+        "tags": ["sinAleman", "pocoHablar", "propinas"],
+        "fuentes": [
+          { "nombre": "Un Poco de Sur: trabajar en Berlín", "url": "https://unpocodesur.com/alemania/trabajar-en-berlin/" }
+        ]
+      }
+    ],
+    "agregados": ["Minijob", "Vollzeit", "Teilzeit"],
+    "portales": [
+      { "id": "indeed", "nombre": "Indeed Alemania", "para": "El que más avisos reúne, de todos los rubros.", "busca": "https://de.indeed.com/jobs?q={q}&l={ciudad}" },
+      { "id": "agentur", "nombre": "Agencia Federal de Empleo", "para": "El portal público: muchas agencias y bodegas publican aquí, con sueldo a la vista.", "busca": "https://www.arbeitsagentur.de/jobsuche/suche?was={q}&wo={ciudad}" },
+      { "id": "stepstone", "nombre": "StepStone", "para": "Grande y ordenado; más avisos de empresas establecidas.", "busca": "https://www.stepstone.de/jobs/{guion}/in-{ciudadGuion}" },
+      { "id": "hotelcareer", "nombre": "Hotelcareer", "para": "Especializado en hoteles y gastronomía, incluidos los de temporada.", "inicio": "https://www.hotelcareer.de/" },
+      { "id": "kleinanzeigen", "nombre": "Kleinanzeigen", "para": "Avisos de pymes y locales del barrio; muchos minijobs.", "inicio": "https://www.kleinanzeigen.de/" },
+      { "id": "facebook", "nombre": "Grupos de latinos en Facebook", "para": "Avisos que circulan de boca en boca, y consejos de quienes ya están allá.", "grupos": "https://www.facebook.com/search/groups/?q={grupo}" }
+    ]
+  },
+  "vivienda": {
+    "intro": "Cuánto cuesta vivir los dos en cada ciudad, dónde buscar y qué papeles preparar. Los precios salen del capítulo «¿Dónde llegamos?», así que coinciden con el resto de la página.",
+    "hostalNoche": 30,
+    "ciudades": {
+      "berlin": { "de": "Berlin", "wg": "Berlin.8", "immowelt": "berlin" },
+      "hamburgo": { "de": "Hamburg", "wg": "Hamburg.55", "immowelt": "hamburg" },
+      "leipzig": { "de": "Leipzig", "wg": "Leipzig.77", "immowelt": "leipzig" },
+      "munich": { "de": "München", "wg": "Muenchen.90", "immowelt": "muenchen" },
+      "frankfurt": { "de": "Frankfurt am Main", "wg": "Frankfurt-am-Main.41", "immowelt": "frankfurt-am-main" }
+    },
+    "portales": [
+      { "id": "wg", "nombre": "WG-Gesucht: piezas", "para": "El portal principal de piezas en pisos compartidos.", "plantilla": "https://www.wg-gesucht.de/wg-zimmer-in-{wg}.0.1.0.html" },
+      { "id": "wg1", "nombre": "WG-Gesucht: estudios", "para": "Departamentos de un ambiente: lo más realista para una pareja sola.", "plantilla": "https://www.wg-gesucht.de/1-zimmer-wohnungen-in-{wg}.1.1.0.html" },
+      { "id": "wgm", "nombre": "WG-Gesucht: amoblados por meses", "para": "Departamentos amoblados por un tiempo (Zwischenmiete): sirven para llegar.", "plantilla": "https://www.wg-gesucht.de/suche/moebliert/wohnungen-in-{wg}.2.1.0.html" },
+      { "id": "immowelt", "nombre": "Immowelt", "para": "Departamentos normales y amoblados temporales, con filtros por precio.", "plantilla": "https://www.immowelt.de/suche/{immowelt}/wohnungen/mieten" },
+      { "id": "kleinanzeigen", "nombre": "Kleinanzeigen", "para": "Avisos de particulares. Hay buenas opciones y también más estafas: cuidado.", "inicio": "https://www.kleinanzeigen.de/", "copiar": "Zimmer {de}" },
+      { "id": "facebook", "nombre": "Grupos de latinos en Facebook", "para": "Piezas que se pasan entre conocidos y avisos de estafas conocidas.", "grupos": "https://www.facebook.com/search/groups/?q={grupo}" }
+    ],
+    "mappe": [
+      { "id": "pasaporte", "nombre": "Pasaporte con la visa", "texto": "Copia de la página de datos y de la visa. Es el documento de identidad que piden siempre." },
+      { "id": "carta", "nombre": "Carta de presentación corta", "texto": "Quiénes son, en qué trabajan o buscan trabajar, desde cuándo necesitan la pieza. Pueden usar el mensaje en alemán de «Prepararse», en la pestaña Hospedaje." },
+      { "id": "autoinfo", "nombre": "Ficha de datos del arrendatario", "texto": "La Mieterselbstauskunft: un formulario con sus datos, trabajo e ingresos. Hay plantillas gratis; llénenla con la verdad." },
+      { "id": "ingresos", "nombre": "Comprobante de ingresos", "texto": "Contrato de trabajo o últimas liquidaciones. Si recién llegan y aún no trabajan, sirve mostrar la cartola con sus ahorros." },
+      { "id": "schufa", "nombre": "Historial crediticio (Schufa)", "texto": "Al llegar no tendrán. Explíquenlo de frente en la carta y compénsenlo mostrando sus ahorros. Nunca paguen meses por adelantado sin contrato firmado." },
+      { "id": "nodeuda", "nombre": "Carta de su arrendador en Chile", "texto": "En Alemania piden un certificado de que no deben arriendo (Mietschuldenfreiheitsbescheinigung). Pídanle a su arrendador actual una carta en inglés que diga que siempre pagaron al día." }
+    ],
+    "fuentes": [
+      { "nombre": "ImmoScout24: documentos que piden los arrendadores", "url": "https://www.immobilienscout24.de/meinkonto/bewerbermappe/vermieter/" },
+      { "nombre": "Berliner MieterGemeinschaft: lo que piden al postular", "url": "https://bmgev.de/mietrecht/tipps/wohnungsbewerbung" },
+      { "nombre": "WG-Gesucht: piezas en Leipzig", "url": "https://www.wg-gesucht.de/wg-zimmer-in-Leipzig.77.0.1.0.html" },
+      { "nombre": "Moses Mendelssohn Institut / WG-Gesucht: arriendos 2026/27", "url": "https://www.wg-gesucht.de/presse/studentische-wohnkosten/wintersemester-2026-2027-wg-zimmer-mieten" }
+    ]
+  }
+}
