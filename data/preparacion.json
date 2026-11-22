@@ -52,38 +52,124 @@
       }
     ],
     "frases": [
-      { "de": "Guten Morgen!", "es": "¡Buenos días!", "pron": "GÚ-ten MÓR-guen" },
-      { "de": "Ich heiße …", "es": "Me llamo …", "pron": "ij JÁI-se" },
-      { "de": "Ich komme aus Chile.", "es": "Vengo de Chile.", "pron": "ij KÓ-me áus CHÍ-le" },
-      { "de": "Ich spreche nur ein bisschen Deutsch.", "es": "Hablo solo un poco de alemán.", "pron": "ij SHPRÉ-je nur áin BÍS-jen DÓICH" },
-      { "de": "Können Sie das bitte wiederholen?", "es": "¿Puede repetirlo, por favor?", "pron": "KÖ-nen si das BÍ-te vi-der-JÓ-len" },
-      { "de": "Langsamer, bitte.", "es": "Más lento, por favor.", "pron": "LÁNG-za-mer, BÍ-te" },
-      { "de": "Ich suche Arbeit.", "es": "Busco trabajo.", "pron": "ij SÚ-je ÁR-bait" },
-      { "de": "Hier ist mein Lebenslauf.", "es": "Aquí está mi currículum.", "pron": "jir ist main LÉ-bens-lauf" },
-      { "de": "Wann fängt meine Schicht an?", "es": "¿A qué hora empieza mi turno?", "pron": "van fengt MÁI-ne shijt an" },
-      { "de": "Ich suche ein Zimmer für zwei Personen.", "es": "Busco una pieza para dos personas.", "pron": "ij SÚ-je áin TSÍ-mer für tsvai per-SÓ-nen" },
-      { "de": "Ist das Zimmer noch frei?", "es": "¿La pieza sigue disponible?", "pron": "ist das TSÍ-mer noj frai" },
-      { "de": "Kann ich mich dort anmelden?", "es": "¿Puedo registrar mi domicilio ahí?", "pron": "kan ij mij dort ÁN-mel-den" },
-      { "de": "Entschuldigung!", "es": "¡Disculpe!", "pron": "ent-SHÚL-di-gung" },
-      { "de": "Feierabend!", "es": "¡Se terminó la jornada!", "pron": "FÁI-er-a-bent" }
+      {
+        "de": "Guten Morgen!",
+        "es": "¡Buenos días!",
+        "pron": "GÚ-ten MÓR-guen"
+      },
+      {
+        "de": "Ich heiße …",
+        "es": "Me llamo …",
+        "pron": "ij JÁI-se"
+      },
+      {
+        "de": "Ich komme aus Chile.",
+        "es": "Vengo de Chile.",
+        "pron": "ij KÓ-me áus CHÍ-le"
+      },
+      {
+        "de": "Ich spreche nur ein bisschen Deutsch.",
+        "es": "Hablo solo un poco de alemán.",
+        "pron": "ij SHPRÉ-je nur áin BÍS-jen DÓICH"
+      },
+      {
+        "de": "Können Sie das bitte wiederholen?",
+        "es": "¿Puede repetirlo, por favor?",
+        "pron": "KÖ-nen si das BÍ-te vi-der-JÓ-len"
+      },
+      {
+        "de": "Langsamer, bitte.",
+        "es": "Más lento, por favor.",
+        "pron": "LÁNG-za-mer, BÍ-te"
+      },
+      {
+        "de": "Ich suche Arbeit.",
+        "es": "Busco trabajo.",
+        "pron": "ij SÚ-je ÁR-bait"
+      },
+      {
+        "de": "Hier ist mein Lebenslauf.",
+        "es": "Aquí está mi currículum.",
+        "pron": "jir ist main LÉ-bens-lauf"
+      },
+      {
+        "de": "Wann fängt meine Schicht an?",
+        "es": "¿A qué hora empieza mi turno?",
+        "pron": "van fengt MÁI-ne shijt an"
+      },
+      {
+        "de": "Ich suche ein Zimmer für zwei Personen.",
+        "es": "Busco una pieza para dos personas.",
+        "pron": "ij SÚ-je áin TSÍ-mer für tsvai per-SÓ-nen"
+      },
+      {
+        "de": "Ist das Zimmer noch frei?",
+        "es": "¿La pieza sigue disponible?",
+        "pron": "ist das TSÍ-mer noj frai"
+      },
+      {
+        "de": "Kann ich mich dort anmelden?",
+        "es": "¿Puedo registrar mi domicilio ahí?",
+        "pron": "kan ij mij dort ÁN-mel-den"
+      },
+      {
+        "de": "Entschuldigung!",
+        "es": "¡Disculpe!",
+        "pron": "ent-SHÚL-di-gung"
+      },
+      {
+        "de": "Feierabend!",
+        "es": "¡Se terminó la jornada!",
+        "pron": "FÁI-er-a-bent"
+      }
     ],
     "nota": "La pronunciación está escrita a la chilena: la sílaba en mayúsculas es la que suena fuerte. La «j» de «ij» es suave, casi un soplido; la «ö» y la «ü» se dicen con los labios redondeados."
   },
   "hospedaje": {
     "intro": "Lo más difícil al llegar suele ser la vivienda, no el trabajo. El plan es tener techo seguro las primeras dos semanas y buscar la pieza estable ya allá, viéndola en persona.",
     "desdeChile": [
-      { "nombre": "Reservar 1–2 semanas de hostal", "texto": "Con habitación privada para dos si alcanza. Así llegan con dirección y buscan con calma. Plataformas como Hostelworld o Booking." },
-      { "nombre": "Mirar WG-Gesucht desde ya", "texto": "Es el portal principal de piezas en pisos compartidos. Mirar anuncios ahora sirve para entender precios y barrios, no para pagar nada." },
-      { "nombre": "Ver alojamiento temporal amoblado", "texto": "Sitios como Wunderflats o HousingAnywhere arriendan por meses y se pueden reservar desde Chile. Son más caros: úsenlos solo si confirman por escrito que permiten hacer la Anmeldung." },
-      { "nombre": "Unirse a grupos de latinos", "texto": "Busquen en Facebook grupos de chilenos o latinos en la ciudad que elijan. Ahí se publican piezas, trabajos y avisos de estafas conocidas." },
-      { "nombre": "Preparar su mensaje", "texto": "Tengan listo un mensaje en alemán (abajo hay uno) para responder rápido. En las ciudades grandes, los primeros en escribir son los que consiguen visita." }
+      {
+        "nombre": "Reservar 1–2 semanas de hostal",
+        "texto": "Con habitación privada para dos si alcanza. Así llegan con dirección y buscan con calma. Plataformas como Hostelworld o Booking."
+      },
+      {
+        "nombre": "Mirar WG-Gesucht desde ya",
+        "texto": "Es el portal principal de piezas en pisos compartidos. Mirar anuncios ahora sirve para entender precios y barrios, no para pagar nada."
+      },
+      {
+        "nombre": "Ver alojamiento temporal amoblado",
+        "texto": "Sitios como Wunderflats o HousingAnywhere arriendan por meses y se pueden reservar desde Chile. Son más caros: úsenlos solo si confirman por escrito que permiten hacer la Anmeldung."
+      },
+      {
+        "nombre": "Unirse a grupos de latinos",
+        "texto": "Busquen en Facebook grupos de chilenos o latinos en la ciudad que elijan. Ahí se publican piezas, trabajos y avisos de estafas conocidas."
+      },
+      {
+        "nombre": "Preparar su mensaje",
+        "texto": "Tengan listo un mensaje en alemán (abajo hay uno) para responder rápido. En las ciudades grandes, los primeros en escribir son los que consiguen visita."
+      }
     ],
     "alLlegar": [
-      { "nombre": "Escribir y llamar a todo", "texto": "Respondan muchos anuncios al día en WG-Gesucht, Kleinanzeigen e ImmoScout24. Para llamar sin hablar alemán, tengan un guion corto y sigan por mensaje." },
-      { "nombre": "Buscar de a dos", "texto": "Muchos pisos compartidos no aceptan parejas en una misma pieza. Si son pareja, filtren por piezas aptas para dos o busquen un estudio pequeño (1-Zimmer-Wohnung). Si son amigos, busquen pisos con dos piezas libres a la vez." },
-      { "nombre": "Ir a ver antes de pagar", "texto": "Visiten en persona, conozcan a quienes viven ahí y pidan contrato escrito antes de pagar el depósito (Kaution)." },
-      { "nombre": "Confirmar la Anmeldung", "texto": "Pregunten si el arrendador firma el certificado para registrar domicilio (Wohnungsgeberbestätigung). Sin eso cuesta abrir cuenta bancaria y trabajar formalmente." },
-      { "nombre": "Registrarse en la oficina", "texto": "Pidan hora en la oficina de registro (Bürgeramt) para la Anmeldung dentro de las dos semanas desde que se mudan." }
+      {
+        "nombre": "Escribir y llamar a todo",
+        "texto": "Respondan muchos anuncios al día en WG-Gesucht, Kleinanzeigen e ImmoScout24. Para llamar sin hablar alemán, tengan un guion corto y sigan por mensaje."
+      },
+      {
+        "nombre": "Buscar de a dos",
+        "texto": "Muchos pisos compartidos no aceptan parejas en una misma pieza. Si son pareja, filtren por piezas aptas para dos o busquen un estudio pequeño (1-Zimmer-Wohnung). Si son amigos, busquen pisos con dos piezas libres a la vez."
+      },
+      {
+        "nombre": "Ir a ver antes de pagar",
+        "texto": "Visiten en persona, conozcan a quienes viven ahí y pidan contrato escrito antes de pagar el depósito (Kaution)."
+      },
+      {
+        "nombre": "Confirmar la Anmeldung",
+        "texto": "Pregunten si el arrendador firma el certificado para registrar domicilio (Wohnungsgeberbestätigung). Sin eso cuesta abrir cuenta bancaria y trabajar formalmente."
+      },
+      {
+        "nombre": "Registrarse en la oficina",
+        "texto": "Pidan hora en la oficina de registro (Bürgeramt) para la Anmeldung dentro de las dos semanas desde que se mudan."
+      }
     ],
     "alertas": [
       "Piden depósito o primer mes antes de que vean la pieza.",
@@ -107,47 +193,5 @@
         "es": "Hola:\n\nsoy {nombres}, de Chile. Llego a [ciudad] con visa Working Holiday y busco una pieza en un piso compartido desde el [fecha].\n\nSoy tranquilo/a, ordenado/a y busco trabajo en gastronomía o logística. Hablo inglés y estoy aprendiendo alemán.\n\n¿La pieza sigue disponible? Podemos hablar por videollamada o voy a verla.\n\nSaludos,\n{nombres}"
       }
     }
-  },
-  "experiencias": [
-    {
-      "quien": "Teo, viajero de Working Holiday",
-      "donde": "Colonia",
-      "titulo": "Pieza al tercer día, trabajo lavando platos",
-      "sirvio": "Pasó cinco días en un hostal y consiguió pieza por WG-Gesucht escribiéndole a todos con un mensaje armado. Repartió CV impresos en restaurantes; en algunos lo tomaron después de un día de prueba lavando platos o armando pedidos, sin hablar alemán.",
-      "costo": "A veces se sintió solo al principio. Ojo: para trabajar con comida le pidieron un certificado sanitario.",
-      "leccion": "Llegar en primavera ayuda: de abril a agosto es la temporada alta de restaurantes.",
-      "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo",
-      "fuente": "YoMeAnimo"
-    },
-    {
-      "quien": "Karla, chilena",
-      "donde": "Alemania, después de Dinamarca",
-      "titulo": "Cocinera en un hotel al mes de llegar",
-      "sirvio": "Salió de Chile sin carrera, sin inglés y con poca experiencia, y encadenó Working Holidays en varios países. En Alemania la contrataron como cocinera en un hotel justo un mes después de llegar.",
-      "costo": "El idioma fue lo más difícil: con inglés se defendía en el día a día, pero se frustraba por no poder comunicarse en alemán.",
-      "leccion": "Investigar mucho antes de ir, ahorrar varios meses y tener paciencia con los trámites.",
-      "url": "https://angelicaladino.com/viajar-el-mundo-con-la-visa-work-and-holiday/",
-      "fuente": "Angélica Ladino"
-    },
-    {
-      "quien": "Carla, chilena",
-      "donde": "Postuló desde Bulgaria",
-      "titulo": "Postular desde otra embajada",
-      "sirvio": "Pidió la visa Working Holiday para Alemania en la embajada alemana de Sofía, Bulgaria, en vez de hacerlo desde Santiago. Cuenta su proceso en una entrevista en video.",
-      "costo": "Es un camino más caro, porque implica estar en Europa antes de tener la visa.",
-      "leccion": "Sirve como Plan B si en Santiago no aparecen citas, pero conviene confirmar los requisitos con esa embajada antes.",
-      "url": "https://www.youtube.com/watch?v=N2ZnEJomLoE",
-      "fuente": "YouTube"
-    },
-    {
-      "quien": "Un Poco de Sur",
-      "donde": "Berlín",
-      "titulo": "Sin alemán se puede, pero no es fácil",
-      "sirvio": "Recomienda buscar trabajos sin atención al cliente y llegar con plata en la cuenta, porque cambiar de trabajo es mucho más sencillo cuando no hay apuro.",
-      "costo": "Advierte sobre los trabajos de repartidor por app: muchos exigen trabajar como independiente, algo que no recomienda si no saben bien cómo funciona.",
-      "leccion": "Ir siempre con colchón y un Plan B por si algo sale mal.",
-      "url": "https://unpocodesur.com/alemania/trabajar-en-berlin/",
-      "fuente": "Un Poco de Sur"
-    }
-  ]
+  }
 }

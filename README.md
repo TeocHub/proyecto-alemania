@@ -87,7 +87,7 @@ manifest.webmanifest   para instalar en el celular
 
 ## Su año allá (`data/el-ano.json`)
 
-Calendario de 12 meses que parte en el mes de viaje del plan. Cada mes muestra estación, hora aproximada en que oscurece en Berlín, cómo está el trabajo y fechas fijas (`calendario`), y los relatos que caen en ese momento (`items`, ubicados por `momento` o, en invierno, por `mesCalendario`). Los textos aceptan tokens `{{clave}}`; las cifras que cambian viven en `plan.json > extranjero`.
+Calendario de 12 meses que parte en el mes de viaje del plan. Cada mes muestra estación, hora aproximada en que oscurece en Berlín, cómo está el trabajo y fechas fijas (`calendario`), y dos bloques separados: `relatos` (personas con nombre que cuentan en su texto o entrevista que vivieron en Alemania; resumen propio, país, ciudad, idioma original y enlace) e `items` (información general con fuentes). Ambos se ubican por `momento` o, en invierno, por `mesCalendario`. Un relato nuevo solo entra si su fuente muestra quién es y que vivió en Alemania. Los textos aceptan tokens `{{clave}}`; las cifras que cambian viven en `plan.json > extranjero`.
 
 ## Menú
 
