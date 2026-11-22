@@ -132,6 +132,11 @@
       const nuevo = {};
       for (const [p, [v]] of Object.entries(datos.mapa || {})) nuevo[p] = v;
       for (const p of pendientes) nuevo[p] = p in local ? local[p] : null;
+      // Lo que existe aquí y la planilla nunca recibió (valores por defecto de funciones nuevas)
+      // se sube en vez de borrarse; si no, cada revisión repintaba la página y cerraba lo abierto.
+      let subir = false;
+      for (const p in local) if (!(p in nuevo)) { nuevo[p] = local[p]; pendientes.add(p); meta.tiempos[p] = meta.tiempos[p] || 1; subir = true; }
+      if (subir) otraVez = true;
 
       const a = serializar(local), b = serializar(nuevo);
       const distinto = Object.keys(a).some((p) => a[p] !== (b[p] ?? "null")) ||
@@ -143,6 +148,15 @@
         if (distinto) api.aplicar(desaplanar(nuevo));
         for (const [p, [, t]] of Object.entries(datos.mapa || {})) if (!pendientes.has(p)) meta.tiempos[p] = t;
         ultimo = serializar(aplanar(api.obtener()));
+        // Si al aplicarlo la página lo completó (un campo nuevo, un valor por defecto), se sube esa
+        // versión. Si no, la planilla seguiría mandando la vieja y cada revisión repintaría todo.
+        if (distinto) {
+          const ahora = Date.now();
+          for (const p of new Set([...Object.keys(ultimo), ...Object.keys(b)])) {
+            if (pendientes.has(p) || (ultimo[p] ?? "null") === (b[p] ?? "null")) continue;
+            pendientes.add(p); meta.tiempos[p] = ahora; otraVez = true;
+          }
+        }
       }
       meta.rev = datos.rev;
       meta.ultima = Date.now();
@@ -177,6 +191,8 @@
   window.Sincro = {
     iniciar(opciones) {
       api = opciones;
+      // Las vistas abiertas, filtros y meses elegidos son de cada pantalla: la página dice cuáles son.
+      if (opciones.locales) for (const k of opciones.locales) LOCALES.add(k);
       ultimo = serializar(aplanar(api.obtener()));
       document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && conf) sincronizar(); });
       window.addEventListener("online", () => { if (conf) sincronizar(); });
