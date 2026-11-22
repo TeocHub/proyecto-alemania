@@ -33,6 +33,7 @@
     <symbol id="i-trabajos" viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5h6v2M3.5 12.5h17"/></symbol>
     <symbol id="i-vivir" viewBox="0 0 24 24"><path d="M5 20V6.5L12 4v16M12 9h7v11M8 8.5v.01M8 12v.01M8 15.5v.01M15.5 12.5v.01M15.5 16v.01M3.5 20h17"/></symbol>
     <symbol id="i-buscar" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-ano" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4M8 14h2M14 14h2"/></symbol>
     <symbol id="i-guia" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.6v.1"/></symbol>
     <symbol id="i-mas" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></symbol>
   </svg>
@@ -55,6 +56,7 @@
         <a href="#buscar-alla" data-vista="buscar-alla"><svg><use href="#i-buscar"/></svg>Buscar allá</a>
         <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
         <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
+        <a href="#el-ano" data-vista="el-ano"><svg><use href="#i-ano"/></svg>Lo que vivieron otros</a>
         <p class="riel-grupo">Siempre a mano</p>
         <a href="#bienvenida" data-vista="bienvenida"><svg><use href="#i-guia"/></svg>Cómo funciona y su grupo</a>
         <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
@@ -470,6 +472,16 @@
           </div>
         </section>
 
+        <section id="el-ano" class="vista seccion" data-titulo="Lo que vivieron otros" hidden>
+          <div class="seccion-cabeza">
+            <h2>El año allá, contado por quienes ya fueron</h2>
+            <p id="ano-intro"></p>
+          </div>
+          <div class="ano-linea" id="ano-linea" role="tablist" aria-label="Momento del año"></div>
+          <div class="ano-temas segmentos-claros" id="ano-temas" role="group" aria-label="Tema"></div>
+          <div class="ano-cuerpo" id="ano-cuerpo" aria-live="polite"></div>
+        </section>
+
         <section id="buscar-alla" class="vista seccion" data-titulo="Buscar allá" hidden>
           <div class="seccion-cabeza">
             <h2>Buscar trabajo y casa en Alemania</h2>
@@ -633,6 +645,7 @@
           <a href="#buscar-alla" data-vista="buscar-alla"><svg><use href="#i-buscar"/></svg>Buscar allá</a>
           <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
           <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
+        <a href="#el-ano" data-vista="el-ano"><svg><use href="#i-ano"/></svg>Lo que vivieron otros</a>
           <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
           <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Conectar dispositivos</a>
           <a href="#bienvenida" data-vista="bienvenida"><svg><use href="#i-guia"/></svg>Cómo funciona</a>

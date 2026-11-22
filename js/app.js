@@ -72,7 +72,7 @@
     escenario: "full",
     combina: null
   };
-  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel"]);
+  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento", "anoTema"]);
   const copia = (o) => JSON.parse(JSON.stringify(o));
 
   function leerEstado() {
@@ -86,7 +86,7 @@
     if (window.Sincro) window.Sincro.cambio();
   }
 
-  let plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData;
+  let plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData, anoData;
   const hoy = new Date();
   const estado = Object.assign(copia(DEFAULTS), leerEstado());
 
@@ -1639,6 +1639,71 @@
       </div>`;
   }
 
+  /* ---------- Lo que vivieron otros: el año allá por momento ---------- */
+  function montarAno() {
+    const A = anoData;
+    if (!A.momentos.some((m) => m.id === estado.anoMomento)) estado.anoMomento = A.momentos[0].id;
+    if (estado.anoTema && !A.temas.some((x) => x.id === estado.anoTema)) estado.anoTema = null;
+    $("#ano-intro").textContent = A.intro;
+    $("#ano-linea").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-momento]");
+      if (!b) return;
+      estado.anoMomento = b.dataset.momento; guardar(); pintarAno();
+      const sel = $(`#ano-linea [data-momento="${estado.anoMomento}"]`);
+      if (sel) sel.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    });
+    $("#ano-linea").addEventListener("keydown", (e) => {
+      if (!["ArrowRight", "ArrowLeft"].includes(e.key)) return;
+      const ids = A.momentos.map((m) => m.id);
+      const i = ids.indexOf(estado.anoMomento) + (e.key === "ArrowRight" ? 1 : -1);
+      if (i < 0 || i >= ids.length) return;
+      estado.anoMomento = ids[i]; guardar(); pintarAno();
+      $(`#ano-linea [data-momento="${ids[i]}"]`).focus();
+    });
+    $("#ano-temas").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-anotema]");
+      if (!b) return;
+      estado.anoTema = b.dataset.anotema || null; guardar(); pintarAno();
+    });
+  }
+
+  function pintarAno() {
+    const A = anoData;
+    if (!A || !ctx) return;
+    const tema = estado.anoTema;
+    const delTema = (it) => !tema || it.tema === tema;
+    $("#ano-linea").innerHTML = A.momentos.map((m, i) => {
+      const n = A.items.filter((it) => it.momento === m.id && delTema(it)).length;
+      const sel = m.id === estado.anoMomento;
+      return `<button type="button" role="tab" class="ano-estacion" data-momento="${m.id}" aria-selected="${sel}" tabindex="${sel ? 0 : -1}">
+        <span class="ano-punto" aria-hidden="true"></span>
+        <span class="ano-nombre">${m.nombre}</span>
+        <span class="ano-cuando">${m.cuando}</span>
+        <span class="ano-cuenta">${n ? `${n} ${n === 1 ? "miedo" : "miedos"}` : "—"}</span>
+      </button>`;
+    }).join("");
+    $("#ano-temas").innerHTML = [`<button type="button" data-anotema="" aria-pressed="${!tema}">Todo</button>`]
+      .concat(A.temas.map((x) => `<button type="button" data-anotema="${x.id}" aria-pressed="${tema === x.id}">${x.nombre}</button>`)).join("");
+    const nombreTema = Object.fromEntries(A.temas.map((x) => [x.id, x.nombre]));
+    const items = A.items.filter((it) => it.momento === estado.anoMomento && delTema(it));
+    const cuerpo = $("#ano-cuerpo");
+    if (!items.length) {
+      cuerpo.innerHTML = `<p class="ano-vacio">En este momento nadie contó miedos de «${nombreTema[tema]}». Prueben otro momento del año o toquen «Todo».</p>`;
+      return;
+    }
+    cuerpo.innerHTML = items.map((it) => `
+      <article class="ano-miedo" data-tema="${it.tema}">
+        <p class="ano-etiqueta">${nombreTema[it.tema]}</p>
+        <h3>${it.miedo}</h3>
+        <div class="ano-pasos">
+          <div class="ano-paso"><h4>Lo que suele pasar</h4><p>${t(it.realidad)}</p></div>
+          <div class="ano-paso ano-hacer"><h4>Qué hacer</h4><p>${t(it.hacer)}</p></div>
+        </div>
+        ${it.voz ? `<blockquote class="ano-voz"><p>${it.voz.texto}</p><footer>${it.voz.quien}</footer></blockquote>` : ""}
+        ${it.fuentes.length ? `<p class="ano-fuentes">Fuentes: ${it.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join(", ")}</p>` : ""}
+      </article>`).join("");
+  }
+
   /* ---------- Cómo leer un precio de arriendo ---------- */
   const TIPOS_PRECIO = [
     ["kalt", "Kaltmiete", "Solo el departamento"],
@@ -2550,7 +2615,7 @@
   }
 
   /* ---------- Ventanas ---------- */
-  const VISTAS = ["bienvenida", "inicio", "colchon", "lucas", "trabajos", "vivir", "refugio", "dinero", "ciudades", "buscar-alla", "ruta", "prepararse", "dudas", "conectar"];
+  const VISTAS = ["bienvenida", "inicio", "colchon", "lucas", "trabajos", "vivir", "refugio", "dinero", "ciudades", "buscar-alla", "ruta", "prepararse", "el-ano", "dudas", "conectar"];
   const DENTRO = {
     economia: "colchon", escenarios: "colchon", registro: "colchon", acciones: "colchon", "ajustes-colchon": "colchon",
     carpeta: "ruta", combinador: "trabajos", postular: "trabajos", "leer-arriendo": "ciudades", "de-postular": "buscar-alla", "preguntas-que-deciden": "refugio", familia: "refugio", "mal-mes": "refugio", contenido: null
@@ -2582,7 +2647,7 @@
       $("#titulo-movil").textContent = titulo;
       document.title = vista === "inicio" && estado.perfil ? `Proyecto Alemania de ${nombresTexto()}` : `${titulo} · Proyecto Alemania`;
       document.querySelector(".fab").hidden = !CON_ANOTAR.has(vista);
-      document.querySelector("#abrir-mas").classList.toggle("activo", ["vivir", "refugio", "dinero", "ciudades", "buscar-alla", "ruta", "prepararse", "dudas", "conectar", "bienvenida"].includes(vista));
+      document.querySelector("#abrir-mas").classList.toggle("activo", ["vivir", "refugio", "dinero", "ciudades", "buscar-alla", "ruta", "prepararse", "el-ano", "dudas", "conectar", "bienvenida"].includes(vista));
       vistaActual = vista;
       if (vista === "dudas") ubicarRespuesta();
     }
@@ -2768,6 +2833,7 @@
     pintarVivir();
     pintarBuscarAlla();
     pintarArriendo();
+    pintarAno();
     pintarEstadoAbierto();
     if (dudas && $("#respuesta").innerHTML) pintarRespuesta();
     refrescarVivos();
@@ -2786,10 +2852,10 @@
   async function iniciar() {
     try {
       const cargar = (u) => fetch(u, { cache: "no-cache" }).then((x) => { if (!x.ok) throw new Error(u); return x.json(); });
-      [plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData] = await Promise.all([
+      [plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData, anoData] = await Promise.all([
         cargar("data/plan.json"), cargar("data/ciudades.json"), cargar("data/dudas.json"),
         cargar("data/preparacion.json"), cargar("data/refugio.json"), cargar("data/colchon.json"),
-        cargar("data/trabajos.json"), cargar("data/barrios.json"), cargar("data/buscar-alemania.json")
+        cargar("data/trabajos.json"), cargar("data/barrios.json"), cargar("data/buscar-alemania.json"), cargar("data/el-ano.json")
       ]);
     } catch (err) {
       $("#frase-resultado").textContent = "No se pudieron cargar los datos. Si abriste el archivo directo desde la carpeta, usa la página publicada o un servidor local (ver README).";
@@ -2808,6 +2874,7 @@
     montarTrabajos();
     montarVivir();
     montarBuscarAlla();
+    montarAno();
     montarRefugio();
     montarCiudades();
     montarArriendo();
