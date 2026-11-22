@@ -22,6 +22,31 @@
     "edadMaxima": 30,
     "colchonCambio": 0.1
   },
+  "plataInicio": {
+    "_nota": "Historia de la plata en Inicio. {llaves simples} las llena app.js con cifras que se pueden tocar; {{llaves dobles}} son los números de contexto().",
+    "historia": "Necesitan {meta} entre los dos: {gasto} para pagar antes de viajar y {llevan} que llevan para vivir allá. De esos {llevanTexto}, la embajada pide que {congelado} estén congelados {desde}: {congeladoCada} en la cuenta de cada uno.",
+    "historiaPersona": "Cada uno necesita {meta}: {gasto} para pagar antes de viajar y {llevan} que lleva para vivir allá. De esos {llevanTexto}, la embajada pide que {congelado} estén congelados en su propia cuenta {desde}.",
+    "historiaUno": "Necesitas {meta} en total: {gasto} para pagar antes de viajar y {llevan} que llevas para vivir allá. De esos {llevanTexto}, la embajada pide que {congelado} estén congelados en tu cuenta {desde}.",
+    "queEs": "«Congelado» significa que no lo pueden gastar durante los 90 días antes de la cita: sigue en su cuenta, a su nombre, y se lo llevan para vivir en Alemania.",
+    "queEsUno": "«Congelado» significa que no lo puedes gastar durante los 90 días antes de la cita: sigue en tu cuenta, a tu nombre, y te lo llevas para vivir en Alemania.",
+    "desde": "desde {{fechaFondos}}",
+    "desdeSinFecha": "desde seis meses antes del viaje",
+    "detalle": {
+      "meta": "Las dos partes suman la meta. Tiene que estar completa {cuando}, cuando se compran los pasajes con la visa aprobada.",
+      "cuando": "en {{fechaPasajes}}",
+      "cuandoSinFecha": "un mes y medio antes del viaje",
+      "gasto": "Se paga en Chile antes de subir al avión: no es plata que llevan.",
+      "gastoUno": "Se paga en Chile antes de subir al avión: no es plata que llevas.",
+      "llevan": "Es el colchón «{{colchon}}», {eur} por persona.",
+      "llevanUno": "Es el colchón «{{colchon}}», {eur}.",
+      "llevanMinimo": "Es el mínimo que pide la embajada, {eur} por persona con el margen por el euro.",
+      "llevanMinimoUno": "Es el mínimo que pide la embajada, {eur} con el margen por el euro.",
+      "congelado": "Desde {desde} esa plata no se toca: la embajada revisa que el saldo se haya mantenido 90 días hasta el día de la cita. El mínimo legal es {{pruebaEur}} por persona; el plan usa {{congelado}} para dejar un {{margen}} de margen por si sube el euro. Se puede seguir ahorrando encima; lo que no puede pasar es que baje. Cada uno necesita su propia cuenta con su propio saldo: la embajada no acepta que otra persona ponga esa plata.",
+      "congeladoUno": "Desde {desde} esa plata no se toca: la embajada revisa que el saldo se haya mantenido 90 días hasta el día de la cita. El mínimo legal es {{pruebaEur}}; el plan usa {{congelado}} para dejar un {{margen}} de margen por si sube el euro. Puedes seguir ahorrando encima; lo que no puede pasar es que baje. Tiene que ser tu propia cuenta: la embajada no acepta que otra persona ponga esa plata por ti.",
+      "desde": "{{fechaFondos}}",
+      "desdeSinFecha": "seis meses antes del viaje"
+    }
+  },
   "costos": {
     "pasaporte": 69660,
     "documentos": 50000,

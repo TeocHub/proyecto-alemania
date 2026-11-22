@@ -14,7 +14,7 @@ Cada sección es una ventana. En el celular se ve una a la vez, con la barra de 
 
 | Ventana | Qué tiene |
 |---|---|
-| Inicio | La línea completa (colchón o ahorro → viaje) y los visores: el colchón o el ahorro, cada mes, lo próximo, Alemania en números y cómo se sienten. Si viven con su familia, «Lo próximo» va primero y la ruta de trámites corre desde hoy |
+| Inicio | El mes de viaje (si nunca lo eligieron, Inicio lo pide antes de mostrar fechas), la línea completa (colchón o ahorro → viaje) con «Estás aquí» (lo marcado en Los trámites y lo que toca, con link a la estación) y los visores: el colchón o el ahorro, el ritmo y cada mes (estos dos aparecen con datos anotados), la plata del viaje y cómo se sienten. Si viven con su familia, la ruta de trámites corre desde hoy |
 | 1. Los trámites | La ruta y la carpeta |
 | 2. La plata | La meta para Alemania y el desglose |
 | 3. ¿Dónde llegamos? | Ciudades y sueldos |
@@ -52,7 +52,7 @@ Todo el contenido está en `data/`, en archivos JSON que se pueden editar sin to
 | `data/trabajos.json` | Trabajos, rangos de sueldo, requisitos y fuentes (revisado el 20-nov-2026) |
 | `data/barrios.json` | Comunas, arriendo, metro, señales de seguridad y fuentes |
 | `data/colchon.json` | Textos del colchón, etapas, etapas de «Ahorrar para el viaje» (`etapasAhorro`), escenarios de «¿Y si…?», sueldos estimados de cada escenario y acciones para llegar antes |
-| `data/plan.json` | Tipo de cambio, requisitos de la embajada (incluida la edad para postular), «¿Pueden ir?» (`puedesIr`: cada requisito con su regla, pregunta y qué significa no cumplirlo, y el enlace oficial), costos, colchones para vivir allá, etapas de la ruta con sus tareas, documentos de la carpeta y fuentes |
+| `data/plan.json` | Tipo de cambio, requisitos de la embajada (incluida la edad para postular), la historia de la plata de Inicio (`plataInicio`), «¿Pueden ir?» (`puedesIr`: cada requisito con su regla, pregunta y qué significa no cumplirlo, y el enlace oficial), costos, colchones para vivir allá, etapas de la ruta con sus tareas, documentos de la carpeta y fuentes |
 | `data/ciudades.json` | Ciudades, gastos mensuales estimados para dos personas (`gastos`) y para una (`gastosUno`), y escenarios de ingreso de cada grupo |
 | `data/preparacion.json` | Plan de alemán de 12 semanas, frases con pronunciación, cursos, pasos para buscar hospedaje, mensaje para arrendadores, señales de estafa y experiencias de otras personas |
 | `data/refugio.json` | Ventana «Cuando dudemos» |
@@ -62,6 +62,8 @@ Todo el contenido está en `data/`, en archivos JSON que se pueden editar sin to
 En la ruta, `offset` son los meses respecto al viaje (por ejemplo, `-6` es seis meses antes; `null` significa "ahora").
 
 ## Números conectados
+
+En Inicio, «La plata del viaje» cuenta la meta como una sola historia: el total, lo que se paga antes de viajar, lo que llevan y, de eso, lo que la embajada pide congelado. Cada cifra se toca para ver su detalle; para dos, «Entre los dos / Cada uno» cambia los montos. Los textos están en `plan.json > plataInicio`: `{llave}` (una llave) la llena `pintarNumeros()` con las cifras de `calcular()`, y `{{llave}}` son los tokens de siempre. `estado.viajeElegido` dice si el mes de viaje se eligió; mientras no, Inicio no muestra fechas calculadas. Elegirlo marca la tarea «Elegir mes y año de viaje». Los perfiles anteriores quedan como elegidos solo si ya tenían marcada esa tarea.
 
 Todos los montos que aparecen en los textos salen de un solo cálculo. En los JSON se escriben como marcadores entre llaves dobles, por ejemplo `{{meta}}`, `{{llevan}}`, `{{congelado}}`, `{{fechaFondos}}`, `{{metaColchon}}` o `{{faltaMes}}`. La lista completa está en la función `contexto()` de `js/app.js`.
 
