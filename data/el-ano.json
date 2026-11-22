@@ -1,5 +1,5 @@
 {
-  "intro": "Lo que contaron chilenos, argentinos, uruguayos y brasileños que hicieron la Working Holiday en Alemania, y peruanos, bolivianos, venezolanos y mexicanos que llegaron con otras visas, ordenado por momento del año. Cada miedo va con lo que suele pasar de verdad y qué hacer. De Latinoamérica, solo Chile, Argentina, Uruguay y Brasil tienen Working Holiday con Alemania; el resto llegó por estudio, trabajo o familia, pero la vivienda, la salud y el invierno se viven igual.",
+  "intro": "Lo que contaron latinoamericanos que ya vivieron en Alemania, ordenado por momento del año: cada miedo con lo que suele pasar de verdad y qué hacer. De Latinoamérica tienen Working Holiday con Alemania {{paisesWH}}; quienes vienen de otros países llegaron por estudio, trabajo o familia, pero la vivienda, la salud y el invierno se viven igual. Los montos salen del plan de su grupo y cambian si cambian sus datos.",
   "temas": [
     { "id": "plata", "nombre": "Plata" },
     { "id": "vivienda", "nombre": "Vivienda" },
@@ -19,8 +19,8 @@
     {
       "momento": "antes", "tema": "plata",
       "miedo": "La plata está en pesos en un banco chileno. ¿Cómo la uso allá?",
-      "realidad": "Los fondos de solvencia ({{congelado}} por persona) se quedan en su cuenta chilena hasta la cita. Con la visa aprobada vuelven a ser plata normal. Las billeteras digitales no están en la lista que acepta la embajada, así que se usan recién después.",
-      "hacer": "Con la visa en la mano, pasen la parte que van a gastar a una cuenta en euros (Global66 es chilena y tiene tarjeta Mastercard) y conviertan en partes, no todo el mismo día. La tarjeta del banco chileno queda de respaldo: la CuentaRUT cobra 1,9% por compra o giro afuera.",
+      "realidad": "Los fondos de solvencia (con su plan, {{congelado}} por persona) se quedan en su cuenta chilena hasta la cita. Con la visa aprobada vuelven a ser plata normal. Las billeteras digitales no están en la lista que acepta la embajada, así que se usan recién después.",
+      "hacer": "Con la visa en la mano, pasen la parte que van a gastar a una cuenta en euros con tarjeta (por ejemplo Global66, que es chilena) y conviertan en partes, no todo el mismo día. La tarjeta del banco chileno queda de respaldo: la CuentaRUT cobra {{comisionRut}} por cada compra o giro afuera, así que conviene para emergencias y no para el día a día.",
       "voz": null,
       "fuentes": [
         { "nombre": "Global66: Working Holiday", "url": "https://www.global66.com/cl/expatriados/" },
@@ -31,7 +31,7 @@
       "momento": "antes", "tema": "plata",
       "miedo": "¿Cuánto efectivo llevo?",
       "realidad": "En Alemania todavía hay panaderías, kioscos y algunos bares que solo reciben efectivo. Pero andar con todo el colchón en billetes es un riesgo que nadie recomienda.",
-      "hacer": "Lleven unos €200–300 en efectivo para los primeros días y el resto en tarjeta. Para vivir allá llevan {{llevanEur}} en total según su plan.",
+      "hacer": "Lleven unos {{efectivo}} en efectivo para los primeros días y el resto en tarjeta. Con su plan, para vivir allá llevan {{llevanEur}} en total.",
       "voz": null,
       "fuentes": []
     },
@@ -82,7 +82,7 @@
     {
       "momento": "semana", "tema": "vivienda",
       "miedo": "Hay demasiada gente buscando pieza. ¿Y si nadie me responde?",
-      "realidad": "En ciudades como Múnich una pieza en piso compartido puede recibir cientos de mensajes en dos días. Quien consigue rápido es quien escribe a muchos, temprano y con un mensaje personal.",
+      "realidad": "En las ciudades más buscadas, una pieza en piso compartido puede recibir cientos de mensajes en pocos días. Quien consigue rápido es quien escribe a muchos, temprano y con un mensaje personal.",
       "hacer": "Escriban a 10–20 anuncios por día, el mismo día que se publican. Apunten primero a ciudades con menos presión (en «¿Dónde llegamos?» está la comparación).",
       "voz": { "quien": "Teo, Working Holiday en Colonia", "texto": "Pasó cinco días en un hostal y consiguió pieza escribiéndole a todos con un mensaje armado." },
       "fuentes": [
@@ -104,7 +104,7 @@
     {
       "momento": "semana", "tema": "plata",
       "miedo": "No tengo cuenta alemana y sin domicilio no me la abren.",
-      "realidad": "Los bancos tradicionales piden el certificado de registro. Los bancos por app no: N26 abre sin registro (pide una dirección en Alemania y después 90 días para el comprobante y el número de impuestos).",
+      "realidad": "Los bancos tradicionales piden el certificado de registro. Los bancos por app no: N26, por ejemplo, abre sin registro: pide una dirección en Alemania y da un plazo para entregar después el comprobante y el número de impuestos. Las condiciones de cada banco cambian, así que revísenlas al abrir.",
       "hacer": "Los primeros días paguen con la tarjeta en euros que traen. Apenas tengan pieza, abran N26 u otro banco por app: es la cuenta con IBAN alemán para el sueldo y el arriendo.",
       "voz": null,
       "fuentes": [
@@ -127,7 +127,7 @@
       "miedo": "Sin celular alemán no puedo ni postular a trabajos.",
       "realidad": "Los planes con contrato piden el registro, pero un chip de prepago se compra el primer día con el pasaporte.",
       "hacer": "Compren prepago al llegar y pásense a plan cuando estén registrados.",
-      "voz": { "quien": "Teo, Working Holiday en Colonia", "texto": "El primer mes usó prepago porque para un plan necesitaba el registro; le costó unos €10." },
+      "voz": { "quien": "Teo, Working Holiday en Colonia", "texto": "El primer mes usó prepago porque para un plan necesitaba el registro." },
       "fuentes": [
         { "nombre": "YoMeAnimo: Teo", "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo" }
       ]
@@ -135,7 +135,7 @@
     {
       "momento": "mes", "tema": "papeles",
       "miedo": "Empecé a trabajar y me descontaron muchísimo de impuestos.",
-      "realidad": "El número de impuestos (Steuer-ID) llega solo por carta a la dirección registrada, entre 2 y 6 semanas después del registro. Sin él, la empresa puede aplicar la clase de impuesto más cara. Lo pagado de más se recupera con la declaración de impuestos.",
+      "realidad": "El número de impuestos (Steuer-ID) llega solo por carta a la dirección registrada, varias semanas después del registro (a veces más de un mes). Sin él, la empresa puede aplicar la clase de impuesto más cara. Lo pagado de más se recupera con la declaración de impuestos.",
       "hacer": "Pongan sus nombres en el buzón el primer día (si no, la carta se devuelve). Entreguen el número a la empresa apenas llegue y guarden todas las liquidaciones.",
       "voz": null,
       "fuentes": [
@@ -165,7 +165,7 @@
       "momento": "mes", "tema": "vivienda",
       "miedo": "Me llegó una carta del Rundfunkbeitrag pidiendo plata.",
       "realidad": "Después del registro, la oficina del aporte a la radio y TV pública escribe a cada persona nueva. Se paga una vez por vivienda, no por persona: en un piso compartido paga uno solo.",
-      "hacer": "Si ya paga alguien en su piso, respondan la carta con el número de aportante (Beitragsnummer) de esa persona. Si nadie paga, uno se inscribe y lo dividen. Son {{rundfunk}} al mes por vivienda.",
+      "hacer": "Si ya paga alguien en su piso, respondan la carta con el número de aportante (Beitragsnummer) de esa persona. Si nadie paga, uno se inscribe y lo dividen. Hoy son {{rundfunk}} al mes por vivienda.",
       "voz": null,
       "fuentes": [
         { "nombre": "Verbraucherzentrale: Rundfunkbeitrag", "url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/fernsehen/rundfunkbeitrag-anmelden-die-wichtigsten-fragen-und-antworten-5793" }
@@ -207,7 +207,7 @@
       "momento": "finmes", "tema": "papeles",
       "miedo": "Llegan cartas en alemán y no sé cuáles son importantes.",
       "realidad": "En Alemania casi todo lo oficial llega por carta y tiene plazo: impuestos, seguro, Rundfunk, arrendador. Ignorarlas es lo que hace que un trámite chico se vuelva multa.",
-      "hacer": "Una vez por semana abran el buzón juntos, saquen foto y tradúzcanla con el celular. Lo que tenga fecha, anótenlo.",
+      "hacer": "Una vez por semana revisen el buzón, saquen foto y tradúzcanla con el celular. Lo que tenga fecha, anótenlo.",
       "voz": { "quien": "Brasileños en Alemania", "texto": "Muchos se sorprenden con la cantidad de documentos que se piden para trámites simples." },
       "fuentes": [
         { "nombre": "Jornal de Brasília", "url": "https://jornaldebrasilia.com.br/estilo-de-vida/de-rio-a-berlim-como-os-brasileiros-podem-se-estabelecer-na-alemanha/" }
@@ -227,7 +227,7 @@
     {
       "momento": "invierno", "tema": "vivienda",
       "miedo": "Llega Navidad y no tengo qué comer porque todo está cerrado.",
-      "realidad": "El 24 de diciembre las tiendas cierran temprano en la tarde. El 25 y el 26 son feriados y está todo cerrado. El 31 los supermercados cierran entre las 14:00 y las 16:00, y el 1 de enero vuelve a estar todo cerrado. Solo abren algunos negocios dentro de las estaciones de tren.",
+      "realidad": "El 24 de diciembre las tiendas cierran temprano en la tarde. El 25 y el 26 son feriados y está todo cerrado. El 31 los supermercados cierran a media tarde, y el 1 de enero vuelve a estar todo cerrado. Solo abren algunos negocios dentro de las estaciones de tren.",
       "hacer": "Compren para cuatro días el 23 de diciembre y para dos el 30. Si están solos, organicen la cena con otros latinos: es la fecha en que más se extraña.",
       "voz": null,
       "fuentes": [
@@ -256,7 +256,7 @@
     {
       "momento": "invierno", "tema": "animo",
       "miedo": "¿Cuándo se siente como casa?",
-      "realidad": "Toma tiempo, y el invierno es cuando más se duda. Hay quien tardó más de un año y medio en sentir Alemania como su casa. En una Working Holiday de 12 meses, la primavera suele ser cuando todo empieza a fluir.",
+      "realidad": "Toma tiempo, y el invierno es cuando más se duda. Hay quien tardó más de un año y medio en sentir Alemania como su casa. En una Working Holiday de un año, la primavera suele ser cuando todo empieza a fluir.",
       "hacer": "Si dudan en enero, no decidan en enero. Anoten en «Cuando dudemos» qué sienten y vuelvan a leerlo en marzo.",
       "voz": { "quien": "Brasileña en Alemania", "texto": "Tardó un año y ocho meses en reconocer Alemania como su casa; dice que en invierno esa incertidumbre se vuelve evidente." },
       "fuentes": [
