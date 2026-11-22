@@ -47,6 +47,10 @@
     {
       "id": "viajar",
       "nombre": "Viajar"
+    },
+    {
+      "id": "estudiar",
+      "nombre": "Estudiar"
     }
   ],
   "dudas": [
@@ -349,6 +353,30 @@
       "tema": "viajar",
       "pregunta": "¿Podemos quedarnos viajando por Europa cuando se acabe la visa?",
       "respuesta": "<p>Como chilenos pueden estar en Schengen como turistas hasta 90 días dentro de cualquier período de 180 días, sin trabajar. Los días que estuvieron con la visa de Working Holiday normalmente no se descuentan de esos 90, porque eran una estadía con visa nacional; aun así, confirmen su cuenta con la calculadora oficial antes de planear (<a href=\"https://www.bj.admin.ch/sem/en/home/themen/einreise/info-einreise/voraussetzungen-nach-staat/mit-visum/aufenthaltsrechner.html\" target=\"_blank\" rel=\"noopener\">calculadora de la Secretaría de Migración de Suiza</a>).</p><p>Durante esos días turísticos no pueden trabajar ni seguir arrendando a su nombre como residentes: denle de baja al domicilio (Abmeldung) antes de partir.</p>"
+    },
+    {
+      "id": "wh-estudiar-que-es",
+      "tema": "estudiar",
+      "pregunta": "¿La Working Holiday es una visa de estudio y trabajo?",
+      "respuesta": "<p>No. Working Holiday significa «vacaciones y trabajo». El estudio está permitido, pero acotado: el acuerdo entre Chile y Alemania permite hacer cursos de formación o perfeccionamiento por un máximo de seis meses (<a href=\"https://chile.gob.cl/alemania/visa-programa-vacaciones-y-trabajo-working-holiday\" target=\"_blank\" rel=\"noopener\">Ministerio de Relaciones Exteriores de Chile</a>).</p><p>Eso alcanza para cursos de alemán y cursos cortos. No alcanza para una carrera universitaria ni técnica: para eso existen la visa de estudiante y la de formación (Ausbildung), que se piden aparte.</p>"
+    },
+    {
+      "id": "estudiar-que",
+      "tema": "estudiar",
+      "pregunta": "¿Qué nos conviene estudiar durante el año?",
+      "respuesta": "<p><strong>Alemán, antes que cualquier otra cosa.</strong> Es lo que más cambia el año: abre trabajos mejor pagados, hace más fácil arrendar y resolver trámites, y es el requisito principal para quedarse (la formación técnica pide nivel B1).</p><p><strong>Un certificado oficial de alemán</strong> (Goethe o telc) del nivel que alcancen. Sirve para postular a trabajos y a una formación técnica, que lo piden por escrito.</p><p><strong>Cursos cortos que piden los trabajos de entrada</strong>, por ejemplo la charla de higiene para trabajar con alimentos que dicta la oficina de salud de cada ciudad. Pregunten en cada trabajo qué certificado piden antes de pagar un curso.</p>"
+    },
+    {
+      "id": "estudiar-donde",
+      "tema": "estudiar",
+      "pregunta": "¿Dónde se estudia alemán en Alemania y cuánto cuesta?",
+      "respuesta": "<p><strong>Volkshochschule (VHS):</strong> los centros públicos de educación para adultos que hay en cada ciudad. Son la opción más barata. La asesoría y la prueba de nivel son gratis; la inscripción suele ser presencial y algunas piden tener el domicilio registrado en esa ciudad (<a href=\"https://www.berlin.de/vhs/volkshochschulen/treptow-koepenick/kurse/deutsch-als-zweitsprache/\" target=\"_blank\" rel=\"noopener\">VHS Treptow-Köpenick, Berlín</a>).</p><p><strong>Curso de integración del gobierno (Integrationskurs):</strong> 600 horas de alemán y 100 de orientación. Quien no tiene derecho a él puede pedir que lo admitan si hay cupos, pagando 2,29 euros por hora de clase (<a href=\"https://www.bayernportal.de/dokumente/leistung/3807021928192\" target=\"_blank\" rel=\"noopener\">Bayernportal</a>). En 2026 el gobierno suspendió esas admisiones entre febrero y julio y las reabrió en agosto (<a href=\"https://www.dresden.de/de/leben/gesellschaft/migration/orientierungshilfen/sprache/Integrationskurse.php\" target=\"_blank\" rel=\"noopener\">Ciudad de Dresde</a>): revisen si siguen abiertas cuando lleguen.</p><p><strong>Goethe-Institut y escuelas privadas:</strong> más rápidas y caras. Un intensivo de dos semanas en el Goethe de Berlín o Múnich parte en 739 euros (<a href=\"https://www.goethe.de/ins/de/de/m/kur/ang/kom.html\" target=\"_blank\" rel=\"noopener\">Goethe-Institut</a>).</p>"
+    },
+    {
+      "id": "estudiar-como",
+      "tema": "estudiar",
+      "pregunta": "¿Cómo nos inscribimos y qué hacemos desde ya?",
+      "respuesta": "<p><strong>Desde Chile, ahora:</strong> empiecen con lo gratuito de «Prepararse» hasta tener una base de A1. Si pueden pagar un curso, el Goethe-Institut de Santiago tiene cursos presenciales y en línea.</p><p><strong>Al llegar:</strong> primero registren el domicilio, porque varias VHS solo inscriben a quienes viven en la ciudad. Después vayan a la asesoría de la VHS más cercana, den la prueba de nivel y elijan un curso que no choque con el trabajo (hay de mañana, de tarde y de noche).</p><p><strong>Durante el año:</strong> sumen todas las horas que puedan, den el examen oficial del nivel que alcancen y guarden los certificados. Recuerden que los cursos dentro de la Working Holiday no pueden pasar de seis meses en total.</p>"
     }
   ]
 }
