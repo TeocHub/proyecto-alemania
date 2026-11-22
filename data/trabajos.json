@@ -1,6 +1,7 @@
 {
   "revisado": "2026-11-20",
   "intro": "Sueldos líquidos de avisos publicados en 2026 para trabajos que se pueden conseguir sin título. Cada trabajo dice qué piden y si hay que pagar algo antes. La línea amarilla es la meta de cada uno y la punteada, lo que gana la mitad de los chilenos.",
+  "introUno": "Sueldos líquidos de avisos publicados en 2026 para trabajos que se pueden conseguir sin título. Cada trabajo dice qué piden y si hay que pagar algo antes. La línea amarilla es tu meta y la punteada, lo que gana la mitad de los chilenos.",
   "mediana": 680000,
   "medianaFuente": {
     "nombre": "INE, Encuesta Suplementaria de Ingresos 2025",
@@ -10,6 +11,7 @@
   "entradas": {
     "libre": "Se entra sin pagar",
     "curso": "Curso: a veces lo da la empresa, a veces lo pagan ustedes",
+    "cursoUno": "Curso: a veces lo da la empresa, a veces lo pagas tú",
     "titulo": "Suelen pedir técnico o carrera",
     "inversion": "Licencia, auto o certificación cara"
   },

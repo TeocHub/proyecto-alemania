@@ -37,11 +37,13 @@
     {
       "id": "hoy",
       "nombre": "Como estamos",
+      "nombreUno": "Como estoy",
       "detalle": "Sin cambios"
     },
     {
       "id": "full",
       "nombre": "Uno suma un full time",
+      "nombreUno": "Sumas un full time",
       "detalle": "Además de lo de hoy",
       "suma": [
         "full"
@@ -50,16 +52,20 @@
     {
       "id": "dosfull",
       "nombre": "Los dos con full time",
+      "nombreUno": "Cambias a un full time",
       "detalle": "En vez de los trabajos de hoy",
+      "detalleUno": "En vez del trabajo de hoy",
       "suma": [
         "full",
         "full"
       ],
+      "sumaUno": ["full"],
       "reemplaza": true
     },
     {
       "id": "full-pieza",
       "nombre": "Uno suma full time y una pieza",
+      "nombreUno": "Sumas full time y una pieza",
       "detalle": "Mudarse a una pieza con cuentas incluidas",
       "suma": [
         "full"
@@ -69,22 +75,27 @@
     {
       "id": "dosfull-pieza",
       "nombre": "Los dos con full time y una pieza",
+      "nombreUno": "Cambias a full time y una pieza",
       "detalle": "Trabajos nuevos y vivir en una pieza",
+      "detalleUno": "Trabajo nuevo y vivir en una pieza",
       "suma": [
         "full",
         "full"
       ],
+      "sumaUno": ["full"],
       "reemplaza": true,
       "pieza": true
     },
     {
       "id": "ambos",
       "nombre": "Full time y part time",
+      "nombreUno": "Sumas un part time",
       "detalle": "Además de lo de hoy",
       "suma": [
         "full",
         "part"
-      ]
+      ],
+      "sumaUno": ["part"]
     }
   ],
   "sueldos": {

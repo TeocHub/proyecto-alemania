@@ -55,12 +55,12 @@
         <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
         <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
         <a href="#buscar-alla" data-vista="buscar-alla"><svg><use href="#i-buscar"/></svg>Buscar allá</a>
-        <a href="#el-ano" data-vista="el-ano"><svg><use href="#i-ano"/></svg>Su año allá</a>
+        <a href="#el-ano" data-vista="el-ano"><svg><use href="#i-ano"/></svg><span data-uno="Tu año allá">Su año allá</span></a>
         <p class="riel-grupo">Cuando aparecen dudas</p>
         <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
-        <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg>Cuando dudemos</a>
-        <p class="riel-grupo riel-ajustes">Su grupo</p>
-        <a href="#bienvenida" data-vista="bienvenida"><svg><use href="#i-guia"/></svg>Quiénes viajan y cómo funciona</a>
+        <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg><span data-uno="Cuando dudes">Cuando dudemos</span></a>
+        <p class="riel-grupo riel-ajustes" data-uno="Tu perfil">Su grupo</p>
+        <a href="#bienvenida" data-vista="bienvenida"><svg><use href="#i-guia"/></svg><span data-uno="Quién viaja y cómo funciona">Quiénes viajan y cómo funciona</span></a>
         <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Conectar dispositivos</a>
       </nav>
     </aside>
@@ -121,7 +121,7 @@
             <p class="hoy-fecha" id="hoy-fecha"></p>
             <h1 id="titulo-inicio">Un año en Alemania, los dos.</h1>
             <p class="frase-fecha">
-              Nos vamos en
+              <span data-uno="Me voy en">Nos vamos en</span>
               <label class="sr" for="mes">Mes de viaje</label>
               <select id="mes" class="select-grande"></select>
               de
@@ -165,8 +165,8 @@
 
               <div class="economia" id="economia">
                 <div class="economia-cabeza">
-                  <h3>Nuestra economía hoy</h3>
-                  <p>Lo que gana cada uno y lo que se va en la casa. De aquí salen la meta del colchón, cuánto pueden guardar al mes y la fecha posible para Alemania.</p>
+                  <h3 data-uno="Mi economía hoy">Nuestra economía hoy</h3>
+                  <p data-uno="Lo que ganas y lo que se va en la casa. De aquí salen la meta del colchón, cuánto puedes guardar al mes y la fecha posible para Alemania.">Lo que gana cada uno y lo que se va en la casa. De aquí salen la meta del colchón, cuánto pueden guardar al mes y la fecha posible para Alemania.</p>
                 </div>
                 <div class="economia-grid">
                   <form class="economia-datos" onsubmit="return false">
@@ -318,8 +318,8 @@
           </div>
           <div class="sub-seccion" id="combinador">
             <div class="sub-cabeza">
-              <h3>Armen su combinación: trabajo y vivienda</h3>
-              <p>Elijan un trabajo para cada uno y dónde vivirían. Ven cuánto entraría, cuándo estaría el colchón y desde cuándo podrían viajar. De los trabajos del estudio se usa el punto medio del rango.</p>
+              <h3 data-uno="Arma tu combinación: trabajo y vivienda">Armen su combinación: trabajo y vivienda</h3>
+              <p data-uno="Elige un trabajo y dónde vivirías. Ves cuánto entraría, cuándo estaría el colchón y desde cuándo podrías viajar. De los trabajos del estudio se usa el punto medio del rango.">Elijan un trabajo para cada uno y dónde vivirían. Ven cuánto entraría, cuándo estaría el colchón y desde cuándo podrían viajar. De los trabajos del estudio se usa el punto medio del rango.</p>
             </div>
             <div class="combinador">
               <div class="combina-personas" id="combina-personas"></div>
@@ -347,24 +347,24 @@
           <div class="fuentes-vista" id="vivir-fuentes"></div>
         </section>
 
-        <section id="refugio" class="vista refugio" data-titulo="Cuando dudemos" hidden>
+        <section id="refugio" class="vista refugio" data-titulo="Cuando dudemos" data-titulo-uno="Cuando dudes" hidden>
           <div class="refugio-dentro">
             <div class="seccion-cabeza">
-              <h2><span class="cap-num" aria-hidden="true">1</span>Cuando dudemos</h2>
+              <h2><span class="cap-num" aria-hidden="true">1</span><span data-uno="Cuando dudes">Cuando dudemos</span></h2>
               <p id="refugio-intro"></p>
             </div>
-            <div class="estados" id="estados" role="group" aria-label="¿Qué sienten hoy?"></div>
+            <div class="estados" id="estados" role="group" aria-label="¿Qué sienten hoy?" data-aria-uno="¿Qué sientes hoy?"></div>
             <article class="estado-respuesta" id="estado-respuesta" aria-live="polite" hidden></article>
 
             <div id="preguntas-que-deciden" class="deciden">
               <div class="deciden-cabeza">
                 <h3>Las preguntas que deciden</h3>
-                <p>Cada uno escribe su respuesta. No hay respuestas correctas: hay respuestas honestas.</p>
+                <p data-uno="Escribe tu respuesta. No hay respuestas correctas: hay respuestas honestas.">Cada uno escribe su respuesta. No hay respuestas correctas: hay respuestas honestas.</p>
                 <p class="contador" id="contador-respuestas"></p>
               </div>
               <div id="grupos-preguntas"></div>
               <div class="deciden-pie">
-                <button type="button" class="boton" id="copiar-respuestas">Copiar nuestras respuestas</button>
+                <button type="button" class="boton" id="copiar-respuestas" data-uno="Copiar mis respuestas">Copiar nuestras respuestas</button>
                 <span class="nota" id="copiado-respuestas" aria-live="polite"></span>
               </div>
             </div>
@@ -466,16 +466,16 @@
 
             <div class="ajuste-anual">
               <h4>El ajuste de fin de año</h4>
-              <p>La parte de calefacción es un adelanto estimado. A fin de año se compara con lo que ustedes realmente usaron. Elijan cuánto calefaccionarían en invierno:</p>
-              <div class="segmentos-claros tres" id="calefaccion" role="group" aria-label="Cuánta calefacción usarían"></div>
+              <p data-uno="La parte de calefacción es un adelanto estimado. A fin de año se compara con lo que realmente usaste. Elige cuánto calefaccionarías en invierno:">La parte de calefacción es un adelanto estimado. A fin de año se compara con lo que ustedes realmente usaron. Elijan cuánto calefaccionarían en invierno:</p>
+              <div class="segmentos-claros tres" id="calefaccion" role="group" aria-label="Cuánta calefacción usarían" data-aria-uno="Cuánta calefacción usarías"></div>
               <div id="ajuste-resultado" aria-live="polite"></div>
             </div>
           </div>
         </section>
 
-        <section id="el-ano" class="vista seccion" data-titulo="Su año allá" hidden>
+        <section id="el-ano" class="vista seccion" data-titulo="Su año allá" data-titulo-uno="Tu año allá" hidden>
           <div class="seccion-cabeza">
-            <h2>Su año en Alemania, mes a mes</h2>
+            <h2 data-uno="Tu año en Alemania, mes a mes">Su año en Alemania, mes a mes</h2>
             <p id="ano-intro"></p>
           </div>
           <div class="segmentos-claros ano-modo" id="ano-modo" role="group" aria-label="Cómo ver">
@@ -548,7 +548,7 @@
         <section id="ruta" class="vista seccion" data-titulo="Los trámites" hidden>
           <div class="seccion-cabeza">
             <h2><span class="cap-num" aria-hidden="true">4</span>Los trámites</h2>
-            <p>Todo lo que hay que hacer desde hoy hasta tener la visa y llegar. Cada estación es una etapa: tóquenla para ver qué hacer y marquen lo que cada uno vaya terminando. Las fechas se calculan desde el mes de viaje.</p>
+            <p data-uno="Todo lo que hay que hacer desde hoy hasta tener la visa y llegar. Cada estación es una etapa: tócala para ver qué hacer y marca lo que vayas terminando. Las fechas se calculan desde el mes de viaje.">Todo lo que hay que hacer desde hoy hasta tener la visa y llegar. Cada estación es una etapa: tóquenla para ver qué hacer y marquen lo que cada uno vaya terminando. Las fechas se calculan desde el mes de viaje.</p>
           </div>
           <div class="ruta">
             <ol class="linea" id="linea" aria-label="Etapas del plan"></ol>
@@ -599,21 +599,21 @@
         <section id="conectar" class="vista seccion" data-titulo="Conectar dispositivos" hidden>
           <div class="seccion-cabeza">
             <h2>Conectar dispositivos</h2>
-            <p>Sin conectar, lo que anotan se queda solo en el dispositivo donde lo escriben. Con una planilla de Google propia, todos los teléfonos y tablets del grupo ven lo mismo. Es gratis, no se apaga aunque pasen semanas sin entrar, y cada grupo tiene la suya: lo de ustedes no se mezcla con lo de nadie más.</p>
+            <p data-uno="Sin conectar, lo que anotas se queda solo en el dispositivo donde lo escribes. Con una planilla de Google propia, tu teléfono, tu tablet y tu computador ven lo mismo. Es gratis, no se apaga aunque pasen semanas sin entrar, y es solo tuya: lo que anotas no se mezcla con lo de nadie más.">Sin conectar, lo que anotan se queda solo en el dispositivo donde lo escriben. Con una planilla de Google propia, todos los teléfonos y tablets del grupo ven lo mismo. Es gratis, no se apaga aunque pasen semanas sin entrar, y cada grupo tiene la suya: lo de ustedes no se mezcla con lo de nadie más.</p>
           </div>
           <div class="conectar-cuerpo">
             <div class="conectar-panel" id="conectar-panel"></div>
             <div class="conectar-pasos">
               <h3 class="prep-titulo">Cómo se conecta</h3>
-              <p class="conectar-resumen">Se configura <strong>una sola vez, en un solo dispositivo</strong>, el de quien crea la planilla. Los demás no repiten nada: solo abren el enlace que les llega (paso 5) y quedan conectados con los nombres y datos del grupo.</p>
+              <p class="conectar-resumen" data-uno="Se configura &lt;strong&gt;una sola vez, en un solo dispositivo&lt;/strong&gt;. En los demás no se repite nada: solo abres el enlace (paso 5) y quedan conectados con tus datos.">Se configura <strong>una sola vez, en un solo dispositivo</strong>, el de quien crea la planilla. Los demás no repiten nada: solo abren el enlace que les llega (paso 5) y quedan conectados con los nombres y datos del grupo.</p>
               <ol class="pasos">
-                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Crear la planilla</h4><p>Con la cuenta de Google de una sola persona del grupo, abran <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a> y pónganle de nombre «Proyecto Alemania».</p></div></li>
-                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Pegar el código</h4><p>En la planilla: <strong>Extensiones → Apps Script</strong>. Borren lo que aparece, peguen el código y, en la primera línea, cambien <code>cambien-esta-clave</code> por una frase que solo ustedes sepan.</p><p><button type="button" class="boton" id="copiar-codigo">Copiar el código</button> <span class="nota" id="codigo-copiado" aria-live="polite"></span></p></div></li>
-                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Publicarlo</h4><p>Guarden (ícono de disquete) y vayan a <strong>Implementar → Nueva implementación</strong>. En el engranaje elijan <strong>Aplicación web</strong>. Ejecutar como: <strong>Yo</strong>. Quién tiene acceso: <strong>Cualquier persona</strong>. Toquen Implementar.</p></div></li>
-                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Dar permiso</h4><p>Google pide autorizar. Si aparece «Google no verificó esta app», toquen <strong>Configuración avanzada → Ir a Proyecto Alemania</strong>: es su propio código, en su propia cuenta. Copien la dirección de la aplicación web (termina en <code>/exec</code>).</p></div></li>
-                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Conectar aquí</h4><p>Peguen la dirección y la clave en el recuadro y toquen Conectar. Después toquen «Mandar el enlace a otro dispositivo» y envíenlo por WhatsApp. La otra persona solo lo abre en su teléfono: no tiene que crear nada ni configurar su grupo.</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Crear la planilla</h4><p data-uno="Con tu cuenta de Google, abre &lt;a href=&quot;https://sheets.new&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;sheets.new&lt;/a&gt; y ponle de nombre «Proyecto Alemania».">Con la cuenta de Google de una sola persona del grupo, abran <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a> y pónganle de nombre «Proyecto Alemania».</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Pegar el código</h4><p data-uno="En la planilla: &lt;strong&gt;Extensiones → Apps Script&lt;/strong&gt;. Borra lo que aparece, pega el código y, en la primera línea, cambia &lt;code&gt;cambien-esta-clave&lt;/code&gt; por una frase que solo tú sepas.">En la planilla: <strong>Extensiones → Apps Script</strong>. Borren lo que aparece, peguen el código y, en la primera línea, cambien <code>cambien-esta-clave</code> por una frase que solo ustedes sepan.</p><p><button type="button" class="boton" id="copiar-codigo">Copiar el código</button> <span class="nota" id="codigo-copiado" aria-live="polite"></span></p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Publicarlo</h4><p data-uno="Guarda (ícono de disquete) y ve a &lt;strong&gt;Implementar → Nueva implementación&lt;/strong&gt;. En el engranaje elige &lt;strong&gt;Aplicación web&lt;/strong&gt;. Ejecutar como: &lt;strong&gt;Yo&lt;/strong&gt;. Quién tiene acceso: &lt;strong&gt;Cualquier persona&lt;/strong&gt;. Toca Implementar.">Guarden (ícono de disquete) y vayan a <strong>Implementar → Nueva implementación</strong>. En el engranaje elijan <strong>Aplicación web</strong>. Ejecutar como: <strong>Yo</strong>. Quién tiene acceso: <strong>Cualquier persona</strong>. Toquen Implementar.</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Dar permiso</h4><p data-uno="Google pide autorizar. Si aparece «Google no verificó esta app», toca &lt;strong&gt;Configuración avanzada → Ir a Proyecto Alemania&lt;/strong&gt;: es tu propio código, en tu propia cuenta. Copia la dirección de la aplicación web (termina en &lt;code&gt;/exec&lt;/code&gt;).">Google pide autorizar. Si aparece «Google no verificó esta app», toquen <strong>Configuración avanzada → Ir a Proyecto Alemania</strong>: es su propio código, en su propia cuenta. Copien la dirección de la aplicación web (termina en <code>/exec</code>).</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Conectar aquí</h4><p data-uno="Pega la dirección y la clave en el recuadro y toca Conectar. Después toca «Mandar el enlace a otro dispositivo» y envíatelo por WhatsApp o correo. En el otro dispositivo solo lo abres: no hay que crear nada ni configurar de nuevo.">Peguen la dirección y la clave en el recuadro y toquen Conectar. Después toquen «Mandar el enlace a otro dispositivo» y envíenlo por WhatsApp. La otra persona solo lo abre en su teléfono: no tiene que crear nada ni configurar su grupo.</p></div></li>
               </ol>
-              <p class="nota">Si algún día cambian el código, usen <strong>Implementar → Administrar implementaciones → Editar → Nueva versión</strong>: así la dirección no cambia y no hay que volver a conectar.</p>
+              <p class="nota" data-uno="Si algún día cambias el código, usa &lt;strong&gt;Implementar → Administrar implementaciones → Editar → Nueva versión&lt;/strong&gt;: así la dirección no cambia y no hay que volver a conectar.">Si algún día cambian el código, usen <strong>Implementar → Administrar implementaciones → Editar → Nueva versión</strong>: así la dirección no cambia y no hay que volver a conectar.</p>
             </div>
           </div>
         </section>
@@ -649,16 +649,16 @@
           <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
           <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
           <a href="#buscar-alla" data-vista="buscar-alla"><svg><use href="#i-buscar"/></svg>Buscar allá</a>
-          <a href="#el-ano" data-vista="el-ano"><svg><use href="#i-ano"/></svg>Su año allá</a>
+          <a href="#el-ano" data-vista="el-ano"><svg><use href="#i-ano"/></svg><span data-uno="Tu año allá">Su año allá</span></a>
         </div>
         <p class="mas-grupo">Cuando aparecen dudas</p>
         <div class="mas-grid">
           <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
-          <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg>Cuando dudemos</a>
+          <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg><span data-uno="Cuando dudes">Cuando dudemos</span></a>
         </div>
-        <p class="mas-grupo">Su grupo</p>
+        <p class="mas-grupo" data-uno="Tu perfil">Su grupo</p>
         <div class="mas-grid">
-          <a href="#bienvenida" data-vista="bienvenida"><svg><use href="#i-guia"/></svg>Quiénes viajan</a>
+          <a href="#bienvenida" data-vista="bienvenida"><svg><use href="#i-guia"/></svg><span data-uno="Quién viaja">Quiénes viajan</span></a>
           <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Conectar dispositivos</a>
         </div>
       </div>

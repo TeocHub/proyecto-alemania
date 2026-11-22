@@ -185,6 +185,7 @@
   },
   "vivienda": {
     "intro": "Cuánto cuesta vivir los dos en cada ciudad, dónde buscar y qué papeles preparar. Los precios salen del capítulo «¿Dónde llegamos?», así que coinciden con el resto de la página.",
+    "introUno": "Cuánto cuesta vivir en cada ciudad, dónde buscar y qué papeles preparar. Los precios salen del capítulo «¿Dónde llegamos?», así que coinciden con el resto de la página.",
     "hostalNoche": 30,
     "ciudades": {
       "berlin": { "de": "Berlin", "wg": "Berlin.8", "immowelt": "berlin" },
@@ -195,7 +196,7 @@
     },
     "portales": [
       { "id": "wg", "nombre": "WG-Gesucht: piezas", "para": "El portal principal de piezas en pisos compartidos.", "plantilla": "https://www.wg-gesucht.de/wg-zimmer-in-{wg}.0.1.0.html" },
-      { "id": "wg1", "nombre": "WG-Gesucht: estudios", "para": "Departamentos de un ambiente: lo más realista para una pareja sola.", "plantilla": "https://www.wg-gesucht.de/1-zimmer-wohnungen-in-{wg}.1.1.0.html" },
+      { "id": "wg1", "nombre": "WG-Gesucht: estudios", "para": "Departamentos de un ambiente: lo más realista si viajan en pareja.", "paraUno": "Departamentos de un ambiente: más privacidad que una pieza, pero cuestan más y hay más competencia.", "plantilla": "https://www.wg-gesucht.de/1-zimmer-wohnungen-in-{wg}.1.1.0.html" },
       { "id": "wgm", "nombre": "WG-Gesucht: amoblados por meses", "para": "Departamentos amoblados por un tiempo (Zwischenmiete): sirven para llegar.", "plantilla": "https://www.wg-gesucht.de/suche/moebliert/wohnungen-in-{wg}.2.1.0.html" },
       { "id": "immowelt", "nombre": "Immowelt", "para": "Departamentos normales y amoblados temporales, con filtros por precio.", "plantilla": "https://www.immowelt.de/suche/{immowelt}/wohnungen/mieten" },
       { "id": "kleinanzeigen", "nombre": "Kleinanzeigen", "para": "Avisos de particulares. Hay buenas opciones y también más estafas: cuidado.", "inicio": "https://www.kleinanzeigen.de/", "copiar": "Zimmer {de}" },

@@ -1,33 +1,40 @@
 {
   "intro": "Este rincón es para cuando aparezca el miedo, la culpa o la duda. No tienen que decidir nada hoy. Elijan lo que sienten y empiecen por ahí.",
+  "introUno": "Este rincón es para cuando aparezca el miedo, la culpa o la duda. No tienes que decidir nada hoy. Elige lo que sientes y empieza por ahí.",
   "estados": [
     {
       "id": "miedo",
       "nombre": "Tengo miedo",
       "texto": "Sentir miedo antes de algo grande es normal; no significa que esté mal hacerlo. Lo que ayuda es convertir el miedo en preguntas concretas y responderlas de a una. Recuerden también que nada de lo que hagan antes de la cita es irreversible: pueden pausar o mover la fecha cuando quieran.",
-      "ir": [["#preguntas-que-deciden", "Responder una pregunta juntos"], ["#dudas", "Leer las dudas sobre miedos"]]
+      "textoUno": "Sentir miedo antes de algo grande es normal; no significa que esté mal hacerlo. Lo que ayuda es convertir el miedo en preguntas concretas y responderlas de a una. Recuerda también que nada de lo que hagas antes de la cita es irreversible: puedes pausar o mover la fecha cuando quieras.",
+      "ir": [["#preguntas-que-deciden", "Responder una pregunta juntos"], ["#dudas", "Leer las dudas sobre miedos"]], "irUno": [["#preguntas-que-deciden", "Responder una pregunta"], ["#dudas", "Leer las dudas sobre miedos"]]
     },
     {
       "id": "culpa",
       "nombre": "Siento culpa por mi familia",
       "texto": "Irse lejos puede sentirse como abandonar, aunque el contacto ya fuera poco. Abandonar sería desaparecer sin avisar o cortar todo. Irse con un plan de contacto real y una fecha tentativa de regreso es otra cosa: es distancia, y se puede cuidar. Más abajo pueden escribir qué contacto quieren tener de verdad, no el ideal.",
-      "ir": [["#familia", "Armar nuestro plan de contacto"]]
+      "textoUno": "Irse lejos puede sentirse como abandonar, aunque el contacto ya fuera poco. Abandonar sería desaparecer sin avisar o cortar todo. Irse con un plan de contacto real y una fecha tentativa de regreso es otra cosa: es distancia, y se puede cuidar. Más abajo puedes escribir qué contacto quieres tener de verdad, no el ideal.",
+      "ir": [["#familia", "Armar nuestro plan de contacto"]], "irUno": [["#familia", "Armar mi plan de contacto"]]
     },
     {
       "id": "plata",
       "nombre": "No sé si nos alcanza la plata",
+      "nombreUno": "No sé si me alcanza la plata",
       "texto": "Esa duda se resuelve con números, no con intuición. Anoten cuánto gana cada uno y cuánto se va en la casa: la página calcula cuánto le queda a cada uno, cuánto necesitan ahorrar y cuál es la fecha más cercana que pueden sostener.",
-      "ir": [["#economia", "Ver nuestra economía"]]
+      "textoUno": "Esa duda se resuelve con números, no con intuición. Anota cuánto ganas y cuánto se va en la casa: la página calcula cuánto te queda, cuánto necesitas ahorrar y cuál es la fecha más cercana que puedes sostener.",
+      "ir": [["#economia", "Ver nuestra economía"]], "irUno": [["#economia", "Ver mi economía"]]
     },
     {
       "id": "empezar",
       "nombre": "No sé por dónde empezar",
       "texto": "No hay que hacer todo. Solo lo próximo. Arriba de la página, en «Lo próximo», siempre aparece la etapa en la que están y las tareas que faltan. Hagan una sola esta semana.",
+      "textoUno": "No hay que hacer todo. Solo lo próximo. Arriba de la página, en «Lo próximo», siempre aparece la etapa en la que estás y las tareas que faltan. Haz una sola esta semana.",
       "ir": [["#inicio", "Ver lo próximo"], ["#ruta", "Ver la ruta completa"]]
     },
     {
       "id": "bien",
       "nombre": "Quiero saber si vamos bien",
+      "nombreUno": "Quiero saber si voy bien",
       "texto": "",
       "dinamico": true,
       "ir": [["#ruta", "Ver la ruta"]]
@@ -35,7 +42,9 @@
     {
       "id": "cansancio",
       "nombre": "Estamos cansados o tensos con esto",
+      "nombreUno": "Estoy con cansancio o tensión por esto",
       "texto": "Está bien pausar. Este plan no tiene que avanzar todos los días. Si una conversación se pone tensa, vuelvan a una sola pregunta y dejen el resto para otro día. Y si en algún momento concluyen que este no es el año, eso tampoco es cobardía: es una decisión válida.",
+      "textoUno": "Está bien pausar. Este plan no tiene que avanzar todos los días. Si pensar en esto te agota, vuelve a una sola pregunta y deja el resto para otro día. Y si en algún momento concluyes que este no es el año, eso tampoco es cobardía: es una decisión válida.",
       "ir": [["#preguntas-que-deciden", "Elegir una sola pregunta"]]
     }
   ],
@@ -43,31 +52,33 @@
     {
       "id": "principales",
       "nombre": "Las que deciden si vamos",
+      "nombreUno": "Las que deciden si voy",
       "texto": "Si una de estas no tiene respuesta, todavía no es momento de postular. No es un no: es un todavía.",
       "temas": [
         {
           "nombre": "Plata y papeles",
           "preguntas": [
-            { "id": "p-visa", "texto": "¿Tenemos claro qué permite la visa y qué no?", "ayuda": "12 meses, una sola vez en la vida, máximo 6 meses con el mismo empleador. Está todo en Dudas." },
-            { "id": "p-plata", "texto": "¿Cuánta plata necesitamos para llegar y no pasar apuros el primer mes?", "ayuda": "La sección Dinero lo calcula con su fecha. La regla: llegar con al menos dos meses de gastos, no con lo justo." },
-            { "id": "p-semana2", "texto": "¿Qué hacemos si en la semana 2 seguimos sin trabajo?", "ayuda": "Piensen en agencias de trabajo temporal, hoteles de temporada y cuánto colchón les queda." },
-            { "id": "p-salud", "texto": "¿Qué cubre nuestro seguro y qué hacemos si alguien se enferma?", "ayuda": "Lean la póliza antes de pagarla: hospitalización, accidentes, dentista de urgencia y repatriación." }
+            { "id": "p-visa", "texto": "¿Tenemos claro qué permite la visa y qué no?", "textoUno": "¿Tengo claro qué permite la visa y qué no?", "ayuda": "12 meses, una sola vez en la vida, máximo 6 meses con el mismo empleador. Está todo en Dudas." },
+            { "id": "p-plata", "texto": "¿Cuánta plata necesitamos para llegar y no pasar apuros el primer mes?", "textoUno": "¿Cuánta plata necesito para llegar y no pasar apuros el primer mes?", "ayuda": "La sección Dinero lo calcula con su fecha. La regla: llegar con al menos dos meses de gastos, no con lo justo.", "ayudaUno": "La sección La plata lo calcula con tu fecha. La regla: llegar con al menos dos meses de gastos, no con lo justo." },
+            { "id": "p-semana2", "texto": "¿Qué hacemos si en la semana 2 seguimos sin trabajo?", "textoUno": "¿Qué hago si en la semana 2 sigo sin trabajo?", "ayuda": "Piensen en agencias de trabajo temporal, hoteles de temporada y cuánto colchón les queda.", "ayudaUno": "Piensa en agencias de trabajo temporal, hoteles de temporada y cuánto colchón te queda." },
+            { "id": "p-salud", "texto": "¿Qué cubre nuestro seguro y qué hacemos si alguien se enferma?", "textoUno": "¿Qué cubre mi seguro y qué hago si me enfermo?", "ayuda": "Lean la póliza antes de pagarla: hospitalización, accidentes, dentista de urgencia y repatriación.", "ayudaUno": "Lee la póliza antes de pagarla: hospitalización, accidentes, dentista de urgencia y repatriación." }
           ]
         },
         {
           "nombre": "Trabajo y vivienda",
           "preguntas": [
-            { "id": "p-noche", "texto": "¿Dónde dormimos la primera noche y las dos primeras semanas?", "ayuda": "No vale «vemos allá»: tiene que ser una reserva." },
-            { "id": "p-trabajo", "texto": "¿En qué va a trabajar realmente cada uno?", "ayuda": "Piensen en el idioma que tiene cada uno hoy y en qué trabajos se ven." },
-            { "id": "p-buscar", "texto": "¿Cómo vamos a buscar trabajo allá?", "ayuda": "Agencias, puerta a puerta con CV impreso, grupos de latinos, portales de empleo." }
+            { "id": "p-noche", "texto": "¿Dónde dormimos la primera noche y las dos primeras semanas?", "textoUno": "¿Dónde duermo la primera noche y las dos primeras semanas?", "ayuda": "No vale «vemos allá»: tiene que ser una reserva." },
+            { "id": "p-trabajo", "texto": "¿En qué va a trabajar realmente cada uno?", "textoUno": "¿En qué voy a trabajar realmente?", "ayuda": "Piensen en el idioma que tiene cada uno hoy y en qué trabajos se ven.", "ayudaUno": "Piensa en el idioma que tienes hoy y en qué trabajos te ves." },
+            { "id": "p-buscar", "texto": "¿Cómo vamos a buscar trabajo allá?", "textoUno": "¿Cómo voy a buscar trabajo allá?", "ayuda": "Agencias, puerta a puerta con CV impreso, grupos de latinos, portales de empleo." }
           ]
         },
         {
           "nombre": "Cómo estamos",
+          "nombreUno": "Cómo estoy",
           "preguntas": [
-            { "id": "p-animo", "texto": "¿Cómo estamos hoy emocionalmente, cada uno?", "ayuda": "Si hoy ya hay soledad, ansiedad o culpa, allá suele sentirse más fuerte los primeros meses. No es razón para no ir: es razón para llegar con apoyo." },
-            { "id": "p-apoyo", "texto": "¿A quién podemos llamar cuando estemos mal, además del otro?", "ayuda": "Un amigo, alguien de la familia, terapia online, un grupo. Que quien viaja contigo no sea el único apoyo." },
-            { "id": "p-porque", "texto": "¿Por qué queremos ir? ¿Vamos a buscar algo allá o a escapar de algo acá?", "ayuda": "Las dos cosas pueden ser verdad a la vez. Lo importante es saberlo, porque lo que uno escapa suele viajar con uno." }
+            { "id": "p-animo", "texto": "¿Cómo estamos hoy emocionalmente, cada uno?", "textoUno": "¿Cómo estoy hoy emocionalmente?", "ayuda": "Si hoy ya hay soledad, ansiedad o culpa, allá suele sentirse más fuerte los primeros meses. No es razón para no ir: es razón para llegar con apoyo." },
+            { "id": "p-apoyo", "texto": "¿A quién podemos llamar cuando estemos mal, además del otro?", "textoUno": "¿A quién puedo llamar cuando esté mal?", "ayuda": "Un amigo, alguien de la familia, terapia online, un grupo. Que quien viaja contigo no sea el único apoyo.", "ayudaUno": "Un amigo, alguien de la familia, terapia online, un grupo. Viajando sin compañía, conviene tener más de un apoyo antes de llegar." },
+            { "id": "p-porque", "texto": "¿Por qué queremos ir? ¿Vamos a buscar algo allá o a escapar de algo acá?", "textoUno": "¿Por qué quiero ir? ¿Voy a buscar algo allá o a escapar de algo acá?", "ayuda": "Las dos cosas pueden ser verdad a la vez. Lo importante es saberlo, porque lo que uno escapa suele viajar con uno." }
           ]
         }
       ]
@@ -75,15 +86,16 @@
     {
       "id": "secundarias",
       "nombre": "Las que deciden si lo pasamos bien",
+      "nombreUno": "Las que deciden si lo paso bien",
       "texto": "Si estas fallan, igual se sobrevive, pero cuesta más. Se pueden ir respondiendo con el tiempo.",
       "temas": [
         {
           "nombre": "Vida diaria",
           "preguntas": [
-            { "id": "s-diario", "texto": "¿Sabemos cómo funcionan allá el transporte, el supermercado, el arriendo y el celular?", "ayuda": "Son cosas chicas que al principio quitan mucha energía." },
-            { "id": "s-idioma", "texto": "¿Qué alemán necesitamos para no aislarnos, no solo para trabajar?", "ayuda": "Para hacer amigos, ir al médico o reclamar por el arriendo." },
-            { "id": "s-fisico", "texto": "¿Estamos dispuestos a trabajos físicos, de limpieza o de noche?", "ayuda": "Sin alemán, al principio suelen ser los trabajos disponibles." },
-            { "id": "s-rutina", "texto": "¿Cómo vamos a cuidar la comida, el sueño, el ejercicio y los amigos?", "ayuda": "Allá es fácil caer en trabajar, dormir y volver a trabajar." }
+            { "id": "s-diario", "texto": "¿Sabemos cómo funcionan allá el transporte, el supermercado, el arriendo y el celular?", "textoUno": "¿Sé cómo funcionan allá el transporte, el supermercado, el arriendo y el celular?", "ayuda": "Son cosas chicas que al principio quitan mucha energía." },
+            { "id": "s-idioma", "texto": "¿Qué alemán necesitamos para no aislarnos, no solo para trabajar?", "textoUno": "¿Qué alemán necesito para no aislarme, no solo para trabajar?", "ayuda": "Para hacer amigos, ir al médico o reclamar por el arriendo." },
+            { "id": "s-fisico", "texto": "¿Estamos dispuestos a trabajos físicos, de limpieza o de noche?", "textoUno": "¿Me sirven los trabajos físicos, de limpieza o de noche?", "ayuda": "Sin alemán, al principio suelen ser los trabajos disponibles." },
+            { "id": "s-rutina", "texto": "¿Cómo vamos a cuidar la comida, el sueño, el ejercicio y los amigos?", "textoUno": "¿Cómo voy a cuidar la comida, el sueño, el ejercicio y los amigos?", "ayuda": "Allá es fácil caer en trabajar, dormir y volver a trabajar." }
           ]
         },
         {
@@ -97,8 +109,8 @@
         {
           "nombre": "Familia y distancia",
           "preguntas": [
-            { "id": "s-contar", "texto": "¿Cuándo y cómo les vamos a contar? ¿Qué necesitamos de ellos?", "ayuda": "Que nos apoyen, que solo sepan, o que no nos hagan sentir culpa." },
-            { "id": "s-abandono", "texto": "¿Qué es abandono para nosotros y qué es distancia?", "ayuda": "Escribirlo ayuda a separar lo que se siente de lo que de verdad está pasando." }
+            { "id": "s-contar", "texto": "¿Cuándo y cómo les vamos a contar? ¿Qué necesitamos de ellos?", "textoUno": "¿Cuándo y cómo les voy a contar? ¿Qué necesito de ellos?", "ayuda": "Que nos apoyen, que solo sepan, o que no nos hagan sentir culpa.", "ayudaUno": "Que me apoyen, que solo sepan, o que no me hagan sentir culpa." },
+            { "id": "s-abandono", "texto": "¿Qué es abandono para nosotros y qué es distancia?", "textoUno": "¿Qué es abandono para mí y qué es distancia?", "ayuda": "Escribirlo ayuda a separar lo que se siente de lo que de verdad está pasando." }
           ]
         }
       ]
@@ -106,19 +118,27 @@
   ],
   "malMes": {
     "titulo": "Si allá nos va mal tres meses, ¿qué hacemos?",
+    "tituloUno": "Si allá me va mal tres meses, ¿qué hago?",
     "texto": "Respondan esto en voz alta antes de postular. Si tienen una respuesta concreta (cuánta plata, hasta qué fecha, a quién llaman), están más preparados de lo que creen. Si la respuesta es «no sé, aguantamos», ahí está el riesgo.",
+    "textoUno": "Responde esto antes de postular. Si tienes una respuesta concreta (cuánta plata, hasta qué fecha, a quién llamas), tienes más preparado de lo que crees. Si la respuesta es «no sé, aguanto», ahí está el riesgo.",
     "campos": [
-      { "id": "mal-fecha", "texto": "¿Hasta qué fecha esperaríamos antes de decidir volver?" },
-      { "id": "mal-llamar", "texto": "¿A quién llamaríamos primero?" },
-      { "id": "mal-primero", "texto": "¿Qué haríamos primero para cambiar la situación?" }
+      { "id": "mal-fecha", "texto": "¿Hasta qué fecha esperaríamos antes de decidir volver?", "textoUno": "¿Hasta qué fecha esperaría antes de decidir volver?" },
+      { "id": "mal-llamar", "texto": "¿A quién llamaríamos primero?", "textoUno": "¿A quién llamaría primero?" },
+      { "id": "mal-primero", "texto": "¿Qué haríamos primero para cambiar la situación?", "textoUno": "¿Qué haría primero para cambiar la situación?" }
     ]
   },
   "familia": {
     "texto": "Irse con un plan de contacto no es abandonar. Escriban el contacto que de verdad quieren tener, no el que «deberían» tener. Puede ser poco, y puede ser nada con alguien: lo importante es que sea honesto y que lo puedan sostener.",
+    "textoUno": "Irse con un plan de contacto no es abandonar. Escribe el contacto que de verdad quieres tener, no el que «deberías» tener. Puede ser poco, y puede ser nada con alguien: lo importante es que sea honesto y que lo puedas sostener.",
     "consejos": [
       "Avisen con anticipación cuando vayan a estar sin internet o viajando.",
       "No prometan plata ni fechas de regreso que no sean reales.",
       "La diferencia horaria es de 4 a 6 horas según la época del año: elijan un horario fijo para las llamadas."
+    ],
+    "consejosUno": [
+      "Avisa con anticipación cuando vayas a estar sin internet o viajando.",
+      "No prometas plata ni fechas de regreso que no sean reales.",
+      "La diferencia horaria es de 4 a 6 horas según la época del año: elige un horario fijo para las llamadas."
     ],
     "frecuencias": ["Cada semana", "Cada dos semanas", "Una vez al mes", "Cuando pase algo importante", "Por ahora, no"],
     "medios": ["Videollamada", "Llamada", "Mensajes", "Audios"]
@@ -130,13 +150,26 @@
       "Entender qué relación quieren tener con sus familias, sin la culpa de la cercanía obligada.",
       "Conocer otra versión de ustedes, más independiente."
     ],
+    "bienUno": [
+      "Aprender a arreglártelas por tu cuenta de verdad, no solo a sobrevivir lejos.",
+      "Ahorrar en euros, mejorar el idioma y sumar experiencia internacional al CV.",
+      "Entender qué relación quieres tener con tu familia, sin la culpa de la cercanía obligada.",
+      "Conocer otra versión de ti, más independiente."
+    ],
     "mal": [
       "Deudas, trabajos precarios o abusos por no conocer sus derechos.",
       "Soledad fuerte los primeros meses, sobre todo sin amigos fuera del trabajo.",
       "Culpa que se vuelve resentimiento: «nos fuimos y no valió la pena».",
       "Volver antes sintiéndose fracasados, cuando en realidad faltó preparación."
     ],
+    "malUno": [
+      "Deudas, trabajos precarios o abusos por no conocer tus derechos.",
+      "Soledad fuerte los primeros meses, sobre todo sin amigos fuera del trabajo.",
+      "Culpa que se vuelve resentimiento: «me fui y no valió la pena».",
+      "Volver antes con sensación de fracaso, cuando en realidad faltó preparación."
+    ],
     "cierre": "La diferencia entre las dos columnas casi nunca es la suerte: es el plan. Por eso existe esta página."
   },
-  "apoyo": "Si alguno de los dos se siente muy mal por un tiempo largo, pedir ayuda profesional no es exagerar. Es parte de prepararse."
+  "apoyo": "Si alguno de los dos se siente muy mal por un tiempo largo, pedir ayuda profesional no es exagerar. Es parte de prepararse.",
+  "apoyoUno": "Si te sientes muy mal por un tiempo largo, pedir ayuda profesional no es exagerar. Es parte de prepararse."
 }

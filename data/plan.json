@@ -15,6 +15,8 @@
     "diasCongelado": 90,
     "tramitacionSemanas": 3,
     "anticipacionMaxMeses": 3,
+    "edadMinima": 18,
+    "edadMaxima": 30,
     "colchonCambio": 0.1
   },
   "costos": {
@@ -47,7 +49,7 @@
       "id": "recomendado",
       "nombre": "Tranquilos",
       "eur": 3500,
-      "texto": "Lo que recomiendo: cubre hostal, depósito de una pieza y casi dos meses buscando trabajo."
+      "texto": "Sugerido según lo que cuesta llegar sin trabajo: dos semanas de hostal, el depósito de una pieza y casi dos meses de gastos mientras se busca empleo."
     },
     {
       "id": "holgado",
@@ -80,11 +82,13 @@
         {
           "id": "conversar",
           "texto": "Conversar qué nos da miedo y leer juntos la sección de dudas",
+          "textoUno": "Anotar qué me da miedo y leer la sección de dudas",
           "juntos": true
         },
         {
           "id": "familia",
-          "texto": "Contarle el plan a la familia o a quien nos pueda apoyar"
+          "texto": "Contarle el plan a la familia o a quien nos pueda apoyar",
+          "textoUno": "Contarle el plan a la familia o a quien me pueda apoyar"
         }
       ]
     },
@@ -114,6 +118,7 @@
       "nombre": "Cuentas y ahorro",
       "offset": null,
       "resumen": "Una cuenta bancaria a nombre de cada uno, solo para el viaje.",
+      "resumenUno": "Una cuenta bancaria a tu nombre, solo para el viaje.",
       "detalle": "La embajada acepta cuenta corriente, cuenta vista/CuentaRUT o cuenta de ahorro, siempre a nombre propio. No sirve dinero de otra persona (ni siquiera de la pareja), ni fondos mutuos, ni depósitos a plazo. Las billeteras digitales no están en la lista: mejor no arriesgarse. Lo ideal es que el ahorro se transfiera solo el día de pago.",
       "tareas": [
         {
@@ -131,6 +136,7 @@
         {
           "id": "gastos",
           "texto": "Revisar juntos qué gastos fijos se pueden recortar",
+          "textoUno": "Revisar qué gastos fijos se pueden recortar",
           "juntos": true
         }
       ]
@@ -149,6 +155,7 @@
         {
           "id": "rutina",
           "texto": "Practicar juntos 3 veces por semana",
+          "textoUno": "Practicar 3 veces por semana",
           "juntos": true
         },
         {
@@ -162,7 +169,9 @@
       "nombre": "Fondos congelados",
       "offset": -6,
       "resumen": "Cada uno debe tener {{congelado}} en su cuenta desde {{fechaFondos}}, sin tocarlos.",
+      "resumenUno": "Debes tener {{congelado}} en tu cuenta desde {{fechaFondos}}, sin tocarlos.",
       "detalle": "Desde esta fecha la plata de solvencia no se toca: la embajada revisa que el saldo se haya mantenido 90 días hasta el día de la cita. El mínimo legal es {{pruebaEur}} por persona; el plan usa {{congelado}} para dejar un {{margen}} de margen por si sube el euro. Esta plata no se gasta: es parte de lo que llevan para vivir allá. Se puede seguir ahorrando encima; lo que no puede pasar es que baje.",
+      "detalleUno": "Desde esta fecha la plata de solvencia no se toca: la embajada revisa que el saldo se haya mantenido 90 días hasta el día de la cita. El mínimo legal es {{pruebaEur}} por persona; el plan usa {{congelado}} para dejar un {{margen}} de margen por si sube el euro. Esta plata no se gasta: es parte de lo que llevas para vivir allá. Puedes seguir ahorrando encima; lo que no puede pasar es que baje.",
       "tareas": [
         {
           "id": "deposito",
@@ -204,7 +213,9 @@
       "nombre": "Seguro y cita",
       "offset": -3,
       "resumen": "Se postula máximo 3 meses antes del viaje. Cada uno toma su propia hora.",
+      "resumenUno": "Se postula máximo 3 meses antes del viaje. La hora se pide en línea.",
       "detalle": "La cita se pide online, categoría «Visa Working Holiday». Las horas suelen liberarse entre las 18:00 y las 20:00 de Chile: revisen los dos a esa hora y tomen la primera que salga. El seguro debe cubrir los 12 meses, con mínimo {{seguroMin}} y repatriación.",
+      "detalleUno": "La cita se pide online, categoría «Visa Working Holiday». Las horas suelen liberarse entre las 18:00 y las 20:00 de Chile: revisa a esa hora y toma la primera que salga. El seguro debe cubrir los 12 meses, con mínimo {{seguroMin}} y repatriación.",
       "tareas": [
         {
           "id": "cita",
@@ -216,7 +227,8 @@
         },
         {
           "id": "videx",
-          "texto": "Llenar el formulario VIDEX con la misma fecha de entrada que quien viaja contigo (si viajan dos)"
+          "texto": "Llenar el formulario VIDEX con la misma fecha de entrada que quien viaja contigo",
+          "textoUno": "Llenar el formulario VIDEX"
         }
       ]
     },
@@ -246,11 +258,14 @@
       "nombre": "Visas y pasajes",
       "offset": -1.5,
       "resumen": "Recién con las dos visas aprobadas se compran los pasajes. Fecha estimada: {{fechaPasajes}}.",
+      "resumenUno": "Recién con la visa aprobada se compran los pasajes. Fecha estimada: {{fechaPasajes}}.",
       "detalle": "Si una visa sale antes, se espera a la otra. Busquen pasajes con cambio de fecha permitido. Mientras, reserven el hostal de las primeras dos semanas y avisen el término del arriendo en Chile según su contrato.",
+      "detalleUno": "Busca pasajes con cambio de fecha permitido. Mientras, reserva el hostal de las primeras dos semanas y avisa el término del arriendo en Chile según tu contrato.",
       "tareas": [
         {
           "id": "visas",
           "texto": "Las dos visas aprobadas",
+          "textoUno": "La visa aprobada",
           "juntos": true
         },
         {
@@ -301,7 +316,9 @@
       "nombre": "Primer trabajo",
       "offset": 1,
       "resumen": "Gastronomía, hoteles, bodegas o tiendas. Mejor si los toman a los dos.",
+      "resumenUno": "Gastronomía, hoteles, bodegas o tiendas.",
       "detalle": "Quien lidera la comunicación busca puestos de atención (mesas, barra, recepción, ventas). Quien prefiere lo operativo, cocina, limpieza o bodega. Las agencias de trabajo temporal contratan sin alemán para logística. Máximo 6 meses con el mismo empleador.",
+      "detalleUno": "Si te acomoda hablar con clientes, busca puestos de atención (mesas, barra, recepción, ventas); si prefieres lo operativo, cocina, limpieza o bodega. Las agencias de trabajo temporal contratan sin alemán para logística. Máximo 6 meses con el mismo empleador.",
       "tareas": [
         {
           "id": "cv-de",
@@ -331,7 +348,8 @@
       "id": "videx",
       "nombre": "Formulario VIDEX",
       "corto": "Online, impreso y firmado",
-      "detalle": "Formulario de visado nacional en el sitio VIDEX del Ministerio de Relaciones Exteriores alemán. Pongan los dos la misma fecha prevista de entrada."
+      "detalle": "Formulario de visado nacional en el sitio VIDEX del Ministerio de Relaciones Exteriores alemán. Pongan los dos la misma fecha prevista de entrada.",
+      "detalleUno": "Formulario de visado nacional en el sitio VIDEX del Ministerio de Relaciones Exteriores alemán."
     },
     {
       "id": "pasaporte",
@@ -361,7 +379,9 @@
       "id": "fondos",
       "nombre": "Cartola bancaria",
       "corto": "{{congelado}} cada uno, 90 días, timbrada",
-      "detalle": "A nombre propio, con firma original y timbre del banco. El mínimo legal es {{solvencia}}; si no llevan reserva de alojamiento suman {{extraAloj}}, y si viajan solo con ida, {{extraIda}}. Con su plan, cada uno debe mostrar {{pruebaEur}}: la página usa {{congelado}} para dejar margen por el euro."
+      "cortoUno": "{{congelado}}, 90 días, timbrada",
+      "detalle": "A nombre propio, con firma original y timbre del banco. El mínimo legal es {{solvencia}}; si no llevan reserva de alojamiento suman {{extraAloj}}, y si viajan solo con ida, {{extraIda}}. Con su plan, cada uno debe mostrar {{pruebaEur}}: la página usa {{congelado}} para dejar margen por el euro.",
+      "detalleUno": "A nombre propio, con firma original y timbre del banco. El mínimo legal es {{solvencia}}; si no llevas reserva de alojamiento suma {{extraAloj}}, y si viajas solo con ida, {{extraIda}}. Con tu plan, debes mostrar {{pruebaEur}}: la página usa {{congelado}} para dejar margen por el euro."
     },
     {
       "id": "pasaje",
