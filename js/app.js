@@ -90,7 +90,7 @@
     escenario: "full",
     combina: null
   };
-  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento", "anoModo", "plataVista"]);
+  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento", "anoModo", "plataVista", "buscarPestana", "deFiltros", "deTrabajo", "vivTope"]);
   const copia = (o) => JSON.parse(JSON.stringify(o));
 
   function leerEstado() {
@@ -3757,6 +3757,41 @@
   }
 
   /* Cuando llegan datos del otro dispositivo: todo vuelve a leerse del estado. */
+  /* Cuando llegan cambios del otro dispositivo se repinta todo. Antes de eso se anota qué
+     estaba abierto y dónde iba leyendo, para dejarlo igual después. */
+  // El estado que se comparte, con las claves ordenadas para poder compararlo.
+  function compartido() {
+    const orden = (v) => Array.isArray(v) ? v.map(orden)
+      : v && typeof v === "object" ? Object.keys(v).sort().reduce((o, k) => (v[k] === undefined ? o : (o[k] = orden(v[k]), o)), {}) : v;
+    const o = {};
+    for (const k of Object.keys(estado)) if (!LOCALES.has(k)) o[k] = estado[k];
+    return JSON.stringify(orden(o));
+  }
+
+  function clavePliegue(d) {
+    if (d.id) return "#" + d.id;
+    if (d.dataset.id) return "@" + d.dataset.id;
+    const zona = d.closest("[id]");
+    const s = d.querySelector("summary");
+    return (zona ? zona.id : "") + "|" + (s ? s.textContent.trim().slice(0, 80) : "");
+  }
+  function fotoPantalla() {
+    const pliegues = new Map();
+    document.querySelectorAll("details").forEach((d) => pliegues.set(clavePliegue(d), d.open));
+    const volteadas = new Set([...document.querySelectorAll(".abierta[id], .abierta[data-id]")].map((x) => x.id || x.dataset.id));
+    const foco = document.activeElement && document.activeElement.id;
+    return { pliegues, volteadas, foco, x: window.scrollX, y: window.scrollY };
+  }
+  function devolverPantalla(f) {
+    document.querySelectorAll("details").forEach((d) => {
+      const k = clavePliegue(d);
+      if (f.pliegues.has(k) && d.open !== f.pliegues.get(k)) d.open = f.pliegues.get(k);
+    });
+    f.volteadas.forEach((id) => { const x = document.getElementById(id) || document.querySelector(`[data-id="${CSS.escape(id)}"]`); if (x) x.classList.add("abierta"); });
+    if (f.foco) { const x = document.getElementById(f.foco); if (x && document.activeElement !== x) x.focus({ preventScroll: true }); }
+    window.scrollTo(f.x, f.y);
+  }
+
   function refrescarTodo() {
     sincronizadores.forEach((f) => f());
     pintarCarpeta();
@@ -3818,6 +3853,7 @@
         obtener: () => estado,
         aplicar: (nuevo) => {
           const antes = JSON.stringify(estado.perfil || null);
+          const previo = compartido();
           for (const k of Object.keys(estado)) if (!LOCALES.has(k)) delete estado[k];
           const base = copia(DEFAULTS);
           for (const k of LOCALES) delete base[k];
@@ -3825,8 +3861,12 @@
           normalizar();
           guardarLocal();
           if (JSON.stringify(estado.perfil || null) !== antes) { location.reload(); return; }
+          if (compartido() === previo) return; // nada que se vea cambió: no se repinta // nada que se vea cambió: no se repinta
+          const foto = fotoPantalla();
           refrescarTodo();
+          devolverPantalla(foto);
         },
+        locales: LOCALES,
         alCambiar: pintarSincro
       });
     }
