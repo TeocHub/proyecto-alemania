@@ -1,6 +1,9 @@
 {
   "actualizado": "2026-11-20",
-  "personas": ["Persona 1", "Persona 2"],
+  "personas": [
+    "Persona 1",
+    "Persona 2"
+  ],
   "tipoCambio": {
     "eur": 1097,
     "usd": 990,
@@ -447,9 +450,17 @@
     }
   ],
   "extranjero": {
-    "paisesWorkingHolidayLatam": ["Argentina", "Brasil", "Chile", "Uruguay"],
+    "paisesWorkingHolidayLatam": [
+      "Argentina",
+      "Brasil",
+      "Chile",
+      "Uruguay"
+    ],
     "comisionCuentaRut": 1.9,
-    "efectivoLlegada": [200, 300]
+    "efectivoLlegada": [
+      200,
+      300
+    ]
   },
   "vivir": {
     "nebenkostenM2": 2.67,
@@ -470,5 +481,99 @@
       15
     ],
     "fuente": "Betriebskostenspiegel del Deutscher Mieterbund (año 2024), precios de luz 2026 y Beitragsservice"
+  },
+  "puedesIr": {
+    "fuente": "https://santiago.diplo.de/cl-es/service/05-visaeinreise/1210626-1210626",
+    "revisado": "2026-11-22",
+    "requisitos": [
+      {
+        "id": "edad",
+        "nombre": "Edad",
+        "regla": "Tener entre {{edadMinima}} y {{edadMaxima}} años el día que se presenta la solicitud.",
+        "pregunta": "¿Los dos van a tener entre {{edadMinima}} y {{edadMaxima}} años al postular?",
+        "preguntaUno": "¿Vas a tener entre {{edadMinima}} y {{edadMaxima}} años al postular?",
+        "si": "Sí, los dos",
+        "siUno": "Sí",
+        "noSignifica": "La embajada no recibe la solicitud fuera de ese rango. Si a alguien le falta para los {{edadMinima}}, la fecha de viaje se puede correr hasta que los cumpla. Si alguien ya pasó los {{edadMaxima}}, esta visa no está disponible para esa persona: existen otras (estudio, trabajo calificado, Chancenkarte) con requisitos distintos, que esta página no calcula.",
+        "noSignificaUno": "La embajada no recibe la solicitud fuera de ese rango. Si te falta para los {{edadMinima}}, la fecha de viaje se puede correr hasta que los cumplas. Si ya pasaste los {{edadMaxima}}, esta visa no está disponible para ti: existen otras (estudio, trabajo calificado, Chancenkarte) con requisitos distintos, que esta página no calcula."
+      },
+      {
+        "id": "nacionalidad",
+        "nombre": "Nacionalidad",
+        "regla": "Tener nacionalidad chilena (o de otro país con convenio, postulando por ese convenio).",
+        "pregunta": "¿Los dos tienen nacionalidad chilena?",
+        "preguntaUno": "¿Tienes nacionalidad chilena?",
+        "si": "Sí, los dos",
+        "siUno": "Sí",
+        "noSignifica": "Esta página está armada para el convenio entre Chile y Alemania. Si alguien tiene otra nacionalidad, puede que su país también tenga Working Holiday con Alemania, pero con sus propias reglas: hay que revisarlas en la embajada alemana que le corresponde.",
+        "noSignificaUno": "Esta página está armada para el convenio entre Chile y Alemania. Si tienes otra nacionalidad, puede que tu país también tenga Working Holiday con Alemania, pero con sus propias reglas: revísalas en la embajada alemana que te corresponde."
+      },
+      {
+        "id": "pasaporte",
+        "nombre": "Pasaporte",
+        "regla": "Pasaporte vigente al menos un año desde el día de la solicitud, con dos páginas en blanco.",
+        "pregunta": "¿Sus pasaportes van a estar vigentes un año más el día que postulen?",
+        "preguntaUno": "¿Tu pasaporte va a estar vigente un año más el día que postules?",
+        "si": "Sí",
+        "siUno": "Sí",
+        "noSignifica": "No es un problema: se saca o se renueva en el Registro Civil y cuesta {{pasaporte}}. Está en la etapa «Pasaporte» de los trámites, y conviene hacerlo con meses de anticipación.",
+        "noSignificaUno": "No es un problema: se saca o se renueva en el Registro Civil y cuesta {{pasaporte}}. Está en la etapa «Pasaporte» de los trámites, y conviene hacerlo con meses de anticipación."
+      },
+      {
+        "id": "fondos",
+        "nombre": "Fondos",
+        "regla": "{{solvencia}} en una cuenta propia durante los 90 días antes de postular. Suman {{extraAloj}} sin reserva de alojamiento y {{extraIda}} con pasaje solo de ida. No sirve plata de otra persona, fondos mutuos ni depósitos a plazo.",
+        "pregunta": "¿Pueden juntar ese monto cada uno y dejarlo quieto tres meses?",
+        "preguntaUno": "¿Puedes juntar ese monto y dejarlo quieto tres meses?",
+        "si": "Sí, o vamos a poder",
+        "siUno": "Sí, o voy a poder",
+        "noSignifica": "Nadie lo tiene al empezar: para eso es esta página. Con la fecha de viaje calcula cuánto guardar al mes y cuándo tiene que estar todo en la cuenta. Cada uno necesita su propia cuenta: la pareja o la familia no pueden prestar la plata para mostrarla.",
+        "noSignificaUno": "Nadie lo tiene al empezar: para eso es esta página. Con la fecha de viaje calcula cuánto guardar al mes y cuándo tiene que estar todo en la cuenta. La cuenta tiene que ser tuya: la familia no puede prestarte la plata para mostrarla."
+      },
+      {
+        "id": "seguro",
+        "nombre": "Seguro",
+        "regla": "Seguro médico y de accidentes para toda la estadía, con cobertura mínima de {{seguroMin}} y repatriación.",
+        "pregunta": "¿Pueden contratar un seguro así antes de la cita?",
+        "preguntaUno": "¿Puedes contratar un seguro así antes de la cita?",
+        "si": "Sí",
+        "siUno": "Sí",
+        "noSignifica": "Sin seguro no se entrega la visa. Los de tarjeta de crédito no sirven porque cubren pocos meses. El costo ya está sumado en «La plata» y se puede ajustar ahí.",
+        "noSignificaUno": "Sin seguro no se entrega la visa. Los de tarjeta de crédito no sirven porque cubren pocos meses. El costo ya está sumado en «La plata» y se puede ajustar ahí."
+      },
+      {
+        "id": "cargo",
+        "nombre": "Nadie a cargo",
+        "regla": "No se puede viajar con personas a cargo, como hijos.",
+        "pregunta": "¿Viajan sin hijos ni otras personas a su cargo?",
+        "preguntaUno": "¿Viajas sin hijos ni otras personas a tu cargo?",
+        "si": "Sí, sin nadie a cargo",
+        "siUno": "Sí, sin nadie a cargo",
+        "noSignifica": "La Working Holiday no permite llevar hijos ni otras personas a cargo. Si alguien de ustedes quiere viajar con ellos, esta visa no le sirve; la embajada informa sobre otras opciones.",
+        "noSignificaUno": "La Working Holiday no permite llevar hijos ni otras personas a cargo. Si quieres viajar con ellos, esta visa no te sirve; la embajada informa sobre otras opciones."
+      },
+      {
+        "id": "primera",
+        "nombre": "Primera vez",
+        "regla": "No haber estado antes en Alemania con este programa.",
+        "pregunta": "¿Es la primera vez que usan la Working Holiday de Alemania?",
+        "preguntaUno": "¿Es la primera vez que usas la Working Holiday de Alemania?",
+        "si": "Sí, primera vez",
+        "siUno": "Sí, primera vez",
+        "noSignifica": "Se puede usar una sola vez. Quien ya estuvo en Alemania con esta visa no puede pedirla de nuevo. Haber ido de turista o con otra visa no cuenta, y la Working Holiday de otro país tampoco.",
+        "noSignificaUno": "Se puede usar una sola vez. Si ya estuviste en Alemania con esta visa, no puedes pedirla de nuevo. Haber ido de turista o con otra visa no cuenta, y la Working Holiday de otro país tampoco."
+      },
+      {
+        "id": "aleman",
+        "nombre": "Carta y CV",
+        "regla": "Una carta de motivación personal (una carilla, no copiada de internet) y un CV, los dos en alemán.",
+        "pregunta": "¿Pueden tener la carta y el CV en alemán?",
+        "preguntaUno": "¿Puedes tener la carta y el CV en alemán?",
+        "si": "Sí",
+        "siUno": "Sí",
+        "noSignifica": "No hace falta hablar alemán para postular: se escriben en castellano y se traducen. Lo que importa es que la carta sea propia. Está en la etapa «Carta y CV en alemán», cuatro meses antes del viaje.",
+        "noSignificaUno": "No hace falta hablar alemán para postular: se escriben en castellano y se traducen. Lo que importa es que la carta sea propia. Está en la etapa «Carta y CV en alemán», cuatro meses antes del viaje."
+      }
+    ]
   }
 }
