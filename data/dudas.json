@@ -136,7 +136,7 @@
       "id": "uno-paga-otro",
       "tema": "pareja",
       "pregunta": "¿Puede uno poner la plata del otro?",
-      "respuesta": "<p>No para la solvencia. La embajada excluye el financiamiento de terceros sin excepciones, y eso incluye a la pareja. Cada uno necesita su propia cuenta con su propio saldo: con su plan actual, {{congelado}} cada uno.</p><p>Lo que sí pueden hacer es organizarse como pareja: que quien gana más cubra más gastos de la casa mientras el otro ahorra, siempre que al final cada saldo esté en la cuenta de su titular con 90 días de antigüedad.</p>"
+      "respuesta": "<p>No para la solvencia. La embajada excluye el financiamiento de terceros sin excepciones, y eso incluye a la pareja o al amigo con quien viajen. Cada uno necesita su propia cuenta con su propio saldo: con su plan actual, {{congelado}} cada uno.</p><p>Lo que sí pueden hacer es organizarse entre los dos: que quien gana más cubra más gastos de la casa mientras el otro ahorra, siempre que al final cada saldo esté en la cuenta de su titular con 90 días de antigüedad.</p>"
     },
     {
       "id": "juntos",

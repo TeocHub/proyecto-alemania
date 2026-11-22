@@ -66,7 +66,7 @@
           "nombre": "Cómo estamos",
           "preguntas": [
             { "id": "p-animo", "texto": "¿Cómo estamos hoy emocionalmente, cada uno?", "ayuda": "Si hoy ya hay soledad, ansiedad o culpa, allá suele sentirse más fuerte los primeros meses. No es razón para no ir: es razón para llegar con apoyo." },
-            { "id": "p-apoyo", "texto": "¿A quién podemos llamar cuando estemos mal, además del otro?", "ayuda": "Un amigo, alguien de la familia, terapia online, un grupo. Que la pareja no sea el único apoyo." },
+            { "id": "p-apoyo", "texto": "¿A quién podemos llamar cuando estemos mal, además del otro?", "ayuda": "Un amigo, alguien de la familia, terapia online, un grupo. Que quien viaja contigo no sea el único apoyo." },
             { "id": "p-porque", "texto": "¿Por qué queremos ir? ¿Vamos a buscar algo allá o a escapar de algo acá?", "ayuda": "Las dos cosas pueden ser verdad a la vez. Lo importante es saberlo, porque lo que uno escapa suele viajar con uno." }
           ]
         }
@@ -88,6 +88,7 @@
         },
         {
           "nombre": "Nosotros dos",
+          "soloDos": true,
           "preguntas": [
             { "id": "s-volver", "texto": "¿Qué hacemos si uno quiere volver y el otro no?", "ayuda": "Mejor conversarlo ahora, con calma, que allá en un mal día." },
             { "id": "s-plata-pareja", "texto": "¿Cómo vamos a manejar la plata entre los dos allá?", "ayuda": "Cuenta común, mitad y mitad, o según lo que gane cada uno." }
