@@ -1578,3 +1578,22 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 }
 @media (prefers-reduced-motion: reduce) { .ano-punto { transition: none; } }
 .ano-nota { margin: 1.5rem 0 0; max-width: 46rem; font-size: var(--t-0); color: var(--tinta-suave); line-height: 1.5; }
+
+/* Relatos frente a información general */
+.ano-criterio { margin: 1rem 0 0; padding: 0.8rem 1rem; background: var(--hoja); border-radius: 10px; font-size: var(--t-0); line-height: 1.5; color: var(--tinta-suave); max-width: 46rem; }
+.ano-criterio strong { color: var(--tinta); }
+.ano-bloque { margin: 0 0 2.2rem; }
+.ano-bloque-titulo { font-family: var(--display); font-size: var(--t-3); margin: 0 0 0.2rem; }
+.ano-bloque-sub { margin: 0 0 1rem; color: var(--tinta-suave); font-size: var(--t-0); max-width: 46rem; }
+.relatos { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+.relato { display: grid; grid-template-rows: auto 1fr auto; gap: 0.7rem; padding: 1rem 1.1rem; background: #fff; border-radius: 12px; border: 1px solid var(--niebla); border-top: 5px solid var(--suyo); }
+.relato header p { margin: 0; }
+.relato-nombre { font-family: var(--display); font-weight: 700; font-size: var(--t-2); line-height: 1.15; }
+.relato-meta { font-size: 0.82rem; color: var(--tinta-suave); line-height: 1.35; }
+.relato-texto { margin: 0; line-height: 1.55; }
+.relato-pie { display: grid; gap: 0.35rem; font-size: 0.8rem; border-top: 1px dashed var(--niebla); padding-top: 0.6rem; }
+.relato-sello { color: var(--tinta-suave); }
+.relato-pie a { color: var(--suyo); font-weight: 700; }
+.ano-guia .ano-grupo { font-size: var(--t-2); margin-top: 1rem; }
+.ano-pregunta { font-family: var(--display); }
+.ano-paso h6 { margin: 0 0 0.3rem; font-size: var(--t-0); }

@@ -1626,21 +1626,12 @@
   }
 
   function pintarExperiencias() {
+    const n = new Set((anoData.relatos || []).map((x) => x.nombre)).size;
     $("#panel-experiencias").innerHTML = `
-      <p class="prep-intro">Historias de personas que ya hicieron la Working Holiday en Alemania, resumidas. Toquen el enlace para leerlas completas.</p>
-      <div class="experiencias">${prep.experiencias.map((x) => `
-        <article class="experiencia">
-          <p class="exp-quien">${x.quien}<span>${x.donde}</span></p>
-          <h4>${x.titulo}</h4>
-          <dl>
-            <dt>Lo que le funcionó</dt><dd>${x.sirvio}</dd>
-            <dt>Lo que le costó</dt><dd>${x.costo}</dd>
-            <dt>Lo que se llevan ustedes</dt><dd>${x.leccion}</dd>
-          </dl>
-          <a href="${x.url}" target="_blank" rel="noopener">Leer en ${x.fuente}</a>
-        </article>`).join("")}
-      </div>`;
+      <p class="prep-intro">Los relatos de personas que vivieron en Alemania están todos en un solo lugar, ordenados por el mes del año en que les pasó y con el enlace a lo que contaron.</p>
+      <a class="boton" href="#el-ano">Ver lo que contaron ${n} personas en «Su año allá»</a>`;
   }
+
 
   /* ---------- Su año allá: calendario desde el mes de viaje ---------- */
   const ESTACION_NOMBRE = { invierno: "Invierno", primavera: "Primavera", verano: "Verano", "otoño": "Otoño" };
@@ -1657,6 +1648,14 @@
 
   /* Cada momento cae en el mes en que suele pasar. */
   const MOMENTO_MES = { semana: [1, "La primera semana"], mes: [2, "Primeras cartas y primer sueldo"], finmes: [3, "Ya en rutina: lo de todos los meses"], aviso: [9, "Tres meses antes de volver"], irse: [12, "Antes de volver"] };
+
+  function relatosDeParada(p) {
+    const R = anoData.relatos || [];
+    if (p.id === "antes") return R.filter((x) => x.momento === "antes");
+    const delMomento = Object.entries(MOMENTO_MES).filter(([, [n]]) => n === p.n).map(([m]) => m);
+    const mesCal = p.fecha.getMonth() + 1;
+    return R.filter((x) => delMomento.includes(x.momento) || (x.momento === "invierno" && x.mesCalendario === mesCal));
+  }
 
   function itemsDeParada(p) {
     const A = anoData;
@@ -1692,7 +1691,7 @@
   function pintarAno() {
     const A = anoData;
     if (!A || !ctx) return;
-    $("#ano-intro").innerHTML = t(A.intro);
+    $("#ano-intro").innerHTML = t(A.intro) + resumenRelatos();
     const paradas = paradasAno();
     if (!paradas.some((x) => x.id === estado.anoMomento)) {
       // Por defecto: el mes en que van, o «antes» si todavía no viajan.
@@ -1702,10 +1701,11 @@
     const cal = Object.fromEntries(A.calendario.map((c) => [c.mes, c]));
     $("#ano-linea").innerHTML = paradas.map((p) => {
       const sel = p.id === estado.anoMomento;
-      const n = itemsDeParada(p).reduce((s, g) => s + g.items.length, 0);
+      const n = relatosDeParada(p).length;
       const est = p.fecha ? cal[p.fecha.getMonth() + 1].estacion : "";
       return `<button type="button" role="tab" class="ano-estacion" data-parada="${p.id}" data-estacion="${est}" aria-selected="${sel}" tabindex="${sel ? 0 : -1}">
         <span class="ano-punto" aria-hidden="true">${n ? `<span class="ano-n">${n}</span>` : ""}</span>
+        <span class="sr">${n} ${n === 1 ? "relato" : "relatos"}</span>
         <span class="ano-nombre">${p.fecha ? mesCorto(p.fecha) : "Antes"}</span>
         <span class="ano-cuando">${p.fecha ? (p.n === 1 || p.fecha.getMonth() === 0 ? p.fecha.getFullYear() : `mes ${p.n}`) : "de volar"}</span>
       </button>`;
@@ -1732,24 +1732,60 @@
 
     const nombreTema = Object.fromEntries(A.temas.map((x) => [x.id, x.nombre]));
     const grupos = itemsDeParada(p);
+    const relatos = relatosDeParada(p);
     const cuerpo = $("#ano-cuerpo");
-    if (!grupos.length) {
-      cuerpo.innerHTML = `<p class="ano-vacio">Nadie contó un miedo propio de este mes: suele ser rutina. Arriendo a comienzo de mes, buzón una vez por semana y alemán. Lo de todos los meses está en el mes 3.</p><p class="ano-nota">${t(A.nota)}</p>`;
-      return;
-    }
-    cuerpo.innerHTML = grupos.map((g) => `
-      ${g.titulo ? `<h3 class="ano-grupo">${g.titulo}</h3>` : ""}
-      ${g.items.map((it) => `
-      <article class="ano-miedo" data-tema="${it.tema}">
-        <p class="ano-etiqueta">${nombreTema[it.tema]}</p>
-        <h4 class="ano-pregunta">${it.miedo}</h4>
-        <div class="ano-pasos">
-          <div class="ano-paso"><h5>Lo que suele pasar</h5><p>${t(it.realidad)}</p></div>
-          <div class="ano-paso ano-hacer"><h5>Qué hacer</h5><p>${t(it.hacer)}</p></div>
+
+    const htmlRelatos = relatos.length ? `
+      <section class="ano-bloque ano-relatos" aria-labelledby="ano-t-relatos">
+        <h3 class="ano-bloque-titulo" id="ano-t-relatos">Lo que contaron</h3>
+        <p class="ano-bloque-sub">Personas con nombre que vivieron en Alemania. Resumen con nuestras palabras; el original está en el enlace.</p>
+        <div class="relatos">${relatos.map((x) => `
+          <article class="relato">
+            <header>
+              <p class="relato-nombre">${escapar(x.nombre)}</p>
+              <p class="relato-meta">${escapar(x.pais === "no lo dice" ? "País no indicado" : x.pais)} · ${escapar(x.ciudad)}</p>
+              <p class="relato-meta">${escapar(x.cuando)}</p>
+            </header>
+            <p class="relato-texto">${escapar(x.texto)}</p>
+            <footer class="relato-pie">
+              <span class="relato-sello">${escapar(mayus(x.formato))}${x.idioma !== "español" ? ` · traducido del ${escapar(x.idioma)}` : ""}</span>
+              <a href="${x.url}" target="_blank" rel="noopener">Leer el original en ${escapar(x.fuente)}</a>
+            </footer>
+          </article>`).join("")}
         </div>
-        ${it.voz ? `<blockquote class="ano-voz"><p>${it.voz.texto}</p><footer>${it.voz.quien}</footer></blockquote>` : ""}
-        ${it.fuentes.length ? `<p class="ano-fuentes">Fuentes: ${it.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join(", ")}</p>` : ""}
-      </article>`).join("")}`).join("") + `<p class="ano-nota">${t(A.nota)}</p>`;
+      </section>` : "";
+
+    const htmlGuia = grupos.length ? `
+      <section class="ano-bloque ano-guia" aria-labelledby="ano-t-guia">
+        <h3 class="ano-bloque-titulo" id="ano-t-guia">Lo que conviene saber</h3>
+        <p class="ano-bloque-sub">Información general, no experiencia de alguien en particular. Sale de fuentes oficiales y de guías, enlazadas en cada punto.</p>
+        ${grupos.map((g) => `
+          ${g.titulo ? `<h4 class="ano-grupo">${g.titulo}</h4>` : ""}
+          ${g.items.map((it) => `
+          <article class="ano-miedo" data-tema="${it.tema}">
+            <p class="ano-etiqueta">${nombreTema[it.tema]}</p>
+            <h5 class="ano-pregunta">${it.miedo}</h5>
+            <div class="ano-pasos">
+              <div class="ano-paso"><h6>Lo que suele pasar</h6><p>${t(it.realidad)}</p></div>
+              <div class="ano-paso ano-hacer"><h6>Qué hacer</h6><p>${t(it.hacer)}</p></div>
+            </div>
+            ${it.fuentes.length ? `<p class="ano-fuentes">Fuentes: ${it.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join(", ")}</p>` : ""}
+          </article>`).join("")}`).join("")}
+      </section>` : "";
+
+    const vacio = !relatos.length && !grupos.length
+      ? `<p class="ano-vacio">Nadie contó algo propio de este mes y no hay datos especiales: suele ser rutina. Arriendo a comienzo de mes, buzón una vez por semana y alemán. Lo de todos los meses está en el mes 3.</p>` : "";
+
+    cuerpo.innerHTML = htmlRelatos + htmlGuia + vacio + `<p class="ano-nota">${t(A.nota)}</p>`;
+  }
+
+  /* Resumen de quiénes contaron, para que se vea de dónde viene todo. */
+  function resumenRelatos() {
+    const R = anoData.relatos || [];
+    const personas = new Set(R.map((x) => x.nombre)).size;
+    const paises = new Set(R.map((x) => x.pais).filter((x) => !x.startsWith("no lo dice"))).size;
+    const idiomas = new Set(R.map((x) => x.idioma)).size;
+    return `<p class="ano-criterio"><strong>${personas} personas de ${paises} países, en ${idiomas} idiomas.</strong> ${anoData.criterio}</p>`;
   }
 
   /* ---------- Cómo leer un precio de arriendo ---------- */
