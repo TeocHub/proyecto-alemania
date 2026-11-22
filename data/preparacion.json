@@ -80,7 +80,7 @@
     ],
     "alLlegar": [
       { "nombre": "Escribir y llamar a todo", "texto": "Respondan muchos anuncios al día en WG-Gesucht, Kleinanzeigen e ImmoScout24. Para llamar sin hablar alemán, tengan un guion corto y sigan por mensaje." },
-      { "nombre": "Buscar para pareja", "texto": "Muchos pisos compartidos no aceptan parejas. Filtren por piezas aptas para dos o busquen un estudio pequeño (1-Zimmer-Wohnung)." },
+      { "nombre": "Buscar de a dos", "texto": "Muchos pisos compartidos no aceptan parejas en una misma pieza. Si son pareja, filtren por piezas aptas para dos o busquen un estudio pequeño (1-Zimmer-Wohnung). Si son amigos, busquen pisos con dos piezas libres a la vez." },
       { "nombre": "Ir a ver antes de pagar", "texto": "Visiten en persona, conozcan a quienes viven ahí y pidan contrato escrito antes de pagar el depósito (Kaution)." },
       { "nombre": "Confirmar la Anmeldung", "texto": "Pregunten si el arrendador firma el certificado para registrar domicilio (Wohnungsgeberbestätigung). Sin eso cuesta abrir cuenta bancaria y trabajar formalmente." },
       { "nombre": "Registrarse en la oficina", "texto": "Pidan hora en la oficina de registro (Bürgeramt) para la Anmeldung dentro de las dos semanas desde que se mudan." }
@@ -93,9 +93,19 @@
       "Piden copia del pasaporte antes de cualquier conversación.",
       "Apuran: «hay muchos interesados, paga hoy»."
     ],
-    "plantilla": {
-      "de": "Hallo,\n\nwir sind Teoc und Francis, ein Paar aus Chile. Wir kommen mit einem Working-Holiday-Visum nach [Stadt] und suchen ab [Datum] ein Zimmer für zwei Personen.\n\nWir sind ruhig, ordentlich und suchen Arbeit in der Gastronomie oder Logistik. Wir sprechen Englisch und lernen Deutsch.\n\nIst das Zimmer noch frei? Wir können gern per Videoanruf sprechen oder es besichtigen.\n\nViele Grüße\nTeoc und Francis",
-      "es": "Hola:\n\nsomos Teoc y Francis, una pareja de Chile. Llegamos a [ciudad] con visa Working Holiday y buscamos una pieza para dos personas desde el [fecha].\n\nSomos tranquilos, ordenados y buscamos trabajo en gastronomía o logística. Hablamos inglés y estamos aprendiendo alemán.\n\n¿La pieza sigue disponible? Podemos hablar por videollamada o ir a verla.\n\nSaludos,\nTeoc y Francis"
+    "plantillas": {
+      "pareja": {
+        "de": "Hallo,\n\nwir sind {nombres}, ein Paar aus Chile. Wir kommen mit einem Working-Holiday-Visum nach [Stadt] und suchen ab [Datum] ein Zimmer für zwei Personen.\n\nWir sind ruhig, ordentlich und suchen Arbeit in der Gastronomie oder Logistik. Wir sprechen Englisch und lernen Deutsch.\n\nIst das Zimmer noch frei? Wir können gern per Videoanruf sprechen oder es besichtigen.\n\nViele Grüße\n{nombres}",
+        "es": "Hola:\n\nsomos {nombres}, una pareja de Chile. Llegamos a [ciudad] con visa Working Holiday y buscamos una pieza para dos personas desde el [fecha].\n\nSomos tranquilos, ordenados y buscamos trabajo en gastronomía o logística. Hablamos inglés y estamos aprendiendo alemán.\n\n¿La pieza sigue disponible? Podemos hablar por videollamada o ir a verla.\n\nSaludos,\n{nombres}"
+      },
+      "amigos": {
+        "de": "Hallo,\n\nwir sind {nombres}, zwei Freunde aus Chile. Wir kommen mit einem Working-Holiday-Visum nach [Stadt] und suchen ab [Datum] zwei Zimmer in einer WG, gern in derselben Wohnung.\n\nWir sind ruhig, ordentlich und suchen Arbeit in der Gastronomie oder Logistik. Wir sprechen Englisch und lernen Deutsch.\n\nSind die Zimmer noch frei? Wir können gern per Videoanruf sprechen oder sie besichtigen.\n\nViele Grüße\n{nombres}",
+        "es": "Hola:\n\nsomos {nombres}, dos amigos de Chile. Llegamos a [ciudad] con visa Working Holiday y buscamos dos piezas en un piso compartido desde el [fecha], ojalá en el mismo departamento.\n\nSomos tranquilos, ordenados y buscamos trabajo en gastronomía o logística. Hablamos inglés y estamos aprendiendo alemán.\n\n¿Las piezas siguen disponibles? Podemos hablar por videollamada o ir a verlas.\n\nSaludos,\n{nombres}"
+      },
+      "solo": {
+        "de": "Hallo,\n\nich bin {nombres} aus Chile. Ich komme mit einem Working-Holiday-Visum nach [Stadt] und suche ab [Datum] ein Zimmer in einer WG.\n\nIch bin ruhig, ordentlich und suche Arbeit in der Gastronomie oder Logistik. Ich spreche Englisch und lerne Deutsch.\n\nIst das Zimmer noch frei? Wir können gern per Videoanruf sprechen oder ich komme vorbei.\n\nViele Grüße\n{nombres}",
+        "es": "Hola:\n\nsoy {nombres}, de Chile. Llego a [ciudad] con visa Working Holiday y busco una pieza en un piso compartido desde el [fecha].\n\nSoy tranquilo/a, ordenado/a y busco trabajo en gastronomía o logística. Hablo inglés y estoy aprendiendo alemán.\n\n¿La pieza sigue disponible? Podemos hablar por videollamada o voy a verla.\n\nSaludos,\n{nombres}"
+      }
     }
   },
   "experiencias": [

@@ -1,6 +1,6 @@
 # Proyecto Alemania
 
-Página para planificar la Working Holiday en Alemania de Teoc y Francis, empezando por la etapa de ahora: armar el colchón en Santiago. Tiene el colchón, la calculadora de ahorro para el viaje (con pasaje de ida y vuelta o solo de ida), la carpeta de documentos, las ciudades, la preparación (alemán, hospedaje, experiencias) y las dudas.
+Página para planificar la Working Holiday en Alemania desde Chile, para una o dos personas (pareja o amigos). Nació para Teoc y Francis y ahora cualquier grupo la puede usar con sus nombres: al entrar por primera vez, la bienvenida explica qué es y pide quiénes viajan. Empieza por la etapa de ahora: armar el colchón. Tiene el colchón, la calculadora de ahorro para el viaje (con pasaje de ida y vuelta o solo de ida), la carpeta de documentos, las ciudades, la preparación (alemán, hospedaje, experiencias) y las dudas.
 
 ## Cómo verla
 
@@ -31,7 +31,7 @@ Con «Primero el colchón, después Alemania» activado (viene así), el ahorro 
 
 ## Guardar entre los dos
 
-Sin conectar, todo se guarda solo en el navegador de cada dispositivo. Para que Teoc y Francis vean lo mismo, se conecta una planilla de Google propia (gratis y no se apaga por falta de uso):
+Sin conectar, todo se guarda solo en el navegador de cada dispositivo. Cada grupo usa la misma dirección de la página pero su propia planilla de Google (gratis y no se apaga por falta de uso). Se configura una sola vez en un dispositivo; los demás abren el enlace que se les manda y reciben el grupo y sus datos:
 
 1. Crear una planilla en `sheets.new` con la cuenta de uno de los dos.
 2. Extensiones → Apps Script, pegar el contenido de `apps-script/Codigo.gs` y cambiar `cambien-esta-clave` por una clave propia.
@@ -80,3 +80,7 @@ data/*.json            contenido editable
 sw.js                  modo sin conexión
 manifest.webmanifest   para instalar en el celular
 ```
+
+## Grupo (perfil)
+
+`estado.perfil = { nombres: [1 o 2], tipo: "pareja" | "amigos" | "solo", edades: [] }` se sincroniza con la planilla. Sin perfil, la página muestra la vista `#bienvenida`. Los cálculos usan `N()` (personas que viajan); los textos que cambian con una persona usan `ld(dos, uno)` en JS o `data-uno` en el HTML. El mensaje para arriendos sale de `preparacion.json > hospedaje.plantillas[tipo]` con `{nombres}`. Los dispositivos que ya tenían datos antes del perfil se migran una vez a Teoc y Francis.

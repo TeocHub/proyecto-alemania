@@ -1,9 +1,6 @@
 {
   "actualizado": "2026-11-20",
-  "personas": [
-    "Teoc",
-    "Francis"
-  ],
+  "personas": ["Persona 1", "Persona 2"],
   "tipoCambio": {
     "eur": 1097,
     "usd": 990,
@@ -219,7 +216,7 @@
         },
         {
           "id": "videx",
-          "texto": "Llenar el formulario VIDEX con la misma fecha de entrada que la pareja"
+          "texto": "Llenar el formulario VIDEX con la misma fecha de entrada que quien viaja contigo (si viajan dos)"
         }
       ]
     },

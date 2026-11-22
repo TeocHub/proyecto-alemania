@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Proyecto Alemania de Teoc y Francis</title>
+  <title>Proyecto Alemania</title>
   <meta name="description" content="El colchón de hoy y el plan para un año en Alemania.">
   <meta name="theme-color" content="#182638">
   <link rel="manifest" href="manifest.webmanifest">
@@ -33,6 +33,7 @@
     <symbol id="i-trabajos" viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5h6v2M3.5 12.5h17"/></symbol>
     <symbol id="i-vivir" viewBox="0 0 24 24"><path d="M5 20V6.5L12 4v16M12 9h7v11M8 8.5v.01M8 12v.01M8 15.5v.01M15.5 12.5v.01M15.5 16v.01M3.5 20h17"/></symbol>
     <symbol id="i-buscar" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-guia" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.6v.1"/></symbol>
     <symbol id="i-mas" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></symbol>
   </svg>
 
@@ -55,8 +56,9 @@
         <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
         <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
         <p class="riel-grupo">Siempre a mano</p>
+        <a href="#bienvenida" data-vista="bienvenida"><svg><use href="#i-guia"/></svg>Cómo funciona y su grupo</a>
         <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
-        <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Guardar entre los dos</a>
+        <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Conectar dispositivos</a>
       </nav>
     </aside>
 
@@ -67,10 +69,54 @@
       </header>
 
       <main id="contenido" tabindex="-1">
+        <section id="bienvenida" class="vista seccion bienvenida" data-titulo="Cómo funciona" hidden>
+          <div class="bienv-cabeza">
+            <h2 class="bienv-titulo">Planear un año en Alemania, sin llegar a ciegas.</h2>
+            <p class="bienv-intro">Una herramienta gratuita para quienes piensan irse desde Chile con la visa Working Holiday, solos o de a dos. Calcula cuánto ahorrar y para cuándo, ordena los trámites hasta tener la visa, compara ciudades, trabajos y arriendos, y responde las dudas que dan miedo.</p>
+          </div>
+
+          <div class="bienv-ideas">
+            <div class="bienv-idea"><span class="bienv-num">1</span><h3>Cuéntenle quiénes viajan</h3><p>Con sus nombres, la página calcula los fondos que la embajada le pide a cada persona y reparte las tareas.</p></div>
+            <div class="bienv-idea"><span class="bienv-num">2</span><h3>Todo se queda en su teléfono</h3><p>Nada se manda a ningún servidor. Si quieren ver lo mismo en dos teléfonos, conectan una planilla de Google propia.</p></div>
+            <div class="bienv-idea"><span class="bienv-num">3</span><h3>Vuelvan cuando duden</h3><p>Cada número se recalcula al cambiar un dato: la fecha, los sueldos o lo que ya ahorraron. Las dudas tienen su propio rincón.</p></div>
+          </div>
+
+          <div class="bienv-grid">
+            <form class="bienv-form" id="perfil-form" novalidate>
+              <h3 class="prep-titulo" id="perfil-titulo">¿Quiénes viajan?</h3>
+              <div class="segmentos-claros" id="perfil-cuantos" role="group" aria-label="Cuántos viajan">
+                <button type="button" data-cuantos="1">Viajo solo o sola</button>
+                <button type="button" data-cuantos="2">Viajamos dos</button>
+              </div>
+              <div class="segmentos-claros" id="perfil-tipo" role="group" aria-label="Qué son">
+                <button type="button" data-tipo="pareja">Somos pareja</button>
+                <button type="button" data-tipo="amigos">Somos amigos</button>
+              </div>
+              <div class="perfil-personas" id="perfil-personas"></div>
+              <p class="nota">La edad es opcional: sirve para avisarles si alguien no cumple la regla de tener entre 18 y 30 años al postular.</p>
+              <p class="dm-error" id="perfil-error" aria-live="polite"></p>
+              <button type="submit" class="boton" id="perfil-guardar">Empezar</button>
+            </form>
+
+            <div class="bienv-lado">
+              <div class="bienv-caja">
+                <h3>¿Les mandaron un enlace de su grupo?</h3>
+                <p>Ábranlo directo desde el mensaje (WhatsApp, correo). Este teléfono se conecta solo y trae los nombres y datos del grupo: no hace falta llenar nada aquí.</p>
+              </div>
+              <div class="bienv-caja">
+                <h3>Qué hay adentro</h3>
+                <p><strong>Ahora, en Santiago:</strong> el colchón, el reparto del sueldo, trabajos y dónde vivir en Chile, y un espacio para cuando aparecen las dudas.</p>
+                <p><strong>El plan de Alemania:</strong> la plata del viaje, las ciudades, trabajo y arriendo allá, los trámites hasta la visa y cómo prepararse.</p>
+                <p><strong>Siempre a mano:</strong> todas las dudas, conectar dispositivos y esta guía.</p>
+              </div>
+              <p class="nota">Los montos son estimaciones para planificar, revisadas con fuentes oficiales. Antes de pagar o postular, confírmenlos en la página de la Embajada de Alemania en Santiago.</p>
+            </div>
+          </div>
+        </section>
         <section id="inicio" class="vista inicio" data-titulo="Inicio">
           <div class="inicio-cabeza">
             <p class="hoy-fecha" id="hoy-fecha"></p>
-            <h1>Un año en Alemania, los dos.</h1>
+            <h1 id="titulo-inicio">Un año en Alemania, los dos.</h1>
             <p class="frase-fecha">
               Nos vamos en
               <label class="sr" for="mes">Mes de viaje</label>
@@ -122,14 +168,14 @@
                 <div class="economia-grid">
                   <form class="economia-datos" onsubmit="return false">
                     <fieldset class="eco-bloque">
-                      <legend>Lo que gana cada uno (líquido, al mes)</legend>
+                      <legend data-uno="Lo que ganas (líquido, al mes)">Lo que gana cada uno (líquido, al mes)</legend>
                       <div class="control dos">
                         <label><span data-persona="0"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="sueldo0" autocomplete="off"></span></label>
                         <label><span data-persona="1"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="sueldo1" autocomplete="off"></span></label>
                       </div>
                     </fieldset>
                     <fieldset class="eco-bloque">
-                      <legend>Gastos de la casa (de los dos, al mes)</legend>
+                      <legend data-uno="Gastos de la casa (al mes)">Gastos de la casa (de los dos, al mes)</legend>
                       <div class="control dos">
                         <label><span>Arriendo y gasto común</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="arriendo" autocomplete="off"></span></label>
                         <label><span>Luz, agua, gas, internet</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="cuentas" autocomplete="off"></span></label>
@@ -140,7 +186,7 @@
                       </div>
                     </fieldset>
                     <fieldset class="eco-bloque">
-                      <legend>Gastos personales de cada uno (celular, salud, estudios, gustos)</legend>
+                      <legend data-uno="Tus gastos personales (celular, salud, estudios, gustos)">Gastos personales de cada uno (celular, salud, estudios, gustos)</legend>
                       <div class="control dos">
                         <label><span data-persona="0"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="personal0" autocomplete="off"></span></label>
                         <label><span data-persona="1"></span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="personal1" autocomplete="off"></span></label>
@@ -336,7 +382,7 @@
           <div class="dinero">
             <form class="controles" id="controles" onsubmit="return false">
               <fieldset class="control">
-                <legend>Colchón para vivir allá (cada uno)</legend>
+                <legend data-uno="Colchón para vivir allá">Colchón para vivir allá (cada uno)</legend>
                 <div class="segmentos" id="colchones"></div>
                 <p class="ayuda" id="colchon-texto"></p>
               </fieldset>
@@ -459,7 +505,7 @@
           <div class="buscar-panel" id="panel-buscar-vivienda" role="tabpanel" aria-labelledby="tab-buscar-vivienda" hidden>
             <p class="prep-intro" id="viv-intro"></p>
             <div class="vivir-control">
-              <label for="viv-tope">Entre los dos pueden pagar hasta</label>
+              <label for="viv-tope" data-uno="Puedes pagar de arriendo hasta">Entre los dos pueden pagar hasta</label>
               <output id="viv-tope-out" for="viv-tope"></output>
               <input type="range" id="viv-tope" min="400" max="1600" step="25">
             </div>
@@ -493,7 +539,7 @@
           </div>
           <div class="sub-seccion">
             <div class="sub-cabeza" id="carpeta">
-              <h3>La carpeta de cada uno</h3>
+              <h3 data-uno="Tu carpeta">La carpeta de cada uno</h3>
               <p>Lo que hay que llevar el día de la cita, en original y copia. Toquen un documento para ver el detalle y marquen quién ya lo tiene listo.</p>
             </div>
             <div class="carpeta" id="carpeta-grid"></div>
@@ -533,21 +579,22 @@
           </div>
         </section>
 
-        <section id="conectar" class="vista seccion" data-titulo="Guardar entre los dos" hidden>
+        <section id="conectar" class="vista seccion" data-titulo="Conectar dispositivos" hidden>
           <div class="seccion-cabeza">
-            <h2>Guardar entre los dos</h2>
-            <p>Sin conectar, lo que anotan se queda solo en el dispositivo donde lo escriben. Con una planilla de Google de ustedes, los dos ven lo mismo en el celular y en la tablet. Es gratis y no se apaga aunque pasen semanas sin entrar.</p>
+            <h2>Conectar dispositivos</h2>
+            <p>Sin conectar, lo que anotan se queda solo en el dispositivo donde lo escriben. Con una planilla de Google propia, todos los teléfonos y tablets del grupo ven lo mismo. Es gratis, no se apaga aunque pasen semanas sin entrar, y cada grupo tiene la suya: lo de ustedes no se mezcla con lo de nadie más.</p>
           </div>
           <div class="conectar-cuerpo">
             <div class="conectar-panel" id="conectar-panel"></div>
             <div class="conectar-pasos">
-              <h3 class="prep-titulo">Cómo se conecta (una sola vez)</h3>
+              <h3 class="prep-titulo">Cómo se conecta</h3>
+              <p class="conectar-resumen">Se configura <strong>una sola vez, en un solo dispositivo</strong>, el de quien crea la planilla. Los demás no repiten nada: solo abren el enlace que les llega (paso 5) y quedan conectados con los nombres y datos del grupo.</p>
               <ol class="pasos">
-                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Crear la planilla</h4><p>Con la cuenta de Google de uno de los dos, abran <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a> y pónganle de nombre «Proyecto Alemania».</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Crear la planilla</h4><p>Con la cuenta de Google de una sola persona del grupo, abran <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a> y pónganle de nombre «Proyecto Alemania».</p></div></li>
                 <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Pegar el código</h4><p>En la planilla: <strong>Extensiones → Apps Script</strong>. Borren lo que aparece, peguen el código y, en la primera línea, cambien <code>cambien-esta-clave</code> por una frase que solo ustedes sepan.</p><p><button type="button" class="boton" id="copiar-codigo">Copiar el código</button> <span class="nota" id="codigo-copiado" aria-live="polite"></span></p></div></li>
                 <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Publicarlo</h4><p>Guarden (ícono de disquete) y vayan a <strong>Implementar → Nueva implementación</strong>. En el engranaje elijan <strong>Aplicación web</strong>. Ejecutar como: <strong>Yo</strong>. Quién tiene acceso: <strong>Cualquier persona</strong>. Toquen Implementar.</p></div></li>
                 <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Dar permiso</h4><p>Google pide autorizar. Si aparece «Google no verificó esta app», toquen <strong>Configuración avanzada → Ir a Proyecto Alemania</strong>: es su propio código, en su propia cuenta. Copien la dirección de la aplicación web (termina en <code>/exec</code>).</p></div></li>
-                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Conectar aquí</h4><p>Peguen la dirección y la clave en el recuadro y toquen Conectar. Después usen «Mandar el enlace» para que el otro se conecte con un toque.</p></div></li>
+                <li><span class="paso-punto" aria-hidden="true"></span><div><h4>Conectar aquí</h4><p>Peguen la dirección y la clave en el recuadro y toquen Conectar. Después toquen «Mandar el enlace a otro dispositivo» y envíenlo por WhatsApp. La otra persona solo lo abre en su teléfono: no tiene que crear nada ni configurar su grupo.</p></div></li>
               </ol>
               <p class="nota">Si algún día cambian el código, usen <strong>Implementar → Administrar implementaciones → Editar → Nueva versión</strong>: así la dirección no cambia y no hay que volver a conectar.</p>
             </div>
@@ -587,7 +634,8 @@
           <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
           <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
           <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
-          <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Guardar entre los dos</a>
+          <a href="#conectar" data-vista="conectar"><svg><use href="#i-conectar"/></svg>Conectar dispositivos</a>
+          <a href="#bienvenida" data-vista="bienvenida"><svg><use href="#i-guia"/></svg>Cómo funciona</a>
         </div>
       </div>
     </div>
