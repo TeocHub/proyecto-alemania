@@ -85,6 +85,10 @@ manifest.webmanifest   para instalar en el celular
 
 `estado.perfil = { nombres: [1 o 2], tipo: "pareja" | "amigos" | "solo", edades: [] }` se sincroniza con la planilla. Sin perfil, la página muestra la vista `#bienvenida`. Los cálculos usan `N()` (personas que viajan); los textos que cambian con una persona usan `ld(dos, uno)` en JS o `data-uno` en el HTML. El mensaje para arriendos sale de `preparacion.json > hospedaje.plantillas[tipo]` con `{nombres}`. Los dispositivos que ya tenían datos antes del perfil se migran una vez a Teoc y Francis.
 
-## Lo que vivieron otros (`data/el-ano.json`)
+## Su año allá (`data/el-ano.json`)
 
-Miedos ordenados por momento del año (antes de volar, primera semana, primer mes, cada fin de mes, invierno y fin de año, al irse) y por tema (plata, vivienda, salud, papeles, ánimo). Cada uno tiene lo que suele pasar, qué hacer, a veces una voz de alguien que lo vivió y sus fuentes. Los textos aceptan tokens `{{clave}}`.
+Calendario de 12 meses que parte en el mes de viaje del plan. Cada mes muestra estación, hora aproximada en que oscurece en Berlín, cómo está el trabajo y fechas fijas (`calendario`), y los relatos que caen en ese momento (`items`, ubicados por `momento` o, en invierno, por `mesCalendario`). Los textos aceptan tokens `{{clave}}`; las cifras que cambian viven en `plan.json > extranjero`.
+
+## Menú
+
+Ahora, en Santiago · El plan de Alemania · Cuando aparecen dudas (Todas las dudas, Cuando dudemos) · Su grupo (Quiénes viajan, Conectar dispositivos).
