@@ -553,7 +553,7 @@
     }
   ],
   "nota": "Las horas de oscurecer son de Berlín; en el sur oscurece unos minutos después. Las preguntas puntuales están en «Todas las dudas».",
-  "criterio": "Cada relato tiene una etiqueta. «Persona con nombre»: alguien que, en su propio texto o en una entrevista con nombre, cuenta que vivió en Alemania. «Foro o blog»: textos de foros, wikis y blogs de estudiantes, con autor anónimo o poco identificable; son reales y útiles, pero no se puede comprobar quién los escribió. Todo está resumido con nuestras palabras, traducido cuando hace falta, y enlaza al original. Las cifras que mencionan son de su año y su ciudad.",
+  "criterio": "Cada relato lleva una etiqueta. «Persona con nombre»: alguien identificado que cuenta, en su texto o en una entrevista, que vivió en Alemania. «Foro o blog»: textos de foros, wikis o blogs cuyo autor no se puede identificar. Cada relato dice primero quién es la persona y qué buscaba, y después lo que esa persona cuenta, sin agregar nada. Si esta página necesita advertir algo, va aparte como «Nota de esta página». Los montos que mencionan son de su año y su ciudad. Todos enlazan al texto original.",
   "relatos": [
     {
       "id": "nacho",
@@ -564,11 +564,12 @@
       "idioma": "español",
       "formato": "relato en primera persona",
       "tema": "animo",
-      "texto": "Tenía 24 años cuando viajó. Cuenta que en la despedida en el aeropuerto de Ezeiza lloró como nunca se imaginó que una persona pudiera llorar.",
+      "texto": "Cuenta que en la despedida, en el aeropuerto de Ezeiza, lloró más de lo que se imaginaba que una persona podía llorar.",
       "url": "https://www.yomeanimo.com/nacho-en-berlin-su-experiencia-con-la-working-holiday-alemania",
       "fuente": "YoMeAnimo",
       "mes": 0,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Argentino de 24 años. Se fue a Berlín con visa Working Holiday."
     },
     {
       "id": "ana",
@@ -579,11 +580,12 @@
       "idioma": "portugués",
       "formato": "relato en primera persona",
       "tema": "vivienda",
-      "texto": "Ella y su marido vivieron los primeros tres meses en un apart-hotel mientras buscaban departamento. Lo eligieron porque les permitía usar esa dirección para registrarse en la ciudad.",
+      "texto": "Los primeros tres meses vivieron en un apart-hotel mientras buscaban departamento. Lo eligieron porque permitía registrar esa dirección como domicilio (Anmeldung).",
       "url": "https://www.eurodicas.com.br/?p=91033",
       "fuente": "Euro Dicas",
       "mes": 0,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Brasileña. En 2022 llegó a Alemania con su marido, que tenía contrato de trabajo; ella entró con un permiso de reagrupación familiar."
     },
     {
       "id": "mariana",
@@ -594,11 +596,13 @@
       "idioma": "portugués",
       "formato": "relato en primera persona",
       "tema": "plata",
-      "texto": "Para la solvencia no usó una cuenta propia: una persona residente en Alemania firmó una declaración formal de que la mantendría (Verpflichtungserklärung).",
+      "texto": "Para demostrar los fondos que pide la embajada no usó una cuenta propia: una persona que vive en Alemania firmó una declaración formal comprometiéndose a cubrir sus gastos (Verpflichtungserklärung).",
       "url": "https://www.eurodicas.com.br/visto-de-ferias-trabalho-na-alemanha/",
       "fuente": "Euro Dicas",
       "nivel": "persona",
-      "mes": 0
+      "mes": 0,
+      "contexto": "Brasileña. Viajó a Alemania con visa Working Holiday.",
+      "notaPagina": "La embajada de Alemania en Santiago no acepta fondos de otra persona para la Working Holiday: desde Chile esta vía no sirve. Cada postulante necesita su propia cuenta."
     },
     {
       "id": "teo",
@@ -609,11 +613,12 @@
       "idioma": "español",
       "formato": "relato en primera persona",
       "tema": "vivienda",
-      "texto": "Pasó cinco días en un hostal y consiguió pieza escribiéndole a muchos anuncios con un mensaje ya armado. El primer mes usó un chip de prepago, porque para un plan con contrato le pedían el registro de domicilio.",
+      "texto": "Buscaba pieza en un piso compartido. Pasó sus primeros cinco días en un hostal y consiguió la pieza escribiendo a muchos anuncios con un mismo mensaje base. El primer mes usó un chip de celular de prepago, porque para un plan con contrato le pedían el registro de domicilio.",
       "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo",
       "fuente": "YoMeAnimo",
       "mes": 1,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Llegó a Colonia con visa Working Holiday. Su relato no dice de qué país es."
     },
     {
       "id": "manu",
@@ -624,11 +629,12 @@
       "idioma": "español",
       "formato": "relato en primera persona",
       "tema": "papeles",
-      "texto": "Hicieron el registro de domicilio a los ocho días de llegar. Dice que es lo más importante si quieren empezar a trabajar rápido.",
+      "texto": "Hicieron el registro de domicilio a los ocho días de llegar. Para él es el trámite más importante si se quiere empezar a trabajar pronto.",
       "url": "https://www.yomeanimo.com/alemania-primeros-pasos-manu",
       "fuente": "YoMeAnimo",
       "mes": 1,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Llegó a Alemania con visa Working Holiday, junto a su novia. Su relato no dice de qué país es."
     },
     {
       "id": "melanie",
@@ -639,11 +645,12 @@
       "idioma": "español",
       "formato": "relato en primera persona",
       "tema": "plata",
-      "texto": "Su primer alojamiento fue una pieza en casa de familia por Airbnb, pagada por mes, y los dueños aceptaron firmarle el registro. Intentó abrir N26, pero la verificación de identidad le falló tres veces en un mes; terminó abriendo cuenta en un banco tradicional con pasaporte y registro, sin cita.",
+      "texto": "Su primer alojamiento fue una pieza en casa de una familia, arrendada por mes a través de Airbnb; la familia le firmó el documento para registrar el domicilio. Quiso abrir una cuenta en N26, pero la verificación de identidad falló tres veces en un mes. Entonces abrió una cuenta en un banco tradicional, sin cita, con su pasaporte y el registro.",
       "url": "https://www.yomeanimo.com/vivir-y-trabajar-en-colonia-por-melanie",
       "fuente": "YoMeAnimo",
       "nivel": "persona",
-      "mes": 1
+      "mes": 1,
+      "contexto": "Uruguaya de 27 años. Llegó a Colonia con visa Working Holiday."
     },
     {
       "id": "shiori",
@@ -654,11 +661,12 @@
       "idioma": "japonés",
       "formato": "columna en primera persona",
       "tema": "vivienda",
-      "texto": "Cuenta que en los pisos compartidos la pieza se decide en un té o una comida con quienes ya viven ahí, sin corredor. Casi cayó en una estafa: un anuncio barato cuyo «dueño» estaba en el extranjero, le pedía unos €500 de garantía más un mes de arriendo antes de conocerse y prometía mandar las llaves. Una amiga la ayudó a darse cuenta.",
+      "texto": "Cuenta que en los pisos compartidos no hay corredora: se escribe a quien publica la pieza y se conoce a los compañeros en un té o una comida antes de decidir. Una vez estuvo cerca de caer en una estafa: un anuncio barato cuyo supuesto dueño estaba en el extranjero le pedía unos €500 de garantía más un mes de arriendo antes de conocerse, y prometía mandarle las llaves. Una amiga le advirtió que era un fraude.",
       "url": "https://www.businessinsider.jp/article/germanys-unconventional-housing-hunt-five-moves-no-agent-just-tea/",
       "fuente": "Business Insider Japan",
       "mes": 1,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Escritora que lleva siete años en Alemania, primero en Berlín y después en Baja Sajonia. Escribe para lectores de Japón."
     },
     {
       "id": "hua",
@@ -669,11 +677,12 @@
       "idioma": "chino",
       "formato": "carta de lector en primera persona",
       "tema": "vivienda",
-      "texto": "Escribe al cumplir un mes en Gotinga sin tener casa: todo el tiempo libre entre el curso de alemán y los trámites se le iba buscando pieza. Cuenta que en un piso compartido la decisión final la toman los compañeros que ya viven ahí.",
+      "texto": "Escribe el día en que cumple un mes en la ciudad sin tener dónde vivir. Ese mes, todo el tiempo que le dejaban el curso de alemán y los trámites de la universidad lo pasó buscando pieza. Explica que en un piso compartido la decisión final la toman los compañeros que ya viven ahí.",
       "url": "https://crossing.cw.com.tw/article/12458",
       "fuente": "天下 Crossing",
       "mes": 1,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Estudiante recién llegado a Gotinga. Su texto se publicó en un medio de Taiwán."
     },
     {
       "id": "cristina",
@@ -684,11 +693,12 @@
       "idioma": "inglés",
       "formato": "newsletter en primera persona",
       "tema": "papeles",
-      "texto": "Vivió seis meses en un subarriendo que no permitía registrar el domicilio. Aunque le pagaban el sueldo en una cuenta alemana, sin registro no podía obtener su número de impuestos y tuvo que buscar otra vía. Su consejo: asegurar el registro antes que cualquier otra cosa.",
+      "texto": "Sus primeros seis meses vivió en un subarriendo que no permitía registrar el domicilio. Aunque ya recibía su sueldo en una cuenta alemana, sin ese registro no podía obtener su número de impuestos y tuvo que buscar otro camino para conseguirlo.",
       "url": "https://lazoletters.substack.com/p/a-grueling-winter",
       "fuente": "Lazo Letters",
       "mes": 2,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Estadounidense. Se mudó a Berlín en octubre para trabajar; no necesitaba visa."
     },
     {
       "id": "iaser",
@@ -699,11 +709,12 @@
       "idioma": "español",
       "formato": "relato en primera persona",
       "tema": "plata",
-      "texto": "Su primer trabajo, preparando pedidos en una fábrica de un pueblo de montaña, lo consiguió la familia de un amigo a las dos semanas de llegar. En Colonia encontró trabajo en un restaurante mandando su CV a locales de comida hispana, aunque ahí se hablaba alemán. Trabajando unas 30 horas a la semana le alcanzaba para vivir y ahorrar algo cada mes.",
+      "texto": "Su primer trabajo fue preparando pedidos en una fábrica de Dreiborn, un pueblo de montaña de unos 900 habitantes. Lo consiguió a las dos semanas de llegar, gracias a la familia de un amigo.",
       "url": "https://www.yomeanimo.com/viajar-trabajar-y-disfrutar-la-experiencia-de-iaser-en-alemania",
       "fuente": "YoMeAnimo",
       "mes": 1,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Argentino de 26 años. Llegó a Alemania con visa Working Holiday en enero de 2020."
     },
     {
       "id": "daniel",
@@ -714,11 +725,12 @@
       "idioma": "inglés",
       "formato": "entrevista",
       "tema": "animo",
-      "texto": "Encontró trabajo acercándose directamente a la gente y por LinkedIn. Dice que con inglés se arregla en todas partes, pero que en Alemania no se conoce gente tan rápido como en su país, aunque las amistades después son más cercanas.",
+      "texto": "Consiguió trabajo hablando directamente con la gente y por LinkedIn. Dice que con inglés se arregla en todas partes, pero que en Alemania se conoce gente nueva más lento que en Nueva Zelanda, aunque las amistades que se forman son más cercanas.",
       "url": "https://www.deutschland.de/en/topic/life/germany-and-new-zealand-working-holiday-visas",
       "fuente": "deutschland.de",
       "mes": 4,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Neozelandés. Llegó a Alemania con visa Working Holiday porque su novia es alemana; después pasó a una visa de trabajo."
     },
     {
       "id": "candice",
@@ -729,11 +741,12 @@
       "idioma": "inglés",
       "formato": "entrevista",
       "tema": "vivienda",
-      "texto": "Llegó a un lugar temporal y encontró departamento recién después de hacer amigos en Berlín. Advierte que las horas para trámites pueden tardar hasta dos meses.",
+      "texto": "Llegó a un alojamiento temporal y consiguió departamento recién cuando ya tenía amigos en la ciudad. Cuenta que conseguir hora para un trámite puede tardar hasta dos meses.",
       "url": "https://gigigriffis.com/unconventional-interviews-living-in-berlin-for-a-year-on-a-youth-mobility-visa/",
       "fuente": "Gigi Griffis",
       "nivel": "persona",
-      "mes": 1
+      "mes": 1,
+      "contexto": "Canadiense. Vivió en Berlín entre 2015 y 2016 con la visa juvenil para canadienses (Youth Mobility)."
     },
     {
       "id": "muriel",
@@ -745,10 +758,11 @@
       "formato": "entrevista",
       "mesCalendario": 11,
       "tema": "animo",
-      "texto": "Llegaron en invierno y le sorprendió que el día se acabara a las cuatro de la tarde. Cuenta que con el frío tiene menos energía y le cuesta hacer cosas simples.",
+      "texto": "Cuenta que le sorprendió que oscureciera a las cuatro de la tarde, y que con el frío tiene menos energía y le cuesta hacer cosas simples.",
       "url": "https://www.latercera.com/paula/depresion-estacional-puede-el-invierno-afectar-la-salud-mental/",
       "fuente": "La Tercera",
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Chilena de 27 años. Se fue a vivir a Alemania con su pololo; llegaron en invierno."
     },
     {
       "id": "iaser-nieve",
@@ -760,10 +774,11 @@
       "formato": "relato en primera persona",
       "mesCalendario": 1,
       "tema": "animo",
-      "texto": "En el pueblo de montaña caminaba al trabajo con unos 50 centímetros de nieve. El frío y el aislamiento fueron parte de lo que lo hizo mudarse a Colonia en mayo.",
+      "texto": "Caminaba al trabajo con unos 50 centímetros de nieve. Cuenta que el frío y el aislamiento fueron parte de lo que lo llevó a mudarse a Colonia en mayo.",
       "url": "https://www.yomeanimo.com/viajar-trabajar-y-disfrutar-la-experiencia-de-iaser-en-alemania",
       "fuente": "YoMeAnimo",
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Argentino de 26 años. Pasó su primer invierno en Dreiborn, un pueblo de montaña."
     },
     {
       "id": "cristina-invierno",
@@ -775,10 +790,11 @@
       "formato": "newsletter en primera persona",
       "mesCalendario": 12,
       "tema": "animo",
-      "texto": "Describe su primer invierno como triste: jornadas largas frente al computador, la búsqueda de departamento postulando a casi todo y días de ansiedad. Lo cuenta para que quien llega sepa que no es el único.",
+      "texto": "Describe su primer invierno como triste: pasaba más de diez horas al día frente al computador, postulaba a casi todos los departamentos que veía y tenía ansiedad por el futuro.",
       "url": "https://lazoletters.substack.com/p/a-grueling-winter",
       "fuente": "Lazo Letters",
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Estadounidense. Se mudó a Berlín en octubre para trabajar."
     },
     {
       "id": "nicole",
@@ -790,10 +806,11 @@
       "formato": "columna en primera persona",
       "mesCalendario": 1,
       "tema": "animo",
-      "texto": "Tardó un año y ocho meses en sentir Alemania como su casa. Dice que en invierno, con el frío y los días oscuros, esa duda y la nostalgia se sienten más fuerte.",
+      "texto": "Tardó un año y ocho meses en sentir Alemania como su casa. Cuenta que en invierno, con el frío y los días oscuros, la duda y la nostalgia se hacen más fuertes.",
       "url": "https://www.eurodicas.com.br/?p=28945",
       "fuente": "Euro Dicas",
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Brasileña. Vive en Alemania desde 2019 y escribe una columna sobre su vida allá."
     },
     {
       "id": "francesca",
@@ -804,11 +821,12 @@
       "idioma": "español",
       "formato": "entrevista en prensa",
       "tema": "plata",
-      "texto": "Llegó sin trabajo asegurado, sin saber alemán y con inglés básico. Consiguió empleo como mucama en un hotel de cuatro estrellas, preparando habitaciones; cuenta que el trabajo físico es pesado y que termina el día agotada.",
+      "texto": "Llegó sin trabajo asegurado, sin hablar alemán y con inglés básico. Consiguió trabajo como mucama en un hotel de cuatro estrellas. Cuenta que prepara unas 40 camas al día y que termina agotada.",
       "url": "https://www.meganoticias.cl/tendencias/512114-nueva-vida-francesa-conserva-vive-en-alemania-en-que-trabaja-14-01-2026.html",
       "fuente": "Meganoticias",
       "mes": 2,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Chilena. Se fue a Núremberg con su hijo, que quería estudiar allá."
     },
     {
       "id": "lisi",
@@ -819,11 +837,12 @@
       "idioma": "español",
       "formato": "entrevista en prensa",
       "tema": "animo",
-      "texto": "Lo que más le impactó al llegar fue el respeto por las reglas, hasta en los detalles, y que la comunicación en Alemania es muy directa. Sus propias dificultades al llegar la llevaron a crear una organización que ayuda a otros inmigrantes.",
+      "texto": "Lo que más le chocó al llegar fue el respeto por las reglas, hasta en detalles pequeños, y que la gente se comunica de forma muy directa. Sus propias dificultades al llegar la llevaron a crear una organización que ayuda a otros inmigrantes.",
       "url": "https://www.lanacion.com.ar/lifestyle/vive-en-munich-es-argentina-y-tuvo-una-idea-admirable-para-afrontar-los-impactos-culturales-ambas-nid13082025/",
       "fuente": "La Nación",
       "mes": 1,
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Argentina. Se instaló en Múnich porque su marido consiguió trabajo allá."
     },
     {
       "id": "daniela",
@@ -835,10 +854,11 @@
       "formato": "entrevista",
       "mesCalendario": 12,
       "tema": "animo",
-      "texto": "Llegó a trabajar como educadora en pleno invierno, con todo el frío que eso significa viniendo de Colombia. Hoy trabaja en una guardería y cuenta su vida allá a través del trabajo y las amistades que fue haciendo.",
+      "texto": "Llegó en pleno invierno, con el frío que eso significa viniendo de Colombia. Hoy trabaja en una guardería.",
       "url": "https://www.deutschland.de/es/topic/economia/trabajar-en-alemania-educadora-de-colombia",
       "fuente": "deutschland.de",
-      "nivel": "persona"
+      "nivel": "persona",
+      "contexto": "Colombiana. Llegó a Alemania en el invierno de 2022 para trabajar como educadora, a través de una agencia."
     },
     {
       "id": "mariana-despues",
@@ -849,11 +869,12 @@
       "idioma": "portugués",
       "formato": "relato en primera persona",
       "tema": "animo",
-      "texto": "Destaca que trabajar durante el año le ayudó a aprender el idioma en el día a día. Al terminar encontró un programa del gobierno que le permitió cambiar de visa y hoy es profesora de matemática en una escuela alemana.",
+      "texto": "Cuenta que trabajar durante ese año le ayudó a aprender alemán en el día a día. Al terminar, entró a un programa del gobierno alemán que le permitió cambiar de visa y trabajar en su profesión: hoy es profesora de matemática en una escuela alemana.",
       "url": "https://www.eurodicas.com.br/visto-de-ferias-trabalho-na-alemanha/",
       "fuente": "Euro Dicas",
       "nivel": "persona",
-      "mes": 12
+      "mes": 12,
+      "contexto": "Brasileña. Viajó a Alemania con visa Working Holiday."
     },
     {
       "id": "melanie-trabajo",
@@ -864,11 +885,13 @@
       "idioma": "español",
       "formato": "relato en primera persona",
       "tema": "plata",
-      "texto": "Empezó trabajando en limpieza de casas por una app, como independiente, unas seis horas al día de lunes a sábado. Antes de hacer lo mismo, revisen si su visa permite trabajar como independiente.",
+      "texto": "Trabajó limpiando casas a través de una aplicación, como trabajadora independiente, unas seis horas al día de lunes a sábado.",
       "url": "https://www.yomeanimo.com/vivir-y-trabajar-en-colonia-por-melanie",
       "fuente": "YoMeAnimo",
       "nivel": "persona",
-      "mes": 2
+      "mes": 2,
+      "contexto": "Uruguaya de 27 años. Llegó a Colonia con visa Working Holiday.",
+      "notaPagina": "Algunas Working Holiday no permiten trabajar como independiente. Antes de aceptar un trabajo así, confírmenlo con la embajada."
     },
     {
       "id": "candice-irse",
@@ -879,11 +902,12 @@
       "idioma": "inglés",
       "formato": "entrevista",
       "tema": "plata",
-      "texto": "Vivió de trabajos sueltos; aunque Berlín le pareció barato, la falta de trabajo estable y de plata fue lo que la hizo volver. Lo más difícil fue extrañar a su familia, porque viajar a casa era caro. Dice que no cree que sea su última vez en Berlín.",
+      "texto": "Vivió de trabajos ocasionales. Berlín le pareció barato, pero no tener trabajo estable ni plata suficiente fue lo que la hizo volver. Lo más difícil para ella fue extrañar a su familia, porque viajar a Canadá le salía caro.",
       "url": "https://gigigriffis.com/unconventional-interviews-living-in-berlin-for-a-year-on-a-youth-mobility-visa/",
       "fuente": "Gigi Griffis",
       "nivel": "persona",
-      "mes": 12
+      "mes": 12,
+      "contexto": "Canadiense. Vivió en Berlín entre 2015 y 2016 con la visa juvenil para canadienses (Youth Mobility)."
     },
     {
       "id": "aachen",
@@ -896,9 +920,10 @@
       "nivel": "foro",
       "mes": 1,
       "tema": "vivienda",
-      "texto": "La última vez que buscó pieza escribió más de 50 mensajes y visitó 17 departamentos antes de encontrar uno. Recomienda reutilizar la parte del mensaje que habla de uno mismo, porque hay que escribir mucho, y no rendirse.",
+      "texto": "Cuenta que la última vez que buscó pieza escribió más de 50 mensajes y visitó 17 departamentos antes de conseguir una. Dice que reutilizaba la parte del mensaje en que se presentaba, porque había que escribir muchísimos.",
       "url": "https://localwiki.org/aachen/Wohngemeinschaften",
-      "fuente": "LocalWiki Aachen"
+      "fuente": "LocalWiki Aachen",
+      "contexto": "Texto anónimo en una wiki de estudiantes de Aquisgrán, sobre cómo conseguir pieza en un piso compartido."
     },
     {
       "id": "jakub",
@@ -911,9 +936,10 @@
       "nivel": "foro",
       "mes": 1,
       "tema": "vivienda",
-      "texto": "Junto a su pareja mandaron quizás más de cien correos antes de recibir una respuesta positiva, que llegó gracias a un contacto de la organización estudiantil (Studentenwerk).",
+      "texto": "Entre los dos mandaron quizás más de cien correos a anuncios de arriendo antes de recibir una respuesta positiva. Esa respuesta llegó gracias a un contacto que su pareja encontró en la web del Studentenwerk, la organización que administra residencias y servicios para estudiantes.",
       "url": "https://jakubmarian.com/finding-a-student-flat-in-berlin/",
-      "fuente": "jakubmarian.com"
+      "fuente": "jakubmarian.com",
+      "contexto": "Estudiante en Berlín. Buscaba departamento en arriendo para vivir con su pareja."
     },
     {
       "id": "mumsnet",
@@ -926,9 +952,10 @@
       "nivel": "foro",
       "mes": 1,
       "tema": "vivienda",
-      "texto": "Cuenta que su hija llevaba tres semanas subarrendando y seguía buscando, con cientos de personas postulando a cada pieza. En el mismo hilo, otra persona que estudió en Berlín dice que encontró su piso compartido en WG-Gesucht después de bastantes mensajes.",
+      "texto": "Cuenta que su hija llevaba tres semanas en un subarriendo temporal y seguía buscando pieza, con cientos de personas postulando a cada una. En el mismo hilo, otra persona que estudió en Berlín dice que encontró su pieza en WG-Gesucht después de mandar bastantes mensajes.",
       "url": "https://www.mumsnet.com/talk/higher_education/4620429-accommodation-for-berlin-for-9-months-is-anyone-studying-abroad-in-berlin",
-      "fuente": "Mumsnet"
+      "fuente": "Mumsnet",
+      "contexto": "Madre de una estudiante que se mudó a Berlín por nueve meses. Escribe en un foro británico, en 2022."
     },
     {
       "id": "luke",
@@ -941,9 +968,10 @@
       "nivel": "foro",
       "mes": 2,
       "tema": "vivienda",
-      "texto": "Al mes de llegar vivía en un primer piso compartido caótico: guardaba la comida en el balcón helado y había ruido y gritos en la pieza de al lado. El siguiente fue lo contrario, acogedor, y se quedó ahí dos años. Recuerda a un conocido que tenía más de 200 correos de WG-Gesucht en su bandeja.",
+      "texto": "Al mes de llegar vivía en un piso compartido en malas condiciones: guardaba la comida en el balcón helado y escuchaba gritos y cosas rompiéndose en la pieza de al lado. Su siguiente piso compartido fue acogedor y se quedó ahí dos años.",
       "url": "https://www.goethe.de/ins/au/en/kul/sup/adb/bu7/21071072.html",
-      "fuente": "Goethe-Institut Australia"
+      "fuente": "Goethe-Institut Australia",
+      "contexto": "Bloguero invitado del Goethe-Institut Australia. Escribe sobre los pisos compartidos donde vivió en Berlín."
     },
     {
       "id": "floraidh",
@@ -956,9 +984,10 @@
       "nivel": "persona",
       "mes": 2,
       "tema": "animo",
-      "texto": "Había preparado cada trámite leyendo foros, pero nunca encontró consejos sobre salud mental. A las cinco semanas de llegar, su médico le dio licencia y le recomendó descansar y salir a caminar. Escribe porque eso era lo que más le hizo falta leer antes de llegar.",
+      "texto": "Antes de llegar leyó foros para preparar cada trámite, pero nunca encontró nada sobre salud mental, que fue lo que más necesitó. A las cinco semanas en Alemania, su médico le dio licencia del trabajo por salud mental y le indicó descansar y salir a caminar.",
       "url": "https://www.thelocal.com/20180417/i-arrived-in-berlin-expecting-a-giddy-european-adventure-instead-i-got-depression",
-      "fuente": "The Local"
+      "fuente": "The Local",
+      "contexto": "Escribe columnas en The Local sobre su llegada a Berlín."
     },
     {
       "id": "rebecca",
@@ -971,24 +1000,42 @@
       "nivel": "foro",
       "mes": 4,
       "tema": "vivienda",
-      "texto": "Después de cuatro meses buscando a ratos, consiguió pieza en un piso compartido de Tempelhof: los compañeros habían recibido varios cientos de correos para esa pieza.",
+      "texto": "La consiguió en Tempelhof después de cuatro meses de búsqueda intermitente. Los compañeros de piso le contaron que para esa pieza habían recibido varios cientos de correos.",
       "url": "https://www.timeshighereducation.com/student/blogs/student-blog-finding-accommodation-berlin",
-      "fuente": "Times Higher Education"
+      "fuente": "Times Higher Education",
+      "contexto": "Estudiante en Berlín. Buscaba pieza en un piso compartido."
     },
     {
       "id": "study-invierno",
       "nombre": "Bloguera de Study in Germany",
       "pais": "no lo dice (viene de un país con sol todo el año)",
-      "ciudad": "Múnich",
+      "ciudad": "Alemania",
       "cuando": "su primer invierno",
       "idioma": "inglés",
       "formato": "blog de estudiante",
       "nivel": "foro",
       "mesCalendario": 11,
       "tema": "animo",
-      "texto": "Tenía miedo de que su primer invierno fuera deprimente, porque en su país hay sol todo el año. Cuenta que los primeros días de la temporada fueron los más pesados y que después se fue acostumbrando; armar una rutina la ayudó.",
+      "texto": "Antes de su primer invierno tenía miedo de deprimirse. Cuenta que los primeros días de la temporada fueron los más pesados y que después se fue acostumbrando. Entre sus consejos está armar una rutina.",
       "url": "https://www.study-in-germany.com/en/community/when-the-winter-comes/",
-      "fuente": "Study in Germany"
+      "fuente": "Study in Germany",
+      "contexto": "Estudiante en Alemania que viene de un país con sol todo el año. Escribe en el blog oficial Study in Germany."
+    },
+    {
+      "id": "iaser-colonia",
+      "nombre": "Iaser",
+      "pais": "Argentina",
+      "ciudad": "Dreiborn y después Colonia",
+      "cuando": "llegó en enero de 2020, 26 años",
+      "idioma": "español",
+      "formato": "relato en primera persona",
+      "tema": "plata",
+      "texto": "En Colonia entró a trabajar en un restaurante después de mandar su CV a locales de comida española; aunque el local era español, ahí se hablaba alemán. Vivía en un piso compartido con otras cuatro personas. Trabajando unas 30 horas a la semana ganaba alrededor de €1.000 al mes y ahorraba una parte.",
+      "url": "https://www.yomeanimo.com/viajar-trabajar-y-disfrutar-la-experiencia-de-iaser-en-alemania",
+      "fuente": "YoMeAnimo",
+      "mes": 5,
+      "nivel": "persona",
+      "contexto": "Argentino de 26 años. Llegó con visa Working Holiday en enero de 2020 y en mayo se mudó a Colonia."
     }
   ]
 }

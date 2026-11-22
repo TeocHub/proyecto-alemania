@@ -1756,16 +1756,17 @@
     const htmlRelatos = relatos.length ? `
       <section class="ano-bloque ano-relatos" aria-labelledby="ano-t-relatos">
         <h3 class="ano-bloque-titulo" id="ano-t-relatos">Lo que contaron</h3>
-        <p class="ano-bloque-sub">Primero las personas con nombre; después foros y blogs. Resumen con nuestras palabras; el original está en el enlace.</p>
+        <p class="ano-bloque-sub">Primero las personas con nombre; después foros y blogs. Cada uno enlaza a su texto original.</p>
         <div class="relatos">${relatos.map((x) => `
           <article class="relato" data-nivel="${x.nivel}">
             <p class="relato-nivel">${x.nivel === "persona" ? "Persona con nombre" : "Foro o blog"}</p>
             <header>
               <p class="relato-nombre">${escapar(x.nombre)}</p>
               <p class="relato-meta">${escapar(x.pais === "no lo dice" ? "País no indicado" : x.pais)} · ${escapar(x.ciudad)}</p>
-              <p class="relato-meta">${escapar(x.cuando)}</p>
             </header>
+            <p class="relato-contexto">${escapar(x.contexto)}</p>
             <p class="relato-texto">${escapar(x.texto)}</p>
+            ${x.notaPagina ? `<p class="relato-nota"><strong>Nota de esta página:</strong> ${escapar(x.notaPagina)}</p>` : ""}
             <footer class="relato-pie">
               <span class="relato-sello">${escapar(mayus(x.formato))}${x.idioma !== "español" ? ` · traducido del ${escapar(x.idioma)}` : ""}</span>
               <a href="${x.url}" target="_blank" rel="noopener">Leer el original en ${escapar(x.fuente)}</a>
@@ -1816,10 +1817,12 @@
             <p class="relato-nombre">${escapar(x.nombre)}</p>
             <p class="relato-meta">${escapar(x.pais === "no lo dice" ? "País no indicado" : x.pais)} · ${escapar(x.ciudad)}</p>
           </header>
+          <p class="relato-contexto">${escapar(x.contexto)}</p>
           ${lista.map((y) => { const p = dondeEsta(y); return `
             <div class="persona-momento">
               ${p ? `<button type="button" class="persona-mes" data-ir-parada="${p.id}">${etiqueta(p)}</button>` : ""}
               <p class="relato-texto">${escapar(y.texto)}</p>
+              ${y.notaPagina ? `<p class="relato-nota"><strong>Nota de esta página:</strong> ${escapar(y.notaPagina)}</p>` : ""}
             </div>`; }).join("")}
           <footer class="relato-pie">
             <span class="relato-sello">${escapar(mayus(x.formato))}${x.idioma !== "español" ? ` · traducido del ${escapar(x.idioma)}` : ""}</span>
