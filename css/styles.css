@@ -1700,3 +1700,49 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .mas-grid a .opcional { margin-left: 0.4rem; }
 .aviso-opcional { margin-top: 0.8rem; padding: 0.6rem 0.8rem; background: var(--aviso); border-left: 4px solid var(--linea-oscura); border-radius: 4px; font-size: var(--t-0); }
 .sin-colchon .ajuste-colchon { display: none; }
+
+/* Glosario: la palabra en alemán se toca y aparece su letrero, como el de una estación */
+.glosa {
+  cursor: pointer; text-decoration: underline dotted var(--linea-oscura); text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em; border-radius: 3px;
+}
+.glosa:hover { text-decoration-style: solid; }
+.glosa[aria-expanded="true"] { background: var(--aviso); text-decoration-style: solid; }
+.glosa:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+.glosa-tarjeta {
+  position: fixed; z-index: 50; width: min(21rem, calc(100vw - 24px));
+  background: var(--tinta); color: var(--hoja); border-radius: 12px;
+  padding: 0 1rem 0.85rem; box-shadow: 0 12px 32px rgba(24, 38, 56, 0.28);
+  border-top: 6px solid var(--linea); font-size: var(--t-0); line-height: 1.5;
+}
+.glosa-tarjeta::before {
+  content: ""; position: absolute; left: var(--flecha, 50%); width: 12px; height: 12px;
+  transform: translateX(-50%) rotate(45deg); background: var(--tinta);
+}
+.glosa-tarjeta[data-lado="abajo"]::before { top: -13px; background: var(--linea); }
+.glosa-tarjeta[data-lado="arriba"]::before { bottom: -6px; }
+.glosa-cabeza { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; padding-top: 0.7rem; }
+.glosa-termino {
+  margin: 0; font-family: var(--display); font-stretch: 78%; font-weight: 800;
+  font-size: 1.45rem; line-height: 1.05; overflow-wrap: anywhere;
+}
+.glosa-cerrar {
+  flex: none; font: inherit; font-size: 1.4rem; line-height: 1; width: 2rem; height: 2rem; margin: -0.2rem -0.4rem 0 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--hoja); cursor: pointer;
+}
+.glosa-cerrar:hover, .glosa-cerrar:focus-visible { background: rgba(251, 252, 253, 0.14); outline: none; }
+.glosa-dice { margin: 0.1rem 0 0.55rem; color: var(--linea); font-weight: 700; }
+.glosa-def { margin: 0 0 0.6rem; }
+.glosa-fuente { margin: 0; padding-top: 0.5rem; border-top: 1px solid rgba(251, 252, 253, 0.18); color: #c3cdd8; }
+.glosa-fuente a { color: #b9e4dd; }
+
+/* Consulados de Chile: cuatro letreros, uno por zona */
+.consulados { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.6rem; margin: 0.4rem 0 1rem; }
+.consulado {
+  border-radius: 10px; background: var(--papel); padding: 0.75rem 0.9rem;
+  border-left: 5px solid var(--suyo); font-size: var(--t-0);
+}
+.consulado p { margin: 0 0 0.35rem; }
+.consulado-ciudad { font-family: var(--display); font-stretch: 78%; font-weight: 800; font-size: var(--t-2); }
+.consulado-zona { color: var(--tinta-suave); margin-bottom: 0 !important; }
+.consulado a { color: var(--tinta); font-weight: 700; }

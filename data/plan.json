@@ -92,6 +92,7 @@
     "brutoCompleta2027": 2530,
     "netoCompleta2027": 1830,
     "netoMedia2027": 1080,
+    "minijob2026": 603,
     "minijob2027": 633
   },
   "ruta": [
@@ -506,6 +507,21 @@
       15
     ],
     "fuente": "Betriebskostenspiegel del Deutscher Mieterbund (año 2024), precios de luz 2026 y Beitragsservice"
+  },
+  "llegar": {
+    "_nota": "Datos de las dudas de la maleta, seguridad y emergencias. Revisar cada año: el invierno y la estadística policial cambian; el plazo de la AGG tiene una reforma en trámite que lo subiría a cuatro meses.",
+    "voltaje": 230,
+    "frecuencia": 50,
+    "inviernoMedia": 1.8,
+    "inviernoMin": -21.7,
+    "inviernoFuente": "DWD, invierno 2025/26",
+    "remediosMeses": 3,
+    "delitosBaja": 5.6,
+    "violenciaBaja": 2.3,
+    "delitosFuente": "Estadística policial (PKS) 2025",
+    "plazoAGGMeses": 2,
+    "pasaporteExteriorUsd": [91, 3],
+    "salvoconductoDias": 10
   },
   "puedesIr": {
     "fuente": "https://santiago.diplo.de/cl-es/service/05-visaeinreise/1210626-1210626",
