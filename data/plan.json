@@ -426,6 +426,11 @@
       "url": "https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/medikamente/arzneimittelkauf-im-ausland-10735"
     }
   ],
+  "extranjero": {
+    "paisesWorkingHolidayLatam": ["Argentina", "Brasil", "Chile", "Uruguay"],
+    "comisionCuentaRut": 1.9,
+    "efectivoLlegada": [200, 300]
+  },
   "vivir": {
     "nebenkostenM2": 2.67,
     "calefaccionM2": 1.32,

@@ -379,7 +379,10 @@
       copagoHoyMin: num(plan.vivir.copagoHoy[0]),
       copagoHoyMax: num(plan.vivir.copagoHoy[1]),
       copago2027Min: num(plan.vivir.copago2027[0]),
-      copago2027Max: num(plan.vivir.copago2027[1])
+      copago2027Max: num(plan.vivir.copago2027[1]),
+      paisesWH: (() => { const l = plan.extranjero.paisesWorkingHolidayLatam; return l.length > 1 ? `${l.slice(0, -1).join(", ")} y ${l[l.length - 1]}` : l.join(""); })(),
+      comisionRut: num(plan.extranjero.comisionCuentaRut) + "%",
+      efectivo: `€${plan.extranjero.efectivoLlegada[0]}–${plan.extranjero.efectivoLlegada[1]}`
     };
   }
 
@@ -1644,7 +1647,6 @@
     const A = anoData;
     if (!A.momentos.some((m) => m.id === estado.anoMomento)) estado.anoMomento = A.momentos[0].id;
     if (estado.anoTema && !A.temas.some((x) => x.id === estado.anoTema)) estado.anoTema = null;
-    $("#ano-intro").textContent = A.intro;
     $("#ano-linea").addEventListener("click", (e) => {
       const b = e.target.closest("[data-momento]");
       if (!b) return;
@@ -1670,6 +1672,7 @@
   function pintarAno() {
     const A = anoData;
     if (!A || !ctx) return;
+    $("#ano-intro").innerHTML = t(A.intro);
     const tema = estado.anoTema;
     const delTema = (it) => !tema || it.tema === tema;
     $("#ano-linea").innerHTML = A.momentos.map((m, i) => {
