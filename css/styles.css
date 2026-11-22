@@ -1515,24 +1515,41 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   .bienv-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- Lo que vivieron otros ---------- */
-.ano-linea { position: relative; display: grid; grid-template-columns: repeat(6, minmax(8.5rem, 1fr)); gap: 0.4rem; margin: 1.5rem 0 1.2rem; padding: 0.3rem 0 0 0.3rem; overflow-x: auto; align-items: start; scrollbar-width: thin; }
-.ano-linea::before { content: ""; position: absolute; top: 1.15rem; left: 0.9rem; right: 0.9rem; height: 6px; border-radius: 3px; background: var(--linea); min-width: calc(6 * 8.5rem - 1.8rem); }
-.ano-estacion { position: relative; font: inherit; color: var(--tinta); background: none; border: 0; padding: 0 0.4rem 0.6rem 0; text-align: left; cursor: pointer; display: grid; gap: 0.15rem; align-content: start; justify-items: start; border-radius: 8px; }
-.ano-punto { width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--hoja); border: 4px solid var(--tinta); margin-bottom: 0.45rem; transition: transform 0.15s ease; }
-.ano-estacion[aria-selected="true"] .ano-punto { background: var(--tinta); transform: scale(1.15); }
-.ano-nombre { font-family: var(--display); font-weight: 700; font-size: var(--t-1); line-height: 1.15; }
-.ano-cuando { font-size: 0.8rem; color: var(--tinta-suave); }
-.ano-cuenta { font-size: 0.78rem; font-weight: 700; color: var(--suyo); }
+/* ---------- Su año allá ---------- */
+.ano-linea { position: relative; display: grid; grid-template-columns: repeat(13, minmax(4.3rem, 1fr)); gap: 0.2rem; margin: 1.6rem 0 1.4rem; padding: 0.3rem 0 0.2rem 0.3rem; overflow-x: auto; scrollbar-width: thin; align-items: start; }
+.ano-linea::before { content: ""; position: absolute; top: 1.3rem; left: 1rem; right: 1rem; height: 6px; border-radius: 3px; background: var(--linea); min-width: calc(13 * 4.3rem - 2rem); }
+.ano-estacion { position: relative; font: inherit; color: var(--tinta); background: none; border: 0; padding: 0 0.2rem 0.5rem 0; text-align: left; cursor: pointer; display: grid; gap: 0.1rem; align-content: start; justify-items: start; border-radius: 8px; }
+.ano-punto { width: 2rem; height: 2rem; border-radius: 50%; background: var(--hoja); border: 4px solid var(--tinta); margin-bottom: 0.4rem; display: grid; place-items: center; transition: transform 0.15s ease; }
+.ano-n { font-size: 0.72rem; font-weight: 800; line-height: 1; }
+.ano-estacion[data-estacion="invierno"] .ano-punto { border-color: #3e6a9a; }
+.ano-estacion[data-estacion="primavera"] .ano-punto { border-color: var(--suyo); }
+.ano-estacion[data-estacion="verano"] .ano-punto { border-color: var(--linea-oscura); }
+.ano-estacion[data-estacion="otoño"] .ano-punto { border-color: var(--gasto); }
+.ano-estacion[aria-selected="true"] .ano-punto { background: var(--tinta); border-color: var(--tinta); color: var(--hoja); transform: scale(1.12); }
+.ano-nombre { font-family: var(--display); font-weight: 700; font-size: var(--t-1); line-height: 1.1; }
+.ano-cuando { font-size: 0.78rem; color: var(--tinta-suave); }
 .ano-estacion:focus-visible { outline: 3px solid var(--linea-oscura); outline-offset: 3px; }
-.ano-estacion:hover .ano-punto { transform: scale(1.1); }
+.ano-estacion:hover .ano-punto { transform: scale(1.08); }
 
-.ano-temas { flex-wrap: wrap; justify-self: start; display: inline-flex; margin-bottom: 1.6rem; }
-.ano-cuerpo { display: grid; gap: 0; max-width: 60rem; }
-.ano-vacio { color: var(--tinta-suave); }
+.ano-mes { display: grid; grid-template-columns: auto 1fr; column-gap: 2rem; row-gap: 0.2rem; align-items: start; padding: 1.1rem 1.3rem; margin-bottom: 1.8rem; background: var(--hoja); border-radius: var(--radio-panel); border-left: 6px solid var(--color-estacion, var(--tinta)); max-width: 60rem; }
+.ano-mes[data-estacion="invierno"] { --color-estacion: #3e6a9a; }
+.ano-mes[data-estacion="primavera"] { --color-estacion: var(--suyo); }
+.ano-mes[data-estacion="verano"] { --color-estacion: var(--linea-oscura); }
+.ano-mes[data-estacion="otoño"] { --color-estacion: var(--gasto); }
+.ano-mes-titulo { grid-column: 1; margin: 0; font-family: var(--display); font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 700; line-height: 1; }
+.ano-mes-sub { grid-column: 1; margin: 0.3rem 0 0; color: var(--tinta-suave); font-size: var(--t-0); }
+.ano-datos { grid-column: 2; grid-row: 1 / span 2; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem 1.4rem; }
+.ano-datos div { margin: 0; }
+.ano-datos dt { font-size: 0.78rem; font-weight: 700; color: var(--tinta-suave); }
+.ano-datos dd { margin: 0.1rem 0 0; line-height: 1.4; }
+.ano-datos small { color: var(--tinta-suave); }
+.ano-dato-largo { grid-column: 1 / -1; }
 
-.ano-miedo { padding: 1.4rem 0 1.6rem; border-top: 1px solid var(--niebla); }
-.ano-miedo:first-child { border-top: 0; padding-top: 0.2rem; }
+.ano-cuerpo { display: grid; max-width: 60rem; }
+.ano-grupo { font-family: var(--display); font-size: var(--t-3); margin: 0.6rem 0 0.4rem; }
+.ano-vacio { color: var(--tinta-suave); max-width: 46rem; }
+.ano-miedo { padding: 1.2rem 0 1.5rem; border-top: 1px solid var(--niebla); }
+.ano-grupo + .ano-miedo { border-top: 0; padding-top: 0.3rem; }
 .ano-etiqueta { margin: 0 0 0.35rem; font-size: 0.8rem; font-weight: 700; color: var(--tinta-suave); }
 .ano-etiqueta::before { content: ""; display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; margin-right: 0.4rem; background: var(--color-tema, var(--tinta-suave)); vertical-align: 0.05rem; }
 .ano-miedo[data-tema="plata"] { --color-tema: var(--linea-oscura); }
@@ -1540,19 +1557,24 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .ano-miedo[data-tema="salud"] { --color-tema: var(--gasto); }
 .ano-miedo[data-tema="papeles"] { --color-tema: #4a5a6e; }
 .ano-miedo[data-tema="animo"] { --color-tema: #7a5ba6; }
-.ano-miedo h3 { font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.15; margin: 0 0 0.9rem; max-width: 34ch; }
+.ano-pregunta { font-family: var(--display); font-size: clamp(1.15rem, 2.2vw, 1.4rem); line-height: 1.2; margin: 0 0 0.8rem; max-width: 36ch; }
 .ano-pasos { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
-.ano-paso h4 { margin: 0 0 0.3rem; font-size: var(--t-0); }
+.ano-paso h5 { margin: 0 0 0.3rem; font-size: var(--t-0); }
 .ano-paso p { margin: 0; line-height: 1.55; }
 .ano-hacer { background: var(--hoja); border-radius: 10px; padding: 0.8rem 1rem; border-left: 5px solid var(--color-tema, var(--suyo)); }
 .ano-voz { margin: 1rem 0 0; padding: 0 0 0 1rem; border-left: 3px solid var(--niebla); max-width: 46rem; }
-.ano-voz p { margin: 0; font-style: italic; color: var(--tinta); line-height: 1.5; }
+.ano-voz p { margin: 0; font-style: italic; line-height: 1.5; }
 .ano-voz footer { margin-top: 0.25rem; font-size: 0.82rem; color: var(--tinta-suave); }
 .ano-fuentes { margin: 0.8rem 0 0; font-size: 0.8rem; color: var(--tinta-suave); }
 .ano-fuentes a { color: inherit; }
 
+.riel-ajustes { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+
 @media (max-width: 760px) {
   .ano-pasos { grid-template-columns: 1fr; gap: 0.8rem; }
   .ano-linea { margin-left: calc(-1 * var(--margen)); margin-right: calc(-1 * var(--margen)); padding-left: var(--margen); padding-right: var(--margen); }
+  .ano-mes { grid-template-columns: 1fr; }
+  .ano-datos { grid-column: 1; grid-row: auto; margin-top: 0.9rem; }
 }
 @media (prefers-reduced-motion: reduce) { .ano-punto { transition: none; } }
+.ano-nota { margin: 1.5rem 0 0; max-width: 46rem; font-size: var(--t-0); color: var(--tinta-suave); line-height: 1.5; }

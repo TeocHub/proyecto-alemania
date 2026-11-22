@@ -1,34 +1,81 @@
 {
-  "intro": "Lo que contaron latinoamericanos que ya vivieron en Alemania, ordenado por momento del año: cada miedo con lo que suele pasar de verdad y qué hacer. De Latinoamérica tienen Working Holiday con Alemania {{paisesWH}}; quienes vienen de otros países llegaron por estudio, trabajo o familia, pero la vivienda, la salud y el invierno se viven igual. Los montos salen del plan de su grupo y cambian si cambian sus datos.",
+  "intro": "Un calendario que parte en el mes en que viajan, según su plan. Cada mes trae la estación, a qué hora oscurece, cómo está el trabajo y lo que contaron latinoamericanos que ya vivieron ese momento.",
   "temas": [
-    { "id": "plata", "nombre": "Plata" },
-    { "id": "vivienda", "nombre": "Vivienda" },
-    { "id": "salud", "nombre": "Salud" },
-    { "id": "papeles", "nombre": "Papeles" },
-    { "id": "animo", "nombre": "Ánimo" }
+    {
+      "id": "plata",
+      "nombre": "Plata"
+    },
+    {
+      "id": "vivienda",
+      "nombre": "Vivienda"
+    },
+    {
+      "id": "salud",
+      "nombre": "Salud"
+    },
+    {
+      "id": "papeles",
+      "nombre": "Papeles"
+    },
+    {
+      "id": "animo",
+      "nombre": "Ánimo"
+    }
   ],
   "momentos": [
-    { "id": "antes", "nombre": "Antes de volar", "cuando": "Desde la visa hasta el avión" },
-    { "id": "semana", "nombre": "Primera semana", "cuando": "Hostal, pieza y registro" },
-    { "id": "mes", "nombre": "Primer mes", "cuando": "Primer trabajo y primeras cartas" },
-    { "id": "finmes", "nombre": "Cada fin de mes", "cuando": "Arriendo, cuentas y sueldo" },
-    { "id": "invierno", "nombre": "Invierno y fin de año", "cuando": "Noviembre a febrero" },
-    { "id": "irse", "nombre": "Al irse", "cuando": "El último mes" }
+    {
+      "id": "antes",
+      "nombre": "Antes de volar",
+      "cuando": "Desde la visa hasta el avión"
+    },
+    {
+      "id": "semana",
+      "nombre": "Primera semana",
+      "cuando": "Hostal, pieza y registro"
+    },
+    {
+      "id": "mes",
+      "nombre": "Primer mes",
+      "cuando": "Primer trabajo y primeras cartas"
+    },
+    {
+      "id": "finmes",
+      "nombre": "Cada fin de mes",
+      "cuando": "Arriendo, cuentas y sueldo"
+    },
+    {
+      "id": "invierno",
+      "nombre": "Invierno y fin de año",
+      "cuando": "Noviembre a febrero"
+    },
+    {
+      "id": "irse",
+      "nombre": "Al irse",
+      "cuando": "El último mes"
+    }
   ],
   "items": [
     {
-      "momento": "antes", "tema": "plata",
+      "momento": "antes",
+      "tema": "plata",
       "miedo": "La plata está en pesos en un banco chileno. ¿Cómo la uso allá?",
       "realidad": "Los fondos de solvencia (con su plan, {{congelado}} por persona) se quedan en su cuenta chilena hasta la cita. Con la visa aprobada vuelven a ser plata normal. Las billeteras digitales no están en la lista que acepta la embajada, así que se usan recién después.",
       "hacer": "Con la visa en la mano, pasen la parte que van a gastar a una cuenta en euros con tarjeta (por ejemplo Global66, que es chilena) y conviertan en partes, no todo el mismo día. La tarjeta del banco chileno queda de respaldo: la CuentaRUT cobra {{comisionRut}} por cada compra o giro afuera, así que conviene para emergencias y no para el día a día.",
       "voz": null,
       "fuentes": [
-        { "nombre": "Global66: Working Holiday", "url": "https://www.global66.com/cl/expatriados/" },
-        { "nombre": "BioBioChile: comisiones CuentaRUT", "url": "https://www.biobiochile.cl/noticias/servicios/toma-nota/2026/11/05/cuentarut-de-bancoestado-la-lista-de-servicios-por-los-que-te-cobran-comision.shtml" }
+        {
+          "nombre": "Global66: Working Holiday",
+          "url": "https://www.global66.com/cl/expatriados/"
+        },
+        {
+          "nombre": "BioBioChile: comisiones CuentaRUT",
+          "url": "https://www.biobiochile.cl/noticias/servicios/toma-nota/2026/11/05/cuentarut-de-bancoestado-la-lista-de-servicios-por-los-que-te-cobran-comision.shtml"
+        }
       ]
     },
     {
-      "momento": "antes", "tema": "plata",
+      "momento": "antes",
+      "tema": "plata",
       "miedo": "¿Cuánto efectivo llevo?",
       "realidad": "En Alemania todavía hay panaderías, kioscos y algunos bares que solo reciben efectivo. Pero andar con todo el colchón en billetes es un riesgo que nadie recomienda.",
       "hacer": "Lleven unos {{efectivo}} en efectivo para los primeros días y el resto en tarjeta. Con su plan, para vivir allá llevan {{llevanEur}} en total.",
@@ -36,115 +83,195 @@
       "fuentes": []
     },
     {
-      "momento": "antes", "tema": "vivienda",
+      "momento": "antes",
+      "tema": "vivienda",
       "miedo": "¿Llego sin saber dónde voy a dormir?",
       "realidad": "Casi todos parten en hostal, departamento temporal o donde un conocido. Ojo: en un hostal u hotel normalmente no se puede registrar el domicilio, y sin registro no hay número de impuestos.",
       "hacer": "Reserven las dos primeras semanas antes de volar y empiecen a escribir a pisos compartidos desde Chile con el mensaje armado de «Prepararse». Las videollamadas sirven para conocerse, pero no paguen nada sin haber visto la pieza.",
-      "voz": { "quien": "Pareja brasileña", "texto": "Se quedaron en un apart-hotel los primeros tres meses porque les permitía usar esa dirección para registrarse." },
+      "voz": {
+        "quien": "Pareja brasileña",
+        "texto": "Se quedaron en un apart-hotel los primeros tres meses porque les permitía usar esa dirección para registrarse."
+      },
       "fuentes": [
-        { "nombre": "Make it in Germany: vivienda y registro", "url": "https://www.make-it-in-germany.com/es/vivir-en-alemania/vivienda-movilidad/vivienda-y-registro" },
-        { "nombre": "Eurodicas: relato", "url": "https://www.eurodicas.com.br/?p=91033" }
+        {
+          "nombre": "Make it in Germany: vivienda y registro",
+          "url": "https://www.make-it-in-germany.com/es/vivir-en-alemania/vivienda-movilidad/vivienda-y-registro"
+        },
+        {
+          "nombre": "Eurodicas: relato",
+          "url": "https://www.eurodicas.com.br/?p=91033"
+        }
       ]
     },
     {
-      "momento": "antes", "tema": "salud",
+      "momento": "antes",
+      "tema": "salud",
       "miedo": "¿Y si me enfermo antes de tener seguro alemán?",
       "realidad": "Al principio los cubre el seguro de viaje que presentaron para la visa. Muchas consultas en Alemania les van a cobrar como pacientes privados: pagan ustedes y después el seguro les devuelve, si la póliza lo cubre.",
       "hacer": "Lean la póliza antes de pagarla: si paga directo al médico o reembolsa, qué cubre de dentista y de remedios que ya toman. Guarden siempre la factura detallada. Lleven receta y remedios para los primeros meses.",
       "voz": null,
       "fuentes": [
-        { "nombre": "Barmer: factura médica", "url": "https://www.barmer.de/gesundheit-verstehen/leben/urlaub-reise-ausland/rechnung-ausland-1057336" },
-        { "nombre": "Auswärtiges Amt: seguro de salud", "url": "https://www.auswaertiges-amt.de/de/2799078-2799078" }
+        {
+          "nombre": "Barmer: factura médica",
+          "url": "https://www.barmer.de/gesundheit-verstehen/leben/urlaub-reise-ausland/rechnung-ausland-1057336"
+        },
+        {
+          "nombre": "Auswärtiges Amt: seguro de salud",
+          "url": "https://www.auswaertiges-amt.de/de/2799078-2799078"
+        }
       ]
     },
     {
-      "momento": "antes", "tema": "animo",
+      "momento": "antes",
+      "tema": "animo",
       "miedo": "La despedida me da más miedo que el viaje.",
       "realidad": "Es lo más común en los relatos: llorar en el aeropuerto no significa haberse equivocado. Elegir bien la fecha también ayuda: de abril a agosto es la temporada alta de restaurantes y hay más trabajo de entrada.",
       "hacer": "Dejen acordado con la familia cuándo y por dónde van a hablar. Si pueden elegir, lleguen en primavera.",
-      "voz": { "quien": "Nacho, argentino, 24 años", "texto": "Cuenta que en la despedida en Ezeiza nunca se imaginó que una persona pudiera llorar tanto." },
+      "voz": {
+        "quien": "Nacho, argentino, 24 años",
+        "texto": "Cuenta que en la despedida en Ezeiza nunca se imaginó que una persona pudiera llorar tanto."
+      },
       "fuentes": [
-        { "nombre": "YoMeAnimo: Nacho en Berlín", "url": "https://www.yomeanimo.com/nacho-en-berlin-su-experiencia-con-la-working-holiday-alemania" },
-        { "nombre": "YoMeAnimo: Teo en Colonia", "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo" }
+        {
+          "nombre": "YoMeAnimo: Nacho en Berlín",
+          "url": "https://www.yomeanimo.com/nacho-en-berlin-su-experiencia-con-la-working-holiday-alemania"
+        },
+        {
+          "nombre": "YoMeAnimo: Teo en Colonia",
+          "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo"
+        }
       ]
     },
     {
-      "momento": "semana", "tema": "papeles",
+      "momento": "semana",
+      "tema": "papeles",
       "miedo": "El registro de domicilio (Anmeldung) suena a laberinto.",
       "realidad": "Hay que hacerlo dentro de 14 días desde que se mudan a su primera vivienda. Piden pasaporte, el formulario y la confirmación del arrendador (Wohnungsgeberbestätigung). Es la llave de todo: número de impuestos, contrato de celular y trabajo con contrato.",
       "hacer": "Al aceptar una pieza, pregunten de inmediato si les dan la confirmación para registrarse. Si no la dan, busquen otra. Pidan hora en el Bürgeramt apenas tengan dirección.",
-      "voz": { "quien": "Manu, argentino, viajó con su novia", "texto": "Hicieron el registro a los 8 días de llegar y dice que es lo más importante para empezar a trabajar rápido." },
+      "voz": {
+        "quien": "Manu, argentino, viajó con su novia",
+        "texto": "Hicieron el registro a los 8 días de llegar y dice que es lo más importante para empezar a trabajar rápido."
+      },
       "fuentes": [
-        { "nombre": "YoMeAnimo: primeros pasos", "url": "https://www.yomeanimo.com/working-holiday-alemania-primeros-pasos-recien-llegados" },
-        { "nombre": "YoMeAnimo: Manu", "url": "https://www.yomeanimo.com/alemania-primeros-pasos-manu" }
+        {
+          "nombre": "YoMeAnimo: primeros pasos",
+          "url": "https://www.yomeanimo.com/working-holiday-alemania-primeros-pasos-recien-llegados"
+        },
+        {
+          "nombre": "YoMeAnimo: Manu",
+          "url": "https://www.yomeanimo.com/alemania-primeros-pasos-manu"
+        }
       ]
     },
     {
-      "momento": "semana", "tema": "vivienda",
+      "momento": "semana",
+      "tema": "vivienda",
       "miedo": "Hay demasiada gente buscando pieza. ¿Y si nadie me responde?",
       "realidad": "En las ciudades más buscadas, una pieza en piso compartido puede recibir cientos de mensajes en pocos días. Quien consigue rápido es quien escribe a muchos, temprano y con un mensaje personal.",
       "hacer": "Escriban a 10–20 anuncios por día, el mismo día que se publican. Apunten primero a ciudades con menos presión (en «¿Dónde llegamos?» está la comparación).",
-      "voz": { "quien": "Teo, Working Holiday en Colonia", "texto": "Pasó cinco días en un hostal y consiguió pieza escribiéndole a todos con un mensaje armado." },
+      "voz": {
+        "quien": "Teo, Working Holiday en Colonia",
+        "texto": "Pasó cinco días en un hostal y consiguió pieza escribiéndole a todos con un mensaje armado."
+      },
       "fuentes": [
-        { "nombre": "Study Abroad: vivienda en Alemania 2026", "url": "https://www.study-abroad.org/es/blog/encontrar-alojamiento-estudiantes-alemania/" },
-        { "nombre": "YoMeAnimo: Teo", "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo" }
+        {
+          "nombre": "Study Abroad: vivienda en Alemania 2026",
+          "url": "https://www.study-abroad.org/es/blog/encontrar-alojamiento-estudiantes-alemania/"
+        },
+        {
+          "nombre": "YoMeAnimo: Teo",
+          "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo"
+        }
       ]
     },
     {
-      "momento": "semana", "tema": "vivienda",
+      "momento": "semana",
+      "tema": "vivienda",
       "miedo": "¿Cómo sé si un anuncio es una estafa?",
       "realidad": "Las estafas se repiten: el «dueño» está fuera del país y manda la llave por correo, pide la garantía por Western Union o MoneyGram, dice que Airbnb se encarga del pago o cobra una «reserva» por ver la pieza.",
       "hacer": "La regla de la policía alemana: paguen la garantía solo después de ver la pieza, firmar el contrato y tener la llave. No manden copia del pasaporte antes de conocer a nadie.",
       "voz": null,
       "fuentes": [
-        { "nombre": "Verbraucherzentrale: anuncios falsos", "url": "https://www.verbraucherzentrale.de/wissen/vertraege-reklamation/abzocke/fakewohnungen-im-internet-so-erkennen-sie-falsche-immobilienanzeigen-27576" },
-        { "nombre": "Uni Göttingen: consejos de la policía", "url": "https://uni-goettingen.de/de/449225.html" }
+        {
+          "nombre": "Verbraucherzentrale: anuncios falsos",
+          "url": "https://www.verbraucherzentrale.de/wissen/vertraege-reklamation/abzocke/fakewohnungen-im-internet-so-erkennen-sie-falsche-immobilienanzeigen-27576"
+        },
+        {
+          "nombre": "Uni Göttingen: consejos de la policía",
+          "url": "https://uni-goettingen.de/de/449225.html"
+        }
       ]
     },
     {
-      "momento": "semana", "tema": "plata",
+      "momento": "semana",
+      "tema": "plata",
       "miedo": "No tengo cuenta alemana y sin domicilio no me la abren.",
       "realidad": "Los bancos tradicionales piden el certificado de registro. Los bancos por app no: N26, por ejemplo, abre sin registro: pide una dirección en Alemania y da un plazo para entregar después el comprobante y el número de impuestos. Las condiciones de cada banco cambian, así que revísenlas al abrir.",
       "hacer": "Los primeros días paguen con la tarjeta en euros que traen. Apenas tengan pieza, abran N26 u otro banco por app: es la cuenta con IBAN alemán para el sueldo y el arriendo.",
       "voz": null,
       "fuentes": [
-        { "nombre": "All About Berlin: bancos sin dirección", "url": "https://allaboutberlin.com/guides/german-banks-no-address" }
+        {
+          "nombre": "All About Berlin: bancos sin dirección",
+          "url": "https://allaboutberlin.com/guides/german-banks-no-address"
+        }
       ]
     },
     {
-      "momento": "semana", "tema": "salud",
+      "momento": "semana",
+      "tema": "salud",
       "miedo": "Si me enfermo un domingo, ¿a dónde voy?",
       "realidad": "Las consultas cierran en la noche, los fines de semana y los feriados, pero no queda nadie sin atención: existe un número nacional para lo urgente que no es emergencia, y siempre hay farmacias de turno.",
       "hacer": "Guarden tres números: 112 para emergencias, 116117 para médico de turno (también tiene web y app) y aponet.de para la farmacia de turno más cercana.",
       "voz": null,
       "fuentes": [
-        { "nombre": "aponet: números de emergencia", "url": "https://www.aponet.de/englisch/medical-information-for-refugees/in-case-of-emergency-overview-of-important-phone-numbers" },
-        { "nombre": "KBV: 116117", "url": "https://kbv.de/html/arztsuche.php" }
+        {
+          "nombre": "aponet: números de emergencia",
+          "url": "https://www.aponet.de/englisch/medical-information-for-refugees/in-case-of-emergency-overview-of-important-phone-numbers"
+        },
+        {
+          "nombre": "KBV: 116117",
+          "url": "https://kbv.de/html/arztsuche.php"
+        }
       ]
     },
     {
-      "momento": "semana", "tema": "papeles",
+      "momento": "semana",
+      "tema": "papeles",
       "miedo": "Sin celular alemán no puedo ni postular a trabajos.",
       "realidad": "Los planes con contrato piden el registro, pero un chip de prepago se compra el primer día con el pasaporte.",
       "hacer": "Compren prepago al llegar y pásense a plan cuando estén registrados.",
-      "voz": { "quien": "Teo, Working Holiday en Colonia", "texto": "El primer mes usó prepago porque para un plan necesitaba el registro." },
+      "voz": {
+        "quien": "Teo, Working Holiday en Colonia",
+        "texto": "El primer mes usó prepago porque para un plan necesitaba el registro."
+      },
       "fuentes": [
-        { "nombre": "YoMeAnimo: Teo", "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo" }
+        {
+          "nombre": "YoMeAnimo: Teo",
+          "url": "https://www.yomeanimo.com/experiencia-working-holiday-alemania-teo"
+        }
       ]
     },
     {
-      "momento": "mes", "tema": "papeles",
+      "momento": "mes",
+      "tema": "papeles",
       "miedo": "Empecé a trabajar y me descontaron muchísimo de impuestos.",
       "realidad": "El número de impuestos (Steuer-ID) llega solo por carta a la dirección registrada, varias semanas después del registro (a veces más de un mes). Sin él, la empresa puede aplicar la clase de impuesto más cara. Lo pagado de más se recupera con la declaración de impuestos.",
       "hacer": "Pongan sus nombres en el buzón el primer día (si no, la carta se devuelve). Entreguen el número a la empresa apenas llegue y guarden todas las liquidaciones.",
       "voz": null,
       "fuentes": [
-        { "nombre": "Hamburg.de: Steuer-ID", "url": "https://www.hamburg.de/service/info/11440875/" },
-        { "nombre": "Working Student Jobs: Steuer-ID", "url": "https://www.workingstudentjobs.de/de/blog/steuer-id-germany-students" }
+        {
+          "nombre": "Hamburg.de: Steuer-ID",
+          "url": "https://www.hamburg.de/service/info/11440875/"
+        },
+        {
+          "nombre": "Working Student Jobs: Steuer-ID",
+          "url": "https://www.workingstudentjobs.de/de/blog/steuer-id-germany-students"
+        }
       ]
     },
     {
-      "momento": "mes", "tema": "plata",
+      "momento": "mes",
+      "tema": "plata",
       "miedo": "Ya trabajo, pero la plata se acaba antes del primer sueldo.",
       "realidad": "Muchas empresas pagan una vez al mes, al final. Quien empieza a mitad de mes puede pasar más de cuatro semanas sin sueldo. Por eso el colchón tiene que cubrir también ese hueco, no solo la búsqueda.",
       "hacer": "Pregunten en la entrevista qué día pagan. Cuenten con que el primer sueldo llega entre 4 y 6 semanas después de empezar.",
@@ -152,147 +279,336 @@
       "fuentes": []
     },
     {
-      "momento": "mes", "tema": "salud",
+      "momento": "mes",
+      "tema": "salud",
       "miedo": "¿Sigo con el seguro de viaje si ya trabajo?",
       "realidad": "Un trabajo con contrato normal casi siempre trae seguro social obligatorio. Ahí la empresa los inscribe en un seguro de salud público alemán (Krankenkasse) y pasan a estar cubiertos como cualquier trabajador. Un minijob no trae seguro de salud.",
       "hacer": "Cuando la empresa pregunte por su Krankenkasse, elijan una (TK, AOK, Barmer: todas cubren lo mismo). Mantengan el seguro de viaje para los meses sin contrato.",
       "voz": null,
       "fuentes": [
-        { "nombre": "AOK: seguro social para extranjeros", "url": "https://www.aok.de/fk/rps/sozialversicherung/beschaeftigung-auslaendischer-arbeitnehmer/sozialversicherungspflicht-fuer-auslaender-sonderregelungen/" }
+        {
+          "nombre": "AOK: seguro social para extranjeros",
+          "url": "https://www.aok.de/fk/rps/sozialversicherung/beschaeftigung-auslaendischer-arbeitnehmer/sozialversicherungspflicht-fuer-auslaender-sonderregelungen/"
+        }
       ]
     },
     {
-      "momento": "mes", "tema": "vivienda",
+      "momento": "mes",
+      "tema": "vivienda",
       "miedo": "Me llegó una carta del Rundfunkbeitrag pidiendo plata.",
       "realidad": "Después del registro, la oficina del aporte a la radio y TV pública escribe a cada persona nueva. Se paga una vez por vivienda, no por persona: en un piso compartido paga uno solo.",
       "hacer": "Si ya paga alguien en su piso, respondan la carta con el número de aportante (Beitragsnummer) de esa persona. Si nadie paga, uno se inscribe y lo dividen. Hoy son {{rundfunk}} al mes por vivienda.",
       "voz": null,
       "fuentes": [
-        { "nombre": "Verbraucherzentrale: Rundfunkbeitrag", "url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/fernsehen/rundfunkbeitrag-anmelden-die-wichtigsten-fragen-und-antworten-5793" }
+        {
+          "nombre": "Verbraucherzentrale: Rundfunkbeitrag",
+          "url": "https://www.verbraucherzentrale.de/wissen/digitale-welt/fernsehen/rundfunkbeitrag-anmelden-die-wichtigsten-fragen-und-antworten-5793"
+        }
       ]
     },
     {
-      "momento": "mes", "tema": "animo",
+      "momento": "mes",
+      "tema": "animo",
       "miedo": "¿Y si me siento solo o sola y no entiendo nada?",
       "realidad": "Los primeros meses son una mezcla de entusiasmo y frustración: lo cuentan brasileños, argentinos y chilenos por igual. Hay comunidades latinas activas en Berlín, Múnich y otras ciudades, con encuentros periódicos.",
       "hacer": "Busquen el grupo latino de su ciudad la primera semana, no cuando ya estén mal. Una clase de alemán también es una forma de conocer gente.",
-      "voz": { "quien": "Karla, chilena", "texto": "Lo más difícil fue el idioma: con inglés se defendía, pero le frustraba no poder comunicarse en alemán." },
+      "voz": {
+        "quien": "Karla, chilena",
+        "texto": "Lo más difícil fue el idioma: con inglés se defendía, pero le frustraba no poder comunicarse en alemán."
+      },
       "fuentes": [
-        { "nombre": "deutschland.de: encuentros latinos", "url": "https://www.deutschland.de/es/topic/vida/america-latina-en-alemania-encuentros-en-berlin-y-munich" },
-        { "nombre": "Jornal de Brasília: brasileños en Alemania", "url": "https://jornaldebrasilia.com.br/estilo-de-vida/de-rio-a-berlim-como-os-brasileiros-podem-se-estabelecer-na-alemanha/" }
+        {
+          "nombre": "deutschland.de: encuentros latinos",
+          "url": "https://www.deutschland.de/es/topic/vida/america-latina-en-alemania-encuentros-en-berlin-y-munich"
+        },
+        {
+          "nombre": "Jornal de Brasília: brasileños en Alemania",
+          "url": "https://jornaldebrasilia.com.br/estilo-de-vida/de-rio-a-berlim-como-os-brasileiros-podem-se-estabelecer-na-alemanha/"
+        }
       ]
     },
     {
-      "momento": "finmes", "tema": "plata",
+      "momento": "finmes",
+      "tema": "plata",
       "miedo": "¿Qué pasa si pago el arriendo un día tarde?",
       "realidad": "Por ley el arriendo se paga por adelantado, a más tardar el tercer día hábil del mes (el sábado no cuenta). Basta con dar la orden de transferencia ese día, aunque el dinero llegue después. Un atraso aislado no es motivo de desalojo, pero repetido sí trae problemas.",
       "hacer": "Programen una transferencia automática (Dauerauftrag) para el día 1. Así el arriendo sale antes de que la plata se gaste en otra cosa.",
       "voz": null,
       "fuentes": [
-        { "nombre": "ERGO: pago del arriendo", "url": "https://www.ergo.de/de/rechtsportal/mietrecht/mietzahlung" },
-        { "nombre": "LTO: fallo del BGH", "url": "https://www.lto.de/recht/nachrichten/n/bgh-urteil-viii-zr-222-15-ueberweisung-miete-dritter-werktag-rechtzeitig-klausel-vertrag-unwirksam" }
+        {
+          "nombre": "ERGO: pago del arriendo",
+          "url": "https://www.ergo.de/de/rechtsportal/mietrecht/mietzahlung"
+        },
+        {
+          "nombre": "LTO: fallo del BGH",
+          "url": "https://www.lto.de/recht/nachrichten/n/bgh-urteil-viii-zr-222-15-ueberweisung-miete-dritter-werktag-rechtzeitig-klausel-vertrag-unwirksam"
+        }
       ]
     },
     {
-      "momento": "finmes", "tema": "plata",
+      "momento": "finmes",
+      "tema": "plata",
       "miedo": "Siempre llego justo a fin de mes.",
       "realidad": "El orden alemán es parecido al que ya practican acá en «Las lucas»: primero lo que no se negocia (arriendo, celular, transporte), después el resto. Algunos cobros no son mensuales: el aporte a la radio se paga cada tres meses y el ajuste de gastos de la casa llega una vez al año.",
       "hacer": "Separen cada mes una parte fija para los cobros trimestrales y anuales. Revisen el ajuste anual en «¿Dónde llegamos?».",
       "voz": null,
       "fuentes": [
-        { "nombre": "Rundfunkbeitrag: pago trimestral", "url": "https://presse.rundfunkbeitrag.de/pressreleases/zum-start-des-wintersemesters-das-sollten-junge-menschen-zum-rundfunkbeitrag-wissen-3403900.pdf" }
+        {
+          "nombre": "Rundfunkbeitrag: pago trimestral",
+          "url": "https://presse.rundfunkbeitrag.de/pressreleases/zum-start-des-wintersemesters-das-sollten-junge-menschen-zum-rundfunkbeitrag-wissen-3403900.pdf"
+        }
       ]
     },
     {
-      "momento": "finmes", "tema": "papeles",
+      "momento": "finmes",
+      "tema": "papeles",
       "miedo": "Llegan cartas en alemán y no sé cuáles son importantes.",
       "realidad": "En Alemania casi todo lo oficial llega por carta y tiene plazo: impuestos, seguro, Rundfunk, arrendador. Ignorarlas es lo que hace que un trámite chico se vuelva multa.",
       "hacer": "Una vez por semana revisen el buzón, saquen foto y tradúzcanla con el celular. Lo que tenga fecha, anótenlo.",
-      "voz": { "quien": "Brasileños en Alemania", "texto": "Muchos se sorprenden con la cantidad de documentos que se piden para trámites simples." },
+      "voz": {
+        "quien": "Brasileños en Alemania",
+        "texto": "Muchos se sorprenden con la cantidad de documentos que se piden para trámites simples."
+      },
       "fuentes": [
-        { "nombre": "Jornal de Brasília", "url": "https://jornaldebrasilia.com.br/estilo-de-vida/de-rio-a-berlim-como-os-brasileiros-podem-se-estabelecer-na-alemanha/" }
+        {
+          "nombre": "Jornal de Brasília",
+          "url": "https://jornaldebrasilia.com.br/estilo-de-vida/de-rio-a-berlim-como-os-brasileiros-podem-se-estabelecer-na-alemanha/"
+        }
       ]
     },
     {
-      "momento": "invierno", "tema": "animo",
+      "momento": "invierno",
+      "tema": "animo",
       "miedo": "Me dijeron que el invierno deprime.",
       "realidad": "Es real: en pleno invierno oscurece cerca de las 16:00 y la falta de luz baja el ánimo y la energía. Se nota más en quienes vienen del hemisferio sur.",
       "hacer": "Salgan a la luz del día aunque esté nublado, mantengan horarios y panoramas fijos, y no se encierren. Si el ánimo baja más de dos semanas, consulten. La vitamina D ayuda, pero pídanla con indicación: en exceso es dañina.",
-      "voz": { "quien": "Muriel, chilena, 27 años", "texto": "Llegó con su pololo en invierno; cuenta que el día se acaba a las cuatro de la tarde y que con el frío tiene menos energía." },
+      "voz": {
+        "quien": "Muriel, chilena, 27 años",
+        "texto": "Llegó con su pololo en invierno; cuenta que el día se acaba a las cuatro de la tarde y que con el frío tiene menos energía."
+      },
       "fuentes": [
-        { "nombre": "La Tercera: depresión estacional", "url": "https://www.latercera.com/paula/depresion-estacional-puede-el-invierno-afectar-la-salud-mental/" },
-        { "nombre": "Lingoda: invierno en Alemania", "url": "https://www.lingoda.com/blog/en/winter-depression-germany/" }
-      ]
+        {
+          "nombre": "La Tercera: depresión estacional",
+          "url": "https://www.latercera.com/paula/depresion-estacional-puede-el-invierno-afectar-la-salud-mental/"
+        },
+        {
+          "nombre": "Lingoda: invierno en Alemania",
+          "url": "https://www.lingoda.com/blog/en/winter-depression-germany/"
+        }
+      ],
+      "mesCalendario": 11
     },
     {
-      "momento": "invierno", "tema": "vivienda",
+      "momento": "invierno",
+      "tema": "vivienda",
       "miedo": "Llega Navidad y no tengo qué comer porque todo está cerrado.",
       "realidad": "El 24 de diciembre las tiendas cierran temprano en la tarde. El 25 y el 26 son feriados y está todo cerrado. El 31 los supermercados cierran a media tarde, y el 1 de enero vuelve a estar todo cerrado. Solo abren algunos negocios dentro de las estaciones de tren.",
       "hacer": "Compren para cuatro días el 23 de diciembre y para dos el 30. Si están solos, organicen la cena con otros latinos: es la fecha en que más se extraña.",
       "voz": null,
       "fuentes": [
-        { "nombre": "The Local: Nochebuena", "url": "https://www.thelocal.de/20241223/how-late-are-supermarkets-in-germany-open-on-christmas-eve" },
-        { "nombre": "The Local: Año Nuevo", "url": "https://www.thelocal.de/20241230/whats-open-and-whats-closed-in-germany-over-new-year" }
-      ]
+        {
+          "nombre": "The Local: Nochebuena",
+          "url": "https://www.thelocal.de/20241223/how-late-are-supermarkets-in-germany-open-on-christmas-eve"
+        },
+        {
+          "nombre": "The Local: Año Nuevo",
+          "url": "https://www.thelocal.de/20241230/whats-open-and-whats-closed-in-germany-over-new-year"
+        }
+      ],
+      "mesCalendario": 12
     },
     {
-      "momento": "invierno", "tema": "plata",
+      "momento": "invierno",
+      "tema": "plata",
       "miedo": "La calefacción me va a dejar sin plata.",
       "realidad": "En un piso compartido normalmente la calefacción va incluida en el arriendo (Warmmiete) y se ajusta una vez al año según el consumo real. Lo que cambia mes a mes en invierno es la luz si calefaccionan con estufa eléctrica.",
       "hacer": "Antes de firmar, pregunten si el precio es Warmmiete o Kaltmiete. Abran la ventana unos minutos con la calefacción apagada (lo hacen todos allá) en vez de dejarla entreabierta todo el día.",
       "voz": null,
-      "fuentes": []
+      "fuentes": [],
+      "mesCalendario": 11
     },
     {
-      "momento": "invierno", "tema": "salud",
+      "momento": "invierno",
+      "tema": "salud",
       "miedo": "¿Y si me enfermo en los feriados de fin de año?",
       "realidad": "Siempre hay farmacias y médicos de turno, también en Navidad y Año Nuevo. Lo que no hacen las farmacias de turno es pedir remedios que no tengan en bodega.",
       "hacer": "Si toman algo permanente, tengan remedio para dos semanas extra antes del 20 de diciembre. Para urgencias: 116117; para emergencias: 112.",
       "voz": null,
       "fuentes": [
-        { "nombre": "aponet: farmacias de turno", "url": "https://www.aponet.de/apotheke/notdienstsuche/91088" }
-      ]
+        {
+          "nombre": "aponet: farmacias de turno",
+          "url": "https://www.aponet.de/apotheke/notdienstsuche/91088"
+        }
+      ],
+      "mesCalendario": 12
     },
     {
-      "momento": "invierno", "tema": "animo",
+      "momento": "invierno",
+      "tema": "animo",
       "miedo": "¿Cuándo se siente como casa?",
       "realidad": "Toma tiempo, y el invierno es cuando más se duda. Hay quien tardó más de un año y medio en sentir Alemania como su casa. En una Working Holiday de un año, la primavera suele ser cuando todo empieza a fluir.",
       "hacer": "Si dudan en enero, no decidan en enero. Anoten en «Cuando dudemos» qué sienten y vuelvan a leerlo en marzo.",
-      "voz": { "quien": "Brasileña en Alemania", "texto": "Tardó un año y ocho meses en reconocer Alemania como su casa; dice que en invierno esa incertidumbre se vuelve evidente." },
+      "voz": {
+        "quien": "Brasileña en Alemania",
+        "texto": "Tardó un año y ocho meses en reconocer Alemania como su casa; dice que en invierno esa incertidumbre se vuelve evidente."
+      },
       "fuentes": [
-        { "nombre": "Eurodicas: relato", "url": "https://www.eurodicas.com.br/?p=28945" }
-      ]
+        {
+          "nombre": "Eurodicas: relato",
+          "url": "https://www.eurodicas.com.br/?p=28945"
+        }
+      ],
+      "mesCalendario": 1
     },
     {
-      "momento": "irse", "tema": "papeles",
+      "momento": "irse",
+      "tema": "papeles",
       "miedo": "¿Qué trámites tengo que hacer antes de volver?",
       "realidad": "Hay que darse de baja del domicilio (Abmeldung): se puede hacer hasta una semana antes de irse o dentro de las dos semanas siguientes. Sin eso, Alemania puede seguir considerándolos residentes y llegan cobros.",
       "hacer": "Pidan hora para la baja con tiempo. Den de baja también el Rundfunk, el celular y el transporte, y dejen una dirección para cartas.",
       "voz": null,
       "fuentes": [
-        { "nombre": "Remote Work Europe: Abmeldung", "url": "https://remoteworkeurope.eu/insights/leaving-germany-abmeldung-guide" }
+        {
+          "nombre": "Remote Work Europe: Abmeldung",
+          "url": "https://remoteworkeurope.eu/insights/leaving-germany-abmeldung-guide"
+        }
       ]
     },
     {
-      "momento": "irse", "tema": "plata",
+      "momento": "irse",
+      "tema": "plata",
       "miedo": "¿Pierdo la garantía y los impuestos que pagué?",
       "realidad": "Quien trabajó solo parte del año suele haber pagado impuestos de más, y con la declaración se recuperan. La garantía se devuelve al entregar la pieza en buen estado. Un contrato de arriendo normal se termina con tres meses de aviso; en piezas de piso compartido depende del contrato.",
       "hacer": "Lean el plazo de aviso al firmar, no al irse. Saquen fotos de la pieza al entrar y al salir. Hagan la declaración de impuestos (hay programas en inglés) y dejen su cuenta alemana abierta hasta que llegue la devolución.",
       "voz": null,
       "fuentes": [
-        { "nombre": "Steuerschroeder: declaración al irse", "url": "https://www.steuerschroeder.de/blog/leaving-germany-heres-what-expats-need-to-know-about-their-final-tax-return/" },
-        { "nombre": "Make it in Germany: tipos de arriendo", "url": "https://www.make-it-in-germany.com/es/llegar-establecerse/primeros-pasos/vivienda-registro" }
+        {
+          "nombre": "Steuerschroeder: declaración al irse",
+          "url": "https://www.steuerschroeder.de/blog/leaving-germany-heres-what-expats-need-to-know-about-their-final-tax-return/"
+        },
+        {
+          "nombre": "Make it in Germany: tipos de arriendo",
+          "url": "https://www.make-it-in-germany.com/es/llegar-establecerse/primeros-pasos/vivienda-registro"
+        }
       ]
     },
     {
-      "momento": "irse", "tema": "animo",
+      "momento": "irse",
+      "tema": "animo",
       "miedo": "¿Y si al volver siento que no sirvió?",
       "realidad": "Los que hicieron varias Working Holiday describen el año como algo que les cambió la forma de ver todo, incluidos los trabajos que nunca habrían hecho en su país.",
       "hacer": "Durante el año, anoten lo que aprenden: idioma, trabajos, ciudades. Al volver, ese registro es su CV y su respuesta a «¿para qué fuiste?».",
-      "voz": { "quien": "Ariel, argentino, cuatro Working Holiday", "texto": "Dice que vivir un año en otro país no te deja indiferente y te obliga a repensarlo todo." },
+      "voz": {
+        "quien": "Ariel, argentino, cuatro Working Holiday",
+        "texto": "Dice que vivir un año en otro país no te deja indiferente y te obliga a repensarlo todo."
+      },
       "fuentes": [
-        { "nombre": "Worldpackers: Working Holiday", "url": "https://www.worldpackers.com/articles/visa-working-holiday" }
+        {
+          "nombre": "Worldpackers: Working Holiday",
+          "url": "https://www.worldpackers.com/articles/visa-working-holiday"
+        }
+      ]
+    },
+    {
+      "momento": "aviso",
+      "tema": "vivienda",
+      "miedo": "¿Con cuánto tiempo aviso que me voy de la pieza?",
+      "realidad": "Un contrato de arriendo normal se termina con tres meses de aviso por escrito. En piezas de piso compartido o subarriendos el plazo puede ser otro: lo dice el contrato. Si avisan tarde, pagan meses de más aunque ya no estén.",
+      "hacer": "Tres meses antes de volver, relean el contrato y manden el aviso por escrito (carta o correo, según diga el contrato). Pregunten también cómo se devuelve la garantía.",
+      "voz": null,
+      "fuentes": [
+        {
+          "nombre": "Make it in Germany: tipos de arriendo",
+          "url": "https://www.make-it-in-germany.com/es/llegar-establecerse/primeros-pasos/vivienda-registro"
+        }
       ]
     }
-  ]
+  ],
+  "calendario": [
+    {
+      "mes": 1,
+      "estacion": "invierno",
+      "anochece": "16:30",
+      "trabajo": "Después de las fiestas suele haber menos ofertas: buen momento para reforzar el alemán.",
+      "fechas": "1 de enero: feriado, todo cerrado."
+    },
+    {
+      "mes": 2,
+      "estacion": "invierno",
+      "anochece": "17:20",
+      "trabajo": "Sigue la temporada baja; empiezan a buscar gente para la primavera.",
+      "fechas": ""
+    },
+    {
+      "mes": 3,
+      "estacion": "primavera",
+      "anochece": "18:10",
+      "trabajo": "Restaurantes, terrazas y hoteles empiezan a contratar para la temporada.",
+      "fechas": "Último domingo: los relojes se adelantan una hora."
+    },
+    {
+      "mes": 4,
+      "estacion": "primavera",
+      "anochece": "20:00",
+      "trabajo": "Comienza la temporada alta de gastronomía y turismo.",
+      "fechas": "Semana Santa: viernes y lunes son feriados."
+    },
+    {
+      "mes": 5,
+      "estacion": "primavera",
+      "anochece": "20:50",
+      "trabajo": "Temporada alta: más ofertas en restaurantes, hoteles y eventos.",
+      "fechas": "1 de mayo: feriado."
+    },
+    {
+      "mes": 6,
+      "estacion": "verano",
+      "anochece": "21:30",
+      "trabajo": "Temporada alta: festivales, terrazas y turismo.",
+      "fechas": ""
+    },
+    {
+      "mes": 7,
+      "estacion": "verano",
+      "anochece": "21:20",
+      "trabajo": "Temporada alta; muchos alemanes salen de vacaciones y buscan reemplazos.",
+      "fechas": ""
+    },
+    {
+      "mes": 8,
+      "estacion": "verano",
+      "anochece": "20:30",
+      "trabajo": "Último mes fuerte de la temporada de verano.",
+      "fechas": ""
+    },
+    {
+      "mes": 9,
+      "estacion": "otoño",
+      "anochece": "19:30",
+      "trabajo": "Baja el turismo; empiezan ferias y fiestas de otoño en algunas ciudades.",
+      "fechas": ""
+    },
+    {
+      "mes": 10,
+      "estacion": "otoño",
+      "anochece": "18:20",
+      "trabajo": "El comercio empieza a buscar gente para fin de año.",
+      "fechas": "3 de octubre: feriado. Último domingo: los relojes se atrasan una hora y oscurece de golpe más temprano."
+    },
+    {
+      "mes": 11,
+      "estacion": "otoño",
+      "anochece": "16:20",
+      "trabajo": "Mercados navideños, comercio y reparto buscan refuerzos.",
+      "fechas": ""
+    },
+    {
+      "mes": 12,
+      "estacion": "invierno",
+      "anochece": "15:55",
+      "trabajo": "Temporada de mercados navideños y comercio hasta el 24.",
+      "fechas": "24: cierran temprano. 25 y 26: feriados. 31: cierran a media tarde."
+    }
+  ],
+  "nota": "Los relatos son de personas de {{paisesWH}}, los países de Latinoamérica con Working Holiday en Alemania, y de peruanos, bolivianos, venezolanos y mexicanos que llegaron con otras visas: la vivienda, la salud y el invierno se viven igual. Las horas de oscurecer son de Berlín; en el sur oscurece unos minutos después. Las preguntas puntuales están en «Todas las dudas»."
 }

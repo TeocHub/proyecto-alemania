@@ -72,7 +72,7 @@
     escenario: "full",
     combina: null
   };
-  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento", "anoTema"]);
+  const LOCALES = new Set(["pestana", "estacion", "duda", "tema", "escenario", "lucasIngreso", "probarVivienda", "trabajo", "filtrosTrabajo", "vivirTope", "comunaSel", "anoMomento"]);
   const copia = (o) => JSON.parse(JSON.stringify(o));
 
   function leerEstado() {
@@ -1642,30 +1642,50 @@
       </div>`;
   }
 
-  /* ---------- Lo que vivieron otros: el año allá por momento ---------- */
-  function montarAno() {
+  /* ---------- Su año allá: calendario desde el mes de viaje ---------- */
+  const ESTACION_NOMBRE = { invierno: "Invierno", primavera: "Primavera", verano: "Verano", "otoño": "Otoño" };
+  const mayus = (x) => x.charAt(0).toUpperCase() + x.slice(1);
+  const mesCorto = (f) => mayus(f.toLocaleDateString("es-CL", { month: "short" }).replace(".", ""));
+
+  /* Paradas: «antes» y los 12 meses de la visa, con su fecha real según el plan. */
+  function paradasAno() {
+    const V = calcular().V;
+    const paradas = [{ id: "antes", fecha: null }];
+    for (let i = 0; i < 12; i++) paradas.push({ id: "m" + (i + 1), n: i + 1, fecha: new Date(V.getFullYear(), V.getMonth() + i, 1) });
+    return paradas;
+  }
+
+  /* Cada momento cae en el mes en que suele pasar. */
+  const MOMENTO_MES = { semana: [1, "La primera semana"], mes: [2, "Primeras cartas y primer sueldo"], finmes: [3, "Ya en rutina: lo de todos los meses"], aviso: [9, "Tres meses antes de volver"], irse: [12, "Antes de volver"] };
+
+  function itemsDeParada(p) {
     const A = anoData;
-    if (!A.momentos.some((m) => m.id === estado.anoMomento)) estado.anoMomento = A.momentos[0].id;
-    if (estado.anoTema && !A.temas.some((x) => x.id === estado.anoTema)) estado.anoTema = null;
+    if (p.id === "antes") return [{ titulo: null, items: A.items.filter((x) => x.momento === "antes") }];
+    const grupos = Object.entries(MOMENTO_MES)
+      .filter(([, [n]]) => n === p.n)
+      .map(([m, [, titulo]]) => ({ titulo, items: A.items.filter((x) => x.momento === m) }));
+    const mesCal = p.fecha.getMonth() + 1;
+    const delMes = A.items.filter((x) => x.momento === "invierno" && x.mesCalendario === mesCal);
+    if (delMes.length) grupos.push({ titulo: mesCal === 12 ? "Fin de año" : mesCal === 1 ? "Pleno invierno" : "Llega el invierno", items: delMes });
+    return grupos.filter((g) => g.items.length);
+  }
+
+  function montarAno() {
     $("#ano-linea").addEventListener("click", (e) => {
-      const b = e.target.closest("[data-momento]");
+      const b = e.target.closest("[data-parada]");
       if (!b) return;
-      estado.anoMomento = b.dataset.momento; guardar(); pintarAno();
-      const sel = $(`#ano-linea [data-momento="${estado.anoMomento}"]`);
+      estado.anoMomento = b.dataset.parada; guardar(); pintarAno();
+      const sel = $(`#ano-linea [data-parada="${estado.anoMomento}"]`);
       if (sel) sel.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
     });
     $("#ano-linea").addEventListener("keydown", (e) => {
       if (!["ArrowRight", "ArrowLeft"].includes(e.key)) return;
-      const ids = A.momentos.map((m) => m.id);
+      const ids = paradasAno().map((x) => x.id);
       const i = ids.indexOf(estado.anoMomento) + (e.key === "ArrowRight" ? 1 : -1);
       if (i < 0 || i >= ids.length) return;
+      e.preventDefault();
       estado.anoMomento = ids[i]; guardar(); pintarAno();
-      $(`#ano-linea [data-momento="${ids[i]}"]`).focus();
-    });
-    $("#ano-temas").addEventListener("click", (e) => {
-      const b = e.target.closest("[data-anotema]");
-      if (!b) return;
-      estado.anoTema = b.dataset.anotema || null; guardar(); pintarAno();
+      $(`#ano-linea [data-parada="${ids[i]}"]`).focus();
     });
   }
 
@@ -1673,38 +1693,63 @@
     const A = anoData;
     if (!A || !ctx) return;
     $("#ano-intro").innerHTML = t(A.intro);
-    const tema = estado.anoTema;
-    const delTema = (it) => !tema || it.tema === tema;
-    $("#ano-linea").innerHTML = A.momentos.map((m, i) => {
-      const n = A.items.filter((it) => it.momento === m.id && delTema(it)).length;
-      const sel = m.id === estado.anoMomento;
-      return `<button type="button" role="tab" class="ano-estacion" data-momento="${m.id}" aria-selected="${sel}" tabindex="${sel ? 0 : -1}">
-        <span class="ano-punto" aria-hidden="true"></span>
-        <span class="ano-nombre">${m.nombre}</span>
-        <span class="ano-cuando">${m.cuando}</span>
-        <span class="ano-cuenta">${n ? `${n} ${n === 1 ? "miedo" : "miedos"}` : "—"}</span>
+    const paradas = paradasAno();
+    if (!paradas.some((x) => x.id === estado.anoMomento)) {
+      // Por defecto: el mes en que van, o «antes» si todavía no viajan.
+      const actual = paradas.find((x) => x.fecha && x.fecha.getFullYear() === hoy.getFullYear() && x.fecha.getMonth() === hoy.getMonth());
+      estado.anoMomento = actual ? actual.id : "antes";
+    }
+    const cal = Object.fromEntries(A.calendario.map((c) => [c.mes, c]));
+    $("#ano-linea").innerHTML = paradas.map((p) => {
+      const sel = p.id === estado.anoMomento;
+      const n = itemsDeParada(p).reduce((s, g) => s + g.items.length, 0);
+      const est = p.fecha ? cal[p.fecha.getMonth() + 1].estacion : "";
+      return `<button type="button" role="tab" class="ano-estacion" data-parada="${p.id}" data-estacion="${est}" aria-selected="${sel}" tabindex="${sel ? 0 : -1}">
+        <span class="ano-punto" aria-hidden="true">${n ? `<span class="ano-n">${n}</span>` : ""}</span>
+        <span class="ano-nombre">${p.fecha ? mesCorto(p.fecha) : "Antes"}</span>
+        <span class="ano-cuando">${p.fecha ? (p.n === 1 || p.fecha.getMonth() === 0 ? p.fecha.getFullYear() : `mes ${p.n}`) : "de volar"}</span>
       </button>`;
     }).join("");
-    $("#ano-temas").innerHTML = [`<button type="button" data-anotema="" aria-pressed="${!tema}">Todo</button>`]
-      .concat(A.temas.map((x) => `<button type="button" data-anotema="${x.id}" aria-pressed="${tema === x.id}">${x.nombre}</button>`)).join("");
+
+    const p = paradas.find((x) => x.id === estado.anoMomento);
+    const cab = $("#ano-mes");
+    if (!p.fecha) {
+      cab.innerHTML = `<p class="ano-mes-titulo">Antes de volar</p><p class="ano-mes-sub">Desde la visa aprobada hasta el avión de ${t("{{fechaViaje}}")}.</p>`;
+    } else {
+      const c = cal[p.fecha.getMonth() + 1];
+      cab.dataset.estacion = c.estacion;
+      cab.innerHTML = `
+        <p class="ano-mes-titulo">${mayus(mesAnio(p.fecha))}</p>
+        <p class="ano-mes-sub">Mes ${p.n} de 12 en Alemania</p>
+        <dl class="ano-datos">
+          <div><dt>Estación</dt><dd>${ESTACION_NOMBRE[c.estacion]}</dd></div>
+          <div><dt>Oscurece</dt><dd>cerca de las ${c.anochece}<small> en Berlín</small></dd></div>
+          <div class="ano-dato-largo"><dt>Trabajo</dt><dd>${c.trabajo}</dd></div>
+          ${c.fechas ? `<div class="ano-dato-largo"><dt>Fechas</dt><dd>${c.fechas}</dd></div>` : ""}
+        </dl>`;
+    }
+    if (!p.fecha) delete cab.dataset.estacion;
+
     const nombreTema = Object.fromEntries(A.temas.map((x) => [x.id, x.nombre]));
-    const items = A.items.filter((it) => it.momento === estado.anoMomento && delTema(it));
+    const grupos = itemsDeParada(p);
     const cuerpo = $("#ano-cuerpo");
-    if (!items.length) {
-      cuerpo.innerHTML = `<p class="ano-vacio">En este momento nadie contó miedos de «${nombreTema[tema]}». Prueben otro momento del año o toquen «Todo».</p>`;
+    if (!grupos.length) {
+      cuerpo.innerHTML = `<p class="ano-vacio">Nadie contó un miedo propio de este mes: suele ser rutina. Arriendo a comienzo de mes, buzón una vez por semana y alemán. Lo de todos los meses está en el mes 3.</p><p class="ano-nota">${t(A.nota)}</p>`;
       return;
     }
-    cuerpo.innerHTML = items.map((it) => `
+    cuerpo.innerHTML = grupos.map((g) => `
+      ${g.titulo ? `<h3 class="ano-grupo">${g.titulo}</h3>` : ""}
+      ${g.items.map((it) => `
       <article class="ano-miedo" data-tema="${it.tema}">
         <p class="ano-etiqueta">${nombreTema[it.tema]}</p>
-        <h3>${it.miedo}</h3>
+        <h4 class="ano-pregunta">${it.miedo}</h4>
         <div class="ano-pasos">
-          <div class="ano-paso"><h4>Lo que suele pasar</h4><p>${t(it.realidad)}</p></div>
-          <div class="ano-paso ano-hacer"><h4>Qué hacer</h4><p>${t(it.hacer)}</p></div>
+          <div class="ano-paso"><h5>Lo que suele pasar</h5><p>${t(it.realidad)}</p></div>
+          <div class="ano-paso ano-hacer"><h5>Qué hacer</h5><p>${t(it.hacer)}</p></div>
         </div>
         ${it.voz ? `<blockquote class="ano-voz"><p>${it.voz.texto}</p><footer>${it.voz.quien}</footer></blockquote>` : ""}
         ${it.fuentes.length ? `<p class="ano-fuentes">Fuentes: ${it.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join(", ")}</p>` : ""}
-      </article>`).join("");
+      </article>`).join("")}`).join("") + `<p class="ano-nota">${t(A.nota)}</p>`;
   }
 
   /* ---------- Cómo leer un precio de arriendo ---------- */
@@ -2618,7 +2663,7 @@
   }
 
   /* ---------- Ventanas ---------- */
-  const VISTAS = ["bienvenida", "inicio", "colchon", "lucas", "trabajos", "vivir", "refugio", "dinero", "ciudades", "buscar-alla", "ruta", "prepararse", "el-ano", "dudas", "conectar"];
+  const VISTAS = ["bienvenida", "inicio", "colchon", "lucas", "trabajos", "vivir", "dinero", "ciudades", "ruta", "prepararse", "buscar-alla", "el-ano", "dudas", "refugio", "conectar"];
   const DENTRO = {
     economia: "colchon", escenarios: "colchon", registro: "colchon", acciones: "colchon", "ajustes-colchon": "colchon",
     carpeta: "ruta", combinador: "trabajos", postular: "trabajos", "leer-arriendo": "ciudades", "de-postular": "buscar-alla", "preguntas-que-deciden": "refugio", familia: "refugio", "mal-mes": "refugio", contenido: null
