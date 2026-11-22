@@ -1514,3 +1514,45 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   .bienv-idea h3 { margin-top: 0; }
   .bienv-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Lo que vivieron otros ---------- */
+.ano-linea { position: relative; display: grid; grid-template-columns: repeat(6, minmax(8.5rem, 1fr)); gap: 0.4rem; margin: 1.5rem 0 1.2rem; padding: 0.3rem 0 0 0.3rem; overflow-x: auto; align-items: start; scrollbar-width: thin; }
+.ano-linea::before { content: ""; position: absolute; top: 1.15rem; left: 0.9rem; right: 0.9rem; height: 6px; border-radius: 3px; background: var(--linea); min-width: calc(6 * 8.5rem - 1.8rem); }
+.ano-estacion { position: relative; font: inherit; color: var(--tinta); background: none; border: 0; padding: 0 0.4rem 0.6rem 0; text-align: left; cursor: pointer; display: grid; gap: 0.15rem; align-content: start; justify-items: start; border-radius: 8px; }
+.ano-punto { width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--hoja); border: 4px solid var(--tinta); margin-bottom: 0.45rem; transition: transform 0.15s ease; }
+.ano-estacion[aria-selected="true"] .ano-punto { background: var(--tinta); transform: scale(1.15); }
+.ano-nombre { font-family: var(--display); font-weight: 700; font-size: var(--t-1); line-height: 1.15; }
+.ano-cuando { font-size: 0.8rem; color: var(--tinta-suave); }
+.ano-cuenta { font-size: 0.78rem; font-weight: 700; color: var(--suyo); }
+.ano-estacion:focus-visible { outline: 3px solid var(--linea-oscura); outline-offset: 3px; }
+.ano-estacion:hover .ano-punto { transform: scale(1.1); }
+
+.ano-temas { flex-wrap: wrap; justify-self: start; display: inline-flex; margin-bottom: 1.6rem; }
+.ano-cuerpo { display: grid; gap: 0; max-width: 60rem; }
+.ano-vacio { color: var(--tinta-suave); }
+
+.ano-miedo { padding: 1.4rem 0 1.6rem; border-top: 1px solid var(--niebla); }
+.ano-miedo:first-child { border-top: 0; padding-top: 0.2rem; }
+.ano-etiqueta { margin: 0 0 0.35rem; font-size: 0.8rem; font-weight: 700; color: var(--tinta-suave); }
+.ano-etiqueta::before { content: ""; display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; margin-right: 0.4rem; background: var(--color-tema, var(--tinta-suave)); vertical-align: 0.05rem; }
+.ano-miedo[data-tema="plata"] { --color-tema: var(--linea-oscura); }
+.ano-miedo[data-tema="vivienda"] { --color-tema: var(--suyo); }
+.ano-miedo[data-tema="salud"] { --color-tema: var(--gasto); }
+.ano-miedo[data-tema="papeles"] { --color-tema: #4a5a6e; }
+.ano-miedo[data-tema="animo"] { --color-tema: #7a5ba6; }
+.ano-miedo h3 { font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.15; margin: 0 0 0.9rem; max-width: 34ch; }
+.ano-pasos { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+.ano-paso h4 { margin: 0 0 0.3rem; font-size: var(--t-0); }
+.ano-paso p { margin: 0; line-height: 1.55; }
+.ano-hacer { background: var(--hoja); border-radius: 10px; padding: 0.8rem 1rem; border-left: 5px solid var(--color-tema, var(--suyo)); }
+.ano-voz { margin: 1rem 0 0; padding: 0 0 0 1rem; border-left: 3px solid var(--niebla); max-width: 46rem; }
+.ano-voz p { margin: 0; font-style: italic; color: var(--tinta); line-height: 1.5; }
+.ano-voz footer { margin-top: 0.25rem; font-size: 0.82rem; color: var(--tinta-suave); }
+.ano-fuentes { margin: 0.8rem 0 0; font-size: 0.8rem; color: var(--tinta-suave); }
+.ano-fuentes a { color: inherit; }
+
+@media (max-width: 760px) {
+  .ano-pasos { grid-template-columns: 1fr; gap: 0.8rem; }
+  .ano-linea { margin-left: calc(-1 * var(--margen)); margin-right: calc(-1 * var(--margen)); padding-left: var(--margen); padding-right: var(--margen); }
+}
+@media (prefers-reduced-motion: reduce) { .ano-punto { transition: none; } }
