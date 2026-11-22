@@ -1,6 +1,6 @@
 # Proyecto Alemania
 
-Página para planificar la Working Holiday en Alemania desde Chile, para una o dos personas (pareja o amigos). Nació para Teoc y Francis y ahora cualquier grupo la puede usar con sus nombres: al entrar por primera vez, la bienvenida explica qué es y pide quiénes viajan. Empieza por la etapa de ahora: armar el colchón. Tiene el colchón, la calculadora de ahorro para el viaje (con pasaje de ida y vuelta o solo de ida), la carpeta de documentos, las ciudades, la preparación (alemán, hospedaje, experiencias) y las dudas.
+Página para planificar la Working Holiday en Alemania desde Chile, para una o dos personas (pareja o amigos). Cualquier grupo la puede usar con sus nombres: al entrar por primera vez, la bienvenida explica qué es, pide quiénes viajan, repasa los requisitos de la visa («¿Pueden ir?») y pregunta si pagan arriendo o viven con su familia. Con esa respuesta cambia la etapa 0: quien arrienda arma primero un colchón en Santiago; quien vive con su familia ahorra directo para el viaje. Tiene el colchón o el ahorro, la calculadora de ahorro para el viaje (con pasaje de ida y vuelta o solo de ida), la carpeta de documentos, las ciudades, la preparación (alemán, hospedaje, experiencias) y las dudas.
 
 ## Cómo verla
 
@@ -10,24 +10,25 @@ Página para planificar la Working Holiday en Alemania desde Chile, para una o d
 
 ## Las ventanas
 
-Cada sección es una ventana. En el celular se ve una a la vez, con la barra de abajo (Inicio, Colchón, Las lucas, Trabajos y Más). En tablet horizontal o computador, todas quedan en la barra lateral.
+Cada sección es una ventana. En el celular se ve una a la vez, con la barra de abajo (Inicio, Colchón —o Ahorro, si viven con su familia—, Las lucas, Trabajos y Más). En tablet horizontal o computador, todas quedan en la barra lateral.
 
 | Ventana | Qué tiene |
 |---|---|
-| Inicio | La línea completa (colchón → viaje) y los visores: el colchón, cada mes, lo próximo, Alemania en números y cómo se sienten |
-| Las lucas | La cascada de prioridades: el ingreso del mes llena en orden techo, comida y transporte, lo de cada uno, deudas, colchón y Alemania. Se puede mover el monto para simular |
-| Trabajos | Estudio de sueldos 2026 sin título, con filtros y un combinador para probar un trabajo por persona |
-| Dónde vivir | Arriendo promedio 1D por comuna, líneas de metro y señales de seguridad; «Probar en Las lucas» simula vivir ahí |
-| 0. El colchón | Nuestra economía hoy, las etapas (frenar el déficit, fondo de emergencia, colchón completo, ahorro para Alemania), «¿Y si…?» con trabajos nuevos, lo que llevamos guardado y lo que mueve los plazos |
-| 1. Cuando dudemos | Cómo se sienten, las preguntas que deciden, el mes malo, familia y consecuencias |
+| Inicio | La línea completa (colchón o ahorro → viaje) y los visores: el colchón o el ahorro, cada mes, lo próximo, Alemania en números y cómo se sienten. Si viven con su familia, «Lo próximo» va primero y la ruta de trámites corre desde hoy |
+| 1. Los trámites | La ruta y la carpeta |
 | 2. La plata | La meta para Alemania y el desglose |
 | 3. ¿Dónde llegamos? | Ciudades y sueldos |
-| 4. Los trámites | La ruta y la carpeta |
-| 5. Prepararse | Alemán, hospedaje y experiencias |
+| 4. Prepararse | Alemán, hospedaje y experiencias |
+| Las lucas | La cascada de prioridades: el ingreso del mes llena en orden techo, comida y transporte, lo de cada uno, deudas, colchón y Alemania. Se puede mover el monto para simular |
+| Trabajos | Estudio de sueldos 2026 sin título, con filtros y un combinador para probar un trabajo por persona |
+| Dónde vivir | Arriendo promedio 1D por comuna, líneas de metro y señales de seguridad; «Probar en Las lucas» simula vivir ahí. Opcional si viven con su familia |
+| 0. El colchón | Si arriendan: nuestra economía hoy, las etapas (frenar el déficit, fondo de emergencia, colchón completo, ahorro para Alemania), «¿Y si…?» con trabajos nuevos, lo que llevamos guardado y lo que mueve los plazos |
+| 0. Ahorrar para el viaje | Si viven con su familia: la misma ventana, con las etapas cubrir el mes, los fondos que pide la embajada, la meta completa y listo. Al final, «Armar también un colchón» lo agrega como opción |
+| Cuando dudemos | Cómo se sienten, las preguntas que deciden, el mes malo, familia y consecuencias |
 | Todas las dudas | Buscador de dudas |
 | Guardar entre los dos | Conectar la planilla de Google |
 
-Con «Primero el colchón, después Alemania» activado (viene así), el ahorro para el viaje empieza cuando el colchón esté completo, y la fecha posible de viaje se calcula desde ahí.
+Con «Primero el colchón, después Alemania» activado (viene así), el ahorro para el viaje empieza cuando el colchón esté completo, y la fecha posible de viaje se calcula desde ahí. Si viven con su familia y no marcan «Armar también un colchón» (`estado.colchonOpcional`), la meta del colchón es cero y todo lo anotado cuenta para el viaje.
 
 ## Guardar entre los dos
 
@@ -50,8 +51,8 @@ Todo el contenido está en `data/`, en archivos JSON que se pueden editar sin to
 |---|---|
 | `data/trabajos.json` | Trabajos, rangos de sueldo, requisitos y fuentes (revisado el 20-nov-2026) |
 | `data/barrios.json` | Comunas, arriendo, metro, señales de seguridad y fuentes |
-| `data/colchon.json` | Textos del colchón, etapas, escenarios de «¿Y si…?», sueldos estimados de cada escenario y acciones para llegar antes |
-| `data/plan.json` | Tipo de cambio, requisitos de la embajada (incluida la edad para postular), costos, colchones para vivir allá, etapas de la ruta con sus tareas, documentos de la carpeta y fuentes |
+| `data/colchon.json` | Textos del colchón, etapas, etapas de «Ahorrar para el viaje» (`etapasAhorro`), escenarios de «¿Y si…?», sueldos estimados de cada escenario y acciones para llegar antes |
+| `data/plan.json` | Tipo de cambio, requisitos de la embajada (incluida la edad para postular), «¿Pueden ir?» (`puedesIr`: cada requisito con su regla, pregunta y qué significa no cumplirlo, y el enlace oficial), costos, colchones para vivir allá, etapas de la ruta con sus tareas, documentos de la carpeta y fuentes |
 | `data/ciudades.json` | Ciudades, gastos mensuales estimados para dos personas (`gastos`) y para una (`gastosUno`), y escenarios de ingreso de cada grupo |
 | `data/preparacion.json` | Plan de alemán de 12 semanas, frases con pronunciación, cursos, pasos para buscar hospedaje, mensaje para arrendadores, señales de estafa y experiencias de otras personas |
 | `data/refugio.json` | Ventana «Cuando dudemos» |
@@ -83,9 +84,13 @@ manifest.webmanifest   para instalar en el celular
 
 ## Grupo (perfil)
 
-`estado.perfil = { nombres: [1 o 2], tipo: "pareja" | "amigos" | "solo", edades: [] }` se sincroniza con la planilla. Sin perfil, la página muestra la vista `#bienvenida`. Los cálculos usan `N()` (personas que viajan); los textos que cambian con una persona usan `ld(dos, uno)` en JS o `data-uno` en el HTML. El mensaje para arriendos sale de `preparacion.json > hospedaje.plantillas[tipo]` con `{nombres}`. Ningún JSON lleva nombres ni edades: salen del perfil (por ejemplo, la duda «edad» usa `{{plazoEdad}}`, que calcula cuántos años le quedan a cada persona con `plan.json > embajada.edadMinima` y `edadMaxima`). Un dispositivo con datos pero sin perfil abre la bienvenida y conserva lo anotado.
+`estado.perfil = { nombres: [1 o 2], tipo: "pareja" | "amigos" | "solo", edades: [], vivienda: "arriendo" | "familia", requisitos: { edad: "si" | "no", … } }` se sincroniza con la planilla. Los perfiles guardados antes de la pregunta por la vivienda quedan como `"arriendo"` (todo sigue igual) y con `requisitos: {}`; lo hace `normalizar()`. Sin perfil, la página muestra la vista `#bienvenida`. Los cálculos usan `N()` (personas que viajan); los textos que cambian con una persona usan `ld(dos, uno)` en JS o `data-uno` en el HTML. El mensaje para arriendos sale de `preparacion.json > hospedaje.plantillas[tipo]` con `{nombres}`. Ningún JSON lleva nombres ni edades: salen del perfil (por ejemplo, la duda «edad» usa `{{plazoEdad}}`, que calcula cuántos años le quedan a cada persona con `plan.json > embajada.edadMinima` y `edadMaxima`). Un dispositivo con datos pero sin perfil abre la bienvenida y conserva lo anotado.
 
 Los textos de los JSON se escriben para dos. Cuando cambian para una persona, el mismo objeto trae la versión en singular con el sufijo `Uno` (`texto` y `textoUno`, `pregunta` y `preguntaUno`, `suma` y `sumaUno`…). Lo que solo sirve a dos lleva `"soloDos": true` y lo que solo sirve a una, `"soloUno": true`. `porGrupo()` en `js/app.js` aplica esto al cargar los datos.
+
+Lo mismo para la vivienda: el sufijo `Familia` reemplaza el texto si viven con su familia (`texto` y `textoFamilia`; `textoFamiliaUno` para una persona), `"soloArriendo": true` desaparece para quien vive con su familia y `"soloFamilia": true`, para quien arrienda. Lo aplica `porVivienda()`, antes que `porGrupo()`. En el HTML, `data-familia` y `data-familia-uno` cambian el texto, y `data-solo-familia` y `data-solo-arriendo` muestran u ocultan.
+
+Los requisitos de «¿Pueden ir?» se verificaron el 22 de noviembre de 2026 en la página de la embajada. Un «no» no bloquea: la ficha explica qué significa y deja seguir.
 
 ## Su año allá (`data/el-ano.json`)
 
@@ -93,4 +98,4 @@ Calendario de 12 meses que parte en el mes de viaje del plan. Cada mes muestra e
 
 ## Menú
 
-Ahora, en Santiago · El plan de Alemania · Cuando aparecen dudas (Todas las dudas, Cuando dudemos) · Su grupo (Quiénes viajan, Conectar dispositivos).
+Inicio · El plan de Alemania (Los trámites, La plata, ¿Dónde llegamos?, Prepararse, Buscar allá, Su año allá) · Ahora, en Santiago (El colchón o Ahorrar para el viaje, Las lucas, Trabajos, Dónde vivir) · Cuando aparecen dudas (Todas las dudas, Cuando dudemos) · Su grupo (Quiénes viajan, Conectar dispositivos). La numeración sigue el camino: 0 es lo de ahora en Santiago y 1 a 4, el plan de Alemania. «Sigue», al pie de cada ventana, usa el mismo orden del menú.

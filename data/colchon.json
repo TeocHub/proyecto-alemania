@@ -59,7 +59,9 @@
         "full",
         "full"
       ],
-      "sumaUno": ["full"],
+      "sumaUno": [
+        "full"
+      ],
       "reemplaza": true
     },
     {
@@ -70,7 +72,8 @@
       "suma": [
         "full"
       ],
-      "pieza": true
+      "pieza": true,
+      "soloArriendo": true
     },
     {
       "id": "dosfull-pieza",
@@ -82,9 +85,12 @@
         "full",
         "full"
       ],
-      "sumaUno": ["full"],
+      "sumaUno": [
+        "full"
+      ],
       "reemplaza": true,
-      "pieza": true
+      "pieza": true,
+      "soloArriendo": true
     },
     {
       "id": "ambos",
@@ -95,7 +101,9 @@
         "full",
         "part"
       ],
-      "sumaUno": ["part"]
+      "sumaUno": [
+        "part"
+      ]
     }
   ],
   "sueldos": {
@@ -121,43 +129,90 @@
       "id": "vender",
       "tipo": "Sube lo que entra",
       "titulo": "Vender lo que no usan",
-      "texto": "Ropa, juegos, cosas de la casa. Todo lo que salga de ahí va directo al colchón."
+      "texto": "Ropa, juegos, cosas de la casa. Todo lo que salga de ahí va directo al colchón.",
+      "textoFamilia": "Ropa, juegos, cosas que no usan. Todo lo que salga de ahí va directo al viaje.",
+      "textoFamiliaUno": "Ropa, juegos, cosas que no usas. Todo lo que salga de ahí va directo al viaje."
     },
     {
       "id": "agua",
       "tipo": "Baja lo que sale",
       "titulo": "Bajar el agua caliente",
-      "texto": "Duchas de cinco minutos y lavar con agua fría. El agua caliente del edificio se cobra por metro cúbico."
+      "texto": "Duchas de cinco minutos y lavar con agua fría. El agua caliente del edificio se cobra por metro cúbico.",
+      "soloArriendo": true
     },
     {
       "id": "luz",
       "tipo": "Baja lo que sale",
       "titulo": "Revisar la luz",
-      "texto": "Desenchufar lo que no se usa y cuidar la estufa y el hervidor, que son lo que más consume."
+      "texto": "Desenchufar lo que no se usa y cuidar la estufa y el hervidor, que son lo que más consume.",
+      "soloArriendo": true
     },
     {
       "id": "amenities",
       "tipo": "Baja lo que sale",
       "titulo": "Preguntar por el cobro de amenities",
-      "texto": "Si no usan los espacios comunes, consulten en el edificio si se puede dar de baja."
+      "texto": "Si no usan los espacios comunes, consulten en el edificio si se puede dar de baja.",
+      "soloArriendo": true
     },
     {
       "id": "contrato",
       "tipo": "Cuida lo que hay",
       "titulo": "Leer el contrato de arriendo",
-      "texto": "Cuántos días de aviso hay que dar y si hay multa por salir antes. Lo necesitan para decidir si se quedan o se mudan."
+      "texto": "Cuántos días de aviso hay que dar y si hay multa por salir antes. Lo necesitan para decidir si se quedan o se mudan.",
+      "soloArriendo": true
     },
     {
       "id": "cuenta",
       "tipo": "Cuida lo que hay",
       "titulo": "Una cuenta solo para el colchón",
-      "texto": "Separada de la del día a día. Que el ahorro salga el mismo día del sueldo, antes de gastar."
+      "texto": "Separada de la del día a día. Que el ahorro salga el mismo día del sueldo, antes de gastar.",
+      "tituloFamilia": "Una cuenta solo para el viaje",
+      "textoFamilia": "Separada de la del día a día y a tu nombre, porque es la que después muestras en la embajada. Que el ahorro salga el mismo día del sueldo."
     },
     {
       "id": "gastos",
       "tipo": "Cuida lo que hay",
       "titulo": "Anotar los gastos reales un mes",
       "texto": "Comida, transporte y gustos. Con números reales, los plazos de esta página también son reales."
+    }
+  ],
+  "introFamilia": "Como viven con su familia, no hace falta armar primero un colchón de gastos en Santiago: lo que les quede cada mes puede ir directo al viaje. Aquí anotan lo que ganan, lo que gastan y lo que van guardando, y la página calcula para cuándo alcanza.",
+  "introFamiliaUno": "Como vives con tu familia, no hace falta armar primero un colchón de gastos en Santiago: lo que te quede cada mes puede ir directo al viaje. Aquí anotas lo que ganas, lo que gastas y lo que vas guardando, y la página calcula para cuándo alcanza.",
+  "etapasAhorro": [
+    {
+      "id": "deficit",
+      "nombre": "Cubrir el mes",
+      "corto": "Que lo que entra cubra lo que sale",
+      "texto": "Hoy sale más plata de la que entra: faltan {{faltaMes}} al mes. Antes de ahorrar hay que cerrar esa diferencia, sumando un ingreso o bajando un gasto."
+    },
+    {
+      "id": "colchon",
+      "nombre": "El colchón",
+      "corto": "{{mesesColchon}} meses de gastos",
+      "texto": "Eligieron armar también un colchón: primero juntan {{metaColchon}}, que son {{mesesColchon}} meses de gastos, y después todo lo que sobre va al viaje.",
+      "textoUno": "Elegiste armar también un colchón: primero juntas {{metaColchon}}, que son {{mesesColchon}} meses de gastos, y después todo lo que sobre va al viaje."
+    },
+    {
+      "id": "fondos",
+      "nombre": "Los fondos",
+      "corto": "{{congelado}} cada uno en su cuenta",
+      "cortoUno": "{{congelado}} en tu cuenta",
+      "texto": "La primera meta es lo que la embajada pide ver en la cuenta: {{congelado}} cada uno, completos antes de {{fechaFondos}}. Desde ese mes no se tocan.",
+      "textoUno": "La primera meta es lo que la embajada pide ver en tu cuenta: {{congelado}}, completos antes de {{fechaFondos}}. Desde ese mes no se tocan."
+    },
+    {
+      "id": "meta",
+      "nombre": "La meta completa",
+      "corto": "{{meta}} con pasajes y seguro",
+      "texto": "Los fondos ya están. Ahora va el resto: pasajes, seguro, visa y la plata para los primeros meses allá, hasta llegar a {{meta}}.",
+      "textoUno": "Los fondos ya están. Ahora va el resto: pasaje, seguro, visa y la plata para los primeros meses allá, hasta llegar a {{meta}}."
+    },
+    {
+      "id": "listo",
+      "nombre": "Listo para viajar",
+      "corto": "La plata está",
+      "texto": "Ya tienen lo que pide el plan. Lo que sigan guardando es margen para allá.",
+      "textoUno": "Ya tienes lo que pide el plan. Lo que sigas guardando es margen para allá."
     }
   ]
 }

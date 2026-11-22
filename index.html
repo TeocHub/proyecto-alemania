@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="stylesheet" href="css/styles.css?v=10">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='%23fff' stroke='%23182638' stroke-width='5'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -43,19 +43,19 @@
       <a class="marca" href="#inicio"><span class="marca-punto" aria-hidden="true"></span>Proyecto Alemania</a>
       <button type="button" class="sincro" data-sincro><span class="sincro-punto" aria-hidden="true"></span><span class="sincro-texto">Solo en este dispositivo</span></button>
       <nav class="riel-nav">
-        <p class="riel-grupo">Ahora, en Santiago</p>
         <a href="#inicio" data-vista="inicio"><svg><use href="#i-inicio"/></svg>Inicio</a>
-        <a href="#colchon" data-vista="colchon"><svg><use href="#i-colchon"/></svg>El colchón</a>
-        <a href="#lucas" data-vista="lucas"><svg><use href="#i-lucas"/></svg>Las lucas</a>
-        <a href="#trabajos" data-vista="trabajos"><svg><use href="#i-trabajos"/></svg>Trabajos</a>
-        <a href="#vivir" data-vista="vivir"><svg><use href="#i-vivir"/></svg>Dónde vivir</a>
         <p class="riel-grupo">El plan de Alemania</p>
+        <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
         <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
         <a href="#ciudades" data-vista="ciudades"><svg><use href="#i-donde"/></svg>¿Dónde llegamos?</a>
-        <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
         <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
         <a href="#buscar-alla" data-vista="buscar-alla"><svg><use href="#i-buscar"/></svg>Buscar allá</a>
         <a href="#el-ano" data-vista="el-ano"><svg><use href="#i-ano"/></svg><span data-uno="Tu año allá">Su año allá</span></a>
+        <p class="riel-grupo">Ahora, en Santiago</p>
+        <a href="#colchon" data-vista="colchon"><svg><use href="#i-colchon"/></svg><span data-familia="Ahorrar para el viaje">El colchón</span></a>
+        <a href="#lucas" data-vista="lucas"><svg><use href="#i-lucas"/></svg>Las lucas</a>
+        <a href="#trabajos" data-vista="trabajos"><svg><use href="#i-trabajos"/></svg>Trabajos</a>
+        <a href="#vivir" data-vista="vivir"><svg><use href="#i-vivir"/></svg>Dónde vivir<small class="opcional" data-solo-familia hidden>opcional</small></a>
         <p class="riel-grupo">Cuando aparecen dudas</p>
         <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>
         <a href="#refugio" data-vista="refugio"><svg><use href="#i-decidir"/></svg><span data-uno="Cuando dudes">Cuando dudemos</span></a>
@@ -96,7 +96,26 @@
                 <button type="button" data-tipo="amigos">Somos amigos</button>
               </div>
               <div class="perfil-personas" id="perfil-personas"></div>
-              <p class="nota">La edad es opcional: sirve para avisarles si alguien no cumple la regla de tener entre 18 y 30 años al postular.</p>
+              <p class="nota">La edad es opcional: con ella la página avisa si la fecha de viaje deja a alguien fuera del límite de edad.</p>
+
+              <section class="puedes" id="puedes" aria-labelledby="puedes-titulo">
+                <div class="puedes-cabeza">
+                  <h3 class="prep-titulo" id="puedes-titulo">¿Pueden ir?</h3>
+                  <p class="nota" id="puedes-intro"></p>
+                </div>
+                <div class="puedes-linea" id="puedes-linea" role="group" aria-label="Requisitos de la visa"></div>
+                <div class="puedes-ficha" id="puedes-ficha" aria-live="polite"></div>
+                <p class="puedes-fuente"><a id="puedes-fuente" target="_blank" rel="noopener">Requisitos oficiales en la Embajada de Alemania en Santiago ↗</a></p>
+              </section>
+
+              <div class="vivienda">
+                <h3 class="prep-titulo" id="vivienda-titulo">¿Pagan arriendo o viven con su familia?</h3>
+                <div class="segmentos-claros" id="perfil-vivienda" role="group" aria-labelledby="vivienda-titulo">
+                  <button type="button" data-vivienda="arriendo">Pagamos arriendo</button>
+                  <button type="button" data-vivienda="familia">Vivimos con familia</button>
+                </div>
+                <p class="nota" id="vivienda-nota"></p>
+              </div>
               <p class="dm-error" id="perfil-error" aria-live="polite"></p>
               <button type="submit" class="boton" id="perfil-guardar">Empezar</button>
             </form>
@@ -108,8 +127,8 @@
               </div>
               <div class="bienv-caja">
                 <h3>Qué hay adentro</h3>
-                <p><strong>Ahora, en Santiago:</strong> el colchón, el reparto del sueldo, trabajos y dónde vivir en Chile, y un espacio para cuando aparecen las dudas.</p>
-                <p><strong>El plan de Alemania:</strong> la plata del viaje, las ciudades, trabajo y arriendo allá, los trámites hasta la visa y cómo prepararse.</p>
+                <p><strong>El plan de Alemania:</strong> los trámites hasta la visa, la plata del viaje, las ciudades, trabajo y arriendo allá, y cómo prepararse.</p>
+                <p><strong>Ahora, en Santiago:</strong> el ahorro (o el colchón, si pagan arriendo), el reparto del sueldo, trabajos y dónde vivir en Chile.</p>
                 <p><strong>Siempre a mano:</strong> todas las dudas, conectar dispositivos y esta guía.</p>
               </div>
               <p class="nota">Los montos son estimaciones para planificar, revisadas con fuentes oficiales. Antes de pagar o postular, confírmenlos en la página de la Embajada de Alemania en Santiago.</p>
@@ -148,9 +167,9 @@
           </div>
         </section>
 
-        <section id="colchon" class="vista seccion seccion-colchon" data-titulo="El colchón" hidden>
+        <section id="colchon" class="vista seccion seccion-colchon" data-titulo="El colchón" data-titulo-familia="Ahorrar para el viaje" hidden>
           <div class="seccion-cabeza">
-            <h2><span class="cap-num" aria-hidden="true">0</span>El colchón</h2>
+            <h2><span class="cap-num" aria-hidden="true">0</span><span data-familia="Ahorrar para el viaje">El colchón</span></h2>
             <p id="colchon-intro"></p>
           </div>
 
@@ -166,7 +185,7 @@
               <div class="economia" id="economia">
                 <div class="economia-cabeza">
                   <h3 data-uno="Mi economía hoy">Nuestra economía hoy</h3>
-                  <p data-uno="Lo que ganas y lo que se va en la casa. De aquí salen la meta del colchón, cuánto puedes guardar al mes y la fecha posible para Alemania.">Lo que gana cada uno y lo que se va en la casa. De aquí salen la meta del colchón, cuánto pueden guardar al mes y la fecha posible para Alemania.</p>
+                  <p data-uno="Lo que ganas y lo que se va en la casa. De aquí salen la meta del colchón, cuánto puedes guardar al mes y la fecha posible para Alemania." data-familia="Lo que gana cada uno y lo que gastan al mes. De aquí sale cuánto pueden guardar para el viaje y la fecha posible para Alemania." data-familia-uno="Lo que ganas y lo que gastas al mes. De aquí sale cuánto puedes guardar para el viaje y la fecha posible para Alemania.">Lo que gana cada uno y lo que se va en la casa. De aquí salen la meta del colchón, cuánto pueden guardar al mes y la fecha posible para Alemania.</p>
                 </div>
                 <div class="economia-grid">
                   <form class="economia-datos" onsubmit="return false">
@@ -178,14 +197,14 @@
                       </div>
                     </fieldset>
                     <fieldset class="eco-bloque">
-                      <legend data-uno="Gastos de la casa (al mes)">Gastos de la casa (de los dos, al mes)</legend>
+                      <legend data-uno="Gastos de la casa (al mes)" data-familia="Lo que ponen en la casa y el día a día (de los dos, al mes)" data-familia-uno="Lo que pones en la casa y el día a día (al mes)">Gastos de la casa (de los dos, al mes)</legend>
                       <div class="control dos">
-                        <label><span>Arriendo y gasto común</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="arriendo" autocomplete="off"></span></label>
-                        <label><span>Luz, agua, gas, internet</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="cuentas" autocomplete="off"></span></label>
+                        <label><span data-familia="Aporte a la casa familiar">Arriendo y gasto común</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="arriendo" autocomplete="off"></span></label>
+                        <label><span data-familia="Cuentas que pagan ustedes" data-familia-uno="Cuentas que pagas tú">Luz, agua, gas, internet</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="cuentas" autocomplete="off"></span></label>
                         <label><span>Supermercado y comida</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="comida" autocomplete="off"></span></label>
                         <label><span>Transporte</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="transporte" autocomplete="off"></span></label>
-                        <label><span>Deudas o créditos de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="deudas" autocomplete="off"></span></label>
-                        <label><span>Otros de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="otrosCasa" autocomplete="off"></span></label>
+                        <label><span data-familia="Deudas o créditos">Deudas o créditos de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="deudas" autocomplete="off"></span></label>
+                        <label><span data-familia="Otros gastos">Otros de la casa</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-eco="otrosCasa" autocomplete="off"></span></label>
                       </div>
                     </fieldset>
                     <fieldset class="eco-bloque">
@@ -210,7 +229,7 @@
               <div class="sub-seccion" id="escenarios">
                 <div class="sub-cabeza">
                   <h3>¿Y si…?</h3>
-                  <p>Elijan un camino y vean cuándo estaría listo el colchón y cuándo podrían viajar. No cambia sus datos: es para comparar.</p>
+                  <p data-uno="Elige un camino y mira cuándo estaría listo el colchón y cuándo podrías viajar. No cambia tus datos: es para comparar." data-familia="Elijan un camino y vean desde cuándo podrían viajar. No cambia sus datos: es para comparar." data-familia-uno="Elige un camino y mira desde cuándo podrías viajar. No cambia tus datos: es para comparar.">Elijan un camino y vean cuándo estaría listo el colchón y cuándo podrían viajar. No cambia sus datos: es para comparar.</p>
                 </div>
                 <div class="escenarios" id="escenarios-botones" role="group" aria-label="Escenarios"></div>
                 <div class="escenario-resultado" id="escenario-resultado" aria-live="polite"></div>
@@ -219,7 +238,7 @@
                   <div class="sueldos-campos">
                     <label><span>Full time, líquido</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-sueldo="full" autocomplete="off"></span></label>
                     <label><span>Part time 30 h, líquido</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-sueldo="part" autocomplete="off"></span></label>
-                    <label><span>Pieza para dos, todo incluido</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-sueldo="pieza" autocomplete="off"></span></label>
+                    <label data-solo-arriendo><span data-uno="Pieza, todo incluido">Pieza para dos, todo incluido</span><span class="campo-pesos"><input type="text" inputmode="numeric" data-sueldo="pieza" autocomplete="off"></span></label>
                   </div>
                   <p class="nota" id="sueldos-nota"></p>
                 </details>
@@ -228,8 +247,8 @@
               <div class="sub-seccion" id="registro">
                 <div class="sub-cabeza registro-cabeza">
                   <div>
-                    <h3>Lo que llevamos</h3>
-                    <p>Cada vez que guarden o saquen plata del colchón, anótenlo. Las barras son los meses: la línea marca lo que tendrían que guardar al mes.</p>
+                    <h3 data-uno="Lo que llevo">Lo que llevamos</h3>
+                    <p data-uno="Cada vez que guardes o saques plata del colchón, anótalo. Las barras son los meses: la línea marca lo que tendrías que guardar al mes." data-familia="Cada vez que guarden o saquen plata para el viaje, anótenlo. Las barras son los meses: la línea marca lo que el plan pide guardar al mes." data-familia-uno="Cada vez que guardes o saques plata para el viaje, anótalo. Las barras son los meses: la línea marca lo que el plan pide guardar al mes.">Cada vez que guarden o saquen plata del colchón, anótenlo. Las barras son los meses: la línea marca lo que tendrían que guardar al mes.</p>
                   </div>
                   <button type="button" class="boton" data-anotar>Anotar</button>
                 </div>
@@ -248,18 +267,22 @@
 
               <div class="sub-seccion" id="ajustes-colchon">
                 <div class="sub-cabeza">
-                  <h3>Cómo lo armamos</h3>
+                  <h3 data-uno="Cómo lo armo" data-familia="Un colchón en Santiago, si quieren" data-familia-uno="Un colchón en Santiago, si quieres">Cómo lo armamos</h3>
                 </div>
                 <div class="ajustes">
-                  <fieldset class="ajuste">
+                  <label class="ajuste ajuste-check" data-solo-familia hidden>
+                    <input type="checkbox" id="colchon-opcional">
+                    <span data-uno="&lt;strong&gt;Armar también un colchón.&lt;/strong&gt; Viviendo con tu familia no es necesario, pero sirve como respaldo si piensas independizarte o si un trabajo se cae. Al marcarlo, primero se juntan unos meses de gastos y después todo va al viaje."><strong>Armar también un colchón.</strong> Viviendo con su familia no es necesario, pero sirve como respaldo si piensan independizarse o si un trabajo se cae. Al marcarlo, primero se juntan unos meses de gastos y después todo va al viaje.</span>
+                  </label>
+                  <fieldset class="ajuste ajuste-colchon">
                     <legend>¿De cuántos meses de gastos es el colchón?</legend>
                     <div class="segmentos-claros" id="meses-colchon"></div>
                   </fieldset>
-                  <label class="ajuste ajuste-check">
+                  <label class="ajuste ajuste-check ajuste-colchon">
                     <input type="checkbox" id="colchon-primero">
                     <span><strong>Primero el colchón, después Alemania.</strong> El ahorro para el viaje empieza cuando el colchón esté completo, y la fecha posible de viaje se calcula así.</span>
                   </label>
-                  <label class="ajuste ajuste-check">
+                  <label class="ajuste ajuste-check ajuste-colchon">
                     <input type="checkbox" id="colchon-viaja">
                     <span><strong>El colchón se va con nosotros.</strong> Al irse de Chile, lo del colchón se suma a la plata para Alemania, así no hay que juntar dos veces. Desmárquenlo si prefieren dejarlo guardado en Chile para la vuelta.</span>
                   </label>
@@ -333,6 +356,7 @@
           <div class="seccion-cabeza">
             <h2>Dónde vivir</h2>
             <p id="vivir-intro"></p>
+            <p class="aviso-opcional" data-solo-familia hidden data-uno="&lt;strong&gt;Opcional.&lt;/strong&gt; Mientras vivas con tu familia no hace falta. Sirve si piensas independizarte antes del viaje: cada comuna se puede probar en Las lucas."><strong>Opcional.</strong> Mientras vivan con su familia no hace falta. Sirve si piensan independizarse antes del viaje: cada comuna se puede probar en Las lucas.</p>
           </div>
           <div class="vivir-control">
             <label for="vivir-tope">Arriendo hasta</label>
@@ -350,7 +374,7 @@
         <section id="refugio" class="vista refugio" data-titulo="Cuando dudemos" data-titulo-uno="Cuando dudes" hidden>
           <div class="refugio-dentro">
             <div class="seccion-cabeza">
-              <h2><span class="cap-num" aria-hidden="true">1</span><span data-uno="Cuando dudes">Cuando dudemos</span></h2>
+              <h2><span data-uno="Cuando dudes">Cuando dudemos</span></h2>
               <p id="refugio-intro"></p>
             </div>
             <div class="estados" id="estados" role="group" aria-label="¿Qué sienten hoy?" data-aria-uno="¿Qué sientes hoy?"></div>
@@ -547,7 +571,7 @@
         </section>
         <section id="ruta" class="vista seccion" data-titulo="Los trámites" hidden>
           <div class="seccion-cabeza">
-            <h2><span class="cap-num" aria-hidden="true">4</span>Los trámites</h2>
+            <h2><span class="cap-num" aria-hidden="true">1</span>Los trámites</h2>
             <p data-uno="Todo lo que hay que hacer desde hoy hasta tener la visa y llegar. Cada estación es una etapa: tócala para ver qué hacer y marca lo que vayas terminando. Las fechas se calculan desde el mes de viaje.">Todo lo que hay que hacer desde hoy hasta tener la visa y llegar. Cada estación es una etapa: tóquenla para ver qué hacer y marquen lo que cada uno vaya terminando. Las fechas se calculan desde el mes de viaje.</p>
           </div>
           <div class="ruta">
@@ -565,7 +589,7 @@
 
         <section id="prepararse" class="vista seccion" data-titulo="Prepararse" hidden>
           <div class="seccion-cabeza">
-            <h2><span class="cap-num" aria-hidden="true">5</span>Prepararse para llegar</h2>
+            <h2><span class="cap-num" aria-hidden="true">4</span>Prepararse para llegar</h2>
             <p>El idioma, la vivienda y lo que cuentan quienes ya fueron. Lo que se puede adelantar desde Santiago, para no llegar en blanco.</p>
           </div>
           <div class="pestanas" role="tablist" aria-label="Preparación">
@@ -628,7 +652,7 @@
 
     <nav class="tabbar" aria-label="Ventanas principales">
       <a href="#inicio" data-vista="inicio"><svg><use href="#i-inicio"/></svg>Inicio</a>
-      <a href="#colchon" data-vista="colchon"><svg><use href="#i-colchon"/></svg>Colchón</a>
+      <a href="#colchon" data-vista="colchon"><svg><use href="#i-colchon"/></svg><span data-familia="Ahorro">Colchón</span></a>
       <a href="#lucas" data-vista="lucas"><svg><use href="#i-lucas"/></svg>Las lucas</a>
       <a href="#trabajos" data-vista="trabajos"><svg><use href="#i-trabajos"/></svg>Trabajos</a>
       <button type="button" id="abrir-mas" aria-expanded="false" aria-controls="mas"><svg><use href="#i-mas"/></svg>Más</button>
@@ -638,18 +662,18 @@
       <div class="mas-fondo" data-cerrar-mas></div>
       <div class="mas-hoja" role="dialog" aria-modal="true" aria-label="Más ventanas">
         <span class="mas-asa" aria-hidden="true"></span>
-        <p class="mas-grupo">Ahora, en Santiago</p>
-        <div class="mas-grid">
-          <a href="#vivir" data-vista="vivir"><svg><use href="#i-vivir"/></svg>Dónde vivir</a>
-        </div>
         <p class="mas-grupo">El plan de Alemania</p>
         <div class="mas-grid">
+          <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
           <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
           <a href="#ciudades" data-vista="ciudades"><svg><use href="#i-donde"/></svg>¿Dónde llegamos?</a>
-          <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
           <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
           <a href="#buscar-alla" data-vista="buscar-alla"><svg><use href="#i-buscar"/></svg>Buscar allá</a>
           <a href="#el-ano" data-vista="el-ano"><svg><use href="#i-ano"/></svg><span data-uno="Tu año allá">Su año allá</span></a>
+        </div>
+        <p class="mas-grupo">Ahora, en Santiago</p>
+        <div class="mas-grid">
+          <a href="#vivir" data-vista="vivir"><svg><use href="#i-vivir"/></svg>Dónde vivir<small class="opcional" data-solo-familia hidden>opcional</small></a>
         </div>
         <p class="mas-grupo">Cuando aparecen dudas</p>
         <div class="mas-grid">
@@ -671,7 +695,7 @@
 
   <dialog class="dialogo" id="dialogo-mov" aria-labelledby="dm-titulo">
     <form id="form-mov" novalidate>
-      <h2 id="dm-titulo">Anotar en el colchón</h2>
+      <h2 id="dm-titulo" data-familia="Anotar ahorro para el viaje">Anotar en el colchón</h2>
       <div class="segmentos-claros dm-tipo" role="group" aria-label="Qué pasó">
         <button type="button" data-tipo="mas" aria-pressed="true">Guardamos</button>
         <button type="button" data-tipo="menos" aria-pressed="false">Sacamos</button>
@@ -691,7 +715,7 @@
     </form>
   </dialog>
 
-  <script src="js/sync.js?v=9" defer></script>
-  <script src="js/app.js?v=9" defer></script>
+  <script src="js/sync.js?v=10" defer></script>
+  <script src="js/app.js?v=10" defer></script>
 </body>
 </html>
