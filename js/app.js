@@ -134,6 +134,11 @@
     if (typeof estado.colchonViaja !== "boolean") estado.colchonViaja = true;
     if (!estado.combina || typeof estado.combina !== "object") estado.combina = { 0: "hoy", 1: "hoy", m0: false, m1: false };
     estado.tc = estado.tc || plan.tipoCambio.eur;
+    // Datos que algunas vistas necesitan siempre, aunque la planilla todavía no los tenga.
+    estado.arriendo = Object.assign({ precio: 650, tipo: "kalt", m2: 35, calef: "normal" }, estado.arriendo || {});
+    if (!estado.vivirTope) estado.vivirTope = 350000;
+    if (!Array.isArray(estado.deFiltros)) estado.deFiltros = [];
+    if (!estado.vivTope) estado.vivTope = 900;
     estado.pasaje = estado.pasaje || c.pasaje.inicial;
     estado.pasajeIda = estado.pasajeIda || c.pasajeIda.inicial;
     estado.seguro = estado.seguro || c.seguro.inicial;
@@ -1643,28 +1648,30 @@
   const CALEFACCION = [["poco", "Poca", 0.7], ["normal", "Como el promedio", 1], ["mucho", "Mucha", 1.45]];
 
   function montarArriendo() {
-    estado.arriendo = Object.assign({ precio: 650, tipo: "kalt", m2: 35, calef: "normal" }, estado.arriendo || {});
-    const a = estado.arriendo;
+    const a = () => estado.arriendo;
     const tipos = $("#tipo-precio");
     TIPOS_PRECIO.forEach(([id, nombre, sub]) => {
       const b = el("button", { type: "button", "data-tipo": id }, `${nombre}<small>${sub}</small>`);
-      b.addEventListener("click", () => { a.tipo = id; guardar(); pintarArriendo(); });
+      b.addEventListener("click", () => { a().tipo = id; guardar(); pintarArriendo(); });
       tipos.append(b);
     });
     const calef = $("#calefaccion");
     CALEFACCION.forEach(([id, nombre]) => {
       const b = el("button", { type: "button", "data-calef": id }, nombre);
-      b.addEventListener("click", () => { a.calef = id; guardar(); pintarArriendo(); });
+      b.addEventListener("click", () => { a().calef = id; guardar(); pintarArriendo(); });
       calef.append(b);
     });
     const precio = $("#precio-anuncio"), m2 = $("#m2");
-    precio.value = a.precio; m2.value = a.m2;
-    precio.addEventListener("input", () => { a.precio = Number(precio.value) || 0; guardar(); pintarArriendo(); });
-    m2.addEventListener("input", () => { a.m2 = Number(m2.value) || 0; guardar(); pintarArriendo(); });
+    precio.value = a().precio; m2.value = a().m2;
+    precio.addEventListener("input", () => { a().precio = Number(precio.value) || 0; guardar(); pintarArriendo(); });
+    m2.addEventListener("input", () => { a().m2 = Number(m2.value) || 0; guardar(); pintarArriendo(); });
   }
 
   function pintarArriendo() {
     const a = estado.arriendo, v = plan.vivir;
+    const precioIn = $("#precio-anuncio"), m2In = $("#m2");
+    if (precioIn && document.activeElement !== precioIn) precioIn.value = a.precio;
+    if (m2In && document.activeElement !== m2In) m2In.value = a.m2;
     document.querySelectorAll("#tipo-precio button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tipo === a.tipo)));
     document.querySelectorAll("#calefaccion button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.calef === a.calef)));
     const calefaccion = v.calefaccionM2 * a.m2;
