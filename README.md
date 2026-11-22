@@ -58,6 +58,13 @@ Todo el contenido está en `data/`, en archivos JSON que se pueden editar sin to
 | `data/refugio.json` | Ventana «Cuando dudemos» |
 | `data/buscar-alemania.json` | Ventana «Buscar allá»: trabajos en Alemania con sueldo por hora, portales de empleo y de arriendo por ciudad, y la carpeta para arrendar |
 | `data/dudas.json` | Temas y preguntas con sus respuestas (las respuestas aceptan HTML simple: `<p>`, `<strong>`) |
+| `data/glosario.json` | Términos en alemán (Anmeldung, Steuer-ID, Krankenkasse, Sperrkonto, Minijob, Kaution…) con su traducción corta, definición y fuente |
+
+Las dudas llevan sus fuentes como enlaces dentro de la respuesta. Los temas «La maleta», «Seguridad y emergencias» y «Mientras, en Chile» toman sus datos que cambian de `plan.json > llegar` (invierno, estadística policial, plazo para reclamar por discriminación, costo del pasaporte en el consulado, días del salvoconducto); el `_nota` de ese bloque dice qué revisar cada año.
+
+## Glosario
+
+Cada término de `data/glosario.json` se marca solo, con subrayado punteado, la primera vez que aparece en cada párrafo de cualquier vista: no hay que escribir nada especial en los textos. Al tocarlo se abre una tarjeta con la palabra en alemán, la traducción corta (`dice`), la `definicion` (acepta `{{tokens}}` y `definicionUno`) y sus `fuentes`. `formas` son las maneras exactas en que aparece en los textos (distingue mayúsculas: «WG» no marca «wg»). No se marcan palabras dentro de enlaces, botones ni campos. Lo hace `montarGlosario()` en `js/app.js`, con un observador que también marca lo que se pinta después; si el archivo no carga, la página sigue igual.
 
 En la ruta, `offset` son los meses respecto al viaje (por ejemplo, `-6` es seis meses antes; `null` significa "ahora").
 

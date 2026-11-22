@@ -409,6 +409,7 @@
   }
 
   const num = (n) => n.toLocaleString("es-CL", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
+  const dec1 = (n) => n.toLocaleString("es-CL", { maximumFractionDigits: 1 });
   const luzMes = () => (plan.vivir.luzConsumoDos * plan.vivir.luzKwh) / 12;
 
   function contexto(r) {
@@ -460,7 +461,18 @@
       copago2027Max: num(plan.vivir.copago2027[1]),
       dticket: eurDec(plan.vivir.deutschlandticket),
       dticket2027: eurDec(plan.vivir.deutschlandticket2027),
+      minijob2026: euros(plan.sueldo.minijob2026),
       minijob2027: euros(plan.sueldo.minijob2027),
+      voltajeAlemania: `${plan.llegar.voltaje} V y ${plan.llegar.frecuencia} Hz`,
+      inviernoMedia: `${dec1(plan.llegar.inviernoMedia)}\u00a0°C`,
+      inviernoMin: `${plan.llegar.inviernoMin < 0 ? "−" : ""}${dec1(Math.abs(plan.llegar.inviernoMin))}\u00a0°C`,
+      remediosMeses: `${plan.llegar.remediosMeses} meses`,
+      delitosBaja: `un ${dec1(plan.llegar.delitosBaja)}\u00a0%`,
+      violenciaBaja: `un ${dec1(plan.llegar.violenciaBaja)}\u00a0%`,
+      plazoAGG: `${["", "un mes", "dos meses", "tres meses", "cuatro meses"][plan.llegar.plazoAGGMeses] || plan.llegar.plazoAGGMeses + " meses"}`,
+      pasaporteExterior: `US$\u00a0${plan.llegar.pasaporteExteriorUsd[0]} más US$\u00a0${plan.llegar.pasaporteExteriorUsd[1]}`,
+      salvoconductoDias: String(plan.llegar.salvoconductoDias),
+      diasCongelado: String(e.diasCongelado),
       paisesWH: (() => { const l = plan.extranjero.paisesWorkingHolidayLatam; return l.length > 1 ? `${l.slice(0, -1).join(", ")} y ${l[l.length - 1]}` : l.join(""); })(),
       comisionRut: num(plan.extranjero.comisionCuentaRut) + "%",
       efectivo: `€${plan.extranjero.efectivoLlegada[0]}–${plan.extranjero.efectivoLlegada[1]}`,
@@ -3413,6 +3425,135 @@
     plan.fuentes.forEach((x) => f.append(el("a", { href: x.url, target: "_blank", rel: "noopener" }, x.nombre)));
   }
 
+  /* ---------- Glosario ----------
+     Los términos de data/glosario.json se marcan solos en cualquier texto de la página
+     (la primera vez que aparecen en cada párrafo). Al tocarlos se abre
+     una tarjeta con la explicación, sin moverse de donde se está. Un observador marca
+     también lo que se pinta después, así que ninguna vista tiene que llamarlo. */
+  let glosario = null;
+  const GLOSA_NO = ".glosa, a, button, input, textarea, select, option, code, script, style, svg, .glosa-tarjeta, [data-sin-glosario], [contenteditable]";
+  const GLOSA_AMBITO = "p, li, dd, dt, td, th, figcaption, h2, h3, h4, label, .respuesta, dialog, .vista, .pie";
+
+  function montarGlosario(datos) {
+    const lista = (datos && datos.terminos) || [];
+    if (!lista.length) return;
+    const porForma = new Map();
+    lista.forEach((x) => x.formas.forEach((f) => porForma.set(f, x)));
+    const formas = [...porForma.keys()].sort((a, b) => b.length - a.length)
+      .map((f) => f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    glosario = { porId: new Map(lista.map((x) => [x.id, x])), porForma, re: new RegExp(`(?<![\\p{L}\\d-])(${formas.join("|")})(?![\\p{L}\\d-])`, "u") };
+
+    const tarjeta = el("div", { class: "glosa-tarjeta", id: "glosa-tarjeta", role: "dialog", "aria-modal": "false", hidden: true });
+    document.body.append(tarjeta);
+    let abierta = null;
+
+    const cerrar = (devolverFoco) => {
+      if (!abierta) return;
+      const b = abierta; abierta = null;
+      tarjeta.hidden = true;
+      b.setAttribute("aria-expanded", "false");
+      if (devolverFoco && b.isConnected) b.focus();
+    };
+    const ubicar = () => {
+      if (!abierta) return;
+      const r = abierta.getBoundingClientRect();
+      const m = 12, w = tarjeta.offsetWidth, h = tarjeta.offsetHeight;
+      const vw = document.documentElement.clientWidth, vh = window.innerHeight;
+      const x = Math.min(Math.max(m, r.left + r.width / 2 - w / 2), vw - w - m);
+      const abajo = r.bottom + 10 + h <= vh - m || r.top - 10 - h < m;
+      tarjeta.style.left = `${x}px`;
+      tarjeta.style.top = `${abajo ? r.bottom + 10 : r.top - 10 - h}px`;
+      tarjeta.dataset.lado = abajo ? "abajo" : "arriba";
+      tarjeta.style.setProperty("--flecha", `${Math.min(Math.max(18, r.left + r.width / 2 - x), w - 18)}px`);
+    };
+    const abrir = (b) => {
+      const x = glosario.porId.get(b.dataset.termino);
+      if (!x) return;
+      if (abierta === b) { cerrar(true); return; }
+      cerrar(false);
+      const fuentes = (x.fuentes || []).map((f) => `<a href="${attr(f.url)}" target="_blank" rel="noopener">${escapar(f.nombre)}</a>`).join(" · ");
+      tarjeta.setAttribute("aria-label", `${x.termino}: ${x.dice}`);
+      tarjeta.innerHTML = `<div class="glosa-cabeza"><p class="glosa-termino" lang="de">${escapar(x.termino)}</p><button type="button" class="glosa-cerrar" aria-label="Cerrar">×</button></div>`
+        + `<p class="glosa-dice">${escapar(x.dice)}</p><p class="glosa-def">${t(x.definicion)}</p>`
+        + (fuentes ? `<p class="glosa-fuente">Fuente: ${fuentes}</p>` : "");
+      tarjeta.hidden = false;
+      abierta = b;
+      b.setAttribute("aria-expanded", "true");
+      ubicar();
+    };
+
+    document.addEventListener("click", (ev) => {
+      const b = ev.target.closest(".glosa");
+      if (b) { ev.preventDefault(); ev.stopPropagation(); abrir(b); return; }
+      if (ev.target.closest(".glosa-cerrar")) { cerrar(true); return; }
+      if (abierta && !ev.target.closest(".glosa-tarjeta")) cerrar(false);
+    }, true);
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape" && abierta) { cerrar(true); return; }
+      const b = ev.target.closest && ev.target.closest(".glosa");
+      if (b && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); abrir(b); }
+    });
+    window.addEventListener("resize", ubicar);
+    window.addEventListener("scroll", () => {
+      if (!abierta) return;
+      const r = abierta.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight || !abierta.isConnected) cerrar(false); else ubicar();
+    }, { passive: true, capture: true });
+
+    marcarGlosario(document.body);
+    let pendientes = new Set(), programado = false;
+    const obs = new MutationObserver((ms) => {
+      ms.forEach((m) => m.addedNodes.forEach((n) => {
+        const raiz = n.nodeType === 1 ? n : n.parentElement;
+        if (raiz && !raiz.closest(".glosa-tarjeta") && !(n.nodeType === 1 && n.classList.contains("glosa"))) pendientes.add(raiz);
+      }));
+      if (pendientes.size && !programado) {
+        programado = true;
+        requestAnimationFrame(() => {
+          programado = false;
+          const lote = pendientes; pendientes = new Set();
+          obs.disconnect();
+          lote.forEach((r) => { if (r.isConnected) marcarGlosario(r); });
+          obs.observe(document.body, { childList: true, subtree: true });
+          if (abierta && !abierta.isConnected) cerrar(false);
+        });
+      }
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+
+  function marcarGlosario(raiz) {
+    if (!glosario || raiz.closest && raiz.closest(GLOSA_NO)) return;
+    const textos = [];
+    const w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.parentElement && !n.parentElement.closest(GLOSA_NO) && glosario.re.test(n.data) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT)
+    });
+    while (w.nextNode()) textos.push(w.currentNode);
+    textos.forEach((n) => {
+      const ambito = n.parentElement.closest(GLOSA_AMBITO) || document.body;
+      let nodo = n;
+      for (;;) {
+        const m = glosario.re.exec(nodo.data);
+        if (!m) break;
+        const x = glosario.porForma.get(m[1]);
+        if (ambito.querySelector(`.glosa[data-termino="${x.id}"]`)) {
+          // Ya está marcado en esta parte: se sigue buscando otros términos más adelante.
+          const resto = nodo.splitText(m.index + m[1].length);
+          nodo = resto;
+          continue;
+        }
+        const palabra = nodo.splitText(m.index);
+        const resto = palabra.splitText(m[1].length);
+        // Un span (no un button) para que el texto corte línea como el resto de la frase.
+        const b = el("span", { class: "glosa", role: "button", tabindex: "0", "data-termino": x.id, "aria-expanded": "false", "aria-controls": "glosa-tarjeta", title: `${x.termino}: ${x.dice}` });
+        b.textContent = m[1];
+        b.setAttribute("lang", "de");
+        palabra.replaceWith(b);
+        nodo = resto;
+      }
+    });
+  }
+
   /* ---------- Todo junto ---------- */
   function todo() {
     const r = calcular();
@@ -3489,6 +3630,11 @@
     aplicarPerfil();
     todo();
     rutear();
+    // El glosario es un extra: si no carga, la página sigue igual.
+    fetch("data/glosario.json", { cache: "no-cache" })
+      .then((x) => (x.ok ? x.json() : null))
+      .then((g) => { if (g) montarGlosario(porGrupo(g)); })
+      .catch(() => { /* sin glosario */ });
 
     if (window.Sincro) {
       window.Sincro.iniciar({

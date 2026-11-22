@@ -1,0 +1,142 @@
+{
+  "_nota": "Términos en alemán que se explican al tocarlos en cualquier parte de la página. «formas» son las maneras exactas en que aparece el término en los textos (distingue mayúsculas). «dice» es la traducción corta. «definicion» acepta {{tokens}} y HTML simple; «definicionUno» la reemplaza si viaja una persona. Cada término lleva su fuente.",
+  "terminos": [
+    {
+      "id": "anmeldung",
+      "termino": "Anmeldung",
+      "formas": ["Anmeldung"],
+      "dice": "registro de domicilio",
+      "definicion": "La inscripción del domicilio en la oficina municipal. Es obligatoria dentro de los 14 días después de mudarse y no cuesta nada. Se lleva el pasaporte y la Wohnungsgeberbestätigung, y se recibe al tiro un certificado de domicilio.",
+      "fuentes": [{ "nombre": "Ciudad de Berlín", "url": "https://service.berlin.de/dienstleistung/120686/" }]
+    },
+    {
+      "id": "abmeldung",
+      "termino": "Abmeldung",
+      "formas": ["Abmeldung"],
+      "dice": "baja del domicilio",
+      "definicion": "El aviso de que se deja la vivienda para irse al extranjero. Se hace dentro de las dos semanas después de salir, o desde una semana antes. Con ese certificado se dan de baja otras cosas, como la tasa de radio y TV.",
+      "fuentes": [{ "nombre": "Ley de Registro, § 17", "url": "https://www.gesetze-im-internet.de/bmg/__17.html" }]
+    },
+    {
+      "id": "wohnungsgeber",
+      "termino": "Wohnungsgeberbestätigung",
+      "formas": ["Wohnungsgeberbestätigung"],
+      "dice": "confirmación de quien arrienda",
+      "definicion": "Una hoja que firma quien arrienda la vivienda para confirmar que alguien se mudó ahí. Se pide para la Anmeldung, y el contrato de arriendo no la reemplaza.",
+      "fuentes": [{ "nombre": "Ciudad de Berlín", "url": "https://service.berlin.de/dienstleistung/120686/" }]
+    },
+    {
+      "id": "buergeramt",
+      "termino": "Bürgeramt",
+      "formas": ["Bürgeramt", "Bürgerämter"],
+      "dice": "oficina municipal",
+      "definicion": "La oficina de la ciudad donde se hacen los trámites de domicilio, como la Anmeldung. Con esa primera inscripción, el Bürgeramt manda los datos para que llegue la Steuer-ID.",
+      "fuentes": [{ "nombre": "Ciudad de Berlín", "url": "https://service.berlin.de/dienstleistung/329123/" }]
+    },
+    {
+      "id": "steuer-id",
+      "termino": "Steuer-ID",
+      "formas": ["Steuer-ID", "Steuer-IDs"],
+      "dice": "número de impuestos",
+      "definicion": "Un número personal de 11 cifras que sirve para toda la vida. Llega por carta a la dirección registrada después de la primera Anmeldung; si no llega en tres meses, se pide a la oficina federal de impuestos. Con él, el empleador calcula los descuentos de impuestos del sueldo.",
+      "fuentes": [
+        { "nombre": "Oficina Federal de Impuestos", "url": "https://www.bzst.de/DE/Privatpersonen/SteuerlicheIdentifikationsnummer/steuerlicheidentifikationsnummer_node.html" },
+        { "nombre": "Ciudad de Berlín", "url": "https://service.berlin.de/dienstleistung/329123/" }
+      ]
+    },
+    {
+      "id": "krankenkasse",
+      "termino": "Krankenkasse",
+      "formas": ["Krankenkasse", "Krankenkassen"],
+      "dice": "caja de salud",
+      "definicion": "Una aseguradora del sistema de salud público. Quien trabaja con contrato y gana más de {{minijob2026}} al mes queda asegurado ahí por obligación, y la cotización se descuenta del sueldo. El seguro de viaje de la visa se mantiene igual para los meses sin contrato.",
+      "fuentes": [{ "nombre": "Ministerio de Salud alemán", "url": "https://www.bundesgesundheitsministerium.de/gesetzlich-versicherte" }]
+    },
+    {
+      "id": "sperrkonto",
+      "termino": "Sperrkonto",
+      "formas": ["Sperrkonto", "Sperrkonten"],
+      "dice": "cuenta bloqueada",
+      "definicion": "Una cuenta de la que solo se puede sacar un monto fijo cada mes, normalmente por un año. Algunas visas la usan para demostrar que hay plata para vivir. La Working Holiday desde Chile no la pide: la embajada pide {{solvencia}} por persona en una cuenta propia, sin tocar durante {{diasCongelado}} días.",
+      "fuentes": [
+        { "nombre": "Ministerio de Relaciones Exteriores alemán", "url": "https://www.auswaertiges-amt.de/de/sperrkonto-375488" },
+        { "nombre": "Embajada de Alemania en Santiago", "url": "https://santiago.diplo.de/cl-es/service/05-visaeinreise/1210626-1210626" }
+      ]
+    },
+    {
+      "id": "minijob",
+      "termino": "Minijob",
+      "formas": ["Minijob", "Minijobs", "minijob", "minijobs"],
+      "dice": "trabajo chico",
+      "definicion": "Un trabajo con tope de sueldo mensual: {{minijob2026}} en 2026 y {{minijob2027}} desde 2027. Paga al menos el sueldo mínimo por hora y casi no tiene descuentos.",
+      "fuentes": [{ "nombre": "Minijob-Zentrale", "url": "https://magazin.minijob-zentrale.de/minijob-mindestlohn-2026-2027/" }]
+    },
+    {
+      "id": "kaution",
+      "termino": "Kaution",
+      "formas": ["Kaution", "Mietkaution"],
+      "dice": "garantía del arriendo",
+      "definicion": "La garantía que se deja al arrendar. Por ley es como máximo tres meses de arriendo sin gastos (Kaltmiete) y se puede pagar en tres cuotas. Se devuelve al irse, después de que revisan la vivienda.",
+      "fuentes": [{ "nombre": "Código Civil, § 551", "url": "https://www.gesetze-im-internet.de/bgb/__551.html" }]
+    },
+    {
+      "id": "kaltmiete",
+      "termino": "Kaltmiete",
+      "formas": ["Kaltmiete", "Nettokaltmiete"],
+      "dice": "arriendo frío",
+      "definicion": "El arriendo solo por la vivienda, sin gastos de la casa ni calefacción. Es el monto con que se calcula la Kaution.",
+      "fuentes": [{ "nombre": "Código Civil, § 551", "url": "https://www.gesetze-im-internet.de/bgb/__551.html" }]
+    },
+    {
+      "id": "warmmiete",
+      "termino": "Warmmiete",
+      "formas": ["Warmmiete"],
+      "dice": "arriendo caliente",
+      "definicion": "La Kaltmiete más los gastos de la casa (Nebenkosten), con calefacción y agua caliente. En 2024 esos gastos promediaron 2,67 € por metro cuadrado al mes. La luz y el internet casi nunca van incluidos.",
+      "fuentes": [{ "nombre": "Deutscher Mieterbund", "url": "https://www.mieterbund.de/service/checks-formulare/betriebskosten/betriebskostenspiegel/" }]
+    },
+    {
+      "id": "nebenkosten",
+      "termino": "Nebenkosten",
+      "formas": ["Nebenkosten", "Betriebskosten"],
+      "dice": "gastos de la casa",
+      "definicion": "Lo que se paga aparte del arriendo por el edificio: agua, basura, aseo, mantención y calefacción, entre otros. En 2024 promediaron 2,67 € por metro cuadrado al mes.",
+      "fuentes": [{ "nombre": "Deutscher Mieterbund", "url": "https://www.mieterbund.de/service/checks-formulare/betriebskosten/betriebskostenspiegel/" }]
+    },
+    {
+      "id": "rundfunkbeitrag",
+      "termino": "Rundfunkbeitrag",
+      "formas": ["Rundfunkbeitrag"],
+      "dice": "tasa de radio y TV",
+      "definicion": "Una tasa obligatoria de {{rundfunk}} al mes por vivienda, haya o no tele. En un piso compartido la paga una sola persona por todo el piso.",
+      "fuentes": [{ "nombre": "Beitragsservice", "url": "https://www.rundfunkbeitrag.de/welcome/englisch/index_ger.html" }]
+    },
+    {
+      "id": "wg",
+      "termino": "WG",
+      "formas": ["WG", "WGs"],
+      "dice": "piso compartido",
+      "definicion": "Wohngemeinschaft: una vivienda donde cada persona arrienda su pieza y se comparten la cocina y el baño.",
+      "fuentes": [{ "nombre": "WG-Gesucht", "url": "https://www.wg-gesucht.de/presse/studentische-wohnkosten/wintersemester-2026-2027-wg-zimmer-mieten" }]
+    },
+    {
+      "id": "hausarzt",
+      "termino": "Hausarzt",
+      "formas": ["Hausarzt", "Hausärztin", "Hausärzte"],
+      "dice": "médico de cabecera",
+      "definicion": "El médico general del barrio. Para la mayoría es el primer lugar al que ir con un problema de salud, y es quien deriva a especialistas. Con seguro privado, como el de la visa, se paga la consulta y después se pide el reembolso.",
+      "fuentes": [{ "nombre": "Portal de salud del Gobierno Federal", "url": "https://gesund.bund.de/arztwahl-und-terminsuche" }]
+    },
+    {
+      "id": "auslaenderbehoerde",
+      "termino": "Ausländerbehörde",
+      "formas": ["Ausländerbehörde"],
+      "dice": "oficina de extranjería",
+      "definicion": "La oficina de la ciudad que entrega y cambia visas y permisos de residencia. Ahí se avisa si se pierde el pasaporte, y ahí se pide otro permiso para quedarse después del año.",
+      "fuentes": [
+        { "nombre": "Oficina de Inmigración de Berlín", "url": "https://www.berlin.de/einwanderung/" },
+        { "nombre": "§ 56 de la Aufenthaltsverordnung", "url": "https://www.buzer.de/56_AufenthV.htm" }
+      ]
+    }
+  ]
+}
