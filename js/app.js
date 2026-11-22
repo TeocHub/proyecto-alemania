@@ -1647,7 +1647,7 @@
   }
 
   /* Cada momento cae en el mes en que suele pasar. */
-  const MOMENTO_MES = { semana: [1, "La primera semana"], mes: [2, "Primeras cartas y primer sueldo"], finmes: [3, "Ya en rutina: lo de todos los meses"], aviso: [9, "Tres meses antes de volver"], irse: [12, "Antes de volver"] };
+  const MOMENTO_MES = { semana: [1, "La primera semana"], mes: [2, "Primeras cartas y primer sueldo"], finmes: [3, "Ya en rutina: lo de todos los meses"], viajar: [4, "Viajar por Europa"], quedarse: [6, "Si quieren quedarse después"], aviso: [9, "Tres meses antes de volver"], irse: [12, "Antes de volver"] };
 
   /* Cada relato está en el mes en que le pasó (0 = antes de volar) o, si depende de la estación, en su mes del calendario. */
   function relatosDeParada(p) {
