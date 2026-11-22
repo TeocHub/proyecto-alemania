@@ -32,6 +32,7 @@
     <symbol id="i-lucas" viewBox="0 0 24 24"><path d="M4 7.5h14a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M4 7.5 15 4l1 3.5"/><path d="M16 13.5h4"/></symbol>
     <symbol id="i-trabajos" viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5h6v2M3.5 12.5h17"/></symbol>
     <symbol id="i-vivir" viewBox="0 0 24 24"><path d="M5 20V6.5L12 4v16M12 9h7v11M8 8.5v.01M8 12v.01M8 15.5v.01M15.5 12.5v.01M15.5 16v.01M3.5 20h17"/></symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></symbol>
     <symbol id="i-mas" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></symbol>
   </svg>
 
@@ -50,6 +51,7 @@
         <p class="riel-grupo">El plan de Alemania</p>
         <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
         <a href="#ciudades" data-vista="ciudades"><svg><use href="#i-donde"/></svg>¿Dónde llegamos?</a>
+        <a href="#buscar-alla" data-vista="buscar-alla"><svg><use href="#i-buscar"/></svg>Buscar allá</a>
         <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
         <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
         <p class="riel-grupo">Siempre a mano</p>
@@ -422,6 +424,64 @@
           </div>
         </section>
 
+        <section id="buscar-alla" class="vista seccion" data-titulo="Buscar allá" hidden>
+          <div class="seccion-cabeza">
+            <h2>Buscar trabajo y casa en Alemania</h2>
+            <p id="buscar-intro"></p>
+          </div>
+          <div class="buscar-ciudad">
+            <p class="buscar-ciudad-txt">Buscando en</p>
+            <div class="buscar-ciudades" id="buscar-ciudades" role="group" aria-label="Ciudad"></div>
+          </div>
+          <div class="pestanas" role="tablist" aria-label="Qué buscar">
+            <button type="button" role="tab" id="tab-buscar-trabajo" aria-controls="panel-buscar-trabajo" aria-selected="true">Trabajo</button>
+            <button type="button" role="tab" id="tab-buscar-vivienda" aria-controls="panel-buscar-vivienda" aria-selected="false">Vivienda</button>
+          </div>
+
+          <div class="buscar-panel" id="panel-buscar-trabajo" role="tabpanel" aria-labelledby="tab-buscar-trabajo">
+            <div class="trabajos-filtros" id="de-filtros" role="group" aria-label="Filtrar trabajos"></div>
+            <p class="entradas-leyenda"><span><i class="entrada entrada-libre"></i>Se entra sin pagar</span><span><i class="entrada entrada-curso"></i>Certificado sanitario (€25–33)</span><span><i class="entrada entrada-inversion"></i>Revisen bien el contrato</span></p>
+            <div class="trabajos-cuerpo">
+              <div class="escala" id="de-escala" aria-label="Sueldo por hora de cada trabajo"></div>
+              <article class="trabajo-detalle" id="de-detalle" aria-live="polite"></article>
+            </div>
+            <p class="nota" id="de-nota"></p>
+            <div class="sub-seccion" id="de-postular">
+              <div class="sub-cabeza">
+                <h3>Dónde postular</h3>
+                <p>Las palabras en alemán que más resultados dan para el trabajo elegido, ya puestas en cada portal y en la ciudad elegida. En los que no permiten un enlace directo, se copian solas para pegarlas en el buscador.</p>
+              </div>
+              <div class="postular-armar" id="de-armar"></div>
+              <div class="plataformas" id="de-portales"></div>
+            </div>
+          </div>
+
+          <div class="buscar-panel" id="panel-buscar-vivienda" role="tabpanel" aria-labelledby="tab-buscar-vivienda" hidden>
+            <p class="prep-intro" id="viv-intro"></p>
+            <div class="vivir-control">
+              <label for="viv-tope">Entre los dos pueden pagar hasta</label>
+              <output id="viv-tope-out" for="viv-tope"></output>
+              <input type="range" id="viv-tope" min="400" max="1600" step="25">
+            </div>
+            <div class="viv-opciones" id="viv-opciones" aria-live="polite"></div>
+            <div class="sub-seccion">
+              <div class="sub-cabeza">
+                <h3>Dónde buscar</h3>
+                <p>Cada portal abre ya filtrado en la ciudad elegida. Antes de escribir, revisen las señales de estafa en «Prepararse».</p>
+              </div>
+              <div class="plataformas" id="viv-portales"></div>
+            </div>
+            <div class="sub-seccion">
+              <div class="sub-cabeza">
+                <h3>La carpeta para arrendar</h3>
+                <p>En Alemania se postula a un arriendo como a un trabajo: con papeles. Tener esto listo en PDF les da ventaja, porque muchos arrendadores eligen al primero que lo manda completo.</p>
+              </div>
+              <div class="carpeta" id="viv-mappe"></div>
+            </div>
+            <p class="nota">¿El anuncio dice Kaltmiete o Warmmiete? <a href="#leer-arriendo">Desármenlo en «¿Dónde llegamos?»</a>. ¿Qué escribirle al arrendador? <a href="#prepararse">Hay un mensaje en alemán en «Prepararse»</a>.</p>
+          </div>
+          <div class="fuentes-vista" id="buscar-fuentes"></div>
+        </section>
         <section id="ruta" class="vista seccion" data-titulo="Los trámites" hidden>
           <div class="seccion-cabeza">
             <h2><span class="cap-num" aria-hidden="true">4</span>Los trámites</h2>
@@ -523,6 +583,7 @@
         <div class="mas-grid">
           <a href="#dinero" data-vista="dinero"><svg><use href="#i-plata"/></svg>La plata</a>
           <a href="#ciudades" data-vista="ciudades"><svg><use href="#i-donde"/></svg>¿Dónde llegamos?</a>
+          <a href="#buscar-alla" data-vista="buscar-alla"><svg><use href="#i-buscar"/></svg>Buscar allá</a>
           <a href="#ruta" data-vista="ruta"><svg><use href="#i-tramites"/></svg>Los trámites</a>
           <a href="#prepararse" data-vista="prepararse"><svg><use href="#i-prepararse"/></svg>Prepararse</a>
           <a href="#dudas" data-vista="dudas"><svg><use href="#i-dudas"/></svg>Todas las dudas</a>

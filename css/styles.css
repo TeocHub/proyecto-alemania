@@ -1450,3 +1450,28 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .aa-veredicto.bien { background: #ddf0ed; color: #0e4f4a; }
 .aa-veredicto.neutro { background: var(--hoja); }
 @media (max-width: 860px) { .arriendo-grid { grid-template-columns: 1fr; } }
+
+/* Buscar allá */
+.buscar-ciudad { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.8rem; margin-bottom: 1.2rem; }
+.buscar-ciudad-txt { margin: 0; font-weight: 700; }
+.buscar-ciudades { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.buscar-ciudades button {
+  font: inherit; font-family: var(--display); font-stretch: 82%; font-weight: 700; font-size: var(--t-1);
+  padding: 0.35rem 0.85rem; border-radius: 999px; border: 2px solid var(--tinta); background: transparent; color: var(--tinta); cursor: pointer;
+}
+.buscar-ciudades button[aria-pressed="true"] { background: var(--tinta); color: var(--hoja); }
+.buscar-panel { padding-top: 0.4rem; }
+.viv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); gap: 0.6rem; margin: 1.2rem 0 0.6rem; }
+.viv-ciudad {
+  font: inherit; text-align: left; cursor: pointer; color: var(--tinta);
+  display: grid; gap: 0.2rem; padding: 0.9rem 1rem; border-radius: 12px;
+  background: var(--hoja); border: 1px solid var(--niebla); border-top: 6px solid var(--suyo);
+}
+.viv-ciudad.sobre { border-top-color: var(--gasto); }
+.viv-ciudad[aria-pressed="true"] { border-color: var(--tinta); box-shadow: inset 0 0 0 1px var(--tinta); }
+.viv-nombre { font-family: var(--display); font-stretch: 80%; font-weight: 800; font-size: var(--t-3); line-height: 1.1; }
+.viv-monto { font-weight: 700; font-size: var(--t-2); }
+.viv-monto small { font-weight: 400; font-size: var(--t-0); color: var(--tinta-suave); }
+.viv-detalle { font-size: var(--t-0); color: var(--tinta-suave); }
+.viv-estado { font-size: var(--t-0); font-weight: 700; color: var(--suyo); }
+.viv-ciudad.sobre .viv-estado { color: var(--gasto); }
