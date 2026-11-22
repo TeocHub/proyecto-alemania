@@ -25,10 +25,16 @@ Cada sección es una ventana. En el celular se ve una a la vez, con la barra de 
 | 0. El colchón | Si arriendan: nuestra economía hoy, las etapas (frenar el déficit, fondo de emergencia, colchón completo, ahorro para Alemania), «¿Y si…?» con trabajos nuevos, lo que llevamos guardado y lo que mueve los plazos |
 | 0. Ahorrar para el viaje | Si viven con su familia: la misma ventana, con las etapas cubrir el mes, los fondos que pide la embajada, la meta completa y listo. Al final, «Armar también un colchón» lo agrega como opción |
 | Cuando dudemos | Cómo se sienten, las preguntas que deciden, el mes malo, familia y consecuencias |
-| Todas las dudas | Buscador de dudas |
+| Todas las dudas | Primero los temas (con cuántas preguntas tiene cada uno); al tocar uno aparecen sus preguntas y la respuesta se abre bajo la pregunta. El buscador revisa todas las preguntas y respuestas, sin importar el tema |
 | Guardar entre los dos | Conectar la planilla de Google |
 
 Con «Primero el colchón, después Alemania» activado (viene así), el ahorro para el viaje empieza cuando el colchón esté completo, y la fecha posible de viaje se calcula desde ahí. Si viven con su familia y no marcan «Armar también un colchón» (`estado.colchonOpcional`), la meta del colchón es cero y todo lo anotado cuenta para el viaje.
+
+## En el celular: lo corto primero
+
+La meta es que ninguna vista pase de 3 pantallas (390 × 844 px) sin tocar nada. Lo que se usa más queda a la vista y el resto va en pliegues: un `<details class="pliegue">` con el título, una línea de qué hay dentro (`.pliegue-resumen`) y «Abrir»/«Cerrar» a la derecha. Abierto, el bloque queda marcado con la línea amarilla a la izquierda; no hay animaciones. En JS, `pliegue({ titulo, resumen })` arma uno y `pintarFuentesVista()` deja las fuentes de cada vista plegadas. Un enlace `#id` a algo que está dentro de un pliegue lo abre solo (`abrirHasta()`).
+
+En una sola columna, la ficha de un trabajo (Trabajos y Buscar allá) o de una comuna (Dónde vivir) se abre bajo lo que se tocó y se cierra al tocarlo de nuevo (`ubicarFicha()`). En «Trabajos», el resumen «En corto» sale de `trabajos.json > conclusionCorta`.
 
 ## Guardar entre los dos
 
@@ -103,7 +109,7 @@ Los requisitos de «¿Pueden ir?» se verificaron el 22 de noviembre de 2026 en 
 
 ## Su año allá (`data/el-ano.json`)
 
-Calendario de 12 meses que parte en el mes de viaje del plan. Cada mes muestra estación, hora aproximada en que oscurece en Berlín, cómo está el trabajo y fechas fijas (`calendario`), y dos bloques separados: `relatos` (personas con nombre que cuentan en su texto o entrevista que vivieron en Alemania; resumen propio, país, ciudad, idioma original y enlace) e `items` (información general con fuentes). Los relatos se ubican por `mes` (0 = antes de volar, 1–12) o por `mesCalendario` si dependen de la estación, , tienen `contexto` (quién es y qué buscaba), `texto` (lo que cuenta, sin agregar nada) y opcionalmente `notaPagina` (advertencias de esta página, mostradas aparte), y llevan `nivel`: «persona» (con nombre) o «foro» (foros, wikis, blogs poco identificables). La guía se ubica por `momento`. La vista «Todas las personas» agrupa los relatos por autor. Los textos aceptan tokens `{{clave}}`; las cifras que cambian viven en `plan.json > extranjero`.
+Calendario de 12 meses que parte en el mes de viaje del plan. Cada mes muestra primero una línea de resumen (estación, hora en que oscurece y cómo está el trabajo); las fechas, «Lo que contaron» y «Lo que conviene saber» se abren al tocarlos. Cada mes trae estación, hora aproximada en que oscurece en Berlín, cómo está el trabajo y fechas fijas (`calendario`), y dos bloques separados: `relatos` (personas con nombre que cuentan en su texto o entrevista que vivieron en Alemania; resumen propio, país, ciudad, idioma original y enlace) e `items` (información general con fuentes). Los relatos se ubican por `mes` (0 = antes de volar, 1–12) o por `mesCalendario` si dependen de la estación, , tienen `contexto` (quién es y qué buscaba), `texto` (lo que cuenta, sin agregar nada) y opcionalmente `notaPagina` (advertencias de esta página, mostradas aparte), y llevan `nivel`: «persona» (con nombre) o «foro» (foros, wikis, blogs poco identificables). La guía se ubica por `momento`. La vista «Todas las personas» agrupa los relatos por autor. Los textos aceptan tokens `{{clave}}`; las cifras que cambian viven en `plan.json > extranjero`.
 
 ## Menú
 

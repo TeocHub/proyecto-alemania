@@ -1338,7 +1338,9 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .combina-barra { position: relative; height: 2.2rem; border-radius: 10px; background: var(--papel); overflow: hidden; margin-bottom: 1rem; }
 .combina-barra i { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--suyo), #3fb3a6); transition: width 0.3s ease; }
 .combina-barra span { position: relative; display: flex; align-items: center; height: 100%; padding: 0 0.8rem; font-weight: 700; font-size: var(--t-0); color: var(--tinta); mix-blend-mode: normal; }
-.fuentes-vista { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; font-size: var(--t-0); }
+.fuentes-vista { margin-top: 2.5rem; font-size: var(--t-0); }
+.fuentes-vista .pliegue-cuerpo, .pliegue-pie .fuentes { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; }
+.pliegues .fuentes-vista { margin-top: 0; }
 .fuentes-vista .visor-etiqueta { flex-basis: 100%; margin: 0 0 0.2rem; }
 
 /* =========================================================
@@ -1746,3 +1748,192 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .consulado-ciudad { font-family: var(--display); font-stretch: 78%; font-weight: 800; font-size: var(--t-2); }
 .consulado-zona { color: var(--tinta-suave); margin-bottom: 0 !important; }
 .consulado a { color: var(--tinta); font-weight: 700; }
+
+/* =========================================================
+   Pliegues: lo largo queda cerrado y se abre al tocarlo.
+   Título y una línea de qué hay dentro; «Abrir»/«Cerrar» a la derecha.
+   Abierto, el bloque queda marcado con la línea amarilla a la izquierda.
+   ========================================================= */
+.pliegue { border-top: 1px solid var(--niebla); }
+.pliegue + .pliegue { border-top-color: var(--niebla); }
+.pliegue:last-of-type { border-bottom: 1px solid var(--niebla); }
+.pliegue > summary {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 0.9rem; align-items: center;
+  padding: 0.85rem 0.1rem; cursor: pointer; list-style: none;
+}
+.pliegue > summary::-webkit-details-marker { display: none; }
+.pliegue-titulo {
+  grid-column: 1; margin: 0; font-family: var(--display); font-stretch: 78%; font-weight: 800;
+  font-size: 1.3rem; line-height: 1.1; color: var(--tinta);
+}
+.pliegue-resumen { grid-column: 1; margin-top: 0.2rem; font-size: var(--t-0); line-height: 1.35; color: var(--tinta-suave); }
+.pliegue-accion {
+  grid-column: 2; grid-row: 1 / span 2; font-size: 0.8rem; font-weight: 700; color: var(--tinta);
+  border: 1.5px solid var(--tinta); border-radius: 999px; padding: 0.2rem 0.7rem; white-space: nowrap;
+}
+.pliegue-accion .pl-cerrar { display: none; }
+.pliegue[open] > summary .pl-abrir { display: none; }
+.pliegue[open] > summary .pl-cerrar { display: inline; }
+.pliegue[open] > summary .pliegue-accion { background: var(--tinta); color: var(--hoja); }
+@media (hover: hover) { .pliegue > summary:hover .pliegue-titulo { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; } }
+.pliegue[open] { box-shadow: inset 4px 0 0 var(--linea); padding-left: 0.9rem; }
+.pliegue[open] > summary { padding-left: 0; }
+.pliegue-cuerpo { padding: 0.2rem 0 1.4rem; }
+.pliegue-cuerpo > :first-child { margin-top: 0; }
+/* Las sub-secciones plegadas no necesitan el espacio grande de arriba. */
+.sub-seccion.pliegue { margin-top: 0; }
+.pliegues { margin-top: 2.2rem; }
+.pliegue-pie { margin-top: 1rem; }
+.pliegue-pie .pliegue-titulo { font-size: 1.1rem; }
+@media (max-width: 860px) {
+  main { padding-bottom: 2rem; }
+}
+
+/* Pliegue dentro de las fichas oscuras (detalle de un trabajo) */
+.pliegue-oscuro { align-self: stretch; border-color: rgba(251, 252, 253, 0.18) !important; }
+.pliegue-oscuro .pliegue-titulo { color: var(--hoja); font-size: 1.1rem; }
+.pliegue-oscuro .pliegue-resumen { color: #c3cdd8; }
+.pliegue-oscuro .pliegue-accion { color: var(--hoja); border-color: var(--hoja); }
+.pliegue-oscuro[open] > summary .pliegue-accion { background: var(--hoja); color: var(--tinta); }
+.pliegue-oscuro .pliegue-cuerpo { display: flex; flex-direction: column; gap: 0.5rem; padding-bottom: 0.4rem; }
+.pliegue-oscuro .pliegue-cuerpo > * { margin: 0; }
+/* «En corto»: la respuesta corta queda a la vista en el resumen */
+.pliegue-corto { margin-bottom: 1.2rem; border-bottom: 1px solid var(--niebla); }
+.pliegue-corto .pliegue-resumen { color: var(--tinta); font-size: var(--t-1); }
+.pliegue-corto .conclusion { margin: 0; }
+
+/* Escala de sueldos en el celular: nombre y monto en la misma línea */
+@media (max-width: 699px) {
+  .escala-fila { grid-template-columns: minmax(0, 1fr) auto; column-gap: 0.6rem; row-gap: 0.2rem; align-items: baseline; padding: 0.28rem 0.3rem; }
+  .entradas-leyenda { gap: 0.2rem 0.8rem; font-size: 0.75rem; }
+  .pliegue-corto { margin-bottom: 0.9rem; }
+  .escala-pista { grid-column: 1 / -1; grid-row: 2; }
+  .escala-monto { grid-column: 2; grid-row: 1; text-align: right; white-space: nowrap; }
+}
+
+/* Ficha abierta bajo su fila (una sola columna): fila y ficha se leen como un solo bloque oscuro */
+.escala > .trabajo-detalle { position: relative; z-index: 1; margin: -0.15rem 0 0.5rem; border-radius: 0 0 14px 14px; }
+.escala-fila[aria-expanded="true"] { background: var(--tinta); color: var(--hoja); border-radius: 10px 10px 0 0; z-index: 1; }
+.escala-fila[aria-expanded="true"] .escala-monto { color: #c3cdd8; }
+.escala-fila[aria-expanded="true"] .escala-pista { background: #2b3f58; }
+.escala-fila[aria-expanded="true"] .escala-pista i { background: var(--linea); }
+.escala-fila[aria-expanded="false"]::after, .escala-fila:not([aria-expanded])::after { content: none; }
+@media (max-width: 860px) {
+  .pie { padding-top: 1.6rem; padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+  /* Filtros en una sola fila que se desliza de lado */
+  .trabajos-filtros { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * var(--margen)); padding: 0.1rem var(--margen) 0.3rem; scrollbar-width: none; }
+  .trabajos-filtros::-webkit-scrollbar { display: none; }
+  .trabajos-filtros button { flex: none; }
+}
+.escala-ayuda { margin: 0.7rem 0 0.5rem; font-size: var(--t-0); font-weight: 700; color: var(--tinta); }
+@media (min-width: 1100px) { .escala-ayuda { display: none; } }
+@media (max-width: 860px) {
+  .seccion { padding-top: 1.9rem; padding-bottom: 2rem; }
+  .seccion-cabeza { margin-bottom: 1.4rem; }
+  .siguiente { margin-top: 2rem; }
+}
+
+/* Todas las dudas: primero los temas */
+.temas[hidden], .dudas-cuerpo[hidden] { display: none; }
+#temas { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 0.5rem; }
+.tema-tarjeta {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 0.35rem; min-height: 4.4rem;
+  font: inherit; text-align: left; color: var(--tinta); cursor: pointer;
+  background: var(--hoja); border: 1px solid var(--niebla); border-left: 4px solid var(--suyo-claro);
+  border-radius: 6px 12px 12px 6px; padding: 0.6rem 0.75rem;
+}
+.tema-tarjeta b { font-family: var(--display); font-stretch: 82%; font-weight: 800; font-size: 1.08rem; line-height: 1.1; }
+.tema-tarjeta span { font-size: 0.78rem; color: var(--tinta-suave); }
+.tema-tarjeta:hover { border-color: var(--tinta); border-left-color: var(--linea); }
+.dudas-lista-cabeza { display: grid; gap: 0.5rem; justify-items: start; }
+.dudas-lista-cabeza h3 { font-size: clamp(1.5rem, 3.4vw, 2rem); font-weight: 800; outline: none; }
+.volver {
+  font: inherit; font-size: var(--t-0); font-weight: 700; cursor: pointer; color: var(--tinta);
+  background: transparent; border: 1.5px solid var(--tinta); border-radius: 999px; padding: 0.25rem 0.8rem;
+}
+.volver:hover { background: var(--tinta); color: var(--hoja); }
+.pregunta-tema { display: block; margin-top: 0.2rem; font-size: 0.75rem; opacity: 0.75; }
+@media (max-width: 860px) {
+  .preguntas .pregunta { flex: 1 1 100%; }
+  .preguntas .pregunta[aria-expanded="true"] { border-radius: 14px 14px 0 0; }
+  .preguntas .respuesta { margin: -0.5rem 0 0.6rem; border-radius: 0 0 14px 14px; border-top: 0; box-shadow: inset 4px 0 0 var(--linea); }
+}
+
+/* Su año allá: cada mes muestra primero una línea; lo demás se abre */
+.ano-mes { grid-template-columns: 1fr; }
+.ano-mes-resumen { grid-column: 1; margin: 0.6rem 0 0; max-width: 46rem; line-height: 1.45; }
+.ano-mes-mas { grid-column: 1; margin-top: 0.7rem; border-bottom: 0 !important; }
+.ano-mes-mas .pliegue-titulo { font-size: 1.05rem; }
+.ano-mes-mas .ano-datos { margin-top: 0; grid-column: 1; grid-row: auto; }
+.pliegue-n {
+  display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding: 0 0.35rem; margin-left: 0.3rem;
+  border-radius: 999px; background: var(--niebla); font-family: var(--texto); font-stretch: 100%; font-size: 0.78rem; vertical-align: 0.2rem;
+}
+.ano-cuerpo .pliegues { margin-top: 0; }
+.ano-cuerpo .ano-bloque-sub { margin-top: 0; }
+.ano-criterio { margin-top: 1rem; }
+.ano-criterio .pliegue-titulo { font-size: 1.1rem; }
+.ano-criterio .pliegue-cuerpo p { font-size: var(--t-0); }
+/* Cada pregunta de «Lo que conviene saber» se abre por separado */
+details.ano-miedo { padding: 0; }
+details.ano-miedo > summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 0.8rem; align-items: center; padding: 0.8rem 0; cursor: pointer; list-style: none; }
+details.ano-miedo > summary::-webkit-details-marker { display: none; }
+details.ano-miedo .ano-etiqueta { grid-column: 1; }
+details.ano-miedo .ano-pregunta { grid-column: 1; margin: 0; }
+details.ano-miedo > summary .pliegue-accion { grid-row: 1 / span 2; }
+details.ano-miedo[open] > summary .pl-abrir { display: none; }
+details.ano-miedo[open] > summary .pl-cerrar { display: inline; }
+details.ano-miedo[open] > summary .pliegue-accion { background: var(--tinta); color: var(--hoja); }
+details.ano-miedo[open] { box-shadow: inset 4px 0 0 var(--color-tema, var(--linea)); padding: 0 0 1.2rem 0.9rem; }
+/* Personas: cada una se abre para ver lo que contó */
+.relato-plegable { display: block; }
+.relato-plegable > summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 0.8rem; row-gap: 0.4rem; align-items: center; cursor: pointer; list-style: none; }
+.relato-plegable > summary::-webkit-details-marker { display: none; }
+.relato-plegable > summary > :not(.pliegue-accion) { grid-column: 1; }
+.relato-plegable > summary .pliegue-accion { grid-column: 2; grid-row: 1 / span 2; }
+.relato-plegable[open] > summary .pl-abrir { display: none; }
+.relato-plegable[open] > summary .pl-cerrar { display: inline; }
+.relato-plegable[open] > summary .pliegue-accion { background: var(--tinta); color: var(--hoja); }
+.relato-plegable > :not(summary) { margin-top: 0.7rem; }
+.relato-plegable .persona-momento > * + * { margin-top: 0.5rem; }
+.personas { align-items: start; }
+.pliegue.ano-criterio { padding: 0; background: none; border-radius: 0; max-width: 46rem; border-bottom: 1px solid var(--niebla); }
+.pliegue.ano-criterio[open] { padding-left: 0.9rem; }
+.pliegue.ano-bloque { margin: 0; }
+#temas .tema-tarjeta {
+  padding: 0.6rem 0.75rem; border-radius: 6px 12px 12px 6px; background: var(--hoja); font-weight: 400;
+  border: 1px solid var(--niebla); border-left: 4px solid var(--suyo-claro);
+}
+#temas .tema-tarjeta:hover { border-color: var(--tinta); border-left-color: var(--linea); }
+.carril > .comuna-detalle { margin-top: 0.9rem; border-color: var(--tinta); box-shadow: inset 4px 0 0 var(--linea); }
+.vivir-control + .escala-ayuda { margin-top: 0; }
+/* La plata: en el celular primero la respuesta (la meta), después los controles */
+@media (max-width: 860px) { .dinero > .resultado { order: -1; } }
+.seccion-dinero .pliegue { border-color: rgba(251, 252, 253, 0.18) !important; }
+.seccion-dinero .pliegue-titulo { color: var(--hoja); font-size: 1.15rem; }
+.seccion-dinero .pliegue-resumen { color: #b9c6d4; }
+.seccion-dinero .pliegue-accion { color: var(--hoja); border-color: var(--hoja); }
+.seccion-dinero .pliegue[open] > summary .pliegue-accion { background: var(--hoja); color: var(--tinta); }
+.pliegue-desglose { margin-top: 1.2rem; }
+/* Cuando dudemos: los bloques largos se abren de a uno */
+.refugio .pliegues { margin-top: 2rem; }
+.refugio .pliegue { border-color: #b9d3cf !important; }
+.refugio .pliegue-resumen { color: #335a56; }
+.pliegue-refugio .deciden, .pliegue-refugio .mal-mes, .pliegue-refugio .familia, .pliegue-refugio .consecuencias { margin-top: 0; }
+.refugio .apoyo { margin-top: 1.5rem; }
+.pliegue.puedes { display: block; padding-top: 0; }
+.puedes > .pliegue-cuerpo { display: grid; gap: 0.8rem; }
+.bienv-lado .pliegue { margin-top: 0.4rem; }
+/* Nuestra economía: el título se ve como los demás pliegues; abierto, el formulario sigue en su ficha oscura */
+.seccion-colchon .pliegue.economia { background: none; color: var(--tinta); padding: 0; border-radius: 0; }
+.seccion-colchon .pliegue.economia[open] { padding-left: 0.9rem; }
+.pliegue.economia > .pliegue-cuerpo { background: var(--tinta); color: var(--hoja); border-radius: var(--radio-panel); padding: clamp(1.1rem, 3vw, 2rem); margin-bottom: 1.2rem; }
+/* El desglose está dentro de la ficha blanca de La plata */
+.seccion-dinero .resultado .pliegue { border-color: var(--niebla) !important; }
+.seccion-dinero .resultado .pliegue-titulo { color: var(--tinta); }
+.seccion-dinero .resultado .pliegue-resumen { color: var(--tinta-suave); }
+.seccion-dinero .resultado .pliegue-accion { color: var(--tinta); border-color: var(--tinta); }
+.seccion-dinero .resultado .pliegue[open] > summary .pliegue-accion { background: var(--tinta); color: var(--hoja); }
+@media (max-width: 699px) {
+  #de-escala .escala-monto { grid-column: 1 / -1; grid-row: 3; text-align: left; white-space: normal; }
+}

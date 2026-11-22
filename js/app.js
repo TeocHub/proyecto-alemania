@@ -24,6 +24,23 @@
     return n;
   };
 
+  /* Bloques que se abren al tocarlos. En el celular cada vista muestra primero lo corto
+     y deja el resto en pliegues: un <details> con título, una línea de qué hay dentro
+     y «Abrir»/«Cerrar» a la derecha. Sin animación: al abrirse, el bloque queda marcado
+     con la línea amarilla a la izquierda. */
+  const PLIEGUE_ACCION = '<span class="pliegue-accion" aria-hidden="true"><span class="pl-abrir">Abrir</span><span class="pl-cerrar">Cerrar</span></span>';
+  function pliegue({ titulo, resumen = "", clase = "", id = null, nivel = "h4", abierto = false }) {
+    const det = el("details", { class: ("pliegue " + clase).trim(), id, open: abierto });
+    det.append(el("summary", {}, `<${nivel} class="pliegue-titulo">${titulo}</${nivel}>${resumen ? `<span class="pliegue-resumen">${resumen}</span>` : ""}${PLIEGUE_ACCION}`));
+    const cuerpo = el("div", { class: "pliegue-cuerpo" });
+    det.append(cuerpo);
+    return { det, cuerpo };
+  }
+  /* Abre los pliegues que contienen a un elemento (para enlaces #id que apuntan adentro). */
+  function abrirHasta(nodo) {
+    for (let x = nodo; x; x = x.parentElement) if (x.tagName === "DETAILS") x.open = true;
+  }
+
   const pesos = (n) => (n < 0 ? "-$" : "$") + Math.abs(Math.round(n)).toLocaleString("es-CL");
   const euros = (n) => "€" + Math.round(n).toLocaleString("es-CL");
   const millones = (n) => "$" + (n / 1e6).toLocaleString("es-CL", { maximumFractionDigits: 1 }) + " millones";
@@ -1303,6 +1320,8 @@
         : `Hoy ${ld("les", "te")} quedan ${pesos(Math.max(0, c.disp))} al mes después de los gastos: en la ventana <a href="#economia">El colchón</a> está la fecha más cercana que ${ld("pueden", "puedes")} sostener.`}</div>`;
     }
 
+    const plegado = caja.querySelector(".pliegue-desglose");
+    const desgloseAbierto = Boolean(plegado && plegado.open);
     caja.innerHTML = `
       <h3>${titular}</h3>
       ${imposible ? "" : `
@@ -1328,6 +1347,9 @@
         <span><i style="background:var(--suyo)"></i>congelado desde ${mesAnio(r.F)}: ${pesos(congBarra)}</span>
         ${colchonBarra > 0 ? `<span><i style="background:var(--suyo-claro)"></i>resto del colchón: ${pesos(colchonBarra)}</span>` : ""}
       </div>
+      <details class="pliegue pliegue-desglose"${desgloseAbierto ? " open" : ""}>
+        <summary><h4 class="pliegue-titulo">El desglose, concepto por concepto</h4><span class="pliegue-resumen">Visa, seguro, pasaje, documentos y lo que ${ld("llevan", "llevas")}${ld(", por persona y entre los dos", "")}.</span>${PLIEGUE_ACCION}</summary>
+        <div class="pliegue-cuerpo">
       <table class="desglose">
         <thead><tr><th>Concepto</th><th>Por persona</th><th>${ld("Los dos", "Total")}</th></tr></thead>
         <tbody>
@@ -1338,12 +1360,14 @@
           <tr><td>Fotos, copias y traducciones</td><td>${pesos(plan.costos.documentos)}</td><td>${pesos(plan.costos.documentos * N())}</td></tr>
           ${estado.pasaporte ? `<tr><td>Pasaporte (solo uno)</td><td>—</td><td>${pesos(plan.costos.pasaporte)}</td></tr>` : ""}
           <tr class="grupo"><td colspan="3">${ld("Llevan para vivir allá", "Llevas para vivir allá")}</td></tr>
-          <tr><td>Solvencia sin reserva de alojamiento${estado.soloIda ? " y sin pasaje de vuelta" : ""} (€${r.pruebaEur.toLocaleString("es-CL")} + 10% por el euro)</td><td>${pesos(r.congelado)}</td><td>${pesos(r.congelado * 2)}</td></tr>
+          <tr><td>Solvencia sin reserva de alojamiento${estado.soloIda ? " y sin pasaje de vuelta" : ""} (€${r.pruebaEur.toLocaleString("es-CL")} + 10% por el euro)</td><td>${pesos(r.congelado)}</td><td>${pesos(r.congelado * N())}</td></tr>
           ${r.colchonPersona > r.congelado ? `<tr><td>Resto del colchón</td><td>${pesos(r.colchonPersona - r.congelado)}</td><td>${pesos((r.colchonPersona - r.congelado) * N())}</td></tr>` : ""}
-          <tr class="total"><td>Meta (se gasta + llevan)</td><td>${pesos(r.meta / 2)}</td><td>${pesos(r.meta)}</td></tr>
+          <tr class="total"><td>Meta (se gasta + ${ld("llevan", "llevas")})</td><td>${pesos(r.meta / N())}</td><td>${pesos(r.meta)}</td></tr>
           ${r.actual > 0 ? `<tr><td>Ya ahorrado</td><td></td><td>${pesos(r.actual)}</td></tr><tr class="total"><td>Falta</td><td></td><td>${pesos(Math.max(0, r.meta - r.actual))}</td></tr>` : ""}
         </tbody>
       </table>
+        </div>
+      </details>
       <p class="nota">El colchón de Santiago no entra en esta cuenta: se queda como respaldo aquí.</p>`;
   }
 
@@ -1365,12 +1389,18 @@
           alternar(k);
           b.setAttribute("aria-pressed", String(marcado(k)));
           card.classList.toggle("completo", plan.personas.every((_, j) => marcado(claveMarca("doc", d.id, j))));
+          resumenCarpeta();
         });
         marcas.append(b);
       });
       card.append(marcas);
       grid.append(card);
     });
+    resumenCarpeta();
+  }
+  function resumenCarpeta() {
+    const listos = plan.carpeta.filter((d) => plan.personas.every((_, i) => marcado(claveMarca("doc", d.id, i)))).length;
+    $("#carpeta-resumen").textContent = `${plan.carpeta.length} documentos para la cita; ${listos === 0 ? "ninguno listo todavía" : listos === 1 ? "1 listo" : `${listos} listos`}${N() > 1 ? " para los dos" : ""}.`;
   }
 
   /* ---------- Ciudades ---------- */
@@ -1590,7 +1620,6 @@
     pintarFamilia();
     const c = refugio.consecuencias;
     $("#consecuencias").innerHTML = `
-      <h3>Lo que puede pasar</h3>
       <div class="consecuencias-grid">
         <div class="cons bien"><h4>Si sale bien</h4>${c.bien.map((x) => `<p>${x}</p>`).join("")}</div>
         <div class="cons mal"><h4>${ld("Si vamos sin plan", "Si voy sin plan")}</h4>${c.mal.map((x) => `<p>${x}</p>`).join("")}</div>
@@ -1640,6 +1669,7 @@
   function contarRespuestas() {
     const pr = progreso();
     $("#contador-respuestas").textContent = `${ld("Respondidas por los dos", "Respondidas")}: ${pr.respondidas} de ${pr.preguntas}.`;
+    $("#deciden-resumen").textContent = `${pr.preguntas} preguntas para responder antes de postular. ${ld("Respondidas por los dos", "Respondidas")}: ${pr.respondidas}.`;
     document.querySelectorAll(".pregunta-decide").forEach((n) => {
       const r = estado.respuestas[n.dataset.id] || {};
       n.classList.toggle("respondida", plan.personas.every((_, i) => (r[i] || "").trim()));
@@ -1683,7 +1713,8 @@
       "Con el plan actual llevas para vivir allá <strong>{{llevan}}</strong> (≈ {{llevanEur}}), más los sueldos que vayas ganando. Es la misma cifra de «Llevas para vivir allá» en la ventana La plata.");
     const m = refugio.malMes;
     const caja = $("#mal-mes");
-    caja.innerHTML = `<h3>${m.titulo}</h3><p>${m.texto}</p>
+    $("#mal-mes-titulo").innerHTML = m.titulo;
+    caja.innerHTML = `<p>${m.texto}</p>
       <p class="mal-dato" ${vivo(MAL_DATO)}>${t(MAL_DATO)}</p>`;
     const grid = el("div", { class: "mal-campos" });
     m.campos.forEach((c) => {
@@ -1704,7 +1735,7 @@
   function pintarFamilia() {
     const f = refugio.familia;
     const caja = $("#familia");
-    caja.innerHTML = `<h3>Familia y distancia</h3><p>${f.texto}</p><div class="familia-grid" id="familia-grid"></div>
+    caja.innerHTML = `<p>${f.texto}</p><div class="familia-grid" id="familia-grid"></div>
       <div class="familia-consejos">${f.consejos.map((x) => `<p>${x}</p>`).join("")}</div>`;
     const grid = $("#familia-grid");
     plan.personas.forEach((nombre, i) => {
@@ -1824,17 +1855,19 @@
     panel.innerHTML = `
       <p class="prep-intro">${a.intro}</p>
       <div class="plan-aleman">${plan12}</div>
-      <div class="aleman-cuerpo">
-        <div>
-          <h3 class="prep-titulo">Frases para el primer día</h3>
+      <div class="pliegues">
+        <details class="pliegue">
+          <summary><h3 class="pliegue-titulo">Frases para el primer día</h3><span class="pliegue-resumen">${a.frases.length} frases con su significado y cómo se pronuncian.</span>${PLIEGUE_ACCION}</summary>
+          <div class="pliegue-cuerpo">
           <p class="nota">Toquen una tarjeta para ver qué significa y cómo se dice.${hayVoz ? " El botón de sonido la lee en alemán." : ""}</p>
           <div class="frases" id="frases"></div>
           <p class="nota">${a.nota}</p>
-        </div>
-        <div>
-          <h3 class="prep-titulo">Dónde estudiar</h3>
-          <div class="recursos">${recursos}</div>
-        </div>
+          </div>
+        </details>
+        <details class="pliegue">
+          <summary><h3 class="pliegue-titulo">Dónde estudiar</h3><span class="pliegue-resumen">${a.recursos.length} cursos y apps, con su precio y su nivel.</span>${PLIEGUE_ACCION}</summary>
+          <div class="pliegue-cuerpo"><div class="recursos">${recursos}</div></div>
+        </details>
       </div>`;
     const cont = $("#frases");
     a.frases.forEach((f) => {
@@ -1870,9 +1903,12 @@
         ${tramo(h.desdeChile, "Desde Chile", "desde-chile")}
         ${tramo(h.alLlegar, "Al llegar", "al-llegar")}
       </div>
+      <div class="pliegues">
+      <details class="pliegue">
+        <summary><h3 class="pliegue-titulo">Mensaje para pedir una pieza</h3><span class="pliegue-resumen">En alemán, listo para copiar, con su traducción.</span>${PLIEGUE_ACCION}</summary>
+        <div class="pliegue-cuerpo">
       <div class="plantilla">
         <div class="plantilla-cabeza">
-          <h3 class="prep-titulo">Mensaje para pedir una pieza</h3>
           <div class="segmentos-claros" role="group" aria-label="Idioma del mensaje">
             <button type="button" data-idioma="de" aria-pressed="true">En alemán</button>
             <button type="button" data-idioma="es" aria-pressed="false">Qué dice</button>
@@ -1885,10 +1921,17 @@
         </div>
         <p class="nota">Cambien [Stadt] por la ciudad y [Datum] por la fecha (por ejemplo, 1. April).</p>
       </div>
+        </div>
+      </details>
+      <details class="pliegue">
+        <summary><h3 class="pliegue-titulo">Señales de estafa</h3><span class="pliegue-resumen">${h.alertas.length} señales: si un anuncio tiene cualquiera, no ${ld("paguen", "pagues")} nada.</span>${PLIEGUE_ACCION}</summary>
+        <div class="pliegue-cuerpo">
       <div class="alertas">
-        <h3 class="prep-titulo">Señales de estafa</h3>
         <p class="nota">Si un anuncio tiene cualquiera de estas, no paguen nada.</p>
         <div class="alertas-grid">${h.alertas.map((x) => `<p class="alerta">${x}</p>`).join("")}</div>
+      </div>
+        </div>
+      </details>
       </div>`;
     const texto = $("#plantilla-texto");
     let idioma = "de";
@@ -1987,7 +2030,7 @@
   function pintarAno() {
     const A = anoData;
     if (!A || !ctx) return;
-    $("#ano-intro").innerHTML = t(A.intro) + resumenRelatos();
+    if (!$("#ano-intro").childElementCount) $("#ano-intro").innerHTML = `<p>${t(A.intro)}</p>` + resumenRelatos();
     const paradas = paradasAno();
     if (!paradas.some((x) => x.id === estado.anoMomento)) {
       // Por defecto: el mes en que van, o «antes» si todavía no viajan.
@@ -2015,21 +2058,27 @@
 
     const p = paradas.find((x) => x.id === estado.anoMomento);
     const cab = $("#ano-mes");
+    // Cada mes: título y una línea de resumen (estación, a qué hora oscurece y el trabajo).
+    // Las fechas y lo que hay para hacer quedan en un pliegue.
     if (!p.fecha) {
-      cab.innerHTML = `<p class="ano-mes-titulo">Antes de volar</p><p class="ano-mes-sub">Desde la visa aprobada hasta el avión de ${t("{{fechaViaje}}")}.</p>`;
+      cab.innerHTML = `<p class="ano-mes-titulo">Antes de volar</p><p class="ano-mes-resumen">Desde la visa aprobada hasta el avión de ${t("{{fechaViaje}}")}.</p>`;
     } else {
       const c = cal[p.fecha.getMonth() + 1];
       cab.dataset.estacion = c.estacion;
       cab.innerHTML = `
         <p class="ano-mes-titulo">${mayus(mesAnio(p.fecha))}</p>
         <p class="ano-mes-sub">Mes ${p.n} de 12 en Alemania</p>
-        <dl class="ano-datos">
-          <div><dt>Estación</dt><dd>${ESTACION_NOMBRE[c.estacion]}</dd></div>
-          <div><dt>Oscurece</dt><dd>cerca de las ${c.anochece}<small> en Berlín</small></dd></div>
-          <div class="ano-dato-largo"><dt>Trabajo</dt><dd>${c.trabajo}</dd></div>
-          ${c.fechas ? `<div class="ano-dato-largo"><dt>Fechas</dt><dd>${c.fechas}</dd></div>` : ""}
-          ${c.hacer ? `<div class="ano-dato-largo"><dt>Para hacer</dt><dd>${c.hacer}</dd></div>` : ""}
-        </dl>`;
+        <p class="ano-mes-resumen"><strong>${ESTACION_NOMBRE[c.estacion]}.</strong> Oscurece cerca de las ${c.anochece} en Berlín. ${c.trabajo}</p>
+        ${c.fechas || c.hacer ? `
+        <details class="pliegue ano-mes-mas">
+          <summary><h4 class="pliegue-titulo">${c.fechas && c.hacer ? "Fechas y para hacer" : c.fechas ? "Fechas del mes" : "Para hacer"}</h4>${PLIEGUE_ACCION}</summary>
+          <div class="pliegue-cuerpo">
+            <dl class="ano-datos">
+              ${c.fechas ? `<div class="ano-dato-largo"><dt>Fechas</dt><dd>${c.fechas}</dd></div>` : ""}
+              ${c.hacer ? `<div class="ano-dato-largo"><dt>Para hacer</dt><dd>${c.hacer}</dd></div>` : ""}
+            </dl>
+          </div>
+        </details>` : ""}`;
     }
     if (!p.fecha) delete cab.dataset.estacion;
 
@@ -2038,9 +2087,14 @@
     const relatos = relatosDeParada(p);
     const cuerpo = $("#ano-cuerpo");
 
+    const conNombre = relatos.filter((x) => x.nivel === "persona").map((x) => escapar(x.nombre));
+    const nForos = relatos.length - conNombre.length;
+    const quienes = [...conNombre, ...(nForos ? [nForos === 1 ? "un foro o blog" : `${nForos} foros o blogs`] : [])];
+    const listaY = (xs) => (xs.length > 1 ? xs.slice(0, -1).join(", ") + " y " + xs[xs.length - 1] : xs[0] || "");
     const htmlRelatos = relatos.length ? `
-      <section class="ano-bloque ano-relatos" aria-labelledby="ano-t-relatos">
-        <h3 class="ano-bloque-titulo" id="ano-t-relatos">Lo que contaron</h3>
+      <details class="pliegue ano-bloque ano-relatos">
+        <summary><h3 class="pliegue-titulo">Lo que contaron <span class="pliegue-n">${relatos.length}</span></h3><span class="pliegue-resumen">${listaY(quienes)}</span>${PLIEGUE_ACCION}</summary>
+        <div class="pliegue-cuerpo">
         <p class="ano-bloque-sub">Primero las personas con nombre; después foros y blogs. Cada relato enlaza a su texto original.</p>
         <div class="relatos">${relatos.map((x) => `
           <article class="relato" data-nivel="${x.nivel}">
@@ -2058,30 +2112,34 @@
             </footer>
           </article>`).join("")}
         </div>
-      </section>` : "";
+        </div>
+      </details>` : "";
 
+    const nItems = grupos.reduce((s, g) => s + g.items.length, 0);
+    const temasMes = [...new Set(grupos.flatMap((g) => g.items.map((it) => nombreTema[it.tema].toLowerCase())))];
     const htmlGuia = grupos.length ? `
-      <section class="ano-bloque ano-guia" aria-labelledby="ano-t-guia">
-        <h3 class="ano-bloque-titulo" id="ano-t-guia">Lo que conviene saber</h3>
-        <p class="ano-bloque-sub">Información general, no experiencia de alguien en particular. Sale de fuentes oficiales y de guías, enlazadas en cada punto.</p>
+      <details class="pliegue ano-bloque ano-guia">
+        <summary><h3 class="pliegue-titulo">Lo que conviene saber <span class="pliegue-n">${nItems}</span></h3><span class="pliegue-resumen">${nItems === 1 ? "Una pregunta" : `${nItems} preguntas`} de ${listaY(temasMes)}.</span>${PLIEGUE_ACCION}</summary>
+        <div class="pliegue-cuerpo">
+        <p class="ano-bloque-sub">Información general, no experiencia de alguien en particular. Sale de fuentes oficiales y de guías, enlazadas en cada punto. Toquen una pregunta para ver la respuesta.</p>
         ${grupos.map((g) => `
           ${g.titulo ? `<h4 class="ano-grupo">${g.titulo}</h4>` : ""}
           ${g.items.map((it) => `
-          <article class="ano-miedo" data-tema="${it.tema}">
-            <p class="ano-etiqueta">${nombreTema[it.tema]}</p>
-            <h5 class="ano-pregunta">${it.miedo}</h5>
+          <details class="ano-miedo" data-tema="${it.tema}">
+            <summary><span class="ano-etiqueta">${nombreTema[it.tema]}</span><h5 class="ano-pregunta">${it.miedo}</h5>${PLIEGUE_ACCION}</summary>
             <div class="ano-pasos">
               <div class="ano-paso"><h6>Lo que suele pasar</h6><p>${t(it.realidad)}</p></div>
               <div class="ano-paso ano-hacer"><h6>Qué hacer</h6><p>${t(it.hacer)}</p></div>
             </div>
             ${it.fuentes.length ? `<p class="ano-fuentes">Fuentes: ${it.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join(", ")}</p>` : ""}
-          </article>`).join("")}`).join("")}
-      </section>` : "";
+          </details>`).join("")}`).join("")}
+        </div>
+      </details>` : "";
 
     const vacio = !relatos.length && !grupos.length
       ? `<p class="ano-vacio">Nadie contó algo propio de este mes y no hay datos especiales: suele ser rutina. Arriendo a comienzo de mes, buzón una vez por semana y alemán. Lo de todos los meses está en el mes 3.</p>` : "";
 
-    cuerpo.innerHTML = htmlRelatos + htmlGuia + vacio + `<p class="ano-nota">${t(A.nota)}</p>`;
+    cuerpo.innerHTML = `<div class="pliegues">${htmlRelatos + htmlGuia}</div>` + vacio + `<p class="ano-nota">${t(A.nota)}</p>`;
   }
 
   /* Vista «Todas las personas»: cada una con todo lo que contó y el mes donde aparece. */
@@ -2096,12 +2154,15 @@
       <div class="relatos personas">${gente.map((lista) => {
         const x = lista[0];
         return `
-        <article class="relato" data-nivel="${x.nivel}">
+        <details class="relato relato-plegable" data-nivel="${x.nivel}">
+          <summary>
           <p class="relato-nivel">${x.nivel === "persona" ? "Persona con nombre" : "Foro o blog"}</p>
           <header>
             <p class="relato-nombre">${escapar(x.nombre)}</p>
-            <p class="relato-meta">${escapar(x.pais === "no lo dice" ? "País no indicado" : x.pais)} · ${escapar(x.ciudad)}</p>
+            <p class="relato-meta">${escapar(x.pais === "no lo dice" ? "País no indicado" : x.pais)} · ${escapar(x.ciudad)} · ${lista.length === 1 ? "1 momento" : `${lista.length} momentos`}</p>
           </header>
+          ${PLIEGUE_ACCION}
+          </summary>
           <p class="relato-contexto">${escapar(x.contexto)}</p>
           ${lista.map((y) => { const p = dondeEsta(y); return `
             <div class="persona-momento">
@@ -2113,7 +2174,7 @@
             <span class="relato-sello">${escapar(mayus(x.formato))}${x.idioma !== "español" ? ` · traducido del ${escapar(x.idioma)}` : ""}</span>
             <a href="${x.url}" target="_blank" rel="noopener">Leer el original en ${escapar(x.fuente)}</a>
           </footer>
-        </article>`; }).join("")}
+        </details>`; }).join("")}
       </div>
       <p class="ano-nota">${t(anoData.nota)}</p>`;
   }
@@ -2125,7 +2186,10 @@
     const foros = new Set(R.filter((x) => x.nivel !== "persona").map((x) => x.nombre)).size;
     const paises = new Set(R.map((x) => x.pais).filter((x) => !x.startsWith("no lo dice"))).size;
     const idiomas = new Set(R.map((x) => x.idioma)).size;
-    return `<p class="ano-criterio"><strong>${personas} personas con nombre y ${foros} textos de foros o blogs, de ${paises} países y en ${idiomas} idiomas.</strong> ${anoData.criterio}</p>`;
+    return `<details class="pliegue ano-criterio">
+      <summary><h3 class="pliegue-titulo">De dónde salen los relatos</h3><span class="pliegue-resumen">${personas} personas con nombre y ${foros} textos de foros o blogs, de ${paises} países y en ${idiomas} idiomas.</span>${PLIEGUE_ACCION}</summary>
+      <div class="pliegue-cuerpo"><p>${anoData.criterio}</p></div>
+    </details>`;
   }
 
   /* ---------- Cómo leer un precio de arriendo ---------- */
@@ -2217,28 +2281,38 @@
   /* ---------- Dudas ---------- */
   const normal = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
+  /* Todas las dudas: primero los temas; al elegir uno aparecen sus preguntas.
+     Lo que se escribe en el buscador revisa todas las preguntas y respuestas, sin importar el tema. */
+  let dudaAbierta = false;
   function montarDudas() {
-    const temas = $("#temas");
-    const todos = el("button", { type: "button", "aria-pressed": String(!estado.tema) }, "Todas");
-    todos.addEventListener("click", () => elegirTema(null));
-    temas.append(todos);
     // Los temas y dudas que solo sirven a dos personas ya vienen fuera (porGrupo).
     if (estado.tema && !dudas.temas.some((tm) => tm.id === estado.tema)) estado.tema = null;
     dudas.dudas = dudas.dudas.filter((d) => dudas.temas.some((tm) => tm.id === d.tema));
     if (!dudas.dudas.some((d) => d.id === estado.duda)) estado.duda = null;
-    dudas.temas.forEach((tm) => {
-      const b = el("button", { type: "button", "data-tema": tm.id, "aria-pressed": String(estado.tema === tm.id) }, tm.nombre);
-      b.addEventListener("click", () => elegirTema(tm.id));
-      temas.append(b);
+    const buscar = $("#buscar");
+    if (N() === 1 && buscar.dataset.placeholderUno) buscar.placeholder = buscar.dataset.placeholderUno;
+    $("#temas").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-tema]");
+      if (b) elegirTema(b.dataset.tema);
     });
-    $("#buscar").addEventListener("input", pintarPreguntas);
+    $("#dudas-volver").addEventListener("click", () => {
+      if (buscar.value) buscar.value = "";
+      elegirTema(null);
+      const primero = $("#temas button");
+      if (primero) primero.focus({ preventScroll: true });
+    });
+    buscar.addEventListener("input", () => { dudaAbierta = false; pintarPreguntas(); });
     if (!estado.duda) estado.duda = dudas.dudas[0].id;
   }
 
   function elegirTema(id) {
-    estado.tema = id; guardarLocal();
-    document.querySelectorAll("#temas button").forEach((b) => b.setAttribute("aria-pressed", String((b.dataset.tema || null) === id)));
+    estado.tema = id; dudaAbierta = false; guardarLocal();
     pintarPreguntas();
+    if (id) {
+      const titulo = $("#dudas-lista-titulo");
+      titulo.focus({ preventScroll: true });
+      if (angosta.matches) $("#dudas-lista-cabeza").scrollIntoView({ block: "start" });
+    }
   }
 
   function pintarPreguntas() {
@@ -2247,20 +2321,53 @@
     const resp = $("#respuesta");
     if (resp && cont.contains(resp)) $(".dudas-cuerpo").append(resp);
     cont.innerHTML = "";
-    const visibles = dudas.dudas.filter((d) =>
-      (!estado.tema || d.tema === estado.tema) &&
-      (!q || normal(d.pregunta + " " + t(d.respuesta).replace(/<[^>]+>/g, " ")).includes(q)));
+    const enTemas = !q && !estado.tema;
+    const temaSel = dudas.temas.find((tm) => tm.id === estado.tema);
+
+    // Vista de temas: cada tema con cuántas preguntas tiene.
+    const temas = $("#temas");
+    temas.hidden = !enTemas;
+    if (enTemas) {
+      temas.innerHTML = dudas.temas.map((tm) => {
+        const n = dudas.dudas.filter((d) => d.tema === tm.id).length;
+        return `<button type="button" class="tema-tarjeta" data-tema="${tm.id}"><b>${tm.nombre}</b><span>${n} ${n === 1 ? "pregunta" : "preguntas"}</span></button>`;
+      }).join("");
+    }
+    $(".dudas-cuerpo").hidden = enTemas;
+
+    const visibles = enTemas ? [] : dudas.dudas.filter((d) =>
+      (q ? normal(d.pregunta + " " + t(d.respuesta).replace(/<[^>]+>/g, " ")).includes(q) : d.tema === estado.tema));
+
+    const cabeza = $("#dudas-lista-cabeza");
+    cabeza.hidden = enTemas;
+    $("#dudas-lista-titulo").textContent = q
+      ? `${visibles.length} ${visibles.length === 1 ? "pregunta" : "preguntas"} con «${$("#buscar").value.trim()}»`
+      : temaSel ? temaSel.nombre : "";
+    if (enTemas) return;
+
     if (!visibles.length) {
       cont.append(el("p", { class: "vacio" }, ld("No hay una respuesta con esa palabra todavía. Prueben con otra, o agréguenla en data/dudas.json.", "No hay una respuesta con esa palabra todavía. Prueba con otra, o agrégala en data/dudas.json.")));
     }
+    // En pantalla ancha la respuesta está siempre a la derecha: que sea una de la lista.
+    if (!angosta.matches && visibles.length && !visibles.some((d) => d.id === estado.duda)) estado.duda = visibles[0].id;
+    const marcada = angosta.matches ? (dudaAbierta ? estado.duda : null) : estado.duda;
     visibles.forEach((d) => {
-      const b = el("button", { type: "button", class: "pregunta", "aria-pressed": String(d.id === estado.duda) }, d.pregunta);
+      const temaD = q ? dudas.temas.find((tm) => tm.id === d.tema) : null;
+      const b = el("button", { type: "button", class: "pregunta", "aria-pressed": String(d.id === marcada) },
+        `${d.pregunta}${temaD ? `<small class="pregunta-tema">${temaD.nombre}</small>` : ""}`);
+      if (angosta.matches) b.setAttribute("aria-expanded", String(d.id === marcada));
       b.addEventListener("click", () => {
+        dudaAbierta = angosta.matches ? !(d.id === estado.duda && dudaAbierta) : true;
         estado.duda = d.id; guardarLocal();
-        cont.querySelectorAll(".pregunta").forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
+        const marca = angosta.matches ? (dudaAbierta ? d.id : null) : d.id;
+        cont.querySelectorAll(".pregunta").forEach((o) => {
+          const si = o === b && marca === d.id;
+          o.setAttribute("aria-pressed", String(si));
+          if (angosta.matches) o.setAttribute("aria-expanded", String(si));
+        });
         pintarRespuesta();
         ubicarRespuesta();
-        if (angosta.matches) b.scrollIntoView({ block: "start" });
+        if (angosta.matches && dudaAbierta) b.scrollIntoView({ block: "start" });
       });
       cont.append(b);
     });
@@ -2270,13 +2377,30 @@
 
   /* En pantallas angostas la respuesta aparece justo debajo de la pregunta elegida */
   const angosta = window.matchMedia("(max-width: 860px)");
+  /* En una sola columna (celular y tablet vertical), la ficha del trabajo elegido no queda
+     debajo de toda la lista: se abre justo bajo su fila al tocarla y se cierra al tocarla de nuevo. */
+  const columnaUnica = window.matchMedia("(max-width: 1099px)");
+  const fichaAbierta = {};
+  function guardarFicha(escala, ficha) { if (ficha.parentElement !== escala.parentElement) escala.parentElement.append(ficha); }
+  function ubicarFicha(escala, ficha, clave) {
+    const fila = escala.querySelector('.escala-fila[aria-pressed="true"]');
+    if (!columnaUnica.matches) { ficha.hidden = false; return; }
+    const abierta = Boolean(fila && fichaAbierta[clave]);
+    if (fila) fila.setAttribute("aria-expanded", String(abierta));
+    ficha.hidden = !abierta;
+    if (abierta) fila.after(ficha);
+  }
+  function tocarFila(clave, id, actual) {
+    fichaAbierta[clave] = columnaUnica.matches ? !(id === actual && fichaAbierta[clave]) : true;
+  }
+  /* En el celular la respuesta se abre bajo su pregunta y se cierra al tocarla de nuevo. */
   function ubicarRespuesta() {
     const r = $("#respuesta");
     const elegida = $("#preguntas .pregunta[aria-pressed='true']");
-    if (angosta.matches && elegida) elegida.after(r);
-    else $(".dudas-cuerpo").append(r);
+    if (angosta.matches && elegida) { elegida.after(r); r.hidden = false; }
+    else { $(".dudas-cuerpo").append(r); r.hidden = angosta.matches; }
   }
-  angosta.addEventListener("change", ubicarRespuesta);
+  angosta.addEventListener("change", () => { if (dudas) pintarPreguntas(); });
 
   function pintarRespuesta() {
     const d = dudas.dudas.find((x) => x.id === estado.duda) || dudas.dudas[0];
@@ -2414,6 +2538,7 @@
   function montarTrabajos() {
     $("#trabajos-intro").textContent = trabajosData.intro;
     $("#trabajos-conclusion").textContent = trabajosData.conclusion;
+    $("#trabajos-corto").textContent = trabajosData.conclusionCorta || "";
     const idsFiltro = new Set(trabajosData.filtros.map((x) => x.id));
     estado.filtrosTrabajo = (estado.filtrosTrabajo || []).filter((id) => idsFiltro.has(id));
     const idsTrabajo = new Set(["hoy", "full-min", "part-min", ...trabajosData.trabajos.map((t) => t.id)]);
@@ -2432,10 +2557,12 @@
     $("#escala").addEventListener("click", (e) => {
       const b = e.target.closest("[data-trabajo]");
       if (!b) return;
+      tocarFila("trabajos", b.dataset.trabajo, estado.trabajo);
       estado.trabajo = b.dataset.trabajo;
       pintarTrabajos();
-      if (angosta.matches) $("#trabajo-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
+      if (angosta.matches && fichaAbierta.trabajos) $("#trabajo-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
     });
+    columnaUnica.addEventListener("change", () => pintarTrabajos());
     $("#postular-armar").addEventListener("click", (e) => {
       const k = e.target.closest("[data-kw]"), x = e.target.closest("[data-extra]");
       if (k) buscaK = k.dataset.kw;
@@ -2451,8 +2578,7 @@
     const todas = new Map();
     trabajosData.trabajos.forEach((t) => t.fuentes.forEach((x) => todas.set(x.url, x)));
     todas.set(trabajosData.medianaFuente.url, trabajosData.medianaFuente);
-    $("#trabajos-fuentes").innerHTML = `<p class="visor-etiqueta">Fuentes (revisadas el ${fechaTexto(trabajosData.revisado)})</p>` +
-      [...todas.values()].map((x) => `<a href="${x.url}" target="_blank" rel="noopener">${x.nombre}</a>`).join("");
+    pintarFuentesVista($("#trabajos-fuentes"), trabajosData.revisado, [...todas.values()]);
 
     const cont = $("#combina-personas");
     plan.personas.forEach((nombre, i) => {
@@ -2498,6 +2624,13 @@
     sincronizadores.push(mostrar);
   }
 
+  /* Las fuentes de cada vista quedan en un pliegue al final: se ven completas al tocarlo. */
+  function pintarFuentesVista(caja, revisado, lista) {
+    const { det, cuerpo } = pliegue({ titulo: "Fuentes", resumen: `${lista.length} enlaces, revisados el ${fechaTexto(revisado)}` });
+    cuerpo.innerHTML = lista.map((x) => `<a href="${x.url}" target="_blank" rel="noopener">${x.nombre}</a>`).join("");
+    caja.replaceChildren(det);
+  }
+
   const fechaTexto = (iso) => { const [y, m, d] = iso.split("-").map(Number); return `${d} de ${MESES[m - 1]} de ${y}`; };
 
   function pintarTrabajos() {
@@ -2507,6 +2640,7 @@
     if (!visibles.some((t) => t.id === estado.trabajo)) estado.trabajo = visibles[0] ? visibles[0].id : null;
     const x = (v) => `${Math.min(100, (v / ESCALA_MAX) * 100)}%`;
     const meta = trabajosData.metaPersona, med = trabajosData.mediana;
+    guardarFicha($("#escala"), $("#trabajo-detalle"));
     $("#escala").innerHTML = `
       <div class="escala-ejes" aria-hidden="true">
         <span class="eje-med" style="left:${x(med)}"><span>Mitad de Chile ${pesos(med)}</span></span>
@@ -2520,18 +2654,27 @@
         </button>`).join("") : `<p class="nota">Ningún trabajo cumple todos esos filtros a la vez.</p>`}
       <div class="escala-pie" aria-hidden="true"><span>$0</span><span>${pesos(ESCALA_MAX / 2)}</span><span>${pesos(ESCALA_MAX)}</span></div>`;
     const t = trabajosData.trabajos.find((j) => j.id === estado.trabajo);
+    // Si la persona abrió «Qué piden…», sigue abierto al cambiar de trabajo.
+    const plegado = $("#trabajo-detalle .pliegue");
+    const detalleAbierto = Boolean(plegado && plegado.open);
     $("#trabajo-detalle").innerHTML = t ? `
       <p class="visor-etiqueta">Líquido al mes, según avisos de 2026</p>
       <h3>${t.nombre}</h3>
       <p class="detalle-rango">${pesos(t.min)} a ${pesos(t.max)}</p>
       <p>${t.detalle}</p>
+      ${t.buscar ? `<a class="boton detalle-buscar" href="#postular">Buscar avisos de esto</a>` : ""}
+      <details class="pliegue pliegue-oscuro"${detalleAbierto ? " open" : ""}>
+        <summary><h4 class="pliegue-titulo">Qué piden y cuánto cuesta entrar</h4><span class="pliegue-resumen">${t.ojo ? "Requisitos, dónde buscar, un aviso importante y fuentes." : "Requisitos, dónde buscar y fuentes."}</span>${PLIEGUE_ACCION}</summary>
+        <div class="pliegue-cuerpo">
       <p class="detalle-req"><strong>Piden:</strong> ${t.requisitos}</p>
       <p class="detalle-req detalle-entrada entrada-txt-${t.entrada}"><strong>Para entrar:</strong> ${t.costo || "no hay que pagar nada antes."}</p>
       ${t.donde ? `<p class="detalle-req"><strong>Dónde buscar:</strong> ${t.donde}</p>` : ""}
       ${t.ojo ? `<p class="detalle-ojo"><strong>Ojo:</strong> ${t.ojo}</p>` : ""}
-      ${t.buscar ? `<a class="boton detalle-buscar" href="#postular">Buscar avisos de esto</a>` : ""}
       <div class="detalle-tags">${t.tags.map((g) => `<span>${(trabajosData.filtros.find((f) => f.id === g) || {}).nombre || trabajosData.entradas[g] || g}</span>`).join("")}</div>
-      <div class="detalle-fuentes">${t.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join("")}</div>` : "";
+      <div class="detalle-fuentes">${t.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join("")}</div>
+        </div>
+      </details>` : "";
+    ubicarFicha($("#escala"), $("#trabajo-detalle"), "trabajos");
     pintarPostular();
     pintarCombina();
   }
@@ -2630,6 +2773,7 @@
   function montarVivir() {
     $("#vivir-intro").textContent = barriosData.intro;
     $("#vivir-region").textContent = `${barriosData.regionVictimizacion} ${barriosData.linea7}`;
+    columnaUnica.addEventListener("change", () => pintarVivir());
     const r = $("#vivir-tope"), out = $("#vivir-tope-out");
     if (!estado.vivirTope) estado.vivirTope = 350000;
     r.value = estado.vivirTope; out.textContent = pesos(estado.vivirTope);
@@ -2637,12 +2781,12 @@
     $("#carriles").addEventListener("click", (e) => {
       const b = e.target.closest("[data-comuna]");
       if (!b) return;
+      tocarFila("vivir", b.dataset.comuna, estado.comunaSel);
       estado.comunaSel = b.dataset.comuna;
       pintarVivir();
-      if (angosta.matches) $("#comuna-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
+      if (angosta.matches && fichaAbierta.vivir) $("#comuna-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
     });
-    $("#vivir-fuentes").innerHTML = `<p class="visor-etiqueta">Fuentes (revisadas el ${fechaTexto(barriosData.revisado)})</p>` +
-      barriosData.fuentes.map((x) => `<a href="${x.url}" target="_blank" rel="noopener">${x.nombre}</a>`).join("");
+    pintarFuentesVista($("#vivir-fuentes"), barriosData.revisado, barriosData.fuentes);
   }
 
   const chipsLineas = (ls) => ls.map((l) => `<span class="linea-chip" style="--c:${COLOR_LINEA[l] || "#182638"}">${l}</span>`).join("");
@@ -2657,6 +2801,7 @@
       ...barriosData.comunas
     ];
     if (!items.some((c) => c.id === estado.comunaSel)) estado.comunaSel = "san-miguel";
+    guardarFicha($("#carriles"), $("#comuna-detalle"));
     $("#carriles").innerHTML = barriosData.niveles.map((n) => {
       const enCarril = items.filter((c) => c.seguridad === n.id && !c.pieza).sort((a, b) => a.arriendo - b.arriendo);
       if (n.id === "sin-dato") enCarril.unshift(items[0]);
@@ -2697,6 +2842,14 @@
       location.hash = "#lucas";
       pintarLucas();
     });
+    // En una sola columna la ficha se abre bajo el grupo de la comuna tocada.
+    const ficha = $("#comuna-detalle");
+    const chip = $("#carriles .comuna-chip[aria-pressed='true']");
+    if (!columnaUnica.matches) { ficha.hidden = false; return; }
+    const abierta = Boolean(chip && fichaAbierta.vivir);
+    if (chip) { chip.setAttribute("aria-expanded", String(abierta)); chip.setAttribute("aria-pressed", String(abierta)); }
+    ficha.hidden = !abierta;
+    if (abierta) chip.closest(".carril").append(ficha);
   }
 
   /* ---------- Buscar allá: trabajo y vivienda en Alemania ---------- */
@@ -2754,9 +2907,11 @@
     $("#de-escala").addEventListener("click", (e) => {
       const btn = e.target.closest("[data-detrabajo]");
       if (!btn) return;
+      tocarFila("alla", btn.dataset.detrabajo, estado.deTrabajo);
       estado.deTrabajo = btn.dataset.detrabajo; guardar(); pintarBuscarAlla();
-      if (angosta.matches) $("#de-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
+      if (angosta.matches && fichaAbierta.alla) $("#de-detalle").scrollIntoView({ block: "nearest", behavior: "smooth" });
     });
+    columnaUnica.addEventListener("change", () => pintarDeTrabajos());
     $("#de-armar").addEventListener("click", (e) => {
       const k = e.target.closest("[data-dkw]"), x = e.target.closest("[data-dextra]");
       if (k) deClave = k.dataset.dkw;
@@ -2787,8 +2942,7 @@
     const todas = new Map();
     b.trabajo.trabajos.forEach((t) => t.fuentes.forEach((x) => todas.set(x.url, x)));
     b.vivienda.fuentes.forEach((x) => todas.set(x.url, x));
-    $("#buscar-fuentes").innerHTML = `<p class="visor-etiqueta">Fuentes (revisadas el ${fechaTexto(b.revisado)})</p>` +
-      [...todas.values()].map((x) => `<a href="${x.url}" target="_blank" rel="noopener">${x.nombre}</a>`).join("");
+    pintarFuentesVista($("#buscar-fuentes"), b.revisado, [...todas.values()]);
   }
 
   function montarMappe() {
@@ -2833,6 +2987,9 @@
     const max = T.escalaMax, minimo = plan.sueldo.hora2027;
     const x = (v) => `${Math.min(100, (v / max) * 100)}%`;
     const eur2 = (v) => "€" + v.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    guardarFicha($("#de-escala"), $("#de-detalle"));
+    const plegado = $("#de-detalle .pliegue");
+    const detalleAbierto = Boolean(plegado && plegado.open);
     $("#de-escala").innerHTML = `
       <div class="escala-ejes" aria-hidden="true">
         <span class="eje-meta" style="left:${x(minimo)}"><span>Mínimo 2027 ${eur2(minimo)}</span></span>
@@ -2864,15 +3021,21 @@
           <div class="esc-cifra"><span>Después de vivir en ${c.nombre}</span><b class="${sobra >= 0 ? "pos" : "neg"}">${sobra >= 0 ? "+" : "−"}${euros(Math.abs(sobra))}</b></div>
         </div>
         <p>${t.detalle}</p>
+        <a class="boton detalle-buscar" href="#de-postular">Buscar avisos de esto</a>
+        <details class="pliegue pliegue-oscuro"${detalleAbierto ? " open" : ""}>
+          <summary><h4 class="pliegue-titulo">Idioma, qué piden y cuánto cuesta entrar</h4><span class="pliegue-resumen">${t.ojo ? "Requisitos, dónde buscar, un aviso importante y fuentes." : "Requisitos, dónde buscar y fuentes."}</span>${PLIEGUE_ACCION}</summary>
+          <div class="pliegue-cuerpo">
         <p class="detalle-req"><strong>Idioma:</strong> ${T.idiomas[t.idioma]}.</p>
         <p class="detalle-req"><strong>Piden:</strong> ${t.requisitos}</p>
         <p class="detalle-req detalle-entrada entrada-txt-${ENTRADA_CLASE[t.entrada]}"><strong>Para entrar:</strong> ${t.costo || (t.entrada === "libre" ? "no hay que pagar nada antes." : T.entradas[t.entrada] + ".")}</p>
         ${t.donde ? `<p class="detalle-req"><strong>Dónde buscar:</strong> ${t.donde}</p>` : ""}
         ${t.ojo ? `<p class="detalle-ojo"><strong>Ojo:</strong> ${t.ojo}</p>` : ""}
-        <a class="boton detalle-buscar" href="#de-postular">Buscar avisos de esto</a>
         <div class="detalle-tags">${t.tags.map((g) => `<span>${(T.filtros.find((f) => f.id === g) || {}).nombre || g}</span>`).join("")}</div>
-        ${t.fuentes.length ? `<div class="detalle-fuentes">${t.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join("")}</div>` : ""}`;
+        ${t.fuentes.length ? `<div class="detalle-fuentes">${t.fuentes.map((f) => `<a href="${f.url}" target="_blank" rel="noopener">${f.nombre}</a>`).join("")}</div>` : ""}
+          </div>
+        </details>`;
     } else $("#de-detalle").innerHTML = "";
+    ubicarFicha($("#de-escala"), $("#de-detalle"), "alla");
     pintarDePortales();
   }
 
@@ -3059,6 +3222,7 @@
       ? `Lo que pide la embajada para la Working Holiday. Toca cada parada y responde; si algo no lo cumples, te explicamos qué significa.`
       : `Lo que pide la embajada para la Working Holiday, a cada persona. Toquen cada parada y respondan; si algo no lo cumplen, les explicamos qué significa.`;
     $("#puedes-fuente").href = puedesCrudo.fuente;
+    $("#puedes-resumen").textContent = `Los ${reqs.length} requisitos de la embajada${uno ? "" : ", para cada persona"}: ${hechos === 0 ? "ninguno respondido todavía" : `${hechos} de ${reqs.length} respondidos`}${noes.length ? `, ${noes.length} por revisar` : ""}.`;
 
     if (puedesAbierto == null) {
       const pendiente = reqs.find((r) => !resp[r.id]);
@@ -3261,6 +3425,7 @@
     }
     cerrarMas();
     const destino = id && id !== vista ? document.getElementById(id) : null;
+    if (destino) abrirHasta(destino);
     if (destino) requestAnimationFrame(() => destino.scrollIntoView({ block: "start" }));
     else if (cambio) window.scrollTo({ top: 0, behavior: "instant" });
     if (vista === "conectar") pintarConectar(params);
@@ -3268,6 +3433,17 @@
 
   function montarVentanas() {
     window.addEventListener("hashchange", rutear);
+    // Un enlace a algo que está dentro de un pliegue cerrado lo abre, aunque el hash ya sea ese.
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const href = a.getAttribute("href");
+      const id = decodeURIComponent(href.slice(1).split("?")[0]);
+      const t = id && document.getElementById(id);
+      if (!t || t.classList.contains("vista")) return;
+      abrirHasta(t);
+      if (location.hash === href) { e.preventDefault(); t.scrollIntoView({ block: "start" }); }
+    });
     const mas = $("#mas"), abrir = $("#abrir-mas");
     abrir.addEventListener("click", () => {
       const abierto = !mas.hidden;
@@ -3422,6 +3598,7 @@
     const [y, m, d] = plan.actualizado.split("-").map(Number);
     $("#pie-fecha").textContent = `Datos revisados el ${d} de ${MESES[m - 1]} de ${y}. Euro a ${pesos(plan.tipoCambio.eur)} según ${plan.tipoCambio.fuente}.`;
     const f = $("#fuentes");
+    $("#fuentes-cuantas").textContent = `${plan.fuentes.length} enlaces a las páginas oficiales y estudios de donde salen los datos`;
     plan.fuentes.forEach((x) => f.append(el("a", { href: x.url, target: "_blank", rel: "noopener" }, x.nombre)));
   }
 
@@ -3431,7 +3608,7 @@
      una tarjeta con la explicación, sin moverse de donde se está. Un observador marca
      también lo que se pinta después, así que ninguna vista tiene que llamarlo. */
   let glosario = null;
-  const GLOSA_NO = ".glosa, a, button, input, textarea, select, option, code, script, style, svg, .glosa-tarjeta, [data-sin-glosario], [contenteditable]";
+  const GLOSA_NO = ".glosa, a, button, summary, input, textarea, select, option, code, script, style, svg, .glosa-tarjeta, [data-sin-glosario], [contenteditable]";
   const GLOSA_AMBITO = "p, li, dd, dt, td, th, figcaption, h2, h3, h4, label, .respuesta, dialog, .vista, .pie";
 
   function montarGlosario(datos) {
