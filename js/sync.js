@@ -96,10 +96,10 @@
       : { method: "GET", redirect: "follow" };
     const url = cuerpo ? conf.url : `${conf.url}${conf.url.includes("?") ? "&" : "?"}clave=${encodeURIComponent(conf.clave)}&t=${Date.now()}`;
     const r = await fetch(url, opciones);
-    if (!r.ok) throw new Error("red");
+    if (!r.ok) throw new Error("red:" + r.status);
     let datos;
     try { datos = await r.json(); } catch { throw new Error("respuesta"); }
-    if (datos.error) throw new Error(datos.error);
+    if (datos.error) { const e = new Error(datos.error); e.planilla = true; throw e; }
     return datos;
   }
 
@@ -154,7 +154,9 @@
       if (m === "clave") avisar("error", "La clave no coincide con la del código de la planilla.");
       else if (m === "falta-clave") avisar("error", "En el código de la planilla falta cambiar «cambien-esta-clave» por su clave.");
       else if (!navigator.onLine) avisar("sinred", "Sin internet. Lo que anoten se guarda aquí y se envía al volver la señal.");
-      else avisar("error", "No se pudo conectar con la planilla. Revisen la dirección y que el acceso sea «Cualquier persona».");
+      else if (err.planilla) avisar("error", `La planilla respondió con un error: «${m}». Si dice algo de permisos o «autorización», abran Apps Script, ejecuten cualquier función una vez y acepten los permisos.`);
+      else if (m === "respuesta") avisar("error", "La dirección responde, pero no con los datos de la planilla. Revisen que sea la que termina en /exec de la última implementación.");
+      else avisar("error", `No se pudo conectar con la planilla (${m}). Revisen la dirección y que el acceso sea «Cualquier persona».`);
     } finally {
       ocupado = false;
       if (otraVez) { otraVez = false; programar(1500); }
