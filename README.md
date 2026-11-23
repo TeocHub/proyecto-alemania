@@ -114,3 +114,9 @@ Calendario de 12 meses que parte en el mes de viaje del plan. Cada mes muestra p
 ## Menú
 
 Inicio · El plan de Alemania (Los trámites, La plata, ¿Dónde llegamos?, Prepararse, Buscar allá, Su año allá) · Ahora, en Santiago (El colchón o Ahorrar para el viaje, Las lucas, Trabajos, Dónde vivir) · Cuando aparecen dudas (Todas las dudas, Cuando dudemos) · Su grupo (Quiénes viajan, Conectar dispositivos). La numeración sigue el camino: 0 es lo de ahora en Santiago y 1 a 4, el plan de Alemania. «Sigue», al pie de cada ventana, usa el mismo orden del menú.
+
+## Avisar lo nuevo
+
+Cuando se publique algo que valga la pena contar, agreguen un bloque al inicio de `novedades` en `data/novedades.json`, con la fecha como `id` (AAAA-MM-DD) y de dos a cuatro puntos cortos. Cada punto puede llevar `ir` (por ejemplo `#dudas`) para llevar a esa parte al tocarlo. Cada dispositivo lo ve una sola vez. Quien entra por primera vez no ve las novedades pasadas.
+
+Si cambia `apps-script/Codigo.gs`, suban `VERSION` en ese archivo y `scriptMinimo` en `data/novedades.json` al mismo número. A quien tenga la planilla con un código anterior le aparece una vez un aviso con los pasos y un botón que copia el código nuevo con su clave ya puesta. Mientras no lo actualice, el aviso sigue visible en Conectar dispositivos. Las planillas que no informan versión cuentan como versión 1.

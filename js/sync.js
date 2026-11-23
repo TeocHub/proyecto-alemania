@@ -73,7 +73,7 @@
   }
 
   function avisar(tipo, detalle) {
-    estadoActual = { tipo, detalle, ultima: meta.ultima, planilla: meta.planilla, conectado: Boolean(conf) };
+    estadoActual = { tipo, detalle, ultima: meta.ultima, planilla: meta.planilla, script: conf ? meta.script || null : null, conectado: Boolean(conf) };
     if (api && api.alCambiar) api.alCambiar(estadoActual);
   }
 
@@ -161,6 +161,7 @@
       meta.rev = datos.rev;
       meta.ultima = Date.now();
       if (datos.planilla) meta.planilla = datos.planilla;
+      meta.script = Number(datos.version) || 1; // las planillas de antes no informaban versión
       guardarMeta();
       avisar("ok");
     } catch (err) {

@@ -1130,6 +1130,25 @@ main { padding-bottom: 5.5rem; }
   .dialogo { margin: auto 0 0; width: 100%; max-width: 100%; border-radius: 20px 20px 0 0; padding-bottom: calc(1.2rem + env(safe-area-inset-bottom)); }
 }
 
+/* Lo nuevo: una vez por dispositivo */
+.dialogo-nuevo { max-height: min(88vh, 44rem); overflow-y: auto; }
+.nuevo-marco { display: grid; gap: 0.9rem; }
+.nuevo-fecha { margin: -0.5rem 0 0; color: var(--tinta-suave); font-size: var(--t-0); }
+.nuevo-items { display: grid; gap: 0; border-top: 1px solid var(--niebla); }
+.nuevo-item {
+  display: grid; gap: 0.15rem; padding: 0.75rem 0 0.75rem 0.9rem; border-bottom: 1px solid var(--niebla);
+  border-left: 3px solid var(--linea); color: var(--tinta); text-decoration: none;
+}
+.nuevo-item strong { font-family: var(--display); font-size: var(--t-2); line-height: 1.2; }
+.nuevo-item span { color: var(--tinta-suave); font-size: var(--t-0); line-height: 1.45; }
+a.nuevo-item:hover strong, a.nuevo-item:focus-visible strong { text-decoration: underline; text-decoration-color: var(--linea); text-underline-offset: 3px; }
+div.nuevo-item { border-left-color: var(--niebla); }
+.aviso-script { display: grid; gap: 0.7rem; background: var(--aviso); border-radius: 12px; padding: 0.9rem 1rem; }
+.aviso-script p { margin: 0; }
+.aviso-script .boton { justify-self: start; }
+.pasos-script { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.45rem; font-size: var(--t-0); line-height: 1.45; }
+.conectar-tarjeta .aviso-script { color: var(--tinta); margin-bottom: 0.4rem; }
+
 .aviso-breve {
   position: fixed; left: 50%; bottom: calc(5.2rem + env(safe-area-inset-bottom)); z-index: 40;
   transform: translate(-50%, 1rem); opacity: 0; pointer-events: none;

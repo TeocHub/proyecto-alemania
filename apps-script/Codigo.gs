@@ -8,11 +8,19 @@ const CLAVE = 'cambien-esta-clave';
      Ejecutar como: Yo. Quién tiene acceso: Cualquier persona.
   3. Copien la dirección que termina en /exec y péguenla en la página, en «Guardar entre los dos».
 
+  Para actualizar este código más adelante sin cambiar la dirección: peguen el nuevo, vuelvan a
+  poner su clave, y en Implementar → Gestionar implementaciones editen la que ya existe y elijan
+  «Nueva versión».
+
   La hoja «Ahorros» se actualiza sola con lo que anoten en el colchón.
   La hoja «datos» es la que usa la página: no la editen a mano.
 */
 
 const TROZO = 40000;
+
+// Versión de este código. La página la compara con data/novedades.json («scriptMinimo»)
+// y, si es más antigua, les avisa cómo actualizarlo. Súbanla solo cuando cambie este archivo.
+const VERSION = 1;
 
 function doGet(e) {
   return responder_(function () {
@@ -57,7 +65,7 @@ function responder_(fn) {
   let salida;
   try {
     const datos = fn();
-    salida = { rev: datos.rev, mapa: datos.mapa, planilla: SpreadsheetApp.getActive().getUrl() };
+    salida = { rev: datos.rev, mapa: datos.mapa, planilla: SpreadsheetApp.getActive().getUrl(), version: VERSION };
   } catch (err) {
     salida = { error: String((err && err.message) || err) };
   }

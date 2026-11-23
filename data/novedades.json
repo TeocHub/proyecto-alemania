@@ -1,0 +1,15 @@
+{
+  "nota": "Cada vez que se publique algo que valga la pena contar, agreguen un bloque al inicio de «novedades» con una fecha nueva como id (AAAA-MM-DD). Cada dispositivo lo muestra una sola vez. Si cambia apps-script/Codigo.gs, suban VERSION ahí y «scriptMinimo» aquí al mismo número: a quien tenga la planilla con el código anterior le aparece cómo actualizarlo.",
+  "scriptMinimo": 1,
+  "novedades": [
+    {
+      "id": "2026-11-23",
+      "items": [
+        { "titulo": "¿Se puede ir?", "texto": "Los requisitos de la visa, para revisarlos uno por uno antes de empezar.", "ir": "#bienvenida" },
+        { "titulo": "La plata, en una sola historia", "texto": "Inicio explica cuánto se necesita, qué se paga antes y qué se congela, y dice qué toca ahora.", "ir": "#inicio" },
+        { "titulo": "Dudas nuevas", "texto": "La maleta, el chip, emergencias, el registro de domicilio y qué pasa en Chile mientras tanto.", "ir": "#dudas" },
+        { "titulo": "Palabras en alemán", "texto": "Las que aparecen subrayadas con puntos se explican al tocarlas, sin salir de donde se está leyendo." }
+      ]
+    }
+  ]
+}

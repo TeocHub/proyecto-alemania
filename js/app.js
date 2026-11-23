@@ -104,7 +104,7 @@
     if (window.Sincro) window.Sincro.cambio();
   }
 
-  let plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData, anoData;
+  let plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData, anoData, novedadesData;
   const hoy = new Date();
   const estado = Object.assign(copia(DEFAULTS), leerEstado());
 
@@ -3506,6 +3506,93 @@
       b.title = s.detalle || largo;
     });
     if (vistaActual === "conectar") pintarConectar();
+    if (scriptAntiguo() && (registroNovedades().script || 0) < novedadesData.scriptMinimo && !$("#dialogo-nuevo").open) abrirAvisos({ script: true });
+  }
+
+  /* ---------- Lo nuevo ----------
+     Un aviso corto que aparece una vez por dispositivo cuando se publica algo nuevo
+     (data/novedades.json), y otro si la planilla tiene un código más antiguo del que la
+     página necesita. Quien entra por primera vez no ve novedades pasadas. */
+  const CLAVE_NOVEDADES = "proyecto-alemania-novedades";
+  function registroNovedades() {
+    try { return JSON.parse(localStorage.getItem(CLAVE_NOVEDADES)) || {}; } catch { return {}; }
+  }
+  function anotarNovedades(cambio) {
+    try { localStorage.setItem(CLAVE_NOVEDADES, JSON.stringify(Object.assign(registroNovedades(), cambio))); } catch { /* sin espacio */ }
+  }
+  function scriptAntiguo() {
+    const s = window.Sincro ? window.Sincro.estado() : null;
+    return Boolean(novedadesData && s && s.conectado && s.script && s.script < (novedadesData.scriptMinimo || 1));
+  }
+  function novedadesPorVer() {
+    const visto = registroNovedades().visto || "";
+    return (novedadesData.novedades || []).filter((n) => n.id > visto).slice(0, 2);
+  }
+  function montarNovedades() {
+    const lista = novedadesData.novedades || [];
+    const r = registroNovedades();
+    // Primera vez en este dispositivo y sin grupo: es alguien nuevo, todo lo publicado ya es parte de la página.
+    if (!("visto" in r) && !estado.perfil) anotarNovedades({ visto: lista.length ? lista[0].id : "" });
+    $("#nuevo-cerrar").addEventListener("click", cerrarAvisos);
+    $("#dialogo-nuevo").addEventListener("cancel", cerrarAvisos);
+    window.addEventListener("hashchange", () => {
+      if (avisoPendiente && vistaActual !== "bienvenida") { avisoPendiente = false; abrirAvisos({}); } else revisarNovedades();
+    });
+    setTimeout(revisarNovedades, 900);
+  }
+  let avisoPendiente = false;
+  function revisarNovedades() {
+    if (!novedadesData || vistaActual === "bienvenida" || !estado.perfil) return;
+    if (novedadesPorVer().length) abrirAvisos({});
+  }
+  function abrirAvisos({ script = false }) {
+    const d = $("#dialogo-nuevo");
+    if (vistaActual === "bienvenida") { avisoPendiente = true; return; }
+    const nuevas = novedadesPorVer();
+    const conScript = script || ((registroNovedades().script || 0) < novedadesData.scriptMinimo && scriptAntiguo());
+    if (!nuevas.length && !conScript) return;
+    const fecha = (id) => { const [y, m, dd] = id.split("-").map(Number); return `${dd} de ${MESES[m - 1]}`; };
+    $("#nuevo-cuerpo").innerHTML = `
+      ${nuevas.length ? `<p class="nuevo-fecha">Desde el ${fecha(nuevas[nuevas.length - 1].id)}</p>
+      <div class="nuevo-items">${nuevas.flatMap((n) => n.items).map((x) => x.ir
+        ? `<a class="nuevo-item" href="${attr(x.ir)}" data-cerrar-nuevo><strong>${escapar(x.titulo)}</strong><span>${escapar(x.texto)}</span></a>`
+        : `<div class="nuevo-item"><strong>${escapar(x.titulo)}</strong><span>${escapar(x.texto)}</span></div>`).join("")}</div>` : ""}
+      ${conScript ? `<div class="aviso-script aviso-script-dialogo">
+        <p><strong>Hay que actualizar el código de la planilla.</strong> ${ld("La de ustedes", "La tuya")} sigue guardando, pero tiene una versión anterior y le faltan funciones nuevas. Basta que lo haga una persona.</p>
+        <ol class="pasos-script">
+          <li>${ld("Copien", "Copia")} el código nuevo con el botón de abajo: ya trae ${ld("su", "tu")} clave puesta.</li>
+          <li>${ld("Abran la planilla, vayan a Extensiones → Apps Script, borren todo el código y peguen el nuevo. Guarden.", "Abre la planilla, ve a Extensiones → Apps Script, borra todo el código y pega el nuevo. Guarda.")}</li>
+          <li>${ld("Vayan a Implementar → Gestionar implementaciones, toquen el lápiz, en Versión elijan", "Ve a Implementar → Gestionar implementaciones, toca el lápiz, en Versión elige")} «Nueva versión» e Implementar. La dirección sigue siendo la misma.</li>
+        </ol>
+        <button type="button" class="boton" id="nuevo-copiar">Copiar el código nuevo</button>
+        <p class="nota" id="nuevo-copiado" aria-live="polite"></p>
+      </div>` : ""}`;
+    $("#nuevo-titulo").textContent = nuevas.length ? "Lo nuevo en la página" : "Una actualización para la planilla";
+    d.dataset.script = conScript ? "1" : "";
+    d.querySelectorAll("[data-cerrar-nuevo]").forEach((a) => a.addEventListener("click", cerrarAvisos));
+    const copiar = $("#nuevo-copiar");
+    if (copiar) copiar.addEventListener("click", copiarCodigoConClave);
+    if (!d.open) { if (d.showModal) d.showModal(); else d.setAttribute("open", ""); }
+  }
+  function cerrarAvisos() {
+    const d = $("#dialogo-nuevo");
+    const lista = novedadesData.novedades || [];
+    const cambio = { visto: lista.length ? lista[0].id : "" };
+    if (d.dataset.script) cambio.script = novedadesData.scriptMinimo;
+    anotarNovedades(cambio);
+    if (d.open) { if (d.close) d.close(); else d.removeAttribute("open"); }
+  }
+  async function copiarCodigoConClave() {
+    const aviso = $("#nuevo-copiado");
+    const con = window.Sincro ? window.Sincro.conexion() : null;
+    try {
+      let texto = await fetch("apps-script/Codigo.gs", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(); return r.text(); });
+      if (con && con.clave) texto = texto.replace("'cambien-esta-clave'", "'" + con.clave.replace(/\\/g, "\\\\").replace(/'/g, "\\'") + "'");
+      await navigator.clipboard.writeText(texto);
+      aviso.textContent = "Código copiado, con la clave puesta.";
+    } catch {
+      aviso.innerHTML = 'No se pudo copiar. Ábrelo <a href="apps-script/Codigo.gs" target="_blank" rel="noopener">aquí</a>, cópialo a mano y cambia «cambien-esta-clave» por la clave.';
+    }
   }
 
   let conectarParams = null;
@@ -3578,6 +3665,14 @@
       window.Sincro.desconectar();
       pintarConectar();
     });
+    if (scriptAntiguo()) {
+      panel.querySelector(".conectar-tarjeta").insertAdjacentHTML("afterbegin", `
+        <div class="aviso-script">
+          <p><strong>El código de ${ld("su", "tu")} planilla es de una versión anterior.</strong> Sigue guardando, pero le faltan cosas nuevas. Actualizarlo toma un par de minutos y no cambia la dirección.</p>
+          <button type="button" class="boton boton-claro" data-ver-script>Ver cómo actualizarlo</button>
+        </div>`);
+      panel.querySelector("[data-ver-script]").addEventListener("click", () => abrirAvisos({ script: true }));
+    }
   }
 
   function montarCodigo() {
@@ -3804,10 +3899,11 @@
   async function iniciar() {
     try {
       const cargar = (u) => fetch(u, { cache: "no-cache" }).then((x) => { if (!x.ok) throw new Error(u); return x.json(); });
-      [plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData, anoData] = await Promise.all([
+      [plan, ciudades, dudas, prep, refugio, colchonData, trabajosData, barriosData, buscarData, anoData, novedadesData] = await Promise.all([
         cargar("data/plan.json"), cargar("data/ciudades.json"), cargar("data/dudas.json"),
         cargar("data/preparacion.json"), cargar("data/refugio.json"), cargar("data/colchon.json"),
-        cargar("data/trabajos.json"), cargar("data/barrios.json"), cargar("data/buscar-alemania.json"), cargar("data/el-ano.json")
+        cargar("data/trabajos.json"), cargar("data/barrios.json"), cargar("data/buscar-alemania.json"), cargar("data/el-ano.json"),
+        cargar("data/novedades.json").catch(() => ({ novedades: [], scriptMinimo: 1 }))
       ]);
       // La bienvenida necesita los requisitos en singular y plural, porque el grupo puede cambiar antes de guardarlo.
       puedesCrudo = copia(plan.puedesIr);
@@ -3839,6 +3935,7 @@
     pintarPreguntas();
     pintarPie();
     montarCodigo();
+    montarNovedades();
     aplicarPerfil();
     todo();
     rutear();
