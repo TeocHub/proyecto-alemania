@@ -574,9 +574,9 @@ input[type="range"] { width: 100%; accent-color: var(--linea); }
 /* Capítulos */
 .cap-num {
   display: inline-grid; place-items: center; vertical-align: 0.12em;
-  width: 0.95em; height: 0.95em; margin-right: 0.3em; border-radius: 50%;
-  border: 0.13em solid currentColor; background: var(--linea); color: var(--tinta);
-  font-size: 0.72em; font-stretch: 100%;
+  width: 1.75em; height: 1.75em; margin-right: 0.55em; border-radius: 50%; line-height: 1;
+  border: 0.22em solid currentColor; background: var(--linea); color: var(--tinta);
+  font-size: 0.52em; font-stretch: 100%; font-variant-numeric: tabular-nums;
 }
 .seccion-dinero .cap-num { border-color: var(--linea); }
 .siguiente {
@@ -1526,7 +1526,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .bienv-ideas { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 0 0 2.5rem; padding-top: 1.9rem; }
 .bienv-ideas::before { content: ""; position: absolute; top: 0.62rem; left: 0.6rem; right: 0.6rem; height: 6px; border-radius: 3px; background: var(--linea); }
 .bienv-idea { position: relative; }
-.bienv-num { position: absolute; top: -1.9rem; left: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--hoja); border: 4px solid var(--tinta); display: grid; place-items: center; font-size: 0.7rem; font-weight: 800; }
+.bienv-num { position: absolute; top: -1.9rem; left: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--hoja); border: 4px solid var(--tinta); display: grid; place-items: center; font-size: 0.7rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
 .bienv-idea h3 { font-family: var(--display); font-size: var(--t-2); margin: 0.6rem 0 0.35rem; }
 .bienv-idea p { margin: 0; color: var(--tinta-suave); font-size: var(--t-0); line-height: 1.5; }
 

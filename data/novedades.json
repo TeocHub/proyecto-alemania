@@ -5,7 +5,7 @@
     {
       "id": "2026-11-23",
       "items": [
-        { "titulo": "¿Se puede ir?", "texto": "Los requisitos de la visa, para revisarlos uno por uno antes de empezar.", "ir": "#bienvenida" },
+        { "titulo": "¿Se puede ir?", "texto": "Los requisitos de la visa, para revisarlos uno por uno antes de empezar.", "ir": "#puedes" },
         { "titulo": "La plata, en una sola historia", "texto": "Inicio explica cuánto se necesita, qué se paga antes y qué se congela, y dice qué toca ahora.", "ir": "#inicio" },
         { "titulo": "Dudas nuevas", "texto": "La maleta, el chip, emergencias, el registro de domicilio y qué pasa en Chile mientras tanto.", "ir": "#dudas" },
         { "titulo": "Palabras en alemán", "texto": "Las que aparecen subrayadas con puntos se explican al tocarlas, sin salir de donde se está leyendo." }

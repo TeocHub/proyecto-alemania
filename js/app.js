@@ -3404,7 +3404,9 @@
   function rutear() {
     const { id, params } = leerHash();
     if (id === "contenido") { $("#contenido").focus(); return; }
-    let vista = VISTAS.includes(id) ? id : (DENTRO[id] || "inicio");
+    // Un id de algo que está dentro de una vista lleva a esa vista, aunque no esté en DENTRO.
+    const dentroDe = (x) => { const n = x && document.getElementById(x); const v = n && n.closest(".vista"); return v ? v.id : null; };
+    let vista = VISTAS.includes(id) ? id : (id in DENTRO ? DENTRO[id] : dentroDe(id)) || "inicio";
     // Sin grupo configurado, se parte por la bienvenida (salvo al abrir un enlace para conectar).
     if (!estado.perfil && vista !== "conectar") vista = "bienvenida";
     const cambio = vista !== vistaActual;

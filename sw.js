@@ -1,6 +1,6 @@
 /* Modo sin conexión: siempre intenta traer lo más nuevo y, si no hay señal,
    muestra la última versión guardada. No toca la planilla de Google. */
-const CACHE = "proyecto-alemania-v31";
+const CACHE = "proyecto-alemania-v32";
 
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => {
