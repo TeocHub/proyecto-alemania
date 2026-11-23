@@ -212,7 +212,7 @@
       const previa = conf;
       conf = { url, clave };
       try {
-        await llamar(null); // prueba la conexión antes de guardar
+        var remoto = await llamar(null); // prueba la conexión antes de guardar
       } catch (err) {
         conf = previa;
         const m = String(err.message || err);
@@ -221,10 +221,15 @@
         throw new Error("No respondió. Revisen que copiaron la dirección completa (termina en /exec) y que el acceso sea «Cualquier persona».");
       }
       escribir(CONF, conf);
-      // Primera vez en este dispositivo: se ofrece todo lo que hay aquí.
-      // Lo que nunca se tocó lleva hora 0, así no le gana a lo que ya está en la planilla.
+      // Si la planilla ya tiene datos, otra persona del grupo la configuró: manda lo de ella
+      // (nombres, edades, montos) aunque aquí se haya llenado algo antes. Solo se sube lo que
+      // allá no existe. Si la planilla está vacía, este dispositivo es el primero y sube todo.
       const plano = aplanar(api.obtener());
-      for (const p in plano) { pendientes.add(p); if (!meta.tiempos[p]) meta.tiempos[p] = 0; }
+      const yaUsada = Object.keys((remoto && remoto.mapa) || {}).length > 0;
+      for (const p in plano) {
+        if (yaUsada) { meta.tiempos[p] = 0; if (!(p in remoto.mapa)) pendientes.add(p); else pendientes.delete(p); }
+        else { pendientes.add(p); if (!meta.tiempos[p]) meta.tiempos[p] = 0; }
+      }
       guardarMeta();
       await sincronizar();
       arrancarIntervalo();
